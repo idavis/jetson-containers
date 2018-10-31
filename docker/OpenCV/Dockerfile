@@ -3,9 +3,9 @@ ARG L4T_VERSION=28.2.1
 ARG DEVICE=tx2
 FROM l4t:${L4T_VERSION}-${DEVICE}-jetpack-${JETPACK_VERSION} as builder
 
-ARG OPENCV_VERSION=3.4.2
+ARG OPENCV_GIT_VERSION=3.4.3
 
-LABEL opencv.version="${OPENCV_VERSION}"
+LABEL opencv.version="${OPENCV_GIT_VERSION}"
 
 RUN apt-get update && apt-get install -y \
     libavcodec-dev \
@@ -62,8 +62,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN git clone --depth 1 https://github.com/opencv/opencv.git -b ${OPENCV_VERSION} && \
-    git clone --depth 1 https://github.com/opencv/opencv_extra.git -b ${OPENCV_VERSION}
+RUN git clone --depth 1 https://github.com/opencv/opencv.git -b ${OPENCV_GIT_VERSION} && \
+    git clone --depth 1 https://github.com/opencv/opencv_extra.git -b ${OPENCV_GIT_VERSION}
 
 RUN mkdir opencv/build
 WORKDIR opencv/build
