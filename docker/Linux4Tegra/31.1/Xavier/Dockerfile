@@ -22,7 +22,7 @@ RUN curl -sL $URL/${DRIVER_PACK} -o ${DRIVER_PACK} && \
     rm -rf ./Linux_for_Tegra && \
     rm ./${DRIVER_PACK}
 
-ENV LD_LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/tegra:${LD_LIBRARY_PATH}
+ENV LD_LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/tegra:/usr/lib/aarch64-linux-gnu/tegra-egl:${LD_LIBRARY_PATH}
 
 RUN ln -s /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.31.0.1 /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so
 RUN ln -s /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.31.0.1 /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.1
