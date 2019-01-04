@@ -76,6 +76,8 @@ l4t:28.2-tx1 => 412 MB
 
 l4t:28.2.1-tx2 => 458 MB
 
+l4t:31.1-xavier => 362 MB
+
 #### With Jetpack
 
 l4t:28.2-tx1-jetpack-3.2.1 => 4.03 GB
@@ -85,6 +87,8 @@ l4t:28.2-tx1-jetpack-3.3 => 4.43 GB
 l4t:28.2.1-tx2-jetpack-3.2.1 => 4.48 GB
 
 l4t:28.2.1-tx2-jetpack-3.3 => 4.07 GB
+
+l4t:31.1-xavier-jetpack-4.1.1 => 5.61 GB
 
 ## Flashing Devices
 
@@ -113,4 +117,6 @@ Error: probing the target board failed.
        Make sure the target board is connected through 
        USB port and is in recovery mode.
 ```
+
 If your device was in recovery mode, you should see progress displayed. Once the device has been flashed, it will automatically restart.
+
