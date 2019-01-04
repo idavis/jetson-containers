@@ -6,6 +6,6 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-echo "sudo docker run --rm -it --privileged -v /dev/bus/usb:/dev/bus/usb $1"
-sudo docker run --rm -it --privileged -v /dev/bus/usb:/dev/bus/usb $1
+echo "docker run --rm -it --privileged -v /dev/bus/usb:/dev/bus/usb $1"
+docker run --rm -it --privileged -v /dev/bus/usb:/dev/bus/usb $1
 
