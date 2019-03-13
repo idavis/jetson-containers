@@ -32,14 +32,10 @@ When using containers, it is highly recommended that you use external storage an
     ```bash
     sudo apt-get update
     sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     ```
-2. Install Docker CE
+2. Install Docker.io
     ```bash
-    # Do not skip this update, we added an apt-repo in the last step which we need to pull from.
-    sudo apt-get update
-    sudo apt-get install docker-ce
+    sudo apt-get install docker.io
     ```
 3. Verify Installation
     ```bash
