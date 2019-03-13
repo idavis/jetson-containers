@@ -1,0 +1,2 @@
+source ./drivers/28.2-tx1.conf
+source ./rootfs/tegra-linux-sample-28.2.conf
