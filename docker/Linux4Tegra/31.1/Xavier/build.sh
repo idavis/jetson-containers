@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo docker build --rm -f Dockerfile -t l4t:31.1-xavier .
+docker build --rm -f Dockerfile -t l4t:31.1-xavier .
