@@ -26,22 +26,6 @@ When using containers, it is highly recommended that you use external storage an
 }
 ```
 
-## Docker
-
-1. Set Up the Docker Repository
-    ```bash
-    sudo apt-get update
-    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-    ```
-2. Install Docker.io
-    ```bash
-    sudo apt-get install docker.io
-    ```
-3. Verify Installation
-    ```bash
-    sudo docker run hello-world
-    ```
-
 ## Running
 
 ```bash
