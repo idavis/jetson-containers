@@ -245,3 +245,24 @@ RUN curl -sL $URL/libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb -o libopencv
     dpkg -i libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb && \
     rm libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb
 
+# Install dependencies for TensorFlow
+RUN apt-get update && apt-get install -y \
+    hdf5-tools \
+    libhdf5-dev \
+    libhdf5-serial-dev \
+    libjpeg8-dev \
+    python3-pip \
+    zip \
+    zlib1g-dev \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m pip install -U pip && \
+    python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
+
+# Install TensorFlow
+RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
+# can browse from https://developer.download.nvidia.com/compute/redist/jp/
+# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==$TF_VERSION+nv$NV_VERSION
+
