@@ -84,6 +84,7 @@ RUN curl -sL $URL/libvisionworks-sfm-repo_0.90.4_arm64.deb -o libvisionworks-sfm
     /usr/share/visionworks-sfm/sources/install-samples.sh ~/ && \
     cd ~/VisionWorks-SFM-*-Samples/ && \
     make && \
+    cd / && \
     rm libvisionworks-sfm-repo_0.90.4_arm64.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -140,6 +141,17 @@ RUN curl -sL $URL/${TENSORRT_PKG} -o ${TENSORRT_PKG} && \
     dpkg -i ${TENSORRT_PKG} && \
     rm ${TENSORRT_PKG}
 
+RUN apt-get update && apt-get install -y \
+        python-dev \
+        python-numpy \
+        python-pip \
+        python-py \
+        python-pytest \
+    && \
+    python -m pip install -U pip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Python2 support for TensorRT
 RUN curl -sL $URL/python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     echo "5229e27def0022d5de32582437a8e5a5 python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
@@ -150,6 +162,17 @@ RUN curl -sL $URL/python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.d
     echo "b5c0812db5b560f6f5da64e5a59f464d python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
+
+RUN apt-get update && apt-get install -y \
+        python-dev \
+        python-numpy \
+        python3-pip \
+        python-py \
+        python-pytest \
+    && \
+    python3 -m pip install -U pip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Python3 support for TensorRT
 RUN curl -sL $URL/python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
@@ -169,7 +192,7 @@ RUN curl -sL $URL/graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o 
     rm graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 # UFF Converter
-RUN curl -sL $URL/uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb-o uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
+RUN curl -sL $URL/uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     echo "c1592b4bd7c56a3b5ec883e8e846d9bf uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
@@ -179,16 +202,16 @@ RUN curl -sL $URL/uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb-o 
 # Skipping unless needed.
 
 # Install dependencies for OpenCV
-#RUN apt-get update && apt-get install -y \
-#        libavcodec-extra57 \
-#        libavformat57 \
-#        libavutil55 \
-#        libcairo2 \
-#        libgtk2.0-0 \
-#        libswscale4 \
-#    && \
-#    apt-get clean && \
-#    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libavcodec-extra57 \
+        libavformat57 \
+        libavutil55 \
+        libcairo2 \
+        libgtk2.0-0 \
+        libswscale4 \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Open CV 3.3.1
 
@@ -210,16 +233,6 @@ RUN curl -sL $URL/libopencv_${OPENCV_PKG_VERSION}_arm64.deb -o libopencv_${OPENC
     rm libopencv_${OPENCV_PKG_VERSION}_arm64.deb
 
 ## Open CV python binding
-
-RUN apt-get update && apt-get install -y \
-        python-dev \
-        python-numpy \
-        python-py \
-        python-pytest \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 RUN curl -sL $URL/libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb -o libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb && \
     echo "35776ce159afa78a0fe727d4a3c5b6fa libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb" | md5sum -c - && \
     dpkg -i libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb && \
@@ -250,18 +263,15 @@ RUN apt-get update && apt-get install -y \
     libhdf5-dev \
     libhdf5-serial-dev \
     libjpeg8-dev \
-    python3-pip \
     zip \
     zlib1g-dev \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN python3 -m pip install -U pip && \
-    python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
+RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
 
 # Install TensorFlow
 RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
 # can browse from https://developer.download.nvidia.com/compute/redist/jp/
 # RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==$TF_VERSION+nv$NV_VERSION
-
