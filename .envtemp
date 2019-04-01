@@ -1,0 +1,2 @@
+DOCKER_HOST=ssh://$USER@somehost.local
+JP42_URL=
