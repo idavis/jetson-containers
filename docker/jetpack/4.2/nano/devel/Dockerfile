@@ -1,44 +1,30 @@
-FROM l4t:32.1-jax-tx2
-
-ENV JETPACK_VERSION "4.2"
-
-LABEL com.nvidia.jetpack.version="${JETPACK_VERSION}"
+ARG IMAGE_NAME
+FROM ${IMAGE_NAME}:32.1-nano-jetpack-4.2-runtime
 
 ARG URL
-
-ENV CUDA_VERSION 10.0.166_1.0
-
-ENV CUDA_PKG_VERSION=${CUDA_VERSION}-1
-
-LABEL com.nvidia.cuda.version="${CUDA_VERSION}"
 
 # Prereqs
 
 RUN apt-get update && \
-    apt-get install -y gnupg \
+    apt-get install -y --no-install-recommends curl \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # CUDA Toolkit for L4T
 
-ENV CUDA_TOOLKIT_PKG "cuda-repo-l4t-10-0-local-${CUDA_PKG_VERSION}_arm64.deb"
+ARG CUDA_TOOLKIT_PKG="cuda-repo-l4t-10-0-local-${CUDA_PKG_VERSION}_arm64.deb"
 
 RUN curl -sL $URL/${CUDA_TOOLKIT_PKG} -o ${CUDA_TOOLKIT_PKG} && \
     echo "5e3eedc3707305f9022d41754d6becde ${CUDA_TOOLKIT_PKG}" | md5sum -c - && \
     dpkg --force-all -i ${CUDA_TOOLKIT_PKG} && \
     rm ${CUDA_TOOLKIT_PKG} && \
-    apt-key add /var/cuda-repo-*-local*/*.pub
-    
-RUN apt-get update && \
-    apt-get install -y --allow-downgrades cuda-toolkit-10-0 libgomp1 libfreeimage-dev libopenmpi-dev openmpi-bin \
+    apt-get update && \
+    apt-get install -y --allow-downgrades cuda-toolkit-10-0 libgomp1 libfreeimage-dev libopenmpi-dev openmpi-bin && \
+    dpkg --purge cuda-repo-l4t-10-0-local-10.0.166 \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-RUN grep -q "export PATH=.*/usr/local/cuda-10/bin" ~/.bashrc || echo "export PATH=/usr/local/cuda-10/bin:$PATH">>~/.bashrc && \
-    grep -q "export LD_LIBRARY_PATH=/usr/local/cuda-10/lib64" ~/.bashrc || echo "export LD_LIBRARY_PATH=/usr/local/cuda-10/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc && \
-    export LD_LIBRARY_PATH=/usr/local/cuda-10/lib64:${LD_LIBRARY_PATH}
 
 # NVIDIA CUDA Deep Neural Network library (cuDNN)
 
@@ -70,6 +56,7 @@ RUN curl -sL $URL/libvisionworks-repo_1.6.0.500n_arm64.deb -o libvisionworks-rep
     apt-key add /var/visionworks-repo/GPGKEY && \
     apt-get update && \
     apt-get install -y --allow-unauthenticated libvisionworks libvisionworks-dev libvisionworks-samples && \
+    dpkg --purge libvisionworks-repo && \
     rm libvisionworks-repo_1.6.0.500n_arm64.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -81,10 +68,7 @@ RUN curl -sL $URL/libvisionworks-sfm-repo_0.90.4_arm64.deb -o libvisionworks-sfm
     apt-key add /var/visionworks-sfm-repo/GPGKEY && \
     apt-get update && \
     apt-get install -y --allow-unauthenticated libvisionworks-sfm libvisionworks-sfm-dev && \
-    /usr/share/visionworks-sfm/sources/install-samples.sh ~/ && \
-    cd ~/VisionWorks-SFM-*-Samples/ && \
-    make && \
-    cd / && \
+    dpkg --purge libvisionworks-sfm-repo && \
     rm libvisionworks-sfm-repo_0.90.4_arm64.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -96,6 +80,7 @@ RUN curl -sL $URL/libvisionworks-tracking-repo_0.88.2_arm64.deb -o libvisionwork
     apt-key add /var/visionworks-tracking-repo/GPGKEY && \
     apt-get update && \
     apt-get install -y --allow-unauthenticated libvisionworks-tracking libvisionworks-tracking-dev && \
+    dpkg --purge libvisionworks-tracking-repo && \
     rm libvisionworks-tracking-repo_0.88.2_arm64.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -114,17 +99,17 @@ ENV LIBINFER_DEV_PKG libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 ENV LIBINFER_SAMPLES_PKG libnvinfer-samples_${LIBINFER_PKG_VERSION}+cuda10.0_all.deb
 
 RUN curl -sL $URL/${LIBINFER_PKG} -o ${LIBINFER_PKG} && \
-    echo "70526ede410bca53d7f6ce60e082178b ${LIBINFER_PKG}" | md5sum -c - && \
+    echo "b3f083e0665dc8d3d8eb61349bb275d7 ${LIBINFER_PKG}" | md5sum -c - && \
     dpkg -i ${LIBINFER_PKG} && \
     rm ${LIBINFER_PKG}
 
 RUN curl -sL $URL/${LIBINFER_DEV_PKG} -o ${LIBINFER_DEV_PKG} && \
-    echo "b28b9283c3d02282cc5670988de1fbe8 ${LIBINFER_DEV_PKG}" | md5sum -c - && \
+    echo "9e8e0d8356ba4af730c39b35c50ae2a8 ${LIBINFER_DEV_PKG}" | md5sum -c - && \
     dpkg -i ${LIBINFER_DEV_PKG} && \
     rm ${LIBINFER_DEV_PKG}
 
 RUN curl -sL $URL/${LIBINFER_SAMPLES_PKG} -o ${LIBINFER_SAMPLES_PKG} && \
-    echo "aa6d4a5ced259a714fe73baf4ce46061 ${LIBINFER_SAMPLES_PKG}" | md5sum -c - && \
+    echo "dfa8bee28c87ec3c08b4063b779d63ef ${LIBINFER_SAMPLES_PKG}" | md5sum -c - && \
     dpkg -i ${LIBINFER_SAMPLES_PKG} && \
     rm ${LIBINFER_SAMPLES_PKG}
 
@@ -137,7 +122,7 @@ LABEL com.nvidia.tensorrt.version="${TENSORRT_VERSION}"
 ENV TENSORRT_PKG tensorrt_${TENSORRT_PKG_VERSION}+cuda10.0_arm64.deb
 
 RUN curl -sL $URL/${TENSORRT_PKG} -o ${TENSORRT_PKG} && \
-    echo "6b9f36d9fd382576605c95fe9d3e744b ${TENSORRT_PKG}" | md5sum -c - && \
+    echo "c7a9fe100fa55f2366a52909b8f55226 ${TENSORRT_PKG}" | md5sum -c - && \
     dpkg -i ${TENSORRT_PKG} && \
     rm ${TENSORRT_PKG}
 
@@ -154,12 +139,12 @@ RUN apt-get update && apt-get install -y \
 
 # Python2 support for TensorRT
 RUN curl -sL $URL/python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    echo "5229e27def0022d5de32582437a8e5a5 python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+    echo "9e05650a9517824e6b20dc94ebeef03c python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 RUN curl -sL $URL/python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    echo "b5c0812db5b560f6f5da64e5a59f464d python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+    echo "2e36bad9713b20ced5ec01e987f6395e python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
@@ -176,29 +161,29 @@ RUN apt-get update && apt-get install -y \
 
 # Python3 support for TensorRT
 RUN curl -sL $URL/python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    echo "a3644cb618ca6b1148fa3517a8450e62 python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+    echo "966128fdae61f5b2b753762d0dd74759 python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 RUN curl -sL $URL/python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    echo "376ef649841d1347e4ddfdb8b323d084 python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+    echo "98d11ff195c93e2e04c49171b9200691 python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 # Graph Surgeon
 RUN curl -sL $URL/graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    echo "0fac7150098e3dfd921e353067e95dd3 graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+    echo "336ca4f5b94d973ec751a7a12824655f graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 # UFF Converter
 RUN curl -sL $URL/uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    echo "c1592b4bd7c56a3b5ec883e8e846d9bf uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+    echo "8569488be7fd0ee33f2c24f9f29e103e uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 # Multimedia API
-# bf7225ab1f3373328c0def240bc6cec2 P2888/Tegra_Multimedia_API_R32.1.0_aarch64.tbz2
+# 00979fd8a30ae5d49152d229465614e9 P3448/Tegra_Multimedia_API_R32.1.0_aarch64.tbz2
 # Skipping unless needed.
 
 # Install dependencies for OpenCV
@@ -258,21 +243,20 @@ RUN curl -sL $URL/libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb -o libopencv
     rm libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb
 
 # Install dependencies for TensorFlow
-RUN apt-get update && apt-get install -y \
-    hdf5-tools \
-    libhdf5-dev \
-    libhdf5-serial-dev \
-    libjpeg8-dev \
-    zip \
-    zlib1g-dev \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y \
+#    hdf5-tools \
+#    libhdf5-dev \
+#    libhdf5-serial-dev \
+#    libjpeg8-dev \
+#    zip \
+#    zlib1g-dev \
+#    && \
+#    apt-get clean && \
+#    rm -rf /var/lib/apt/lists/*
 
-
-RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
+#RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
 
 # Install TensorFlow
-RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
+#RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
 # can browse from https://developer.download.nvidia.com/compute/redist/jp/
 # RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==$TF_VERSION+nv$NV_VERSION
