@@ -11,11 +11,16 @@ FROM ${IMAGE_NAME}:32.1-jax-jetpack-4.2-runtime
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+    build-essential \
     freeglut3 \
     libegl1 \
+    libx11-dev \
     libgles2-mesa \
+    libgl1-mesa-glx \
     libglu1-mesa \
     libgomp1 \
+    libxi-dev \
+    libxmu-dev \
     openmpi-bin \
     && \
     apt-get clean && \
