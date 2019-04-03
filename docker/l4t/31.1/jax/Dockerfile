@@ -1,4 +1,5 @@
-FROM arm64v8/ubuntu:bionic-20181112
+ARG VERSION_ID
+FROM arm64v8/ubuntu:${VERSION_ID}
 
 ARG URL=https://developer.download.nvidia.com/embedded/L4T/r31_Release_v1.0/BSP
 
@@ -24,7 +25,9 @@ RUN curl -sL $URL/${DRIVER_PACK} -o ${DRIVER_PACK} && \
 
 ENV LD_LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/tegra:/usr/lib/aarch64-linux-gnu/tegra-egl:${LD_LIBRARY_PATH}
 
-RUN ln -s /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.31.0.1 /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so
-RUN ln -s /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.31.0.1 /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.1
-RUN ln -s /usr/lib/aarch64-linux-gnu/libcuda.so /usr/lib/aarch64-linux-gnu/libcuda.so.1
+RUN ln -s /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.31.0.1 /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so && \
+    ln -s /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.31.0.1 /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.1 && \
+    ln -s /usr/lib/aarch64-linux-gnu/tegra/libGL.so /usr/lib/aarch64-linux-gnu/libGL.so && \
+    ln -s /usr/lib/aarch64-linux-gnu/libcuda.so /usr/lib/aarch64-linux-gnu/libcuda.so.1 && \
+    ln -s /usr/lib/aarch64-linux-gnu/tegra-egl/libEGL.so /usr/lib/aarch64-linux-gnu/libEGL.so
 

@@ -1,10 +1,9 @@
-FROM arm64v8/ubuntu:xenial-20180808
+ARG VERSION_ID
+FROM arm64v8/ubuntu:${VERSION_ID}
 
-ARG URL=https://developer.download.nvidia.com/embedded/L4T/r28_Release_v2.0/GA/BSP
+ARG URL=https://developer.download.nvidia.com/embedded/L4T/r28_Release_v1.0/BSP
 
-ARG DRIVER_PACK=Tegra210_Linux_R28.2.0_aarch64.tbz2
-
-# Jetpack 3.2.1 and 3.3 use the 28.2 driver package, but use the 28.2.1 root file system by default
+ARG DRIVER_PACK=Tegra186_Linux_R28.1.0_aarch64.tbz2
 
 # bzip2 is needed to extract the tegra driver package
 RUN apt-get update && apt-get install -y \
@@ -16,8 +15,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl -sL ${URL}/${DRIVER_PACK} -o ${DRIVER_PACK} && \
-    echo "14de440688566f8727fe9e143bd3e6d9dbee030d *./${DRIVER_PACK}" | sha1sum -c --strict - && \
+RUN curl -sL $URL/${DRIVER_PACK} -o ${DRIVER_PACK} && \
+    echo "e7508c4fa0a2e1c73ce9ac671d38ea32804912d5 *./${DRIVER_PACK}" | sha1sum -c --strict - && \
     tar xvfj ./${DRIVER_PACK} && \
     ./Linux_for_Tegra/apply_binaries.sh -r / && \
     rm -rf ./Linux_for_Tegra && \
