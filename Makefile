@@ -64,3 +64,6 @@ run-32.1-jax-jetpack-4.2-samples: 32.1-jax-jetpack-4.2-samples
 				--device=/dev/nvhost-gpu \
 				--device=/dev/nvhost-vic \
 				l4t:32.1-jax-jetpack-4.2-samples
+
+flash-%:
+	make -C $(CURDIR)/flash $*

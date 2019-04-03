@@ -1,2 +1,2 @@
-source ./drivers/31.1-xavier.conf
+source ./drivers/31.1-jax.conf
 source ./rootfs/tegra-linux-sample-31.1.0.conf
