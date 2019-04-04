@@ -6,7 +6,7 @@ export DOCKER ?= docker
 export REPO ?= l4t
 export IMAGE_NAME ?= $(REPO)
 
-# Used in driver pack base
+# Used for creating the flashing container.
 export VERSION_ID ?= bionic-20190307
 
 # Allow additional options such as --squash

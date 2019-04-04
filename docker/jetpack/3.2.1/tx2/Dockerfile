@@ -1,4 +1,6 @@
-FROM l4t:28.2.1-tx2
+ARG IMAGE_NAME
+ARG L4T_VERSION
+FROM ${IMAGE_NAME}:${L4T_VERSION}-tx2
 
 ENV JETPACK_VERSION 3.2.1
 
@@ -11,6 +13,12 @@ ENV CUDA_VERSION 9.0.252
 ENV CUDA_PKG_VERSION=${CUDA_VERSION}-1
 
 LABEL com.nvidia.cuda.version="${CUDA_VERSION}"
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl gnupg \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN curl -sL $URL/cuda-repo-l4t-9-0-local_${CUDA_PKG_VERSION}_arm64.deb -o cuda-repo-l4t-9-0-local_${CUDA_PKG_VERSION}_arm64.deb && \
     echo "9385806be429ad92d49f0750f748e2b2 cuda-repo-l4t-9-0-local_${CUDA_PKG_VERSION}_arm64.deb" | md5sum -c - && \

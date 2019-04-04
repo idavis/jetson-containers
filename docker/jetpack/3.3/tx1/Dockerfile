@@ -1,4 +1,6 @@
-FROM l4t:28.2.1-tx2
+ARG IMAGE_NAME
+ARG L4T_VERSION
+FROM ${IMAGE_NAME}:${L4T_VERSION}-tx1
 
 ENV JETPACK_VERSION 3.3
 
@@ -11,6 +13,12 @@ ENV CUDA_VERSION 9.0.252
 ENV CUDA_PKG_VERSION=${CUDA_VERSION}-1
 
 LABEL com.nvidia.cuda.version="${CUDA_VERSION}"
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl gnupg \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # CUDA Toolkit for L4T
 
@@ -128,7 +136,8 @@ RUN curl -sL $URL/${LIBGIE_PKG} -o ${LIBGIE_PKG} && \
 # Skipping unless needed.
 
 # Install dependencies for OpenCV
-RUN apt-get update && apt-get install -y \
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
         libavcodec-ffmpeg56 \
         libavformat-ffmpeg56 \
         libcairo2 \

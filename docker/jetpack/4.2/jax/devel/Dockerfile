@@ -187,6 +187,7 @@ RUN curl -sL $URL/uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb -o
 # Skipping unless needed.
 
 # Install dependencies for OpenCV
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libavcodec-extra57 \
         libavformat57 \
@@ -194,6 +195,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libcairo2 \
         libgtk2.0-0 \
         libswscale4 \
+        libtbb2 \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -205,12 +207,6 @@ ENV OPENCV_VERSION 3.3.1
 ENV OPENCV_PKG_VERSION=${OPENCV_VERSION}-2-g31ccdfe11
 
 ## Open CV
-
-RUN apt-get update && apt-get install -y \
-        libtbb2 \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
 
 RUN curl -sL $URL/libopencv_${OPENCV_PKG_VERSION}_arm64.deb -o libopencv_${OPENCV_PKG_VERSION}_arm64.deb && \
     echo "dd5b571c08a0098141203daec2ea1acc libopencv_${OPENCV_PKG_VERSION}_arm64.deb" | md5sum -c - && \

@@ -1,16 +1,19 @@
 #!make
 
-include .env
+include $(CURDIR)/.env
 export $(shell sed 's/=.*//' .env)
 
 # Allow override for moby or another runtime
 export DOCKER ?= docker
 
+export MKDIR ?= mkdir
+
 export REPO ?= l4t
 export IMAGE_NAME ?= $(REPO)
 
 # Used in driver pack base
-export VERSION_ID ?= bionic-20190307
+export BIONIC_VERSION_ID ?= bionic-20190307
+export XENIAL_VERSION_ID ?= xenial-20190222
 
 # Allow additional options such as --squash
 # DOCKER_ARGS ?= ""
@@ -18,7 +21,9 @@ export DOCKER_CONTEXT ?= .
 
 .PHONY: all
 
-all: $(addprefix driver-pack-,32.1 31.1 28.3 28.2.1 28.2 28.1) jetpack
+all: driver-packs jetpacks
+
+driver-packs: $(addprefix driver-pack-,32.1 31.1 28.3 28.2.1 28.2 28.1)
 
 driver-pack-32.1: $(addprefix l4t-32.1-,jax tx2 nano)
 
@@ -32,9 +37,15 @@ driver-pack-28.2: $(addprefix l4t-28.2-,tx1)
 
 driver-pack-28.1: $(addprefix l4t-28.1-,tx2 tx1)
 
-jetpack: $(addprefix jetpack-,4.2)
+jetpacks: $(addprefix jetpack-,4.2 4.1.1 3.3 3.2.1)
 
 jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-jetpack-4.2
+
+jetpack-4.1.1: 31.1-jax-jetpack-4.1.1
+
+jetpack-3.3: 28.3-tx2-jetpack-3.3 28.3-tx1-jetpack-3.3 28.2.1-tx2-jetpack-3.3 28.2-tx1-jetpack-3.3
+
+jetpack-3.2.1: 28.3-tx2-jetpack-3.2.1 28.3-tx1-jetpack-3.2.1 28.2.1-tx2-jetpack-3.2.1 28.2-tx1-jetpack-3.2.1
 
 l4t-%:
 	make -C $(CURDIR)/docker/l4t $*
@@ -48,13 +59,23 @@ l4t-%:
 %-nano-jetpack-4.2: l4t-%-nano
 	make -C $(CURDIR)/docker/jetpack $@
 
-32.1-jax-jetpack-4.2-samples:
+%-jetpack-4.1.1:l4t-%
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-jetpack-3.3: l4t-%
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-jetpack-3.2.1: l4t-%
+	make -C $(CURDIR)/docker/jetpack $@
+
+
+build-32.1-jax-jetpack-4.2-samples:
 	$(DOCKER) build $(DOCKER_ARGS) --build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/docker/examples/samples/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-run-32.1-jax-jetpack-4.2-samples: 32.1-jax-jetpack-4.2-samples
+run-32.1-jax-jetpack-4.2-samples: build-32.1-jax-jetpack-4.2-samples
 	$(DOCKER) run \
 				--rm \
 				-it \
@@ -67,3 +88,7 @@ run-32.1-jax-jetpack-4.2-samples: 32.1-jax-jetpack-4.2-samples
 
 flash-%:
 	make -C $(CURDIR)/flash $*
+
+opencv-%:
+	make -C $(CURDIR)/docker/OpenCV $*
+
