@@ -1,30 +1,50 @@
-# JetsonContainers
+# Jetson Containers
+
 Running CUDA containers on the Jetson platform
 
 1. [Preface](#preface)
-2. [Docker](#docker)
-3. [Building](#building)
-4. [Running](#running)
-5. [OpenCV](#opencv)
-6. [Flashing Devices](#flashing-devices)
-7. [Image Sizes](#image-sizes)
-
+2. [Getting Started](#getting-started)
+3. [Configuration](#configuration)
+4. [Building](#building)
+5. [Running](#running)
+6. [OpenCV](#opencv)
+7. [Flashing Devices](#flashing-devices)
+8. [Image Sizes](#image-sizes)
 
 ## Preface
 
+This project provides a repeatable, containerized approach to building software and libraries to run on the Nvidia Jetson platform.
+
+## Getting Started
+
 Each image, whether Linux for Tegra (L4T) or JetPack based provides args for the `URL` to pull installers from. Once the JetPack installer has been run, copy the packages to your own source for downloading. This will likely increase your download speed and allow building images if the package URLs ever change. Staring in JetPack 4.2, you cannot download the JetPack installers without logging in with the SDK manager.
 
-When building your application and choosing a base, the JetPack images can be trimmed to only include what is needed by your application. This can drastically reduce the size of your images. The JetPack 4.2 base images follow the Nvidia pattern of having base, runtime, and devel images to start from.
+When building your application and choosing a base, the JetPack images can be trimmed to only include what is needed by your application. This can drastically reduce the size of your images. The JetPack 4.2 base images follow the Nvidia pattern of having base, runtime, and devel images for each device to start from.
 
-With these containers, the OS can be flashed without JetPack with only the main driver pack installed. The other libraries will be contained in the containers and enables migration and updates without involving the base operating system.
+These containers enable the OS can be flashed without JetPack having only the main driver pack installed. The other libraries will be included in the containers enabling migration and updates without involving the host operating system.
 
-When building third party libraries, such as OpenCV and PyTorch, a swapfile will likely have to be created in the host OS. These packages require more memory than the system contains and will crash with very cryptic errors if they run out of memory.
+When building third party libraries, such as OpenCV and PyTorch, a swapfile will *likely* have to be created in the host OS. These packages require more memory than the system contains and will crash with very cryptic errors if they run out of memory.
 
-The `Makefile` scripts will import a `.env` file (for an example look at the `.envtemp` file) and export the variables defined. Setting the `DOCKER_HOST` variable will proxy builds to another machine such as a Jetson device. This allows running the `make` scripts from an `x86_x64` host. 
 
-## Docker
+## Configuration
 
-When using containers, it is highly recommended that you use external storage and configure your container runtime to use that storage as its data root. For example, with Docker:
+### The .env File
+
+The `Makefile` scripts will import a `.env` file (for an example look at the `.envtemp` file) and export the variables defined.
+
+- `DOCKER` - Allows swapping out for another container runtime such as Moby or Balena. This variable is used in all container operations.
+- `DOCKER_HOST` - Setting the `DOCKER_HOST` variable will proxy builds to another machine such as a Jetson device. This allows running the `make` scripts from an `x86_x64` host. This feature was added in November 2018. When using this feature, it is helpful to add your public key to the device's `~/.ssh/authorized_keys` file. This will prevent credential checks on every build.
+- `DOCKER_ARGS` - Allows adding arguments such as volume mounting or cleanup (`-rm`) during build operations.
+- `DOCKER_CONTEXT` - Defaults to `.` but can be overridden in some circumstances for testing.
+
+These settings supply the base download URL where the Xavier JetPack 4.2 packages can be found. As mentioned in [Getting Started](#getting-started), you will want to upload the files organized by the Nvidia SDK Manager to something like Azure Blob Storage or Amazon S3. A network location can also be specified with the `file://` scheme pointing to the folder. A third option is to leverage the `DOCKER_ARGS` setting to mount a readonly volume into the container during the build and again leveraging the `file://` scheme pointing to the folder. There is a separate URL per device since some of the files have the same name but different contents.
+- `JAX_JP42_URL` - Xavier JetPack 4.2
+- `NANO_JP42_URL` - Nano JetPack 4.2
+- `TX2_JP42_URL` - TX2 JetPack 4.2
+
+### Docker
+
+Storing these images will also require significant disk space. It is highly recommended that an NVME or other hard drive is installed and mounted at boot through `fstab`. Once mounted, configure your container runtime to store its containers and images there:
 
 `/etc/docker/daemon.json`
 ```json
@@ -35,7 +55,7 @@ When using containers, it is highly recommended that you use external storage an
 
 ## Building
 
-The project using `make` to set up the dependent builds constructing the final images. The recipes fall into a few categories:
+The project uses `make` to set up the dependent builds constructing the final images. The recipes fall into a few categories:
 
 - Driver packs (32.1, 31.,1 28.3, 28.2.1, 28.2, 28.1)
 - JetPack (4.2, 4.1.1, 3.3, 3.2.1)
@@ -43,7 +63,7 @@ The project using `make` to set up the dependent builds constructing the final i
 - Flashing containers
 - OpenCV (4.0.1)
 
-The driver packs form the base of the device images. Each version of JetPack is built on top a driver pack. To build an image, follow the pattern:
+The driver packs form the base of the device images. Each version of JetPack is built on top of a driver pack. To build an image, follow the pattern:
 
 `make <driver-pack>-<device>-jetpack-<jetpack-version>`
 
@@ -61,11 +81,11 @@ make 28.2.1-tx2-jetpack-3.2.1
 make 28.2-tx1-jetpack-3.2.1
 ```
 
-There are additional recipes for building the `32.1-jax-jetpack-4.2` samples container `make build-32.1-jax-jetpack-4.2-samples` and running the container `make run-32.1-jax-jetpack-4.2-samples` which demonstrates mult-stage builds based on `devel` images.
-
-There are two more targets `flash-%` and `opencv-%` which will proxy the commands to the other `Makefile`s. See their `readme`s for more information.
+There are additional recipes for building the `32.1-jax-jetpack-4.2` samples container (`make build-32.1-jax-jetpack-4.2-samples`) and running the container (`make run-32.1-jax-jetpack-4.2-samples`) which demonstrates mult-stage builds based on `devel` images.
 
 ## Running
+
+To run a container with GPU support there are two options. First, not recommended, run with the `--privileged` option. Second, recommended option, is to add the host's GPUs to the container:
 
 ```bash
 docker run \
@@ -79,11 +99,14 @@ docker run \
 
 ## OpenCV
 
+Building OpenCV can take a few hours depending on your device and performance mode. When the OpenCV builds are complete, the install `.sh` file can be found in the `/dist` folder.
+
 ### Building OpenCV
 
-opencv-4.0.1-l4t-32.1-jax-jetpack-4.2
-opencv-4.0.1-l4t-32.1-tx2-jetpack-4.2
-opencv-4.0.1-l4t-28.3-tx2-jetpack-3.3
+```
+make opencv-4.0.1-l4t-32.1-jetpack-4.2
+make opencv-4.0.1-l4t-28.3-jetpack-3.3
+```
 
 ## Flashing Devices
 
@@ -93,10 +116,10 @@ There are default profiles which match the device and JetPack versions in the `f
 
 Examples:
 ```bash
-make flash-bionic-server-20190402 # Set up an image which can flash bionic server to the device
-make flash-jetpack-bases # create all jetpack default configuration images for flashing.
-make flash-l4t-28.3-tx2-jetpack-3.3-base # JetPack 3.3 for TX2 with driver pack 28.3
-make flash-l4t-32.1-jax-jetpack-4.2-base # JetPack 4.2 for Xavier with driver pack 32.1
+make image-bionic-server-20190402 # Set up an image which can flash bionic server to the device
+make image-jetpack-bases # create all jetpack default configuration images for flashing.
+make image-l4t-28.3-tx2-jetpack-3.3-base # JetPack 3.3 for TX2 with driver pack 28.3
+make image-l4t-32.1-jax-jetpack-4.2-base # JetPack 4.2 for Xavier with driver pack 32.1
 ```
 
 Note: Ensure that if the `DOCKER_HOST` variable is set, the host specified must be `x86_64`.
