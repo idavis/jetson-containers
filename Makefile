@@ -86,9 +86,13 @@ run-32.1-jax-jetpack-4.2-samples: build-32.1-jax-jetpack-4.2-samples
 				--device=/dev/nvhost-vic \
 				l4t:32.1-jax-jetpack-4.2-samples
 
-flash-%:
+image-%:
 	make -C $(CURDIR)/flash $*
 
-opencv-%:
-	make -C $(CURDIR)/docker/OpenCV $*
+opencv-4.0.1-l4t-32.1-jetpack-4.2:
+	make -C $(CURDIR)/docker/OpenCV $@
+
+opencv-4.0.1-l4t-28.3-jetpack-3.3:
+	make -C $(CURDIR)/docker/OpenCV $@
+
 
