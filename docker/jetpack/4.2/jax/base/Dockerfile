@@ -1,0 +1,45 @@
+ARG IMAGE_NAME
+FROM ${IMAGE_NAME}:32.1-jax
+
+ENV JETPACK_VERSION "4.2"
+
+LABEL com.nvidia.jetpack.version="${JETPACK_VERSION}"
+
+ARG URL
+
+ENV CUDA_VERSION 10.0.166_1.0
+
+ENV CUDA_PKG_VERSION=${CUDA_VERSION}-1
+
+LABEL com.nvidia.cuda.version="${CUDA_VERSION}"
+
+# Prereqs
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gnupg curl \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# CUDA Runtime for L4T
+
+ARG CUDA_TOOLKIT_PKG="cuda-repo-l4t-10-0-local-${CUDA_PKG_VERSION}_arm64.deb"
+
+RUN curl -sSL $URL/${CUDA_TOOLKIT_PKG} -o ${CUDA_TOOLKIT_PKG} && \
+    echo "5e3eedc3707305f9022d41754d6becde ${CUDA_TOOLKIT_PKG}" | md5sum -c - && \
+    dpkg --force-all -i ${CUDA_TOOLKIT_PKG} && \
+    rm ${CUDA_TOOLKIT_PKG} && \
+    apt-key add /var/cuda-repo-*-local*/*.pub && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends --allow-downgrades cuda-cudart-10-0 cuda-nvtx-10-0 && \
+    ln -s cuda-10.1 /usr/local/cuda && \
+    dpkg --purge cuda-repo-l4t-10-0-local-10.0.166 \
+    && \
+    apt-get purge --autoremove -y curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN grep -q "export PATH=.*/usr/local/cuda-10/bin" ~/.bashrc || echo "export PATH=/usr/local/cuda-10/bin:$PATH">>~/.bashrc && \
+    grep -q "export LD_LIBRARY_PATH=/usr/local/cuda-10/lib64" ~/.bashrc || echo "export LD_LIBRARY_PATH=/usr/local/cuda-10/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc && \
+    export LD_LIBRARY_PATH=/usr/local/cuda-10/lib64:${LD_LIBRARY_PATH}
+

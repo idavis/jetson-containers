@@ -1,4 +1,5 @@
-FROM ubuntu:xenial-20181113
+ARG VERSION_ID
+FROM ubuntu:${VERSION_ID}
 
 RUN apt-get update && apt-get install -y \
     apt-utils \

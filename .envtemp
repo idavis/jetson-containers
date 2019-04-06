@@ -1,0 +1,7 @@
+DOCKER_HOST=ssh://${USER}@somehost.local
+URL=
+JAX_JP42_URL=https://${URL}/jp-42-p2888
+NANO_JP42_URL=https://${URL}/jp-42-p3448
+TX2_JP42_URL=https://${URL}/jp-42-p3310
+DOCKER_ARGS=
+DOCKER_CONTEXT=.

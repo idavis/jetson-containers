@@ -1,30 +1,16 @@
 #!/bin/bash
 
-if [ "$#" -lt 1 ]; then
-    echo "Illegal number of parameters. The base environment file must be supplied"
-    echo "Usage: $(basename "$(test -L "$0" && readlink "$0" || echo "$0")") <conf file> [tag]"
-    exit 1
-fi
-
-if [ "$#" -gt 2 ]; then
-    echo "Illegal number of parameters."
-    echo "Usage: $(basename "$(test -L "$0" && readlink "$0" || echo "$0")") <conf file> [tag]"
-    exit 1
-fi
-
-if [ ! -f "$1" ]; then
-    echo "The conf file \"$1\" does not exist!"
-    exit 2
-fi
-
-source "$1"
-
-# The container tag will match the conf script name if it wasn't supplied.
-if [ -z "$2" ]; then
-    DOCKER_TAG="$(basename "$(test -L "$1" && readlink "$1" || echo "$1")")"
-else
+if [ "$#" -eq 2 ]; then
+    source "$1"
     DOCKER_TAG=$2
 fi
+
+if [ "$#" -eq 3 ]; then
+    source "$1"
+    source "$2"
+    DOCKER_TAG=$3
+fi
+
 
 if [ -z "$DRIVER_PACK_URL" ]; then
     echo "The DRIVER_PACK_URL variable must be set."
@@ -77,6 +63,7 @@ echo "    --build-arg ROOT_FS=$ROOT_FS \\"
 echo "    --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \\"
 echo "    --build-arg TARGET_BOARD=$TARGET_BOARD \\"
 echo "    --build-arg ROOT_DEVICE=$ROOT_DEVICE \\"
+echo "    --build-arg VERSION_ID=$VERSION_ID \\"
 echo "    ."
 
 docker build -f "Dockerfile.${DEVICE}" -t "$DOCKER_TAG" \
@@ -88,4 +75,5 @@ docker build -f "Dockerfile.${DEVICE}" -t "$DOCKER_TAG" \
      --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \
      --build-arg TARGET_BOARD=$TARGET_BOARD \
      --build-arg ROOT_DEVICE=$ROOT_DEVICE \
+     --build-arg VERSION_ID=$VERSION_ID \
      .
