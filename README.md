@@ -34,10 +34,11 @@ The `Makefile` scripts will import a `.env` file (for an example look at the `.e
 
 - `DOCKER` - Allows swapping out for another container runtime such as Moby or Balena. This variable is used in all container operations.
 - `DOCKER_HOST` - Setting the `DOCKER_HOST` variable will proxy builds to another machine such as a Jetson device. This allows running the `make` scripts from an `x86_x64` host. This feature was added in November 2018. When using this feature, it is helpful to add your public key to the device's `~/.ssh/authorized_keys` file. This will prevent credential checks on every build.
-- `DOCKER_ARGS` - Allows adding arguments such as volume mounting or cleanup (`-rm`) during build operations.
+- `DOCKER_BUILD_ARGS` - Allows adding arguments such as volume mounting or cleanup (`-rm`) during build operations.
+- `DOCKER_RUN_ARGS` -  Allows adding arguments such as environment variables, mounts, network configuration, etc when running images. Can also be used to configure X11 forwarding.
 - `DOCKER_CONTEXT` - Defaults to `.` but can be overridden in some circumstances for testing.
 
-These settings supply the base download URL where the Xavier JetPack 4.2 packages can be found. As mentioned in [Getting Started](#getting-started), you will want to upload the files organized by the Nvidia SDK Manager to something like Azure Blob Storage or Amazon S3. A network location can also be specified with the `file://` scheme pointing to the folder. A third option is to leverage the `DOCKER_ARGS` setting to mount a readonly volume into the container during the build and again leveraging the `file://` scheme pointing to the folder. There is a separate URL per device since some of the files have the same name but different contents.
+These settings supply the base download URL where the Xavier JetPack 4.2 packages can be found. As mentioned in [Getting Started](#getting-started), you will want to upload the files organized by the Nvidia SDK Manager to something like Azure Blob Storage or Amazon S3. A network location can also be specified with the `file://` scheme pointing to the folder. A third option is to leverage the `DOCKER_BUILD_ARGS` setting to mount a readonly volume into the container during the build and again leveraging the `file://` scheme pointing to the folder. There is a separate URL per device since some of the files have the same name but different contents.
 - `JAX_JP42_URL` - Xavier JetPack 4.2
 - `NANO_JP42_URL` - Nano JetPack 4.2
 - `TX2_JP42_URL` - TX2 JetPack 4.2
@@ -91,11 +92,22 @@ To run a container with GPU support there are two options. First, not recommende
 docker run \
     --device=/dev/nvhost-ctrl \
     --device=/dev/nvhost-ctrl-gpu \
+    --device=/dev/nvhost-prof-gpu \
     --device=/dev/nvmap \
     --device=/dev/nvhost-gpu \
+    --device=/dev/nvhost-as-gpu \
     --device=/dev/nvhost-vic \
     <image-name>
 ```
+
+### X11 Forwarding
+
+Running containerized applications with X11 forwarding requires simple configuration changes
+
+- On the host OS, run `xhost +`
+- Add `--net=host` and `-e "DISPLAY"` arguments to docker
+
+The `DOCKER_RUN_ARGS` variable can be set in the `.env` file to `DOCKER_RUN_ARGS=--net=host -e "DISPLAY"` which will set up the forwarding when using `make`. Then run the `run-32.1-jax-jetpack-4.2-samples` task. This works for both local and remote sessions leveraging `DOCKER_HOST`. Note that when using `DOCKER_HOST` the forwarding will be done on the target and not forwarded locally.
 
 ## OpenCV
 

@@ -29,7 +29,7 @@ opencv-4.0.1-l4t-28.3-jetpack-3.3: IMAGE := 28.3-tx2-jetpack-3.3
 opencv-4.0.1-l4t-28.3-jetpack-3.3: build-opencv-4.0.1-l4t-28.3-jetpack-4.2
 
 build-%:
-	$(DOCKER) build $(DOCKER_ARGS) \
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE=$(REPO):$(IMAGE) \
 					--build-arg OPENCV_GIT_VERSION=$(OPENCV_GIT_VERSION) \
 					--build-arg CUDA_ARCH_BIN="$(CUDA_ARCH_BIN)" \

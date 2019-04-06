@@ -16,7 +16,7 @@ export BIONIC_VERSION_ID ?= bionic-20190307
 export XENIAL_VERSION_ID ?= xenial-20190222
 
 # Allow additional options such as --squash
-# DOCKER_ARGS ?= ""
+# DOCKER_BUILD_ARGS ?= ""
 export DOCKER_CONTEXT ?= .
 
 .PHONY: all
@@ -37,6 +37,9 @@ driver-pack-28.2: $(addprefix l4t-28.2-,tx1)
 
 driver-pack-28.1: $(addprefix l4t-28.1-,tx2 tx1)
 
+l4t-%:
+	make -C $(CURDIR)/docker/l4t $*
+
 jetpacks: $(addprefix jetpack-,4.2 4.1.1 3.3 3.2.1)
 
 jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-jetpack-4.2
@@ -46,9 +49,6 @@ jetpack-4.1.1: 31.1-jax-jetpack-4.1.1
 jetpack-3.3: 28.3-tx2-jetpack-3.3 28.3-tx1-jetpack-3.3 28.2.1-tx2-jetpack-3.3 28.2-tx1-jetpack-3.3
 
 jetpack-3.2.1: 28.3-tx2-jetpack-3.2.1 28.3-tx1-jetpack-3.2.1 28.2.1-tx2-jetpack-3.2.1 28.2-tx1-jetpack-3.2.1
-
-l4t-%:
-	make -C $(CURDIR)/docker/l4t $*
 
 %-jax-jetpack-4.2: l4t-%-jax-tx2
 	make -C $(CURDIR)/docker/jetpack $@
@@ -70,21 +70,23 @@ l4t-%:
 
 
 build-32.1-jax-jetpack-4.2-samples:
-	$(DOCKER) build $(DOCKER_ARGS) --build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					-t $(REPO):$@ \
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) --build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):32.1-jax-jetpack-4.2-samples \
 					-f $(CURDIR)/docker/examples/samples/Dockerfile \
 					$(DOCKER_CONTEXT)
 
 run-32.1-jax-jetpack-4.2-samples: build-32.1-jax-jetpack-4.2-samples
-	$(DOCKER) run \
+	$(DOCKER) run $(DOCKER_RUN_ARGS) \
 				--rm \
 				-it \
 				--device=/dev/nvhost-ctrl \
 				--device=/dev/nvhost-ctrl-gpu \
+				--device=/dev/nvhost-prof-gpu \
 				--device=/dev/nvmap \
 				--device=/dev/nvhost-gpu \
+				--device=/dev/nvhost-as-gpu \
 				--device=/dev/nvhost-vic \
-				l4t:32.1-jax-jetpack-4.2-samples
+				$(REPO):32.1-jax-jetpack-4.2-samples
 
 image-%:
 	make -C $(CURDIR)/flash $*

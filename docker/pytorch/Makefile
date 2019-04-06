@@ -27,7 +27,7 @@ pytorch-1.1.0-l4t-28.3-jetpack-3.3: IMAGE := 28.3-tx2-jetpack-3.3
 pytorch-1.1.0-l4t-28.3-jetpack-3.3: build-pytorch-1.1.0-l4t-28.3-jetpack-4.2
 
 build-%:
-	$(DOCKER) build $(DOCKER_ARGS) \
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE=$(REPO):$(IMAGE) \
 					--build-arg PYTORCH_GIT_VERSION=$(PYTORCH_GIT_VERSION) \
 					--build-arg TORCH_CUDA_ARCH_LIST="$(TORCH_CUDA_ARCH_LIST)" \

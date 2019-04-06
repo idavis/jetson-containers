@@ -10,7 +10,7 @@ export IMAGE_NAME ?= $(REPO)
 export VERSION_ID ?= bionic-20190307
 
 # Allow additional options such as --squash
-# DOCKER_ARGS ?= ""
+# DOCKER_BUILD_ARGS ?= ""
 export DOCKER_CONTEXT ?= .
 
 .PHONY: all
