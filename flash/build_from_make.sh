@@ -1,5 +1,13 @@
 #!/bin/bash
 
+MACHINE="$(${DOCKER} run ${DOCKER_RUN_ARGS} --rm busybox uname -m)"
+
+if [ "${MACHINE}" != "x86_64" ]; then
+    >&2 echo "The command must be run on an x86_64 host but ${MACHINE} was detected."
+    >&2 echo "If using the DOCKER_HOST variable, ensure that it is pointing to an x86_64 host."
+    exit 1
+fi
+
 if [ "$#" -eq 2 ]; then
     source "$1"
     DOCKER_TAG=$2
@@ -13,37 +21,37 @@ fi
 
 
 if [ -z "$DRIVER_PACK_URL" ]; then
-    echo "The DRIVER_PACK_URL variable must be set."
+    >&2 echo "The DRIVER_PACK_URL variable must be set."
     exit 3
 fi
 
 if [ -z "$DRIVER_PACK" ]; then
-    echo "The DRIVER_PACK variable must be set."
+    >&2 echo "The DRIVER_PACK variable must be set."
     exit 4
 fi
 
 if [ -z "$DRIVER_PACK_SHA" ]; then
-    echo "The DRIVER_PACK_SHA variable must be set."
+    >&2 echo "The DRIVER_PACK_SHA variable must be set."
     exit 5
 fi
 
 if [ -z "$ROOT_FS_URL" ]; then
-    echo "The ROOT_FS_URL variable must be set."
+    >&2 echo "The ROOT_FS_URL variable must be set."
     exit 6
 fi
 
 if [ -z "$ROOT_FS" ]; then
-    echo "The ROOT_FS variable must be set."
+    >&2 echo "The ROOT_FS variable must be set."
     exit 7
 fi
 
 if [ -z "$ROOT_FS_SHA" ]; then
-    echo "The ROOT_FS_SHA variable must be set."
+    >&2 echo "The ROOT_FS_SHA variable must be set."
     exit 8
 fi
 
 if [ -z "$TARGET_BOARD" ]; then
-    echo "The TARGET_BOARD variable must be set."
+    >&2 echo "The TARGET_BOARD variable must be set."
     exit 9
 fi
 
