@@ -95,4 +95,8 @@ opencv-4.0.1-l4t-32.1-jetpack-4.2:
 opencv-4.0.1-l4t-28.3-jetpack-3.3:
 	make -C $(CURDIR)/docker/OpenCV $@
 
+pytorch-1.1.0-l4t-32.1-jetpack-4.2:
+	make -C $(CURDIR)/docker/pytorch $@
 
+pytorch-1.1.0-l4t-28.3-jetpack-3.3:
+	make -C $(CURDIR)/docker/pytorch $@
