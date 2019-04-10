@@ -102,3 +102,23 @@ pytorch-1.1.0-l4t-32.1-jetpack-4.2:
 
 pytorch-1.1.0-l4t-28.3-jetpack-3.3:
 	make -C $(CURDIR)/docker/pytorch $@
+
+build-32.1-jax-jetpack-4.2-tf_to_trt_image_classification:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) --build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):32.1-jax-jetpack-4.2-tf_to_trt_image_classification \
+					-f $(CURDIR)/docker/examples/tf_to_trt_image_classification/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+run-32.1-jax-jetpack-4.2-tf_to_trt_image_classification: build-32.1-jax-jetpack-4.2-tf_to_trt_image_classification
+	$(DOCKER) run $(DOCKER_RUN_ARGS) \
+				--rm \
+				-it \
+				--device=/dev/nvhost-ctrl \
+				--device=/dev/nvhost-ctrl-gpu \
+				--device=/dev/nvhost-prof-gpu \
+				--device=/dev/nvmap \
+				--device=/dev/nvhost-gpu \
+				--device=/dev/nvhost-as-gpu \
+				--device=/dev/nvhost-vic \
+				--device=/dev/tegra_dc_ctrl \
+				$(REPO):32.1-jax-jetpack-4.2-tf_to_trt_image_classification
