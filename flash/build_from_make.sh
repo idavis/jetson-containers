@@ -62,7 +62,7 @@ fi
 DEVICE=$(echo $TARGET_BOARD | awk -F"-" '{print $2}')
 
 # Show what is going to be executed.
-echo "${DOCKER} build ${DOCKER_BUILD_ARGS} -f "Dockerfile.${DEVICE}" -t "$DOCKER_TAG" \\"
+echo "${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.Dockerfile" -t "$DOCKER_TAG" \\"
 echo "    --build-arg DRIVER_PACK_URL=$DRIVER_PACK_URL \\"
 echo "    --build-arg DRIVER_PACK=$DRIVER_PACK \\"
 echo "    --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \\"
@@ -74,7 +74,7 @@ echo "    --build-arg ROOT_DEVICE=$ROOT_DEVICE \\"
 echo "    --build-arg VERSION_ID=$VERSION_ID \\"
 echo "    ."
 
-${DOCKER} build ${DOCKER_BUILD_ARGS} -f "Dockerfile.${DEVICE}" -t "$DOCKER_TAG" \
+${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.Dockerfile" -t "$DOCKER_TAG" \
      --build-arg DRIVER_PACK_URL=$DRIVER_PACK_URL \
      --build-arg DRIVER_PACK=$DRIVER_PACK \
      --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \
