@@ -202,3 +202,11 @@ jetpack-sdkmanager:
 					-f 3.2.1/tx1/Dockerfile \
 					$(DOCKER_CONTEXT)
 
+
+jetpack-4.2-host-ubuntu18.04:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg URL=$(HOST_JP42_URL) \
+					-t $(REPO):$@ \
+					-f 4.2/host/18.04/Dockerfile \
+					$(DOCKER_CONTEXT)

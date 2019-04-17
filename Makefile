@@ -129,3 +129,16 @@ run-32.1-jax-jetpack-4.2-tf_to_trt_image_classification: build-32.1-jax-jetpack-
 				--device=/dev/nvhost-vic \
 				--device=/dev/tegra_dc_ctrl \
 				$(REPO):32.1-jax-jetpack-4.2-tf_to_trt_image_classification
+
+.PHONY: jetpack-4.2-host-ubuntu18.04
+.PHONY: set-docker-host2
+.PHONY: FORCE
+
+jetpack-4.2-host-ubuntu18.04: set-docker-host
+	$(MAKE) -C $(CURDIR)/docker/jetpack $@
+
+set-docker-host: FORCE
+	$(eval DOCKER_HOST_MACHINE:=$(shell DOCKER_HOST=$(DOCKER_HOST) $(DOCKER) run $(DOCKER_RUN_ARGS) --rm busybox uname -m))
+	@echo "DOCKER_HOST ($(DOCKER_HOST)) is a $(DOCKER_HOST_MACHINE) machine."
+
+FORCE:
