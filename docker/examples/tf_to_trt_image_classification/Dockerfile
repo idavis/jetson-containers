@@ -8,10 +8,10 @@ RUN apt-get update && apt-get install -y \
     git \
     libhdf5-dev \
     libhdf5-serial-dev \
-    python-dev \
-    python-h5py \
-    python-pip \
-    python-setuptools \
+    python3-dev \
+    python3-h5py \
+    python3-pip \
+    python3-setuptools \
     wget \
     && \
     python -m pip install --upgrade pip && \
