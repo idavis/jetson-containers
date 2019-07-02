@@ -66,6 +66,22 @@
                     "message": 2 
                 }
             }
+        },
+        {
+            "label": "make <jetpack dep options>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickDependencyBuilds}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
         }
     ],
     "inputs": [
@@ -163,6 +179,14 @@
                 "jetpack-3.3",
                 "jetpack-3.2.1",
                 "jetpacks"
+            ]
+        },
+        {
+            "id": "pickDependencyBuilds",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "depenencies-jax-jetpack-4.2"
             ]
         },
         {

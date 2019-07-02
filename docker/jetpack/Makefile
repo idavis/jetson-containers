@@ -8,6 +8,39 @@ all: 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
 
 32.1-jax-jetpack-4.2: $(addprefix 32.1-jax-jetpack-4.2-,base devel runtime)
 
+depenencies-jetpack-4.2-sdkmanager:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					--target sdkmanager \
+					$(CURDIR)/4.2
+
+depenencies-jax-jetpack-4.2-sdkmanager:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEVICE_ID=P2888 \
+					--build-arg NV_USER=$(NV_USER) \
+					--build-arg TAG=$(REPO):$@ \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/4.2/Dockerfile \
+					--target devicedepsbuilder \
+					$(CURDIR)/4.2
+
+depenencies-jax-jetpack-4.2: depenencies-jax-jetpack-4.2-sdkmanager
+	$(DOCKER) run $(DOCKER_RUN_ARGS) \
+				--rm \
+				-it \
+				-e "DEVICE_ID=P2888" \
+				-e "NV_USER=$(NV_USER)" \
+				-e "TAG=$(REPO):$@" \
+				-e "NV_LOGIN_TYPE=devzone" \
+				-e "PRODUCT=Jetson" \
+				-e "JETPACK_VERSION=4.2" \
+				-e "TARGET_OS=Linux" \
+				-e "ACCEPT_SDK_LICENCE=accept" \
+				-v //var//run//docker.sock://var//run//docker.sock \
+				$(REPO):depenencies-jax-jetpack-4.2-sdkmanager
+
 32.1-jax-jetpack-4.2-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \

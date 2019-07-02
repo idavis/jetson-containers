@@ -59,6 +59,9 @@ jetpack-3.2.1: 28.3-tx2-jetpack-3.2.1 28.3-tx1-jetpack-3.2.1 28.2.1-tx2-jetpack-
 %-nano-jetpack-4.2: l4t-%-nano
 	make -C $(CURDIR)/docker/jetpack $@
 
+depenencies-%:
+	make -C $(CURDIR)/docker/jetpack $@
+
 %-jetpack-4.1.1:l4t-%
 	make -C $(CURDIR)/docker/jetpack $@
 
