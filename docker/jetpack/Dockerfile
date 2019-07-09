@@ -1,5 +1,5 @@
 ARG VERSION_ID=bionic-20190307
-FROM ubuntu:${VERSION_ID} as sdkmanager
+FROM ubuntu:${VERSION_ID}
 
 # Script Dependencies
 RUN apt-get update && apt-get install -y \
@@ -47,7 +47,7 @@ RUN echo "${SDK_MANAGER_URL}/${SDK_MANAGER_PACKAGE}?$(curl $SDK_MANAGER_AUTO_URL
     rm ./${SDK_MANAGER_PACKAGE}
 
 ARG TEMP_USER=dummy
-ARG TEMP_PASSWORD=dummypass
+ARG TEMP_PASSWORD=pass
 
 RUN useradd -ms /bin/bash ${TEMP_USER} && \
     usermod -aG docker ${TEMP_USER} && \
@@ -55,18 +55,5 @@ RUN useradd -ms /bin/bash ${TEMP_USER} && \
 
 USER ${TEMP_USER}
 
-FROM sdkmanager as devicedepsbuilder
-# Choice of P2888, P3310, P3489-0000, and P3448-0000
-ARG DEVICE_ID=
-ARG NV_USER=
-ARG NV_LOGIN_TYPE=devzone
-ARG TEMP_USER=dummy
-ARG TAG=INVALID
-ARG JETPACK_VERSION=4.2
-ARG PRODUCT=Jetson
-ARG TARGET_OS=Linux
-ARG ACCEPT_SDK_LICENCE=accept
-RUN mkdir /tmp/${DEVICE_ID}
 COPY ./dependencies.Dockerfile /tmp/dependencies.Dockerfile
-
-ENTRYPOINT ["/bin/bash", "-c", "set -e && xvfb-run sdkmanager --cli install --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} --target ${DEVICE_ID} --flash skip --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${DEVICE_ID} && sudo docker build -t ${TAG} -f /tmp/dependencies.Dockerfile /tmp/${DEVICE_ID}"] 
+ENTRYPOINT ["/bin/bash", "-c", "set -e && mkdir /tmp/${DEVICE_ID} && xvfb-run sdkmanager --cli install --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} --target ${DEVICE_ID} --flash skip --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${DEVICE_ID} && ${DOCKER} build -t ${TAG} -f /tmp/dependencies.Dockerfile /tmp/${DEVICE_ID}"] 

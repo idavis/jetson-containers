@@ -186,7 +186,7 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "depenencies-jax-jetpack-4.2"
+                "jax-jetpack-4.2-deps"
             ]
         },
         {
