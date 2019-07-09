@@ -43,6 +43,22 @@ nano-jetpack-4.2-deps: jetpack-sdkmanager
 				-v //var//run//docker.sock://var//run//docker.sock \
 				$(REPO):jetpack-sdkmanager
 
+tx2-jetpack-4.2-deps: jetpack-sdkmanager
+	$(DOCKER) run $(DOCKER_RUN_ARGS) \
+				--rm \
+				-it \
+				-e "DOCKER=$(DOCKER)" \
+				-e "DEVICE_ID=P3310" \
+				-e "NV_USER=$(NV_USER)" \
+				-e "TAG=$(REPO):$@" \
+				-e "NV_LOGIN_TYPE=devzone" \
+				-e "PRODUCT=Jetson" \
+				-e "JETPACK_VERSION=4.2" \
+				-e "TARGET_OS=Linux" \
+				-e "ACCEPT_SDK_LICENCE=accept" \
+				-v //var//run//docker.sock://var//run//docker.sock \
+				$(REPO):jetpack-sdkmanager
+
 jetpack-sdkmanager:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
@@ -104,7 +120,7 @@ jetpack-sdkmanager:
 32.1-tx2-jetpack-4.2-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg URL=$(TX2_JP42_URL) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/tx2/base/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -112,7 +128,7 @@ jetpack-sdkmanager:
 32.1-tx2-jetpack-4.2-runtime: 32.1-tx2-jetpack-4.2-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg URL=$(TX2_JP42_URL) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/tx2/runtime/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -120,7 +136,7 @@ jetpack-sdkmanager:
 32.1-tx2-jetpack-4.2-devel: 32.1-tx2-jetpack-4.2-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg URL=$(TX2_JP42_URL) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/tx2/devel/Dockerfile \
 					$(DOCKER_CONTEXT)
