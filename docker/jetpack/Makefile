@@ -11,6 +11,8 @@ all: 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
 
 32.1-jax-jetpack-4.2: $(addprefix 32.1-jax-jetpack-4.2-,base devel runtime)
 
+jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano tx2)
+
 jax-jetpack-4.2-deps: jetpack-sdkmanager
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
 				--rm \
