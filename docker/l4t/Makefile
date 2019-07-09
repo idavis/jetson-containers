@@ -1,5 +1,8 @@
 #!make
 
+# Default squash as our base images need to be small unless overridden
+DOCKER_BUILD_ARGS ?= --squash
+
 .PHONY: all
 
 all: 32.1 31.1 28.3 28.2.1 28.2 28.1

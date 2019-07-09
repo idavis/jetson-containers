@@ -1,5 +1,8 @@
 #!make
 
+# Default squash as our base images need to be small unless overridden
+DOCKER_BUILD_ARGS ?= --squash
+
 .PHONY: all
 
 all: 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
