@@ -57,13 +57,13 @@ jetpack-3.3: 28.3-tx2-jetpack-3.3 28.3-tx1-jetpack-3.3 28.2.1-tx2-jetpack-3.3 28
 
 jetpack-3.2.1: 28.3-tx2-jetpack-3.2.1 28.3-tx1-jetpack-3.2.1 28.2.1-tx2-jetpack-3.2.1 28.2-tx1-jetpack-3.2.1
 
-%-jax-jetpack-4.2: l4t-%-jax-tx2 jax-jetpack-4.2-deps
+%-jax-jetpack-4.2: l4t-%-jax-tx2
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-tx2-jetpack-4.2: l4t-%-jax-tx2 tx2-jetpack-4.2-deps
+%-tx2-jetpack-4.2: l4t-%-jax-tx2
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-nano-jetpack-4.2: l4t-%-nano nano-jetpack-4.2-deps
+%-nano-jetpack-4.2: l4t-%-nano
 	make -C $(CURDIR)/docker/jetpack $@
 
 %-jetpack-4.1.1:l4t-%
