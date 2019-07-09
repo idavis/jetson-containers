@@ -37,7 +37,7 @@ jetpack-sdkmanager:
 32.1-jax-jetpack-4.2-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg URL=$(JAX_JP42_URL) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/jax/base/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -45,7 +45,7 @@ jetpack-sdkmanager:
 32.1-jax-jetpack-4.2-runtime: 32.1-jax-jetpack-4.2-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg URL=$(JAX_JP42_URL) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/jax/runtime/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -53,7 +53,7 @@ jetpack-sdkmanager:
 32.1-jax-jetpack-4.2-devel: 32.1-jax-jetpack-4.2-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg URL=$(JAX_JP42_URL) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/jax/devel/Dockerfile \
 					$(DOCKER_CONTEXT)
