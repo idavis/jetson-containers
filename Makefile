@@ -40,6 +40,13 @@ driver-pack-28.1: $(addprefix l4t-28.1-,tx2 tx1)
 l4t-%:
 	make -C $(CURDIR)/docker/l4t $*
 
+jetpack-deps: $(addprefix jetpack-,4.2-deps)
+
+jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax tx2 nano)
+
+%-jetpack-4.2-deps:
+	make -C $(CURDIR)/docker/jetpack $@
+
 jetpacks: $(addprefix jetpack-,4.2 4.1.1 3.3 3.2.1)
 
 jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-jetpack-4.2

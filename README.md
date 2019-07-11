@@ -3,7 +3,7 @@
 Running CUDA containers on the Jetson platform
 
 1. [Preface](#preface)
-2. [Getting Started](#getting-started)
+2. [Introduction](#introduction)
 3. [Configuration](#configuration)
 4. [Building](#building)
 5. [Running](#running)
@@ -15,16 +15,21 @@ Running CUDA containers on the Jetson platform
 
 This project provides a repeatable, containerized approach to building software and libraries to run on the Nvidia Jetson platform.
 
-## Getting Started
+## Introduction
 
-Each image, whether Linux for Tegra (L4T) or JetPack based provides args for the `URL` to pull installers from. Once the JetPack installer has been run, copy the packages to your own source for downloading. This will likely increase your download speed and allow building images if the package URLs ever change. Staring in JetPack 4.2, you cannot download the JetPack installers without logging in with the SDK manager.
-
-When building your application and choosing a base, the JetPack images can be trimmed to only include what is needed by your application. This can drastically reduce the size of your images. The JetPack 4.2 base images follow the Nvidia pattern of having base, runtime, and devel images for each device to start from.
+When building your application and choosing a base, the JetPack images can be trimmed to only include what is needed by your application. This can drastically reduce the size of your images.
 
 These containers enable the OS can be flashed without JetPack having only the main driver pack installed. The other libraries will be included in the containers enabling migration and updates without involving the host operating system.
 
 When building third party libraries, such as OpenCV and PyTorch, a swapfile will *likely* have to be created in the host OS. These packages require more memory than the system contains and will crash with very cryptic errors if they run out of memory.
 
+### JetPack 4.2
+
+The JetPack 4.2 base images follow the Nvidia pattern of having base, runtime, and devel images for each device to start from. Staring in JetPack 4.2, you cannot download the JetPack installers without logging in with the SDK manager, so the make tasks herein will automate the download/login through the SDK Manager and save off the device specific packages.
+
+### Older
+
+Each image, whether Linux for Tegra (L4T) or JetPack based provides args for the `URL` to pull installers from. Once the JetPack installer has been run, copy the packages to your own source for downloading. This will likely increase your download speed and allow building images if the package URLs ever change. This could be automated to follow the pattern used in 4.2+, but it is a lot of effort at the moment.
 
 ## Configuration
 
@@ -32,25 +37,23 @@ When building third party libraries, such as OpenCV and PyTorch, a swapfile will
 
 The `Makefile` scripts will import a `.env` file (for an example look at the `.envtemp` file) and export the variables defined.
 
+- `REPO` - This is for your own container registry/repo. The builds will take care of the tags and images names. For example `REPO=mycontainers.azurecr.io/l4t`
+- `NV_USER` - Sets the email address to be used when authenticating with the SDK Manager. This isn't stored and you'll be prompted for your password when the container runs.
 - `DOCKER` - Allows swapping out for another container runtime such as Moby or Balena. This variable is used in all container operations.
 - `DOCKER_HOST` - Setting the `DOCKER_HOST` variable will proxy builds to another machine such as a Jetson device. This allows running the `make` scripts from an `x86_x64` host. This feature was added in November 2018. When using this feature, it is helpful to add your public key to the device's `~/.ssh/authorized_keys` file. This will prevent credential checks on every build.
-- `DOCKER_BUILD_ARGS` - Allows adding arguments such as volume mounting or cleanup (`-rm`) during build operations.
+- `DOCKER_BUILD_ARGS` - Allows adding arguments such as volume mounting or cleanup (`-rm/--squash`) during build operations.
 - `DOCKER_RUN_ARGS` -  Allows adding arguments such as environment variables, mounts, network configuration, etc when running images. Can also be used to configure X11 forwarding.
 - `DOCKER_CONTEXT` - Defaults to `.` but can be overridden in some circumstances for testing.
 
-These settings supply the base download URL where the Xavier JetPack 4.2 packages can be found. As mentioned in [Getting Started](#getting-started), you will want to upload the files organized by the Nvidia SDK Manager to something like Azure Blob Storage or Amazon S3. A network location can also be specified with the `file://` scheme pointing to the folder. A third option is to leverage the `DOCKER_BUILD_ARGS` setting to mount a readonly volume into the container during the build and again leveraging the `file://` scheme pointing to the folder. There is a separate URL per device since some of the files have the same name but different contents.
-- `JAX_JP42_URL` - Xavier JetPack 4.2
-- `NANO_JP42_URL` - Nano JetPack 4.2
-- `TX2_JP42_URL` - TX2 JetPack 4.2
-
 ### Docker
 
-Storing these images will also require significant disk space. It is highly recommended that an NVME or other hard drive is installed and mounted at boot through `fstab`. Once mounted, configure your container runtime to store its containers and images there:
+Storing these images will also require significant disk space. It is highly recommended that an NVME or other hard drive is installed and mounted at boot through `fstab`. Once mounted, configure your container runtime to store its containers and images there. You'll also want to enable the experimental features to get `--squash` available during builds. This can be turned off by manually specifying `DOCKER_BUILD_ARGS`.
 
 `/etc/docker/daemon.json`
 ```json
 {
-    "data-root": "/some/external/docker"
+    "data-root": "/some/external/docker",
+    "experimental": true
 }
 ```
 
@@ -59,10 +62,27 @@ Storing these images will also require significant disk space. It is highly reco
 The project uses `make` to set up the dependent builds constructing the final images. The recipes fall into a few categories:
 
 - Driver packs (32.1, 31.,1 28.3, 28.2.1, 28.2, 28.1)
+- JetPack Dependencies (4.2)
 - JetPack (4.2, 4.1.1, 3.3, 3.2.1)
 - Devices (jax (xavier), tx2, tx1, nano)
 - Flashing containers
 - OpenCV (4.0.1)
+
+### Dependencies
+
+The JetPack dependency builds must be run on an `x86_64` host. They can be built with `make <device>-jetpack-4.2-deps` where device is `jax`, `nano`, or `tx2`. This will build a container which has the SDK Manager installed and then run that image. This image will require authentication and `NV_USER` should be set in your `.env` file. As the container runs, enter your password when prompted. For `sudo` prompts, enter `pass` as the password. Once built, push the image to your container registry so that the device can leverage it all other builds. This may sound like a lot, but it is really just:
+
+- Set `NV_USER` in the `.env` file
+- Make sure `DOCKER_HOST`, if set, is pointing to an `x86_64` host
+- `make jax-jetpack-4.2-deps`, or `make nano-jetpack-4.2-deps`, or `make tx2-jetpack-4.2-deps`, or `make jetpack-4.2-deps` to build them all
+- Wait, then enter your Nvidia developer password when prompted
+- Enter `pass`
+- Enter `pass`
+- Upload finished image to your container registry
+
+All other steps for JetPack 4.2+ require these previous steps to have been completed.
+
+### Driver Packs
 
 The driver packs form the base of the device images. Each version of JetPack is built on top of a driver pack. To build an image, follow the pattern:
 
@@ -172,6 +192,16 @@ If your device was in recovery mode, you should see progress displayed. Once the
 
 ### Jetson
 
+#### Dependency packs:
+
+Note that these are only used on build machines.
+
+| Repository | Driver | Size |
+|---|---|---|
+| l4t | jax-jetpack-4.2-deps | 3.32GB |
+| l4t | nano-jetpack-4.2-deps | 3.31GB |
+| l4t | tx2-jetpack-4.2-deps | 3.31GB |
+
 #### Driver packs:
 
 | Repository | Driver | Size |
@@ -191,16 +221,16 @@ If your device was in recovery mode, you should see progress displayed. Once the
 
 | Repository | Tag | Size |
 |---|---|---|
-| l4t | 32.1-jax-jetpack-4.2-base | 493MB |
-| l4t | 32.1-jax-jetpack-4.2-runtime | 1.21GB |
-| l4t | 32.1-jax-jetpack-4.2-devel | 5.72GB |
-| l4t | 32.1-jax-jetpack-4.2-samples | 6.54GB |
-| l4t | 32.1-nano-jetpack-4.2-base | 483MB |
+| l4t | 32.1-jax-jetpack-4.2-base | 489MB |
+| l4t | 32.1-jax-jetpack-4.2-runtime | 1.23GB |
+| l4t | 32.1-jax-jetpack-4.2-devel | 5.69GB |
+| l4t | 32.1-jax-jetpack-4.2-samples | 6.50GB |
+| l4t | 32.1-nano-jetpack-4.2-base | 479MB |
 | l4t | 32.1-nano-jetpack-4.2-runtime | 1.2GB |
-| l4t | 32.1-nano-jetpack-4.2-devel | 5.71GB |
-| l4t | 32.1-tx2-jetpack-4.2-base | 493MB |
+| l4t | 32.1-nano-jetpack-4.2-devel | 5.66GB |
+| l4t | 32.1-tx2-jetpack-4.2-base | 489MB |
 | l4t | 32.1-tx2-jetpack-4.2-runtime | 1.21GB |
-| l4t | 32.1-tx2-jetpack-4.2-devel | 5.72GB |
+| l4t | 32.1-tx2-jetpack-4.2-devel | 5.67GB |
 
 #### JetPack 4.1.1
 
