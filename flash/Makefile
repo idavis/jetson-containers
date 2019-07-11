@@ -63,3 +63,11 @@ bionic-server-20190402-28.3: $(addprefix bionic-server-cloudimg-20190402-28.3-,t
 bionic-server-cloudimg-20190402-%:	
 	$(CURDIR)/build_from_make.sh $(CURDIR)/rootfs/bionic-server-cloudimg-20190402.conf $(CURDIR)/drivers/$*.conf $(REPO):$@
 
+32.1-cti-rogue:
+	$(CURDIR)/build_from_make.sh $(CURDIR)/rootfs/tegra-linux-sample-32.1.0-jax.conf $(CURDIR)/drivers/$@.conf $(REPO):$@
+
+32.1-cti-rogue-imx274-2cam:
+	$(CURDIR)/build_from_make.sh $(CURDIR)/rootfs/tegra-linux-sample-32.1.0-jax.conf $(CURDIR)/drivers/$@.conf $(REPO):$@
+
+32.1-cti-mimic-base:
+	$(CURDIR)/build_from_make.sh $(CURDIR)/rootfs/tegra-linux-sample-32.1.0-jax.conf $(CURDIR)/drivers/$@.conf $(REPO):$@

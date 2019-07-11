@@ -77,3 +77,23 @@ all: 32.1 31.1 28.3 28.2.1 28.2 28.1
 					-f $(CURDIR)/28.1/$*/Dockerfile \
 					$(DOCKER_CONTEXT)
 
+32.1-cti-rogue:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.1/cti/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.1-cti-rogue-imx274-2cam:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.1/cti/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.1-cti-mimic-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.1/cti/Dockerfile \
+					$(DOCKER_CONTEXT)
