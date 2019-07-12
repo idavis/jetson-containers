@@ -56,4 +56,4 @@ RUN useradd -ms /bin/bash ${TEMP_USER} && \
 USER ${TEMP_USER}
 
 COPY ./dependencies.Dockerfile /tmp/dependencies.Dockerfile
-ENTRYPOINT ["/bin/bash", "-c", "set -e && mkdir /tmp/${DEVICE_ID} && xvfb-run sdkmanager --cli install --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} --target ${DEVICE_ID} --flash skip --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${DEVICE_ID} && sudo ${DOCKER} build -t ${TAG} -f /tmp/dependencies.Dockerfile /tmp/${DEVICE_ID}"] 
+ENTRYPOINT ["/bin/bash", "-c", "set -e && mkdir /tmp/${DEVICE_ID} && xvfb-run sdkmanager --cli downloadonly --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} ${DEVCIE_OPTION} ${DEVICE_ID} --flash skip --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${DEVICE_ID} && sudo ${DOCKER} build -t ${TAG} -f /tmp/dependencies.Dockerfile /tmp/${DEVICE_ID}"] 
