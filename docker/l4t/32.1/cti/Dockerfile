@@ -23,12 +23,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl -sSL ${BSP_URL}/${BSP} -o ${BSP} && \
     echo "ae85bfc9816287ea20efff597af923f62c70a562 *./${BSP}" | sha1sum -c --strict - && \
     tar -xzf ${BSP} && \
-    cd ./CTI-L4T && \
+    cd /Linux_for_Tegra/CTI-L4T && \
     LDK_ROOTFS_DIR=/ && \
-    sudo ./install.sh && \
-    cd ../.. && \
-    rm -rf ./Linux_for_Tegra && \
-    rm ./${DRIVER_PACK} \
+    sed -i "/.*    if \[ \! -d \"..\/rootfs\/etc\/cti\" ]\; then.*/c\    if [ ! -d \"${LDK_ROOTFS_DIR}etc/cti\" ]; then" /Linux_for_Tegra/CTI-L4T/install.sh && \
+    sed -i "/.*        mkdir ..\/rootfs\/etc\/cti.*/c\        mkdir ${LDK_ROOTFS_DIR}etc/cti" /Linux_for_Tegra/CTI-L4T/install.sh && \
+    sed -i "/.*    echo \$CTI_L4T_VER > ..\/rootfs\/etc\/cti\/CTI-L4T.version.*/c\    echo \$CTI_L4T_VER > ${LDK_ROOTFS_DIR}etc\/cti\/CTI-L4T.version " /Linux_for_Tegra/CTI-L4T/install.sh && \
+    sudo LDK_ROOTFS_DIR=/ ./install.sh \
+    && \
+    rm -rf /Linux_for_Tegra && \
+    rm /${DRIVER_PACK} \
     && \
     apt-get purge --autoremove -y bzip2 curl lbzip2 && \
     apt-get clean && \
