@@ -1,3 +1,7 @@
+ARG DEPENDENCIES_IMAGE
+ARG VERSION_ID
+FROM ${DEPENDENCIES_IMAGE} as dependencies
+
 ARG VERSION_ID
 FROM ubuntu:${VERSION_ID}
 
@@ -15,7 +19,7 @@ LABEL com.nvidia.cuda.version="${CUDA_VERSION}"
 # Prereqs
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends gnupg curl ca-certificates \
+    apt-get install -y --no-install-recommends gnupg \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -25,15 +29,15 @@ RUN apt-get update && \
 ARG CUDA_TOOLKIT_PKG="cuda-repo-ubuntu1804-10-0-local-${CUDA_VERSION}-${DRIVER_VERSION}_1.0-1_amd64.deb"
 ARG CUDA_CROSS_TOOLKIT_PKG="cuda-repo-cross-aarch64-10-0-local-${CUDA_VERSION}_1.0-1_all.deb"
 
-RUN curl -sSL $URL/${CUDA_TOOLKIT_PKG} -o ${CUDA_TOOLKIT_PKG} && \
-    echo "dd2cfc03503ea3ed45d1d2bdf51c3d16 ${CUDA_TOOLKIT_PKG}" | md5sum -c - && \
+COPY --from=dependencies /data/${CUDA_TOOLKIT_PKG} ${CUDA_TOOLKIT_PKG}
+COPY --from=dependencies /data/${CUDA_CROSS_TOOLKIT_PKG} ${CUDA_CROSS_TOOLKIT_PKG}
+RUN echo "dd2cfc03503ea3ed45d1d2bdf51c3d16 ${CUDA_TOOLKIT_PKG}" | md5sum -c - && \
     dpkg --force-all -i ${CUDA_TOOLKIT_PKG} && \
     rm ${CUDA_TOOLKIT_PKG} && \
     apt-key add /var/cuda-repo-*-local*/*.pub && \
     apt-get update && \
     apt-get install -y --allow-downgrades cuda-toolkit-10-0 \
     && \
-    curl -sSL $URL/${CUDA_CROSS_TOOLKIT_PKG} -o ${CUDA_CROSS_TOOLKIT_PKG} && \
     echo "6fb7ba26db83dabfd3cf75280e7bf23f ${CUDA_CROSS_TOOLKIT_PKG}" | md5sum -c - && \
     dpkg --force-all -i ${CUDA_CROSS_TOOLKIT_PKG} && \
     rm ${CUDA_CROSS_TOOLKIT_PKG} && \
@@ -43,10 +47,6 @@ RUN curl -sSL $URL/${CUDA_TOOLKIT_PKG} -o ${CUDA_TOOLKIT_PKG} && \
     && \
     dpkg --purge cuda-repo-ubuntu1804-10-0-local-${CUDA_VERSION}-${DRIVER_VERSION} && \
     dpkg --purge cuda-repo-cross-aarch64-10-0-local-${CUDA_VERSION} && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN apt-get purge --autoremove -y curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

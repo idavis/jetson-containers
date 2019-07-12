@@ -206,7 +206,15 @@ jetpack-sdkmanager:
 jetpack-4.2-host-ubuntu18.04:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg URL=$(HOST_JP42_URL) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):host-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/host/18.04/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+jetpack-4.2-host-ubuntu16.04:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):host-jetpack-4.2-deps \
+					-t $(REPO):$@ \
+					-f 4.2/host/16.04/Dockerfile \
 					$(DOCKER_CONTEXT)
