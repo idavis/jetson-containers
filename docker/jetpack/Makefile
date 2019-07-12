@@ -11,7 +11,7 @@ all: 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
 
 32.1-jax-jetpack-4.2: $(addprefix 32.1-jax-jetpack-4.2-,base devel runtime)
 
-jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano tx2)
+jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano tx2 host)
 
 jax-jetpack-4.2-deps: jetpack-sdkmanager
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
@@ -19,6 +19,7 @@ jax-jetpack-4.2-deps: jetpack-sdkmanager
 				-it \
 				-e "DOCKER=$(DOCKER)" \
 				-e "DEVICE_ID=P2888" \
+				-e "DEVCIE_OPTION=--target" \
 				-e "NV_USER=$(NV_USER)" \
 				-e "TAG=$(REPO):$@" \
 				-e "NV_LOGIN_TYPE=devzone" \
@@ -35,6 +36,7 @@ nano-jetpack-4.2-deps: jetpack-sdkmanager
 				-it \
 				-e "DOCKER=$(DOCKER)" \
 				-e "DEVICE_ID=P3448-0000" \
+				-e "DEVCIE_OPTION=--target" \
 				-e "NV_USER=$(NV_USER)" \
 				-e "TAG=$(REPO):$@" \
 				-e "NV_LOGIN_TYPE=devzone" \
@@ -51,6 +53,24 @@ tx2-jetpack-4.2-deps: jetpack-sdkmanager
 				-it \
 				-e "DOCKER=$(DOCKER)" \
 				-e "DEVICE_ID=P3310" \
+				-e "DEVCIE_OPTION=--target" \
+				-e "NV_USER=$(NV_USER)" \
+				-e "TAG=$(REPO):$@" \
+				-e "NV_LOGIN_TYPE=devzone" \
+				-e "PRODUCT=Jetson" \
+				-e "JETPACK_VERSION=4.2" \
+				-e "TARGET_OS=Linux" \
+				-e "ACCEPT_SDK_LICENCE=accept" \
+				-v //var//run//docker.sock://var//run//docker.sock \
+				$(REPO):jetpack-sdkmanager
+
+host-jetpack-4.2-deps: jetpack-sdkmanager
+	$(DOCKER) run $(DOCKER_RUN_ARGS) \
+				--rm \
+				-it \
+				-e "DOCKER=$(DOCKER)" \
+				-e "DEVICE_ID=host" \
+				-e "DEVCIE_OPTION=--host" \
 				-e "NV_USER=$(NV_USER)" \
 				-e "TAG=$(REPO):$@" \
 				-e "NV_LOGIN_TYPE=devzone" \

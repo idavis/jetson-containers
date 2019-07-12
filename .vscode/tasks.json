@@ -189,7 +189,8 @@
                 "jetpack-4.2-deps",
                 "jax-jetpack-4.2-deps",
                 "nano-jetpack-4.2-deps",
-                "tx2-jetpack-4.2-deps"
+                "tx2-jetpack-4.2-deps",
+                "host-jetpack-4.2-deps"
             ]
         },
         {
