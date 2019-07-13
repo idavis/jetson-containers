@@ -77,23 +77,20 @@ all: 32.1 31.1 28.3 28.2.1 28.2 28.1
 					-f $(CURDIR)/28.1/$*/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-32.1-cti-rogue:
+32.1-cti-v203:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg BSP=CTI-L4T-V203.tgz \
+					--build-arg BSP_SHA=ae85bfc9816287ea20efff597af923f62c70a562 \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.1/cti/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-32.1-cti-rogue-imx274-2cam:
+32.1-cti-v124:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					-t $(REPO):$@ \
-					-f $(CURDIR)/32.1/cti/Dockerfile \
-					$(DOCKER_CONTEXT)
-
-32.1-cti-mimic-base:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg BSP=CTI-L4T-V124.tgz \
+					--build-arg BSP_SHA=4f03816d10d426e4beb53097dae83896f33398c8   \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.1/cti/Dockerfile \
 					$(DOCKER_CONTEXT)

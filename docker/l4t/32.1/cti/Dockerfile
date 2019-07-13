@@ -6,7 +6,8 @@ ARG URL=https://developer.download.nvidia.com/embedded/L4T/r32_Release_v1.0/jax-
 ARG DRIVER_PACK=JAX-TX2-Jetson_Linux_R32.1.0_aarch64.tbz2
 
 ARG BSP_URL=http://www.connecttech.com/ftp/Drivers
-ARG BSP=CTI-L4T-V203.tgz
+ARG BSP
+ARG BSP_SHA
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bzip2 \
@@ -21,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sed -i '/.*tar -I lbzip2 -xpmf ${LDK_NV_TEGRA_DIR}\/config\.tbz2.*/c\tar -I lbzip2 -xpm --overwrite -f ${LDK_NV_TEGRA_DIR}\/config.tbz2' ./Linux_for_Tegra/apply_binaries.sh && \
     cd /Linux_for_Tegra && \
     curl -sSL ${BSP_URL}/${BSP} -o ${BSP} && \
-    echo "ae85bfc9816287ea20efff597af923f62c70a562 *./${BSP}" | sha1sum -c --strict - && \
+    echo "${BSP_SHA} *./${BSP}" | sha1sum -c --strict - && \
     tar -xzf ${BSP} && \
     cd /Linux_for_Tegra/CTI-L4T && \
     LDK_ROOTFS_DIR=/ && \
