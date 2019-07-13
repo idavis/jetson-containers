@@ -1,9 +1,19 @@
+# using a smaller image doesn't save us any space as the layers are used by the other images.
+FROM ubuntu:bionic-20190307 as qemu
+
+# install qemu for cross building
+RUN apt-get update && apt-get install -qqy qemu-user-static
+
+# start of the real image base
 ARG VERSION_ID
 FROM arm64v8/ubuntu:${VERSION_ID}
 
 ARG URL=https://developer.download.nvidia.com/embedded/L4T/r32_Release_v1.0/jax-tx2/BSP
 
 ARG DRIVER_PACK=JAX-TX2-Jetson_Linux_R32.1.0_aarch64.tbz2
+
+# pre-req qemu binary for cross-compilation on x86
+COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bzip2 \
