@@ -90,6 +90,10 @@ The driver packs form the base of the device images. Each version of JetPack is 
 
 Note: not all combinations are valid and the `Makefile` should have all valid combinations declared.
 Note: if these command's are not run on the device, the `DOCKER_HOST` variable must be set.
+Note: from 4.2, cross-device building is supported: leave the `DOCKER_HOST` empty and do this once before running make on the host device:
+```bash
+docker run --rm --privileged multiarch/qemu-user-static:register
+```
 
 examples:
 

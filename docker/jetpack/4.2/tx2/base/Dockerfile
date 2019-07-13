@@ -16,6 +16,7 @@ ENV CUDA_PKG_VERSION=${CUDA_VERSION}-1
 LABEL com.nvidia.cuda.version="${CUDA_VERSION}"
 
 # Prereqs
+COPY --from=dependencies /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gnupg \
