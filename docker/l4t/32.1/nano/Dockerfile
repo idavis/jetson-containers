@@ -1,10 +1,10 @@
+ARG VERSION_ID
 # using a smaller image doesn't save us any space as the layers are used by the other images.
 FROM ubuntu:bionic-20190307 as qemu
 
 # install qemu for cross building
 RUN apt-get update && apt-get install -qqy qemu-user-static
 
-ARG VERSION_ID
 FROM arm64v8/ubuntu:${VERSION_ID}
 
 ARG URL=https://developer.download.nvidia.com/embedded/L4T/r32_Release_v1.0/jetson-nano/BSP
