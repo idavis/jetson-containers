@@ -1,9 +1,11 @@
 ARG VERSION_ID
 # using a smaller image doesn't save us any space as the layers are used by the other images.
-FROM ubuntu:bionic-20190307 as qemu
+FROM ubuntu:${VERSION_ID} as qemu
 
-# install qemu for cross building
-RUN apt-get update && apt-get install -qqy qemu-user-static
+# install qemu for the support of building containers on host
+RUN apt-get update && apt-get install -y --no-install-recommends qemu-user-static && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 FROM arm64v8/ubuntu:${VERSION_ID}
 
