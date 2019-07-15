@@ -90,6 +90,10 @@ The driver packs form the base of the device images. Each version of JetPack is 
 
 Note: not all combinations are valid and the `Makefile` should have all valid combinations declared.
 Note: if these command's are not run on the device, the `DOCKER_HOST` variable must be set.
+Note: from 4.2, building Jetson containers on the host is also supported: leave the `DOCKER_HOST` empty and make sure [qemu-user-static](https://github.com/multiarch/qemu-user-static) is installed and interpreters are registered on the host. If not, please run:
+```bash
+sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-user-static binfmt-support
+```
 
 examples:
 
