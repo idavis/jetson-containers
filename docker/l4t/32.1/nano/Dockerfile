@@ -13,7 +13,7 @@ ARG URL=https://developer.download.nvidia.com/embedded/L4T/r32_Release_v1.0/jets
 
 ARG DRIVER_PACK=Jetson-Nano-Tegra210_Linux_R32.1.0_aarch64.tbz2
 
-# pre-req qemu binary for cross-compilation on x86
+# pre-req qemu binary for aarch64 emulation if this container image is built directly on x86 host
 COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
