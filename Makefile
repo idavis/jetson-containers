@@ -19,6 +19,8 @@ export XENIAL_VERSION_ID ?= xenial-20190222
 # DOCKER_BUILD_ARGS ?= ""
 export DOCKER_CONTEXT ?= .
 
+export SDKM_DOWNLOADS ?= invalid
+
 .PHONY: all
 
 all: driver-packs jetpacks
@@ -45,6 +47,9 @@ jetpack-deps: $(addprefix jetpack-,4.2-deps)
 jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax tx2 nano)
 
 %-jetpack-4.2-deps:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-jetpack-4.2-deps-from-folder:
 	make -C $(CURDIR)/docker/jetpack $@
 
 jetpacks: $(addprefix jetpack-,4.2 4.1.1 3.3 3.2.1)

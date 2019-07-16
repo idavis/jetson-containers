@@ -13,6 +13,13 @@ all: 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
 
 jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano tx2 host)
 
+%-from-folder:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$* \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					$(SDKM_DOWNLOADS)
+
 jax-jetpack-4.2-deps: jetpack-sdkmanager
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
 				--rm \
