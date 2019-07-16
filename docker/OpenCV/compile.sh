@@ -32,6 +32,7 @@ cmake \
     -DCUDA_ARCH_BIN=$CUDA_ARCH_BIN \
     -DINSTALL_C_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
+    -DOPENCV_GENERATE_PKGCONFIG=ON \
     -DOPENCV_TEST_DATA_PATH=../../opencv_extra/testdata \
     -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
     ..
