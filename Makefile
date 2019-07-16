@@ -98,10 +98,10 @@ run-32.1-jax-jetpack-4.2-samples: build-32.1-jax-jetpack-4.2-samples
 image-%:
 	make -C $(CURDIR)/flash $*
 
-opencv-4.0.1-l4t-32.1-jetpack-4.2:
+opencv-%-l4t-32.1-jetpack-4.2:
 	make -C $(CURDIR)/docker/OpenCV $@
 
-opencv-4.0.1-l4t-28.3-jetpack-3.3:
+opencv-%-l4t-28.3-jetpack-3.3:
 	make -C $(CURDIR)/docker/OpenCV $@
 
 pytorch-1.1.0-l4t-32.1-jetpack-4.2:

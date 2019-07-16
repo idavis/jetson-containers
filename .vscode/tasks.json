@@ -125,8 +125,8 @@
                 "l4t-32.1-jax",
                 "l4t-32.1-nano",
                 "l4t-32.1-tx2",
-                "opencv-4.0.1-l4t-28.3-jetpack-3.3",
-                "opencv-4.0.1-l4t-32.1-jetpack-4.2",
+                "opencv-4.1.0-l4t-28.3-jetpack-3.3",
+                "opencv-4.1.0-l4t-32.1-jetpack-4.2",
                 "pytorch-1.1.0-l4t-28.3-jetpack-3.3",
                 "pytorch-1.1.0-l4t-32.1-jetpack-4.2",
                 "run-32.1-jax-jetpack-4.2-samples",
@@ -199,8 +199,8 @@
             "description": "What make target do you want to run?",
             "options": [
                 "build-32.1-jax-jetpack-4.2-samples",
-                "opencv-4.0.1-l4t-28.3-jetpack-3.3",
-                "opencv-4.0.1-l4t-32.1-jetpack-4.2",
+                "opencv-4.1.0-l4t-28.3-jetpack-3.3",
+                "opencv-4.1.0-l4t-32.1-jetpack-4.2",
                 "pytorch-1.1.0-l4t-28.3-jetpack-3.3",
                 "pytorch-1.1.0-l4t-32.1-jetpack-4.2",
                 "run-32.1-jax-jetpack-4.2-samples"

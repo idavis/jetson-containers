@@ -2,7 +2,7 @@
 
 DIST_DIR := $(CURDIR)/../../dist
 
-OPENCV_GIT_VERSION ?= 4.0.1
+OPENCV_GIT_VERSION ?= 4.1.0
 DOCKERFILE ?= INVALID
 CUDA_ARCH_BIN := INVALID
 IMAGE ?= INVALID
@@ -16,17 +16,17 @@ IMAGE ?= INVALID
 
 .PHONY: all
 
-all: opencv-4.0.1-l4t-32.1-jetpack-4.2 opencv-4.0.1-l4t-28.3-jetpack-3.3
+all: opencv-4.1.0-l4t-32.1-jetpack-4.2 opencv-4.1.0-l4t-28.3-jetpack-3.3
 
-opencv-4.0.1-l4t-32.1-jetpack-4.2: DOCKERFILE := bionic.Dockerfile
-opencv-4.0.1-l4t-32.1-jetpack-4.2: CUDA_ARCH_BIN := 5.3;6.2;7.2
-opencv-4.0.1-l4t-32.1-jetpack-4.2: IMAGE := 32.1-jax-jetpack-4.2-devel
-opencv-4.0.1-l4t-32.1-jetpack-4.2: build-opencv-4.0.1-l4t-32.1-jetpack-4.2
+opencv-4.1.0-l4t-32.1-jetpack-4.2: DOCKERFILE := bionic.Dockerfile
+opencv-4.1.0-l4t-32.1-jetpack-4.2: CUDA_ARCH_BIN := 5.3;6.2;7.2
+opencv-4.1.0-l4t-32.1-jetpack-4.2: IMAGE := 32.1-jax-jetpack-4.2-devel
+opencv-4.1.0-l4t-32.1-jetpack-4.2: build-opencv-4.1.0-l4t-32.1-jetpack-4.2
 
-opencv-4.0.1-l4t-28.3-jetpack-3.3: DOCKERFILE := xenial.Dockerfile
-opencv-4.0.1-l4t-28.3-jetpack-3.3: CUDA_ARCH_BIN := 5.3;6.2
-opencv-4.0.1-l4t-28.3-jetpack-3.3: IMAGE := 28.3-tx2-jetpack-3.3
-opencv-4.0.1-l4t-28.3-jetpack-3.3: build-opencv-4.0.1-l4t-28.3-jetpack-4.2
+opencv-4.1.0-l4t-28.3-jetpack-3.3: DOCKERFILE := xenial.Dockerfile
+opencv-4.1.0-l4t-28.3-jetpack-3.3: CUDA_ARCH_BIN := 5.3;6.2
+opencv-4.1.0-l4t-28.3-jetpack-3.3: IMAGE := 28.3-tx2-jetpack-3.3
+opencv-4.1.0-l4t-28.3-jetpack-3.3: build-opencv-4.1.0-l4t-28.3-jetpack-4.2
 
 build-%:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
