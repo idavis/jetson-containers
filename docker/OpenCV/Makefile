@@ -41,6 +41,8 @@ build-%:
 	rm -f $*.cid
 	$(DOCKER) run --cidfile $*.cid $(REPO):$*
 	$(DOCKER) cp $$(cat $*.cid):/opencv/build/OpenCV-$(OPENCV_GIT_VERSION)-aarch64.sh $(DIST_DIR)/$*/
+	$(DOCKER) cp $$(cat $*.cid):/opencv/build/OpenCV-$(OPENCV_GIT_VERSION)-aarch64.tar.Z $(DIST_DIR)/$*/
+	$(DOCKER) cp $$(cat $*.cid):/opencv/build/OpenCV-$(OPENCV_GIT_VERSION)-aarch64.tar.gz $(DIST_DIR)/$*/
 	$(DOCKER) rm $$(cat $*.cid) && rm $*.cid
 	$(DOCKER) image rm $(REPO):$*
 
