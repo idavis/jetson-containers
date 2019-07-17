@@ -80,14 +80,15 @@ jetpack-3.2.1: 28.3-tx2-jetpack-3.2.1 28.3-tx1-jetpack-3.2.1 28.2.1-tx2-jetpack-
 %-jetpack-3.2.1: l4t-%
 	make -C $(CURDIR)/docker/jetpack $@
 
-
-build-32.1-jax-jetpack-4.2-samples:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) --build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					-t $(REPO):32.1-jax-jetpack-4.2-samples \
+build-%-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					-t $(REPO):$*-samples \
 					-f $(CURDIR)/docker/examples/samples/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-run-32.1-jax-jetpack-4.2-samples: build-32.1-jax-jetpack-4.2-samples
+run-%-samples: build-$*-samples
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
 				--rm \
 				-it \
@@ -98,7 +99,7 @@ run-32.1-jax-jetpack-4.2-samples: build-32.1-jax-jetpack-4.2-samples
 				--device=/dev/nvhost-gpu \
 				--device=/dev/nvhost-as-gpu \
 				--device=/dev/nvhost-vic \
-				$(REPO):32.1-jax-jetpack-4.2-samples
+				$(REPO):$*-samples
 
 image-%:
 	make -C $(CURDIR)/flash $*
