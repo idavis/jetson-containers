@@ -1,11 +1,13 @@
 ARG IMAGE_NAME
-FROM ${IMAGE_NAME}:32.1-jax-jetpack-4.2-devel as builder
+ARG TAG
+FROM ${IMAGE_NAME}:${TAG}-devel as builder
 
 WORKDIR /usr/local/cuda-10.0/samples
 RUN make -j$($(nproc) - 1)
 
 ARG IMAGE_NAME
-FROM ${IMAGE_NAME}:32.1-jax-jetpack-4.2-runtime
+ARG TAG
+FROM ${IMAGE_NAME}:${TAG}-runtime
 
 # Prereqs
 
