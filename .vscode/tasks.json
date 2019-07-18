@@ -208,7 +208,9 @@
                 "opencv-4.0.1-l4t-32.1-jetpack-4.2",
                 "pytorch-1.1.0-l4t-28.3-jetpack-3.3",
                 "pytorch-1.1.0-l4t-32.1-jetpack-4.2",
-                "run-32.1-jax-jetpack-4.2-samples"
+                "run-32.1-jax-jetpack-4.2-samples",
+                "run-32.1-nano-jetpack-4.2-samples",
+                "run-32.1-tx2-jetpack-4.2-samples"
             ]
         }
     ]
