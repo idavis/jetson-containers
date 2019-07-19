@@ -3,7 +3,7 @@ ARG IMAGE_NAME
 FROM ${DEPENDENCIES_IMAGE} as dependencies
 
 ARG IMAGE_NAME
-FROM ${IMAGE_NAME}:32.1-nano-jetpack-4.2-runtime
+FROM ${IMAGE_NAME}:32.1-nano-dev-jetpack-4.2-runtime
 
 # CUDA Toolkit for L4T
 

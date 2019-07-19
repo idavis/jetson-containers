@@ -17,7 +17,7 @@ all: 32.2 32.1 31.1 28.3 28.2.1 28.2 28.1
 					-f $(CURDIR)/32.2/jax/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-32.1: $(addprefix 32.1-,jax tx2 jax-tx2 nano)
+32.1: $(addprefix 32.1-,jax tx2 jax-tx2 nano-dev)
 
 32.1-jax:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -35,11 +35,11 @@ all: 32.2 32.1 31.1 28.3 28.2.1 28.2 28.1
 
 32.1-jax-tx2: 32.1-jax 32.1-tx2
 
-32.1-nano:
+32.1-nano-dev:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
 					-t $(REPO):$@ \
-					-f $(CURDIR)/32.1/nano/Dockerfile \
+					-f $(CURDIR)/32.1/nano-dev/Dockerfile \
 					$(DOCKER_CONTEXT)
 
 31.1: $(addprefix 31.1-,jax)

@@ -17,7 +17,7 @@ export DOCKER_CONTEXT ?= .
 
 all: bionic-server-20190402 jetpack-bases
 
-jetpack-bases: l4t-28.2-tx1-jetpack-3.2.1-base l4t-31.1-jax-jetpack-4.1.1-base l4t-28.2-tx1-jetpack-3.3-base l4t-32.1-nano-jetpack-4.2-base l4t-28.2.1-tx2-jetpack-3.2.1-base l4t-28.3-tx1-jetpack-3.3-base l4t-32.1-tx2-jetpack-4.2-base l4t-28.2.1-tx2-jetpack-3.3-base l4t-28.3-tx2-jetpack-3.3-base l4t-32.1-jax-jetpack-4.2-base
+jetpack-bases: l4t-28.2-tx1-jetpack-3.2.1-base l4t-31.1-jax-jetpack-4.1.1-base l4t-28.2-tx1-jetpack-3.3-base l4t-32.1-nano-dev-jetpack-4.2-base l4t-28.2.1-tx2-jetpack-3.2.1-base l4t-28.3-tx1-jetpack-3.3-base l4t-32.1-tx2-jetpack-4.2-base l4t-28.2.1-tx2-jetpack-3.3-base l4t-28.3-tx2-jetpack-3.3-base l4t-32.1-jax-jetpack-4.2-base
 
 l4t-28.2-tx1-jetpack-3.2.1-base:
 	$(CURDIR)/build_from_make.sh $(CURDIR)/jetpack-bases/$@ $(REPO):$@
@@ -31,7 +31,7 @@ l4t-31.1-jax-jetpack-4.1.1-base:
 l4t-28.2-tx1-jetpack-3.3-base:
 	$(CURDIR)/build_from_make.sh $(CURDIR)/jetpack-bases/$@ $(REPO):$@
 
-l4t-32.1-nano-jetpack-4.2-base:
+l4t-32.1-nano-dev-jetpack-4.2-base:
 	$(CURDIR)/build_from_make.sh $(CURDIR)/jetpack-bases/$@ $(REPO):$@
 
 l4t-28.2.1-tx2-jetpack-3.2.1-base:
@@ -54,7 +54,7 @@ l4t-32.1-jax-jetpack-4.2-base:
 
 bionic-server-20190402 : $(addprefix bionic-server-20190402-,32.1 31.1 28.3)
 
-bionic-server-20190402-32.1: $(addprefix bionic-server-cloudimg-20190402-32.1-,jax tx2 nano)
+bionic-server-20190402-32.1: $(addprefix bionic-server-cloudimg-20190402-32.1-,jax tx2 nano-dev)
 
 bionic-server-20190402-31.1: $(addprefix bionic-server-cloudimg-20190402-31.1-,jax)
 

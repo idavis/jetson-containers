@@ -8,17 +8,17 @@ DOCKER_BUILD_ARGS ?= --squash
 all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
 
 32.2-jetpack-4.2.1: 32.2-jax-jetpack-4.2.1
-# 32.1-tx2-jetpack-4.2 32.1-nano-jetpack-4.2
+# 32.1-tx2-jetpack-4.2 32.1-nano-dev-jetpack-4.2
 
 32.2-jax-jetpack-4.2.1: $(addprefix 32.2-jax-jetpack-4.2.1-,base devel runtime)
 
-32.1-jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-jetpack-4.2
+32.1-jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-dev-jetpack-4.2
 
 32.1-jax-jetpack-4.2: $(addprefix 32.1-jax-jetpack-4.2-,base devel runtime)
 
 jetpack-4.2.1-deps: $(addsuffix -jetpack-4.2.1-deps,jax host)
 
-jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano tx2 host)
+jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano-dev tx2 host)
 
 %-from-folder:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -54,7 +54,7 @@ jax-jetpack-4.2-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/4.2/P2888
 
-nano-jetpack-4.2-deps:
+nano-dev-jetpack-4.2-deps:
 	DEVICE_ID=P3448-0000 DEVCIE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=devzone PRODUCT=Jetson JETPACK_VERSION=4.2 TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -130,29 +130,29 @@ host-jetpack-4.2-deps:
 					-f 4.2/jax/devel/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-32.1-nano-jetpack-4.2: $(addprefix 32.1-nano-jetpack-4.2-,base devel runtime)
+32.1-nano-dev-jetpack-4.2: $(addprefix 32.1-nano-dev-jetpack-4.2-,base devel runtime)
 
-32.1-nano-jetpack-4.2-base:
+32.1-nano-dev-jetpack-4.2-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-jetpack-4.2-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-dev-jetpack-4.2-deps \
 					-t $(REPO):$@ \
-					-f 4.2/nano/base/Dockerfile \
+					-f 4.2/nano-dev/base/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-32.1-nano-jetpack-4.2-runtime: 32.1-nano-jetpack-4.2-base
+32.1-nano-dev-jetpack-4.2-runtime: 32.1-nano-dev-jetpack-4.2-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-jetpack-4.2-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-dev-jetpack-4.2-deps \
 					-t $(REPO):$@ \
-					-f 4.2/nano/runtime/Dockerfile \
+					-f 4.2/nano-dev/runtime/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-32.1-nano-jetpack-4.2-devel: 32.1-nano-jetpack-4.2-runtime
+32.1-nano-dev-jetpack-4.2-devel: 32.1-nano-dev-jetpack-4.2-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-jetpack-4.2-deps \
-					-t $(REPO):$@ -f 4.2/nano/devel/Dockerfile \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-dev-jetpack-4.2-deps \
+					-t $(REPO):$@ -f 4.2/nano-dev/devel/Dockerfile \
 					$(DOCKER_CONTEXT)
 
 32.1-tx2-jetpack-4.2: $(addprefix 32.1-tx2-jetpack-4.2-,base devel runtime)
