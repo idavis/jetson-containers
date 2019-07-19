@@ -16,6 +16,8 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
 
 32.1-jax-jetpack-4.2: $(addprefix 32.1-jax-jetpack-4.2-,base devel runtime)
 
+jetpack-4.2.1-deps: $(addsuffix -jetpack-4.2.1-deps,jax host)
+
 jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano tx2 host)
 
 %-from-folder:
@@ -25,80 +27,60 @@ jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano tx2 host)
 					-f $(CURDIR)/dependencies.Dockerfile \
 					$(SDKM_DOWNLOADS)
 
-jax-jetpack-4.2-deps: jetpack-sdkmanager
-	$(DOCKER) run $(DOCKER_RUN_ARGS) \
-				--rm \
-				-it \
-				-e "DOCKER=$(DOCKER)" \
-				-e "DEVICE_ID=P2888" \
-				-e "DEVCIE_OPTION=--target" \
-				-e "NV_USER=$(NV_USER)" \
-				-e "TAG=$(REPO):$@" \
-				-e "NV_LOGIN_TYPE=devzone" \
-				-e "PRODUCT=Jetson" \
-				-e "JETPACK_VERSION=4.2" \
-				-e "TARGET_OS=Linux" \
-				-e "ACCEPT_SDK_LICENCE=accept" \
-				-v //var//run//docker.sock://var//run//docker.sock \
-				$(REPO):jetpack-sdkmanager
+jax-jetpack-4.2.1-deps:
+	DEVICE_ID=P2888 DEVCIE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=devzone PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
-nano-jetpack-4.2-deps: jetpack-sdkmanager
-	$(DOCKER) run $(DOCKER_RUN_ARGS) \
-				--rm \
-				-it \
-				-e "DOCKER=$(DOCKER)" \
-				-e "DEVICE_ID=P3448-0000" \
-				-e "DEVCIE_OPTION=--target" \
-				-e "NV_USER=$(NV_USER)" \
-				-e "TAG=$(REPO):$@" \
-				-e "NV_LOGIN_TYPE=devzone" \
-				-e "PRODUCT=Jetson" \
-				-e "JETPACK_VERSION=4.2" \
-				-e "TARGET_OS=Linux" \
-				-e "ACCEPT_SDK_LICENCE=accept" \
-				-v //var//run//docker.sock://var//run//docker.sock \
-				$(REPO):jetpack-sdkmanager
-
-tx2-jetpack-4.2-deps: jetpack-sdkmanager
-	$(DOCKER) run $(DOCKER_RUN_ARGS) \
-				--rm \
-				-it \
-				-e "DOCKER=$(DOCKER)" \
-				-e "DEVICE_ID=P3310" \
-				-e "DEVCIE_OPTION=--target" \
-				-e "NV_USER=$(NV_USER)" \
-				-e "TAG=$(REPO):$@" \
-				-e "NV_LOGIN_TYPE=devzone" \
-				-e "PRODUCT=Jetson" \
-				-e "JETPACK_VERSION=4.2" \
-				-e "TARGET_OS=Linux" \
-				-e "ACCEPT_SDK_LICENCE=accept" \
-				-v //var//run//docker.sock://var//run//docker.sock \
-				$(REPO):jetpack-sdkmanager
-
-host-jetpack-4.2-deps: jetpack-sdkmanager
-	$(DOCKER) run $(DOCKER_RUN_ARGS) \
-				--rm \
-				-it \
-				-e "DOCKER=$(DOCKER)" \
-				-e "DEVICE_ID=host" \
-				-e "DEVCIE_OPTION=--host" \
-				-e "NV_USER=$(NV_USER)" \
-				-e "TAG=$(REPO):$@" \
-				-e "NV_LOGIN_TYPE=devzone" \
-				-e "PRODUCT=Jetson" \
-				-e "JETPACK_VERSION=4.2" \
-				-e "TARGET_OS=Linux" \
-				-e "ACCEPT_SDK_LICENCE=accept" \
-				-v //var//run//docker.sock://var//run//docker.sock \
-				$(REPO):jetpack-sdkmanager
-
-jetpack-sdkmanager:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
 					-t $(REPO):$@ \
-					-f $(CURDIR)/Dockerfile \
-					$(CURDIR)
+					-f $(CURDIR)/dependencies.Dockerfile \
+					/tmp/GA_4.2.1/P2888
+
+host-jetpack-4.2.1-deps:
+	DEVICE_ID=host DEVCIE_OPTION=--host NV_USER=$(NV_USER) NV_LOGIN_TYPE=devzone PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
+
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					/tmp/GA_4.2.1/host
+
+jax-jetpack-4.2-deps:
+	DEVICE_ID=P2888 DEVCIE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=devzone PRODUCT=Jetson JETPACK_VERSION=4.2 TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
+
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					/tmp/4.2/P2888
+
+nano-jetpack-4.2-deps:
+	DEVICE_ID=P3448-0000 DEVCIE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=devzone PRODUCT=Jetson JETPACK_VERSION=4.2 TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
+
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					/tmp/4.2/P3448-0000
+
+tx2-jetpack-4.2-deps:
+	DEVICE_ID=P3310 DEVCIE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=devzone PRODUCT=Jetson JETPACK_VERSION=4.2 TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
+
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					/tmp/4.2/P3310
+
+host-jetpack-4.2-deps:
+	DEVICE_ID=host DEVCIE_OPTION=--host NV_USER=$(NV_USER) NV_LOGIN_TYPE=devzone PRODUCT=Jetson JETPACK_VERSION=4.2 TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
+
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					/tmp/4.2/host
+
 
 32.2-jax-jetpack-4.2.1-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
