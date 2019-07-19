@@ -5,7 +5,12 @@ DOCKER_BUILD_ARGS ?= --squash
 
 .PHONY: all
 
-all: 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
+all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
+
+32.2-jetpack-4.2.1: 32.2-jax-jetpack-4.2.1
+# 32.1-tx2-jetpack-4.2 32.1-nano-jetpack-4.2
+
+32.2-jax-jetpack-4.2.1: $(addprefix 32.2-jax-jetpack-4.2.1-,base devel runtime)
 
 32.1-jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-jetpack-4.2
 
@@ -94,6 +99,30 @@ jetpack-sdkmanager:
 					-t $(REPO):$@ \
 					-f $(CURDIR)/Dockerfile \
 					$(CURDIR)
+
+32.2-jax-jetpack-4.2.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/jax/base/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-jax-jetpack-4.2.1-runtime: 32.2-jax-jetpack-4.2.1-base
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/jax/runtime/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-jax-jetpack-4.2.1-devel: 32.2-jax-jetpack-4.2.1-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/jax/devel/Dockerfile \
+					$(DOCKER_CONTEXT)
 
 32.1-jax-jetpack-4.2-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \

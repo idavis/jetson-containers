@@ -5,7 +5,17 @@ DOCKER_BUILD_ARGS ?= --squash
 
 .PHONY: all
 
-all: 32.1 31.1 28.3 28.2.1 28.2 28.1
+all: 32.2 32.1 31.1 28.3 28.2.1 28.2 28.1
+
+32.2: $(addprefix 32.2-,jax)
+
+32.2-jax:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.2/jax/Dockerfile \
+					$(DOCKER_CONTEXT)
 
 32.1: $(addprefix 32.1-,jax tx2 jax-tx2 nano)
 
