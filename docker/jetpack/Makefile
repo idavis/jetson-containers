@@ -173,6 +173,126 @@ host-jetpack-4.2-deps:
 					-f 4.2.1/jax/devel/Dockerfile \
 					$(DOCKER_CONTEXT)
 
+32.2-tx2-jetpack-4.2.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx2/base/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2-jetpack-4.2.1-runtime: 32.2-tx2-jetpack-4.2.1-base
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx2/runtime/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2-jetpack-4.2.1-devel: 32.2-tx2-jetpack-4.2.1-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx2/devel/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2i-jetpack-4.2.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2i-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx2i/base/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2i-jetpack-4.2.1-runtime: 32.2-tx2i-jetpack-4.2.1-base
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2i-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx2i/runtime/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2i-jetpack-4.2.1-devel: 32.2-tx2i-jetpack-4.2.1-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2i-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx2i/devel/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2-4gb-jetpack-4.2.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-4gb-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx2-4gb/base/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2-4gb-jetpack-4.2.1-runtime: 32.2-tx2-4gb-jetpack-4.2.1-base
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-4gb-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx2-4gb/runtime/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2-4gb-jetpack-4.2.1-devel: 32.2-tx2-4gb-jetpack-4.2.1-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-4gb-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx2-4gb/devel/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx1-jetpack-4.2.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx1-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx1/base/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx1-jetpack-4.2.1-runtime: 32.2-tx1-jetpack-4.2.1-base
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx1-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx1/runtime/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx1-jetpack-4.2.1-devel: 32.2-tx1-jetpack-4.2.1-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx1-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/tx1/devel/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-nano-jetpack-4.2.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/nano/base/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-nano-jetpack-4.2.1-runtime: 32.2-nano-jetpack-4.2.1-base
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/nano/runtime/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-nano-jetpack-4.2.1-devel: 32.2-nano-jetpack-4.2.1-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f 4.2.1/nano/devel/Dockerfile \
+					$(DOCKER_CONTEXT)
+
 32.2-nano-dev-jetpack-4.2.1-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
