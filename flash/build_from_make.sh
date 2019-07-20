@@ -20,8 +20,8 @@ if [ "$#" -eq 3 ]; then
 fi
 
 
-if [ -z "$DRIVER_PACK_URL" ]; then
-    >&2 echo "The DRIVER_PACK_URL variable must be set."
+if [ -z "$DRIVER_PACK_URL" ] && [ -z "$DEPENDENCIES_IMAGE" ]; then
+    >&2 echo "The DRIVER_PACK_URL or DEPENDENCIES_IMAGE variable must be set."
     exit 3
 fi
 
@@ -35,8 +35,8 @@ if [ -z "$DRIVER_PACK_SHA" ]; then
     exit 5
 fi
 
-if [ -z "$ROOT_FS_URL" ]; then
-    >&2 echo "The ROOT_FS_URL variable must be set."
+if [ -z "$ROOT_FS_URL" ] && [ -z "$DEPENDENCIES_IMAGE" ]; then
+    >&2 echo "The ROOT_FS_URL or DEPENDENCIES_IMAGE variable must be set."
     exit 6
 fi
 
@@ -63,33 +63,64 @@ if [ -z "$DEVICE" ]; then
     DEVICE=$(echo $TARGET_BOARD | awk -F"-" '{print $2}')
 fi
 
-# Show what is going to be executed.
-echo "${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.Dockerfile" -t "$DOCKER_TAG" \\"
-echo "    --build-arg DRIVER_PACK_URL=$DRIVER_PACK_URL \\"
-echo "    --build-arg DRIVER_PACK=$DRIVER_PACK \\"
-echo "    --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \\"
-echo "    --build-arg ROOT_FS_URL=$ROOT_FS_URL \\"
-echo "    --build-arg ROOT_FS=$ROOT_FS \\"
-echo "    --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \\"
-echo "    --build-arg BSP_URL=$BSP_URL \\"
-echo "    --build-arg BSP=$BSP \\"
-echo "    --build-arg BSP_SHA=$BSP_SHA \\"
-echo "    --build-arg TARGET_BOARD=$TARGET_BOARD \\"
-echo "    --build-arg ROOT_DEVICE=$ROOT_DEVICE \\"
-echo "    --build-arg VERSION_ID=$VERSION_ID \\"
-echo "    ."
+if [ -z "$DEPENDENCIES_IMAGE" ]; then
+    # Show what is going to be executed.
+    echo "${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.curl.Dockerfile" -t "$DOCKER_TAG" \\"
+    echo "    --build-arg DRIVER_PACK_URL=$DRIVER_PACK_URL \\"
+    echo "    --build-arg DRIVER_PACK=$DRIVER_PACK \\"
+    echo "    --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \\"
+    echo "    --build-arg ROOT_FS_URL=$ROOT_FS_URL \\"
+    echo "    --build-arg ROOT_FS=$ROOT_FS \\"
+    echo "    --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \\"
+    echo "    --build-arg BSP_URL=$BSP_URL \\"
+    echo "    --build-arg BSP=$BSP \\"
+    echo "    --build-arg BSP_SHA=$BSP_SHA \\"
+    echo "    --build-arg TARGET_BOARD=$TARGET_BOARD \\"
+    echo "    --build-arg ROOT_DEVICE=$ROOT_DEVICE \\"
+    echo "    --build-arg VERSION_ID=$VERSION_ID \\"
+    echo "    ."
 
-${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.Dockerfile" -t "$DOCKER_TAG" \
-     --build-arg DRIVER_PACK_URL=$DRIVER_PACK_URL \
-     --build-arg DRIVER_PACK=$DRIVER_PACK \
-     --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \
-     --build-arg ROOT_FS_URL=$ROOT_FS_URL \
-     --build-arg ROOT_FS=$ROOT_FS \
-     --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \
-     --build-arg BSP_URL=$BSP_URL \
-     --build-arg BSP=$BSP \
-     --build-arg BSP_SHA=$BSP_SHA \
-     --build-arg TARGET_BOARD=$TARGET_BOARD \
-     --build-arg ROOT_DEVICE=$ROOT_DEVICE \
-     --build-arg VERSION_ID=$VERSION_ID \
-     .
+    ${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.curl.Dockerfile" -t "$DOCKER_TAG" \
+        --build-arg DEPENDENCIES_IMAGE=$DEPENDENCIES_IMAGE \
+        --build-arg DRIVER_PACK_URL=$DRIVER_PACK_URL \
+        --build-arg DRIVER_PACK=$DRIVER_PACK \
+        --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \
+        --build-arg ROOT_FS=$ROOT_FS \
+        --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \
+        --build-arg BSP_URL=$BSP_URL \
+        --build-arg BSP=$BSP \
+        --build-arg BSP_SHA=$BSP_SHA \
+        --build-arg TARGET_BOARD=$TARGET_BOARD \
+        --build-arg ROOT_DEVICE=$ROOT_DEVICE \
+        --build-arg VERSION_ID=$VERSION_ID \
+        .
+else
+    # Show what is going to be executed.
+    echo "${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.Dockerfile" -t "$DOCKER_TAG" \\"
+    echo "    --build-arg DEPENDENCIES_IMAGE=$DEPENDENCIES_IMAGE \\"
+    echo "    --build-arg DRIVER_PACK=$DRIVER_PACK \\"
+    echo "    --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \\"
+    echo "    --build-arg ROOT_FS=$ROOT_FS \\"
+    echo "    --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \\"
+    echo "    --build-arg BSP_URL=$BSP_URL \\"
+    echo "    --build-arg BSP=$BSP \\"
+    echo "    --build-arg BSP_SHA=$BSP_SHA \\"
+    echo "    --build-arg TARGET_BOARD=$TARGET_BOARD \\"
+    echo "    --build-arg ROOT_DEVICE=$ROOT_DEVICE \\"
+    echo "    --build-arg VERSION_ID=$VERSION_ID \\"
+    echo "    ."
+
+    ${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.Dockerfile" -t "$DOCKER_TAG" \
+        --build-arg DEPENDENCIES_IMAGE=$DEPENDENCIES_IMAGE \
+        --build-arg DRIVER_PACK=$DRIVER_PACK \
+        --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \
+        --build-arg ROOT_FS=$ROOT_FS \
+        --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \
+        --build-arg BSP_URL=$BSP_URL \
+        --build-arg BSP=$BSP \
+        --build-arg BSP_SHA=$BSP_SHA \
+        --build-arg TARGET_BOARD=$TARGET_BOARD \
+        --build-arg ROOT_DEVICE=$ROOT_DEVICE \
+        --build-arg VERSION_ID=$VERSION_ID \
+        .
+fi
