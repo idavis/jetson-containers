@@ -191,8 +191,8 @@ If your device was in recovery mode, you should see progress displayed. Once the
 
 | Repository | Tag | Size |
 |---|---|---|
-| arm64v8/ubuntu | bionic-20190307 | 80.4MB |
-| arm64v8/ubuntu | xenial-20190222 | 108MB |
+| arm64v8/ubuntu | bionic-20190612 | 80.4MB |
+| arm64v8/ubuntu | xenial-20190610 | 108MB |
 
 ### Jetson
 

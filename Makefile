@@ -12,8 +12,8 @@ export REPO ?= l4t
 export IMAGE_NAME ?= $(REPO)
 
 # Used in driver pack base
-export BIONIC_VERSION_ID ?= bionic-20190307
-export XENIAL_VERSION_ID ?= xenial-20190222
+export BIONIC_VERSION_ID ?= bionic-20190612
+export XENIAL_VERSION_ID ?= xenial-20190610
 
 # Allow additional options such as --squash
 # DOCKER_BUILD_ARGS ?= ""
