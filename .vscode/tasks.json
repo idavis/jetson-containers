@@ -52,22 +52,6 @@
             }
         },
         {
-            "label": "make <all options>",
-            "type": "shell",
-            "group": "build",
-            "command": "make",
-            "args": [
-                "${input:pickAll}"
-            ],
-            "problemMatcher":{
-                "pattern":{
-                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
-                    "kind": "file",
-                    "message": 2 
-                }
-            }
-        },
-        {
             "label": "make <jetpack dep options>",
             "type": "shell",
             "group": "build",
@@ -85,54 +69,6 @@
         }
     ],
     "inputs": [
-        {
-            "id": "pickAll",
-            "type": "pickString",
-            "description": "What make target do you want to run?",
-            "options": [
-                "28.2.1-tx2-jetpack-3.2.1",
-                "28.2.1-tx2-jetpack-3.3",
-                "28.2-tx1-jetpack-3.2.1",
-                "28.2-tx1-jetpack-3.3",
-                "28.3-tx1-jetpack-3.2.1",
-                "28.3-tx1-jetpack-3.3",
-                "28.3-tx2-jetpack-3.2.1",
-                "28.3-tx2-jetpack-3.3",
-                "31.1-jax-jetpack-4.1.1",
-                "32.1-jax-jetpack-4.2",
-                "32.1-nano-dev-jetpack-4.2",
-                "32.1-tx2-jetpack-4.2",
-                "build-32.1-jax-jetpack-4.2-samples",
-                "driver-pack-28.1",
-                "driver-pack-28.2",
-                "driver-pack-28.2.1",
-                "driver-pack-28.3",
-                "driver-pack-31.1",
-                "driver-pack-32.1",
-                "driver-packs",
-                "jetpack-3.2.1",
-                "jetpack-3.3",
-                "jetpack-4.1.1",
-                "jetpack-4.2",
-                "jetpacks",
-                "l4t-28.1-tx1",
-                "l4t-28.1-tx2",
-                "l4t-28.2.1-tx2",
-                "l4t-28.2-tx1",
-                "l4t-28.3-tx1",
-                "l4t-28.3-tx2",
-                "l4t-31.1-jax",
-                "l4t-32.1-jax",
-                "l4t-32.1-nano-dev",
-                "l4t-32.1-tx2",
-                "opencv-4.0.1-l4t-28.3-jetpack-3.3",
-                "opencv-4.0.1-l4t-32.1-jetpack-4.2",
-                "pytorch-1.1.0-l4t-28.3-jetpack-3.3",
-                "pytorch-1.1.0-l4t-32.1-jetpack-4.2",
-                "run-32.1-jax-jetpack-4.2-samples",
-                "all"
-            ]
-        },
         {
             "id": "pickDriverPacks",
             "type": "pickString",
