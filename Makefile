@@ -121,7 +121,7 @@ build-%-samples:
 					-f $(CURDIR)/docker/examples/samples/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-run-%-samples: build-%-samples
+run-%-samples:
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
 				--rm \
 				-it \
