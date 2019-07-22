@@ -70,7 +70,7 @@ The project uses `make` to set up the dependent builds constructing the final im
 
 ### Dependencies
 
-The JetPack dependency builds must be run on an `x86_64` host. They can be built with `make <device>-jetpack-4.2-deps` where device is `jax`, `nano-dev`, or `tx2`. This will build a container which has the SDK Manager installed and then run that image. This image will require authentication and `NV_USER` should be set in your `.env` file. As the container runs, enter your password when prompted. For `sudo` prompts, enter `pass` as the password. Once built, push the image to your container registry so that the device can leverage it all other builds. This may sound like a lot, but it is really just:
+The JetPack dependency builds must be run on an `x86_64` host. They can be built with `make <device>-jetpack-<jetpack-version>-deps`. This will build an image using files downlaoded from the SDK Manager installed. Building this image will require authentication and `NV_USER` should be set in your `.env` file. As the container runs, enter your password when prompted. For `sudo` prompts, enter `pass` as the password. Once built, push the image to your container registry so that the device can leverage it all other builds. This may sound like a lot, but it is really just:
 
 - Set `NV_USER` in the `.env` file
 - Make sure `DOCKER_HOST`, if set, is pointing to an `x86_64` host
@@ -91,6 +91,7 @@ The driver packs form the base of the device images. Each version of JetPack is 
 Note: not all combinations are valid and the `Makefile` should have all valid combinations declared.
 Note: if these command's are not run on the device, the `DOCKER_HOST` variable must be set.
 Note: from 4.2, building Jetson containers on the host is also supported: leave the `DOCKER_HOST` empty and make sure [qemu-user-static](https://github.com/multiarch/qemu-user-static) is installed and interpreters are registered on the host. If not, please run:
+
 ```bash
 sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-user-static binfmt-support
 ```
