@@ -3,43 +3,43 @@ ARG IMAGE_NAME
 FROM ${DEPENDENCIES_IMAGE} as dependencies
 
 ARG IMAGE_NAME
-FROM ${IMAGE_NAME}:32.1-nano-jetpack-4.2-runtime
+FROM ${IMAGE_NAME}:32.2-tx1-jetpack-4.2.1-runtime
 
 # CUDA Toolkit for L4T
 
 ARG CUDA_TOOLKIT_PKG="cuda-repo-l4t-10-0-local-${CUDA_PKG_VERSION}_arm64.deb"
 
 COPY --from=dependencies /data/${CUDA_TOOLKIT_PKG} ${CUDA_TOOLKIT_PKG}
-RUN echo "5e3eedc3707305f9022d41754d6becde ${CUDA_TOOLKIT_PKG}" | md5sum -c - && \
+RUN echo "0e12b2f53c7cbe4233c2da73f7d8e6b4 ${CUDA_TOOLKIT_PKG}" | md5sum -c - && \
     dpkg --force-all -i ${CUDA_TOOLKIT_PKG} && \
     rm ${CUDA_TOOLKIT_PKG} && \
     apt-get update && \
     apt-get install -y --allow-downgrades cuda-toolkit-10-0 libgomp1 libfreeimage-dev libopenmpi-dev openmpi-bin && \
-    dpkg --purge cuda-repo-l4t-10-0-local-10.0.166 \
+    dpkg --purge cuda-repo-l4t-10-0-local-10.0.326 \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA CUDA Deep Neural Network library (cuDNN)
 
-ENV CUDNN_VERSION 7.3.1.28
+ENV CUDNN_VERSION 7.5.0.56
 
 ENV CUDNN_PKG_VERSION=${CUDA_VERSION}-1
 
 LABEL com.nvidia.cudnn.version="${CUDNN_VERSION}"
 
 COPY --from=dependencies /data/libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb
-RUN echo "92867c0a495f84ec11d108f84b776620 libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb" | md5sum -c - && \
+RUN echo "9f30aa86e505a3b83b127ed7a51309a1 libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb && \
     rm libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb
 
 COPY --from=dependencies /data/libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb
-RUN echo "dd0fbfa225b2374b946febc98e2cdec4 libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb" | md5sum -c - && \
+RUN echo "a010637c80859b2143ef24461ee2ef97 libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb && \
     rm libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb
 
 COPY --from=dependencies /data/libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb
-RUN echo "9478c16ceeaaca937d4d26b982e48bd1 libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb" | md5sum -c - && \
+RUN echo "f9e43d15ff69d65a85d2aade71a43870 libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb && \
     rm libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb
 
@@ -80,7 +80,7 @@ RUN echo "7630f0309c883cc6d8a1ab5a712938a5 libvisionworks-tracking-repo_0.88.2_a
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA TensorRT
-ENV LIBINFER_VERSION 5.0.6
+ENV LIBINFER_VERSION 5.1.6
 
 ENV LIBINFER_PKG_VERSION=${LIBINFER_VERSION}-1
 
@@ -93,21 +93,21 @@ ENV LIBINFER_DEV_PKG libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 ENV LIBINFER_SAMPLES_PKG libnvinfer-samples_${LIBINFER_PKG_VERSION}+cuda10.0_all.deb
 
 COPY --from=dependencies /data/${LIBINFER_PKG} ${LIBINFER_PKG}
-RUN echo "b3f083e0665dc8d3d8eb61349bb275d7 ${LIBINFER_PKG}" | md5sum -c - && \
+RUN echo "dca1e2dadeae2186b57a11861fac7652 ${LIBINFER_PKG}" | md5sum -c - && \
     dpkg -i ${LIBINFER_PKG} && \
     rm ${LIBINFER_PKG}
 
 COPY --from=dependencies /data/${LIBINFER_DEV_PKG} ${LIBINFER_DEV_PKG}
-RUN echo "9e8e0d8356ba4af730c39b35c50ae2a8 ${LIBINFER_DEV_PKG}" | md5sum -c - && \
+RUN echo "0e0c0c6d427847d5994f04fbce0401d2 ${LIBINFER_DEV_PKG}" | md5sum -c - && \
     dpkg -i ${LIBINFER_DEV_PKG} && \
     rm ${LIBINFER_DEV_PKG}
 
 COPY --from=dependencies /data/${LIBINFER_SAMPLES_PKG} ${LIBINFER_SAMPLES_PKG}
-RUN echo "dfa8bee28c87ec3c08b4063b779d63ef ${LIBINFER_SAMPLES_PKG}" | md5sum -c - && \
+RUN echo "e8f021ea1fad99d99f0f551d7ea3146a ${LIBINFER_SAMPLES_PKG}" | md5sum -c - && \
     dpkg -i ${LIBINFER_SAMPLES_PKG} && \
     rm ${LIBINFER_SAMPLES_PKG}
 
-ENV TENSORRT_VERSION 5.0.6.3
+ENV TENSORRT_VERSION 5.1.6.1
 
 ENV TENSORRT_PKG_VERSION=${TENSORRT_VERSION}-1
 
@@ -116,7 +116,7 @@ LABEL com.nvidia.tensorrt.version="${TENSORRT_VERSION}"
 ENV TENSORRT_PKG tensorrt_${TENSORRT_PKG_VERSION}+cuda10.0_arm64.deb
 
 COPY --from=dependencies /data/${TENSORRT_PKG} ${TENSORRT_PKG}
-RUN echo "c7a9fe100fa55f2366a52909b8f55226 ${TENSORRT_PKG}" | md5sum -c - && \
+RUN echo "66e6df17b7a92d32dd3465bdfca9fc8d ${TENSORRT_PKG}" | md5sum -c - && \
     dpkg -i ${TENSORRT_PKG} && \
     rm ${TENSORRT_PKG}
 
@@ -133,21 +133,21 @@ RUN apt-get update && apt-get install -y \
 
 # Python2 support for TensorRT
 COPY --from=dependencies /data/python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "9e05650a9517824e6b20dc94ebeef03c python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+RUN echo "ae1a0c1b859345df172781f3d6d5d6f9 python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 COPY --from=dependencies /data/python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "2e36bad9713b20ced5ec01e987f6395e python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+RUN echo "53042900339b60f8f4da17e7f8e873ea python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 RUN apt-get update && apt-get install -y \
-        python-dev \
-        python-numpy \
+        python3-dev \
+        python3-numpy \
         python3-pip \
-        python-py \
-        python-pytest \
+        python3-py \
+        python3-pytest \
     && \
     python3 -m pip install -U pip && \
     apt-get clean && \
@@ -155,29 +155,29 @@ RUN apt-get update && apt-get install -y \
 
 # Python3 support for TensorRT
 COPY --from=dependencies /data/python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "966128fdae61f5b2b753762d0dd74759 python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+RUN echo "0f3345fe86f29e14b056df400bdd9458 python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 COPY --from=dependencies /data/python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "98d11ff195c93e2e04c49171b9200691 python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+RUN echo "a6a9e37a31ceea0981a4f2622b4cce53 python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 # Graph Surgeon
 COPY --from=dependencies /data/graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "336ca4f5b94d973ec751a7a12824655f graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+RUN echo "5729cc195d365335991c58abd75e0c99 graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 # UFF Converter
 COPY --from=dependencies /data/uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "8569488be7fd0ee33f2c24f9f29e103e uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
+RUN echo "b6310b19820a8b844d36dc597d2bf835 uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
     dpkg -i uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
     rm uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
 
 # Multimedia API
-# 00979fd8a30ae5d49152d229465614e9 P3448/Tegra_Multimedia_API_R32.1.0_aarch64.tbz2
+# f1e70a4fb5e2d333779b28f92224b4bf Tegra_Multimedia_API_R32.2.0_aarch64.tbz2
 # Skipping unless needed.
 
 # Install dependencies for OpenCV
@@ -190,6 +190,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libgtk2.0-0 \
         libswscale4 \
         libtbb2 \
+        libtbb-dev \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -212,13 +213,6 @@ COPY --from=dependencies /data/libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb 
 RUN echo "35776ce159afa78a0fe727d4a3c5b6fa libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb" | md5sum -c - && \
     dpkg -i libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb && \
     rm libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb
-
-# Install dependencies for OpenCV dev
-RUN apt-get update && apt-get install -y \
-    libtbb-dev \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
 
 # Open CV dev
 COPY --from=dependencies /data/libopencv-dev_${OPENCV_PKG_VERSION}_arm64.deb libopencv-dev_${OPENCV_PKG_VERSION}_arm64.deb

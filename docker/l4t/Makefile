@@ -5,9 +5,67 @@ DOCKER_BUILD_ARGS ?= --squash
 
 .PHONY: all
 
-all: 32.1 31.1 28.3 28.2.1 28.2 28.1
+all: 32.2 32.1 31.1 28.3 28.2.1 28.2 28.1
 
-32.1: $(addprefix 32.1-,jax tx2 jax-tx2 nano)
+32.2: $(addprefix 32.2-,jax tx2 tx2i tx2-4gb tx1 nano nano-dev)
+
+32.2-jax:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.2/jax/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.2/tx2/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2i:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2i-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.2/tx2i/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx2-4gb:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-4gb-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.2/tx2-4gb/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-tx1:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx1-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.2/tx1/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-nano:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.2/nano/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.2-nano-dev:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-dev-jetpack-4.2.1-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.2/nano-dev/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.1: $(addprefix 32.1-,jax tx2 jax-tx2 nano-dev)
 
 32.1-jax:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -25,11 +83,11 @@ all: 32.1 31.1 28.3 28.2.1 28.2 28.1
 
 32.1-jax-tx2: 32.1-jax 32.1-tx2
 
-32.1-nano:
+32.1-nano-dev:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
 					-t $(REPO):$@ \
-					-f $(CURDIR)/32.1/nano/Dockerfile \
+					-f $(CURDIR)/32.1/nano-dev/Dockerfile \
 					$(DOCKER_CONTEXT)
 
 31.1: $(addprefix 31.1-,jax)
@@ -77,3 +135,20 @@ all: 32.1 31.1 28.3 28.2.1 28.2 28.1
 					-f $(CURDIR)/28.1/$*/Dockerfile \
 					$(DOCKER_CONTEXT)
 
+32.1-cti-v203:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg BSP=CTI-L4T-V203.tgz \
+					--build-arg BSP_SHA=ae85bfc9816287ea20efff597af923f62c70a562 \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.1/cti/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+32.1-cti-v124:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg BSP=CTI-L4T-V124.tgz \
+					--build-arg BSP_SHA=4f03816d10d426e4beb53097dae83896f33398c8   \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.1/cti/Dockerfile \
+					$(DOCKER_CONTEXT)
