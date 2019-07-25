@@ -85,6 +85,7 @@ if [ -z "$DEPENDENCIES_IMAGE" ]; then
         --build-arg DRIVER_PACK_URL=$DRIVER_PACK_URL \
         --build-arg DRIVER_PACK=$DRIVER_PACK \
         --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \
+        --build-arg ROOT_FS_URL=$ROOT_FS_URL \
         --build-arg ROOT_FS=$ROOT_FS \
         --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \
         --build-arg BSP_URL=$BSP_URL \
