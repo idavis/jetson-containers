@@ -82,6 +82,22 @@
                     "message": 2 
                 }
             }
+        },
+        {
+            "label": "make <CTI imaging options>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "image-${input:pickCtiImagingBuilds}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
         }
     ],
     "inputs": [
@@ -114,9 +130,7 @@
                 "l4t-32.2-tx2-4gb",
                 "l4t-32.2-tx1",
                 "l4t-32.2-nano",
-                "l4t-32.2-nano-dev",
-                "l4t-32.1-cti-v203",
-                "l4t-32.1-cti-v124"
+                "l4t-32.2-nano-dev"
             ]
         },
         {
@@ -236,9 +250,52 @@
                 "28.2-tx1-jetpack-3.3-base",
                 "28.2-tx1-jetpack-3.2.1-base",
                 "28.2.1-tx2-jetpack-3.3-base",
-                "28.2.1-tx2-jetpack-3.2.1-base",
+                "28.2.1-tx2-jetpack-3.2.1-base"
+            ]
+        },
+        {
+            "id": "pickCtiImagingBuilds",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
                 "32.1-cti-v203",
-                "32.1-cti-v124"
+                "32.1-cti-v124",
+                "32.1-cti-v203-rogue",
+                "32.1-cti-v203-rogue-imx274-2cam",
+                "32.1-cti-v203-mimic-base",
+                "32.1-cti-v124-astro-mpcie",
+                "32.1-cti-v124-astro-mpcie-tx2i",
+                "32.1-cti-v124-astro-usb3",
+                "32.1-cti-v124-astro-usb3-tx2i",
+                "32.1-cti-v124-astro-revG+",
+                "32.1-cti-v124-astro-revG+-tx2i",
+                "32.1-cti-v124-elroy-mpcie",
+                "32.1-cti-v124-elroy-mpcie-tx2i",
+                "32.1-cti-v124-elroy-usb3",
+                "32.1-cti-v124-elroy-usb3-tx2i",
+                "32.1-cti-v124-elroy-revF+",
+                "32.1-cti-v124-elroy-refF+-tx2i",
+                "32.1-cti-v124-orbitty",
+                "32.1-cti-v124-orbitty-tx2i",
+                "32.1-cti-v124-rosie",
+                "32.1-cti-v124-rosie-tx2i",
+                "32.1-cti-v124-rudi-mpcie",
+                "32.1-cti-v124-rudi-mpcie-tx2i",
+                "32.1-cti-v124-rudi-usb3",
+                "32.1-cti-v124-rudi-usb3-tx2i ",
+                "32.1-cti-v124-rudi",
+                "32.1-cti-v124-rudi-tx2i",
+                "32.1-cti-v124-sprocket",
+                "32.1-cti-v124-spacely-base",
+                "32.1-cti-v124-spacely-base-tx2i",
+                "32.1-cti-v124-spacely-imx274-6cam",
+                "32.1-cti-v124-spacely-imx274-6cam-tx2i",
+                "32.1-cti-v124-spacely-imx274-3cam",
+                "32.1-cti-v124-spacely-imx274-3cam-tx2i",
+                "32.1-cti-v124-cogswell",
+                "32.1-cti-v124-cogswell-tx2i",
+                "32.1-cti-v124-vpg003-base",
+                "32.1-cti-v124-vpg003-base-tx2i"
             ]
         }
     ]
