@@ -61,12 +61,12 @@ Storing these images will also require significant disk space. It is highly reco
 
 The project uses `make` to set up the dependent builds constructing the final images. The recipes fall into a few categories:
 
-- Driver packs (32.1, 31.,1 28.3, 28.2.1, 28.2, 28.1)
-- JetPack Dependencies (4.2)
-- JetPack (4.2, 4.1.1, 3.3, 3.2.1)
+- Driver packs (32.2, 32.1)
+- JetPack Dependencies (4.2.1, 4.2)
+- JetPack (4.2.1, 4.2)
 - Devices (jax (xavier), tx2, tx1, nano-dev)
 - Flashing containers
-- OpenCV (4.0.1)
+- OpenCV (4.1.0)
 
 ### Dependencies
 
@@ -100,11 +100,9 @@ examples:
 
 ```bash
 make driver-packs # build all driver pack bases
-make jetpack-4.2 # build all JetPack 4.2. device builds and the driver packs they depend on
+make jetpack-4.2.1 # build all JetPack 4.2.1. device builds and the driver packs they depend on
 make 32.1-jax-jetpack-4.2
-make 28.3-tx2-jetpack-3.3
-make 28.2.1-tx2-jetpack-3.2.1
-make 28.2-tx1-jetpack-3.2.1
+make 32.1-tx2-jetpack-4.2.1
 ```
 
 There are additional recipes for building the `32.1-jax-jetpack-4.2` samples container (`make build-32.1-jax-jetpack-4.2-samples`) and running the container (`make run-32.1-jax-jetpack-4.2-samples`) which demonstrates mult-stage builds based on `devel` images.
@@ -138,11 +136,10 @@ The `DOCKER_RUN_ARGS` variable can be set in the `.env` file to `DOCKER_RUN_ARGS
 
 Building OpenCV can take a few hours depending on your device and performance mode. When the OpenCV builds are complete, the install `.sh` file can be found in the `/dist` folder.
 
-### Building OpenCV
+### Building Custom OpenCV
 
 ```
 make opencv-4.0.1-l4t-32.1-jetpack-4.2
-make opencv-4.0.1-l4t-28.3-jetpack-3.3
 ```
 
 ## Flashing Devices
@@ -155,7 +152,7 @@ Examples:
 ```bash
 make image-bionic-server-20190402 # Set up an image which can flash bionic server to the device
 make image-jetpack-bases # create all jetpack default configuration images for flashing.
-make image-l4t-28.3-tx2-jetpack-3.3-base # JetPack 3.3 for TX2 with driver pack 28.3
+make image-l4t-32.2-tx2i-jetpack-4.2.1-base # JetPack 4.2.1 for TX2i with driver pack 32.2
 make image-l4t-32.1-jax-jetpack-4.2-base # JetPack 4.2 for Xavier with driver pack 32.1
 ```
 
@@ -167,7 +164,6 @@ To flash the device, put the device into recovery mode and connect it to the hos
 ```bash
 >:~/jetson-containers/flash$ docker images
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-l4t:28.3-tx2-jetpack-3.3-base        latest              cc58f9478aa2        22 hours ago        3.35GB
 l4t:32.1-jax-jetpack-4.2-base     latest              e59950b4ebdc        5 hours ago         3.73GB
 ```
 
@@ -212,13 +208,6 @@ Note that these are only used on build machines.
 
 | Repository | Driver | Size |
 |---|---|---|
-| l4t | 28.1-tx1 | 371MB |
-| l4t | 28.1-tx2 | 435MB |
-| l4t | 28.2.1-tx2 | 460MB |
-| l4t | 28.2-tx1 | 414MB |
-| l4t | 28.3-tx1 | 459MB |
-| l4t | 28.3-tx2 | 551MB |
-| l4t | 31.1-jax | 370MB |
 | l4t | 32.1-jax | 479MB |
 | l4t | 32.1-nano-dev | 469MB |
 | l4t | 32.1-tx2 | 479MB |
@@ -246,27 +235,3 @@ Note that these are only used on build machines.
 | l4t | 32.1-tx2-jetpack-4.2-base | 489MB |
 | l4t | 32.1-tx2-jetpack-4.2-runtime | 1.21GB |
 | l4t | 32.1-tx2-jetpack-4.2-devel | 5.67GB |
-
-#### JetPack 4.1.1
-
-| Repository | Tag | Size |
-|---|---|---|
-| l4t | 31.1-jax-jetpack-4.1.1 | 5.61GB |
-
-#### JetPack 3.3
-
-| Repository | Tag | Size |
-|---|---|---|
-| l4t | 28.3-tx1-jetpack-3.3 | 4.48GB |
-| l4t | 28.3-tx2-jetpack-3.3 | 4.58GB |
-| l4t | 28.2.1-tx2-jetpack-3.3 | 4.47GB |
-| l4t | 28.2-tx1-jetpack-3.3 | 4.43GB |
-
-#### JetPack 3.2.1
-
-| Repository | Tag | Size |
-|---|---|---|
-| l4t | 28.3-tx1-jetpack-3.2.1 | 4.09GB |
-| l4t | 28.3-tx2-jetpack-3.2.1 | 4.18GB |
-| l4t | 28.2.1-tx2-jetpack-3.2.1 | 4.08GB |
-| l4t | 28.2-tx1-jetpack-3.2.1 | 4.03GB |

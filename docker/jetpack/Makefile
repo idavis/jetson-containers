@@ -7,7 +7,7 @@ NV_LOGIN_TYPE ?= devzone
 
 .PHONY: all
 
-all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2 31.1-jax-jetpack-4.1.1
+all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 
 32.2-jetpack-4.2.1: 32.2-jax-jetpack-4.2.1 32.2-tx2-jetpack-4.2.1 32.2-tx2i-jetpack-4.2.1 32.2-tx2-4gb-jetpack-4.2.1 32.2-tx1-jetpack-4.2.1 32.2-nano-jetpack-4.2.1 32.2-nano-dev-jetpack-4.2.1
 
@@ -391,43 +391,3 @@ host-jetpack-4.2-deps:
 					-t $(REPO):$@ \
 					-f 4.2/tx2/devel/Dockerfile \
 					$(DOCKER_CONTEXT)
-
-31.1-jax-jetpack-4.1.1:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					-t $(REPO):$@ \
-					-f 4.1.1/jax/Dockerfile \
-					$(DOCKER_CONTEXT)
-
-%-tx2-jetpack-3.3:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg L4T_VERSION=$* \
-					-t $(REPO):$@ \
-					-f 3.3/tx2/Dockerfile \
-					$(DOCKER_CONTEXT)
-
-%-tx1-jetpack-3.3:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg L4T_VERSION=$* \
-					-t $(REPO):$@ \
-					-f 3.3/tx1/Dockerfile \
-					$(DOCKER_CONTEXT)
-
-%-tx2-jetpack-3.2.1:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg L4T_VERSION=$* \
-					-t $(REPO):$@ \
-					-f 3.2.1/tx2/Dockerfile \
-					$(DOCKER_CONTEXT)
-
-%-tx1-jetpack-3.2.1:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg L4T_VERSION=$* \
-					-t $(REPO):$@ \
-					-f 3.2.1/tx1/Dockerfile \
-					$(DOCKER_CONTEXT)
-

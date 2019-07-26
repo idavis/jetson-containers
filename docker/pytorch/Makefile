@@ -16,15 +16,11 @@ IMAGE ?= INVALID
 
 .PHONY: all
 
-all: pytorch-1.1.0-l4t-32.1-jetpack-4.2 pytorch-1.1.0-l4t-28.3-jetpack-3.3
+all: pytorch-1.1.0-l4t-32.1-jetpack-4.2
 
 pytorch-1.1.0-l4t-32.1-jetpack-4.2: TORCH_CUDA_ARCH_LIST := 5.3;6.2;7.2
 pytorch-1.1.0-l4t-32.1-jetpack-4.2: IMAGE := 32.1-jax-jetpack-4.2-devel
 pytorch-1.1.0-l4t-32.1-jetpack-4.2: build-pytorch-1.1.0-l4t-32.1-jetpack-4.2
-
-pytorch-1.1.0-l4t-28.3-jetpack-3.3: TORCH_CUDA_ARCH_LIST := 5.3;6.2
-pytorch-1.1.0-l4t-28.3-jetpack-3.3: IMAGE := 28.3-tx2-jetpack-3.3
-pytorch-1.1.0-l4t-28.3-jetpack-3.3: build-pytorch-1.1.0-l4t-28.3-jetpack-4.2
 
 build-%:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
