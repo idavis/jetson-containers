@@ -1,2 +1,0 @@
-source ./drivers/32.1-tx2.conf
-source ./rootfs/tegra-linux-sample-32.1.0-tx2.conf

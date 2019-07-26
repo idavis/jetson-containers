@@ -63,6 +63,9 @@ bionic-server-cloudimg-20190402-%:
 	$(CURDIR)/build.sh $(CURDIR)/rootfs/bionic-server-cloudimg-20190402.conf $(CURDIR)/drivers/$*.conf $(REPO):$@
 
 
+%-cti-%:
+	make -C $(CURDIR)/cti $*
+
 32.1-cti-v203: $(addprefix 32.1-cti-v203-,rogue rogue-imx274-2cam mimic-base)
 32.1-cti-v124: $(addprefix 32.1-cti-v124-,\
 											astro-mpcie astro-mpcie-tx2i astro-usb3 astro-usb3-tx2i astro-revG+ astro-revG+-tx2i \
@@ -76,8 +79,25 @@ bionic-server-cloudimg-20190402-%:
 											vpg003-base vpg003-base-tx2i \
 				)
 
+32.1-cti-v125: $(addprefix 32.1-cti-v125-,\
+											astro-mpcie astro-mpcie-tx2i astro-usb3 astro-usb3-tx2i astro-revG+ astro-revG+-tx2i \
+											elroy-mpcie elroy-mpcie-tx2i elroy-usb3 elroy-usb3-tx2i elroy-revF+ elroy-refF+-tx2i \
+											orbitty orbitty-tx2i \
+											rosie rosie-tx2i \
+											rudi-mpcie rudi-mpcie-tx2i rudi-usb3 rudi-usb3-tx2i rudi rudi-tx2i \
+											sprocket \
+											spacely-base spacely-base-tx2i spacely-imx274-6cam spacely-imx274-6cam-tx2i spacely-imx274-3cam spacely-imx274-3cam-tx2i \
+											cogswell cogswell-tx2i \
+											vpg003-base vpg003-base-tx2i \
+				)
+
 32.1-cti-v203-%:
-	(TARGET_BOARD=$* $(CURDIR)/build.sh $(CURDIR)/rootfs/tegra-linux-sample-32.1.0-jax.conf $(CURDIR)/drivers/$(subst -$*,,$@).conf $(REPO):$@)
+	(DOCKER_FILE_ROOT="$(CURDIR)/cti/32.1" TARGET_BOARD=$* $(CURDIR)/build.sh $(CURDIR)/cti/32.1/rootfs/tegra-linux-sample-32.1.0-jax.conf $(CURDIR)/cti/32.1/bsp/v203.conf $(REPO):$@)
 
 32.1-cti-v124-%:
-	(TARGET_BOARD=$* $(CURDIR)/build.sh $(CURDIR)/rootfs/tegra-linux-sample-32.1.0-jax.conf $(CURDIR)/drivers/$(subst -$*,,$@).conf $(subst +,plus,$(REPO):$@))
+	# $(subst +,plus,$(REPO):$@) replaces '+' with 'plus' in the docker tag
+	(DOCKER_FILE_ROOT="$(CURDIR)/cti/32.1" TARGET_BOARD=$* $(CURDIR)/build.sh $(CURDIR)/cti/32.1/rootfs/tegra-linux-sample-32.1.0-tx2.conf $(CURDIR)/cti/32.1/bsp/v124.conf $(subst +,plus,$(REPO):$@))
+
+32.1-cti-v125-%:
+	# $(subst +,plus,$(REPO):$@) replaces '+' with 'plus' in the docker tag
+	(DOCKER_FILE_ROOT="$(CURDIR)/cti/32.1" TARGET_BOARD=$* $(CURDIR)/build.sh $(CURDIR)/cti/32.1/rootfs/tegra-linux-sample-32.1.0-tx2.conf $(CURDIR)/cti/32.1/bsp/v124.conf $(subst +,plus,$(REPO):$@))

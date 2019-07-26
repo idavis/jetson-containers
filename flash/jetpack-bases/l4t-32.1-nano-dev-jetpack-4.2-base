@@ -1,2 +1,0 @@
-source ./drivers/32.1-nano-dev.conf
-source ./rootfs/tegra-linux-sample-32.1.0-nano-dev.conf

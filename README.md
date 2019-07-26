@@ -23,13 +23,9 @@ These containers enable the OS can be flashed without JetPack having only the ma
 
 When building third party libraries, such as OpenCV and PyTorch, a swapfile will *likely* have to be created in the host OS. These packages require more memory than the system contains and will crash with very cryptic errors if they run out of memory.
 
-### JetPack 4.2
+The JetPack base images follow the Nvidia pattern of having base, runtime, and devel images for each device to start from. You cannot download the JetPack installers without logging in with the SDK manager, so the make tasks herein will automate the download/login through the SDK Manager and save off the device specific packages.
 
-The JetPack 4.2 base images follow the Nvidia pattern of having base, runtime, and devel images for each device to start from. Staring in JetPack 4.2, you cannot download the JetPack installers without logging in with the SDK manager, so the make tasks herein will automate the download/login through the SDK Manager and save off the device specific packages.
-
-### Older
-
-Each image, whether Linux for Tegra (L4T) or JetPack based provides args for the `URL` to pull installers from. Once the JetPack installer has been run, copy the packages to your own source for downloading. This will likely increase your download speed and allow building images if the package URLs ever change. This could be automated to follow the pattern used in 4.2+, but it is a lot of effort at the moment.
+Note: if you have the SDK Manager open, the command line will not work. Nvidia has incorrectly handled their single instance implementation and the CLI will fail to run.
 
 ## Configuration
 
@@ -76,11 +72,19 @@ The JetPack dependency builds must be run on an `x86_64` host. They can be built
 - Make sure `DOCKER_HOST`, if set, is pointing to an `x86_64` host
 - `make jax-jetpack-4.2-deps`, or `make nano-dev-jetpack-4.2-deps`, or `make tx2-jetpack-4.2-deps`, or `make jetpack-4.2-deps` to build them all
 - Wait, then enter your Nvidia developer password when prompted
-- Enter `pass`
-- Enter `pass`
 - Upload finished image to your container registry
 
-All other steps for JetPack 4.2+ require these previous steps to have been completed.
+All other steps for JetPack require these previous steps to have been completed.
+
+#### CTI Dependencies
+
+CTI has a board support package which must be installed into the rootfs. When building flash images for CTI boards, there are three options:
+
+1. Run `~/jetson-containers$ make cti-<driver pack>-<device>-deps` such as `~/jetson-containers$ make cti-32.1-tx2-deps` which will download the BSP and generate an image `l4t:cti-32.1-tx2-deps` with the driver pack installed into `/data`.
+2. Download the BSP from the CTI web site and save it to an empty folder. In the `.env` file, set the `SDKM_DOWNLOADS` to this folder and run `~/jetson-containers$ make cti-<driver pack>-<device>-deps-from-folder`. For example: `~/jetson-containers$ make cti-32.1-tx2-deps-from-folder` which will generate an image `l4t:cti-32.1-tx2-deps` with the driver pack installed into `/data`.
+3. Download the BSP into the folder with the downloads from the SDK Manager. In the `.env` file, set the `SDKM_DOWNLOADS` to the chosen folder. Run `~/jetson-containers$ make <device>-jetpack-<version>-deps-from-folder`. For example: `~/jetson-containers$ make tx2-jetpack-4.2-deps-from-folder` which will generate an image `l4t:tx2-jetpack-4.2-deps` with the BSP and JetPack dependencies installed into `/data`. 
+
+For all of these, open your `.env` and set `BSP_DEPENDENCIES_IMAGE` to the dependency image created. In the last example it will be the same image as the `DEPENDENCIES_IMAGE` setting found in the `/cti/<version>/drivers/*.conf` file associated with the image being flashed.
 
 ### Driver Packs
 
@@ -199,10 +203,17 @@ Note that these are only used on build machines.
 
 | Repository | Driver | Size |
 |---|---|---|
-| l4t | jax-jetpack-4.2.1-deps | 3.57GB |
-| l4t | jax-jetpack-4.2-deps | 3.32GB |
-| l4t | nano-dev-jetpack-4.2-deps | 3.31GB |
-| l4t | tx2-jetpack-4.2-deps | 3.31GB |
+| l4t | host-jetpack-4.2.1-deps | 2.6GB |
+| l4t | jax-jetpack-4.2.1-deps | 3.48GB |
+| l4t | tx2-jetpack-4.2.1-deps | 3.48GB |
+| l4t | tx2i-jetpack-4.2.1-deps | 3.48GB |
+| l4t | tx2-4gb-jetpack-4.2.1-deps | 3.48GB |
+| l4t | tx1-jetpack-4.2.1-deps | 3.55GB |
+| l4t | nano-dev-jetpack-4.2.1-deps | 3.55GB |
+| l4t | nano-jetpack-4.2.1-deps | 3.55GB |
+| l4t | jax-jetpack-4.2-deps | 3.30GB |
+| l4t | tx2-jetpack-4.2-deps | 3.30GB |
+| l4t | nano-dev-jetpack-4.2-deps | 3.29GB |
 
 #### Driver packs:
 
@@ -211,15 +222,39 @@ Note that these are only used on build machines.
 | l4t | 32.1-jax | 479MB |
 | l4t | 32.1-nano-dev | 469MB |
 | l4t | 32.1-tx2 | 479MB |
-| l4t | 32.2-jax | 493MB |
+| l4t | 32.2-jax | 470MB |
+| l4t | 32.2-tx2 | 470MB |
+| l4t | 32.2-tx2i | 470MB |
+| l4t | 32.2-tx2-4gb | 470MB |
+| l4t | 32.2-tx1 | 460MB |
+| l4t | 32.2-nano-dev | 460MB |
+| l4t | 32.2-nano | 460MB |
 
 #### JetPack 4.2.1
 
 | Repository | Tag | Size |
 |---|---|---|
-| l4t | 32.2-jax-jetpack-4.2.1-base | 503MB |
-| l4t | 32.2-jax-jetpack-4.2.1-runtime | 1.26GB |
-| l4t | 32.2-jax-jetpack-4.2.1-devel | 5.83GB |
+| l4t | 32.2-jax-jetpack-4.2.1-base | 480MB |
+| l4t | 32.2-jax-jetpack-4.2.1-runtime | 1.23GB |
+| l4t | 32.2-jax-jetpack-4.2.1-devel | 5.79GB |
+| l4t | 32.2-tx1-jetpack-4.2.1-base | 470MB |
+| l4t | 32.2-tx2-jetpack-4.2.1-base | 480MB |
+| l4t | 32.2-tx2-jetpack-4.2.1-runtime | 1.23GB |
+| l4t | 32.2-tx2-jetpack-4.2.1-devel | 5.79GB |
+| l4t | 32.2-tx2i-jetpack-4.2.1-base | 480MB |
+| l4t | 32.2-tx2i-jetpack-4.2.1-runtime | 1.23GB |
+| l4t | 32.2-tx2i-jetpack-4.2.1-devel | 5.79GB |
+| l4t | 32.2-tx2-4gb-jetpack-4.2.1-base | 480MB |
+| l4t | 32.2-tx2-4gb-jetpack-4.2.1-runtime | 1.23GB |
+| l4t | 32.2-tx2-4gb-jetpack-4.2.1-devel | 5.79GB |
+| l4t | 32.2-tx1-jetpack-4.2.1-runtime | 1.22GB |
+| l4t | 32.2-tx1-jetpack-4.2.1-devel | 5.78GB |
+| l4t | 32.2-nano-jetpack-4.2.1-base | 470MB |
+| l4t | 32.2-nano-jetpack-4.2.1-runtime | 1.22GB |
+| l4t | 32.2-nano-jetpack-4.2.1-devel | 5.78GB |
+| l4t | 32.2-nano-dev-jetpack-4.2.1-base | 470MB |
+| l4t | 32.2-nano-dev-jetpack-4.2.1-runtime | 1.22GB |
+| l4t | 32.2-nano-dev-jetpack-4.2.1-devel | 5.78GB |
 
 #### JetPack 4.2
 
