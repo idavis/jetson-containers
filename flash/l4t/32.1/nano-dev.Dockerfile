@@ -57,7 +57,7 @@ WORKDIR /Linux_for_Tegra/rootfs
 
 RUN cp /usr/bin/qemu-aarch64-static usr/bin/ 
 
-# Do any customer work with chroot
+# Do any custom work with chroot
 #RUN chroot . <command>
 
 RUN rm usr/bin/qemu-aarch64-static
