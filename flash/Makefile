@@ -1,5 +1,8 @@
 #!make
 
+# Default squash as our base images need to be small unless overridden
+DOCKER_BUILD_ARGS ?= --squash
+
 # Allow override for moby or another runtime
 export DOCKER ?= docker
 
