@@ -154,10 +154,9 @@ There are default profiles which match the device and JetPack versions in the `f
 
 Examples:
 ```bash
-make image-bionic-server-20190402 # Set up an image which can flash bionic server to the device
-make image-jetpack-bases # create all jetpack default configuration images for flashing.
-make image-l4t-32.2-tx2i-jetpack-4.2.1-base # JetPack 4.2.1 for TX2i with driver pack 32.2
-make image-l4t-32.1-jax-jetpack-4.2-base # JetPack 4.2 for Xavier with driver pack 32.1
+make image-jetpack # create all jetpack default configuration images for flashing.
+make image-l4t-32.2-tx2i-jetpack-4.2.1 # JetPack 4.2.1 for TX2i with driver pack 32.2
+make image-l4t-32.1-jax-jetpack-4.2 # JetPack 4.2 for Xavier with driver pack 32.1
 ```
 
 Note: Ensure that if the `DOCKER_HOST` variable is set, the host specified must be `x86_64`.
@@ -168,10 +167,10 @@ To flash the device, put the device into recovery mode and connect it to the hos
 ```bash
 >:~/jetson-containers/flash$ docker images
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-l4t:32.1-jax-jetpack-4.2-base     latest              e59950b4ebdc        5 hours ago         3.73GB
+l4t:32.1-jax-jetpack-4.2-image     latest              e59950b4ebdc        5 hours ago         3.73GB
 ```
 
-We can flash the Xavier with the default JetPack 4.2 configuration by executing `./flash.sh l4t-32.1-jax-jetpack-4.2-base`. If your device is not in recovery mode, you will see an error similar to:
+We can flash the Xavier with the default JetPack 4.2 configuration by executing `./flash.sh l4t-32.1-jax-jetpack-4.2-image`. If your device is not in recovery mode, you will see an error similar to:
 
 ```
 ###############################################################################
@@ -185,6 +184,22 @@ Error: probing the target board failed.
 ```
 
 If your device was in recovery mode, you should see progress displayed. Once the device has been flashed, it will automatically restart.
+
+### CTI BSPs Flashing
+
+1. Build BSP dependencies image
+2. Build JetPack dependencies image
+3. Build flashing image
+
+Example: Building Orbitty
+
+```bash
+>:~/jetson-containers/$ make cti-32.1-tx2-125-deps
+>:~/jetson-containers/$ make tx2-jetpack-4.2-deps
+>:~/jetson-containers/$ make image-32.1-cti-v125-orbitty
+>:~/jetson-containers/$ ./flash/flash.sh l4t:32.1-cti-v125-orbitty-image
+```
+If you want to use a different dependency image for the BSP, set `BSP_DEPENDENCIES_IMAGE` in the `.env` file.
 
 ## Image sizes
 
