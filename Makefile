@@ -1,7 +1,9 @@
 #!make
 
-include $(CURDIR)/.env
-export $(shell sed 's/=.*//' .env)
+ifneq ("$(wildcard $(CURDIR)/.env)","")
+	include $(CURDIR)/.env
+	export $(shell sed 's/=.*//' .env)
+endif
 
 # Allow override for moby or another runtime
 export DOCKER ?= docker
