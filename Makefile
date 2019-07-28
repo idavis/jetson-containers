@@ -37,6 +37,9 @@ l4t-%:
 cti-%:
 	make -C $(CURDIR)/docker/cti $@
 
+image-%:
+	make -C $(CURDIR)/flash $*-image
+
 jetpack-deps: $(addprefix jetpack-,4.2.1-deps 4.2-deps)
 
 jetpack-4.2.1-deps: $(addsuffix -jetpack-4.2.1-deps,jax tx2 tx2i tx2-4gb tx1 nano nano-dev)
@@ -111,9 +114,6 @@ run-%-samples:
 				--device=/dev/nvhost-as-gpu \
 				--device=/dev/nvhost-vic \
 				$(REPO):$*-samples
-
-image-%:
-	make -C $(CURDIR)/flash $*
 
 opencv-4.0.1-l4t-32.1-jetpack-4.2:
 	make -C $(CURDIR)/docker/OpenCV $@
