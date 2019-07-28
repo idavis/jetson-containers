@@ -207,19 +207,15 @@ run-%-samples:
 				--device=/dev/nvhost-vic \
 				$(REPO):$*-samples
 
-opencv-4.0.1-l4t-32.1-jetpack-4.2:
-	make -C $(CURDIR)/docker/OpenCV $@
-
-pytorch-1.1.0-l4t-32.1-jetpack-4.2:
-	make -C $(CURDIR)/docker/pytorch $@
-
-build-32.1-jax-jetpack-4.2-tf_to_trt_image_classification:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) --build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					-t $(REPO):32.1-jax-jetpack-4.2-tf_to_trt_image_classification \
-					-f $(CURDIR)/docker/examples/tf_to_trt_image_classification/Dockerfile \
+build-%-tf_to_trt_image_classification:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					-t $(REPO):$*-tf_to_trt_image_classification \
+					-f $(CURDIR)/docker/tf_to_trt_image_classification/samples/Dockerfile \
 					$(DOCKER_CONTEXT)
 
-run-32.1-jax-jetpack-4.2-tf_to_trt_image_classification: build-32.1-jax-jetpack-4.2-tf_to_trt_image_classification
+run-%-tf_to_trt_image_classification:
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
 				--rm \
 				-it \
@@ -231,4 +227,29 @@ run-32.1-jax-jetpack-4.2-tf_to_trt_image_classification: build-32.1-jax-jetpack-
 				--device=/dev/nvhost-as-gpu \
 				--device=/dev/nvhost-vic \
 				--device=/dev/tegra_dc_ctrl \
-				$(REPO):32.1-jax-jetpack-4.2-tf_to_trt_image_classification
+				$(REPO):$*-tf_to_trt_image_classification
+
+
+build-%-deepstream-4.0:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					-t $(REPO):$*-deepstream-4.0 \
+					-f $(CURDIR)/docker/examples/deepstream/Dockerfile \
+					$(DOCKER_CONTEXT)
+
+build-%-deepstream-4.0-release:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					-t $(REPO):$*-deepstream-4.0-release \
+					-f $(CURDIR)/docker/examples/deepstream/$*.Dockerfile \
+					$(DOCKER_CONTEXT)
+
+# Libraries
+
+opencv-4.0.1-l4t-32.1-jetpack-4.2:
+	make -C $(CURDIR)/docker/OpenCV $@
+
+pytorch-1.1.0-l4t-32.1-jetpack-4.2:
+	make -C $(CURDIR)/docker/pytorch $@
