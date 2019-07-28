@@ -23,7 +23,7 @@ export SDKM_DOWNLOADS ?= invalid
 
 .PHONY: all
 
-all: driver-packs jetpacks
+all: jetpack-deps driver-packs jetpacks
 
 driver-packs: $(addprefix driver-pack-,32.2 32.1)
 
@@ -39,6 +39,8 @@ cti-%:
 
 image-%:
 	make -C $(CURDIR)/flash $*-image
+
+# Dependencies
 
 jetpack-deps: $(addprefix jetpack-,4.2.1-deps 4.2-deps)
 
@@ -58,41 +60,131 @@ jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax tx2 nano-dev)
 %-jetpack-4.2.1-deps-from-folder:
 	make -C $(CURDIR)/docker/jetpack $@
 
+# JetPack
+
 jetpacks: $(addprefix jetpack-,4.2.1 4.2)
 
 jetpack-4.2.1: 32.2-jax-jetpack-4.2.1 32.2-tx2-jetpack-4.2.1 32.2-tx2i-jetpack-4.2.1 32.2-tx2-4gb-jetpack-4.2.1 32.2-tx1-jetpack-4.2.1 32.2-nano-jetpack-4.2.1 32.2-nano-dev-jetpack-4.2.1
 
 jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-dev-jetpack-4.2
 
-%-jax-jetpack-4.2.1: l4t-%-jax
+%-jax-jetpack-4.2.1:
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-tx2-jetpack-4.2.1: l4t-%-tx2
+%-jax-jetpack-4.2.1-base:
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-tx2i-jetpack-4.2.1: l4t-%-tx2i
+%-jax-jetpack-4.2.1-runtime:
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-tx2-4gb-jetpack-4.2.1: l4t-%-tx2-4gb
+%-jax-jetpack-4.2.1-devel:
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-tx1-jetpack-4.2.1: l4t-%-tx1
+%-tx2-jetpack-4.2.1:
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-nano-jetpack-4.2.1: l4t-%-nano
+%-tx2-jetpack-4.2.1-base:
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-nano-dev-jetpack-4.2.1: l4t-%-nano-dev
+%-tx2-jetpack-4.2.1-runtime:
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-jax-jetpack-4.2: l4t-%-jax-tx2
+%-tx2-jetpack-4.2.1-devel:
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-tx2-jetpack-4.2: l4t-%-jax-tx2
+%-tx2i-jetpack-4.2.1:
 	make -C $(CURDIR)/docker/jetpack $@
 
-%-nano-dev-jetpack-4.2: l4t-%-nano-dev
+%-tx2i-jetpack-4.2.1-base:
 	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2i-jetpack-4.2.1-runtime:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2i-jetpack-4.2.1-devel:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2-4gb-jetpack-4.2.1:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2-4gb-jetpack-4.2.1-base:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2-4gb-jetpack-4.2.1-runime:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2-4gb-jetpack-4.2.1-devel:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx1-jetpack-4.2.1:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx1-jetpack-4.2.1-base:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx1-jetpack-4.2.1-runtime:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx1-jetpack-4.2.1-devel:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-jetpack-4.2.1:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-jetpack-4.2.1-base:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-jetpack-4.2.1-runtime:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-jetpack-4.2.1-devel:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-dev-jetpack-4.2.1:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-dev-jetpack-4.2.1-base:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-dev-jetpack-4.2.1-runtime:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-dev-jetpack-4.2.1-devel:
+	make -C $(CURDIR)/docker/jetpack $@
+
+# JetPack 4.2
+
+%-jax-jetpack-4.2:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2-jetpack-4.2:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2-jetpack-4.2:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2-jetpack-4.2-base:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2-jetpack-4.2-runtime:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-tx2-jetpack-4.2-devel:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-dev-jetpack-4.2:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-dev-jetpack-4.2-base:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-dev-jetpack-4.2-runtime:
+	make -C $(CURDIR)/docker/jetpack $@
+
+%-nano-dev-jetpack-4.2-devel:
+	make -C $(CURDIR)/docker/jetpack $@
+
+# Samples
 
 build-%-samples:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
