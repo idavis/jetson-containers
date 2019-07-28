@@ -63,7 +63,7 @@ l4t-32.2-%-jetpack-4.2.1-image:
 
 32.1-cti-v125-%:
 	# $(subst +,plus,$(REPO):$@) replaces '+' with 'plus' in the docker tag
-	(DOCKER_BUILD_ROOT="$(CURDIR)/cti/32.1" TARGET_BOARD=$* $(CURDIR)/build.sh $(CURDIR)/cti/32.1/rootfs/tegra-linux-sample-32.1.0-tx2.conf $(CURDIR)/cti/32.1/bsp/v124.conf $(subst +,plus,$(REPO):$@))
+	(DOCKER_BUILD_ROOT="$(CURDIR)/cti/32.1" TARGET_BOARD=$* $(CURDIR)/build.sh $(CURDIR)/cti/32.1/rootfs/tegra-linux-sample-32.1.0-tx2.conf $(CURDIR)/cti/32.1/bsp/v125.conf $(subst +,plus,$(REPO):$@))
 
 
 # These have to be constantly updated or cached off.
