@@ -98,6 +98,7 @@ We will use the Ubuntu 18.04 WSL v2 environment to cross-compile AARCH64 compati
     ```
     sudo apt install -y curl
     curl -fsSL https://get.docker.com | bash
+    sudo usermod -aG docker $USER
     ```
 
 ## Building Jetson Containers using Windows Subsystem for Linux and Visual Studio Code
