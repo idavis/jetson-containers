@@ -29,9 +29,9 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 
 32.1-jax-jetpack-4.2: $(addprefix 32.1-jax-jetpack-4.2-,base devel runtime)
 
-jetpack-4.2.1-deps: $(addsuffix -jetpack-4.2.1-deps,jax tx2 tx2i tx2-4gb tx1 nano nano-dev host)
+32.2-jetpack-4.2.1-deps: $(addprefix 32.2-,$(addsuffix -jetpack-4.2.1-deps,jax tx2 tx2i tx2-4gb tx1 nano nano-dev host))
 
-jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano-dev tx2 host)
+32.1-jetpack-4.2-deps: $(addprefix 32.1-,$(addsuffix -jetpack-4.2-deps,jax nano-dev tx2 host))
 
 %-from-folder:
 	$(DOCKER) build \
@@ -40,7 +40,7 @@ jetpack-4.2-deps: $(addsuffix -jetpack-4.2-deps,jax nano-dev tx2 host)
 					-f $(CURDIR)/dependencies.Dockerfile \
 					$(SDKM_DOWNLOADS)
 
-jax-jetpack-4.2.1-deps:
+32.2-jax-jetpack-4.2.1-deps:
 	DEVICE_ID=P2888 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -49,7 +49,7 @@ jax-jetpack-4.2.1-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/GA_4.2.1/P2888
 
-tx2-jetpack-4.2.1-deps:
+32.2-tx2-jetpack-4.2.1-deps:
 	DEVICE_ID=P3310 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -58,7 +58,7 @@ tx2-jetpack-4.2.1-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/GA_4.2.1/P3310
 
-tx2i-jetpack-4.2.1-deps:
+32.2-tx2i-jetpack-4.2.1-deps:
 	DEVICE_ID=P3489-0000 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -67,7 +67,7 @@ tx2i-jetpack-4.2.1-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/GA_4.2.1/P3489-0000
 
-tx2-4gb-jetpack-4.2.1-deps:
+32.2-tx2-4gb-jetpack-4.2.1-deps:
 	DEVICE_ID=P3489-0080 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -76,7 +76,7 @@ tx2-4gb-jetpack-4.2.1-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/GA_4.2.1/P3489-0080
 
-tx1-jetpack-4.2.1-deps:
+32.2-tx1-jetpack-4.2.1-deps:
 	DEVICE_ID=P2180 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -85,7 +85,7 @@ tx1-jetpack-4.2.1-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/GA_4.2.1/P2180
 
-nano-jetpack-4.2.1-deps:
+32.2-nano-jetpack-4.2.1-deps:
 	DEVICE_ID=P3448-0020 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -94,7 +94,7 @@ nano-jetpack-4.2.1-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/GA_4.2.1/P3448-0020
 
-nano-dev-jetpack-4.2.1-deps:
+32.2-nano-dev-jetpack-4.2.1-deps:
 	DEVICE_ID=P3448-0000 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -103,7 +103,7 @@ nano-dev-jetpack-4.2.1-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/GA_4.2.1/P3448-0000
 
-host-jetpack-4.2.1-deps:
+32.2-host-jetpack-4.2.1-deps:
 	DEVICE_ID=host DEVICE_OPTION=--host NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="GA_4.2.1" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -112,7 +112,7 @@ host-jetpack-4.2.1-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/GA_4.2.1/host
 
-jax-jetpack-4.2-deps:
+32.2-jax-jetpack-4.2-deps:
 	DEVICE_ID=P2888 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION=4.2 TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -121,7 +121,7 @@ jax-jetpack-4.2-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/4.2/P2888
 
-nano-dev-jetpack-4.2-deps:
+32.1-nano-dev-jetpack-4.2-deps:
 	DEVICE_ID=P3448-0000 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION=4.2 TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -130,7 +130,7 @@ nano-dev-jetpack-4.2-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/4.2/P3448-0000
 
-tx2-jetpack-4.2-deps:
+32.1-tx2-jetpack-4.2-deps:
 	DEVICE_ID=P3310 DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION=4.2 TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
@@ -139,7 +139,7 @@ tx2-jetpack-4.2-deps:
 					-f $(CURDIR)/dependencies.Dockerfile \
 					/tmp/4.2/P3310
 
-host-jetpack-4.2-deps:
+32.1-host-jetpack-4.2-deps:
 	DEVICE_ID=host DEVICE_OPTION=--host NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION=4.2 TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \

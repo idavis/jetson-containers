@@ -55,120 +55,14 @@ jetpack-4.2.1: 32.2-jax-jetpack-4.2.1 32.2-tx2-jetpack-4.2.1 32.2-tx2i-jetpack-4
 
 jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-dev-jetpack-4.2
 
-%-jax-jetpack-4.2.1:
-	make -C $(CURDIR)/docker/jetpack $@
+# JetPack 4.2.1
 
-%-jax-jetpack-4.2.1-base:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-jax-jetpack-4.2.1-runtime:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-jax-jetpack-4.2.1-devel:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-jetpack-4.2.1:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-jetpack-4.2.1-base:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-jetpack-4.2.1-runtime:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-jetpack-4.2.1-devel:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2i-jetpack-4.2.1:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2i-jetpack-4.2.1-base:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2i-jetpack-4.2.1-runtime:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2i-jetpack-4.2.1-devel:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-4gb-jetpack-4.2.1:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-4gb-jetpack-4.2.1-base:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-4gb-jetpack-4.2.1-runime:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-4gb-jetpack-4.2.1-devel:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx1-jetpack-4.2.1:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx1-jetpack-4.2.1-base:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx1-jetpack-4.2.1-runtime:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx1-jetpack-4.2.1-devel:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-jetpack-4.2.1:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-jetpack-4.2.1-base:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-jetpack-4.2.1-runtime:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-jetpack-4.2.1-devel:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-dev-jetpack-4.2.1:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-dev-jetpack-4.2.1-base:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-dev-jetpack-4.2.1-runtime:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-dev-jetpack-4.2.1-devel:
+32.2-%:
 	make -C $(CURDIR)/docker/jetpack $@
 
 # JetPack 4.2
 
-%-jax-jetpack-4.2:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-jetpack-4.2:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-jetpack-4.2:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-jetpack-4.2-base:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-jetpack-4.2-runtime:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-tx2-jetpack-4.2-devel:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-dev-jetpack-4.2:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-dev-jetpack-4.2-base:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-dev-jetpack-4.2-runtime:
-	make -C $(CURDIR)/docker/jetpack $@
-
-%-nano-dev-jetpack-4.2-devel:
+32.1-%:
 	make -C $(CURDIR)/docker/jetpack $@
 
 # Samples
