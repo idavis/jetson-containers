@@ -97,7 +97,7 @@ We will use the Ubuntu 18.04 WSL v2 environment to cross-compile AARCH64 compati
 
     ```
     sudo apt install -y curl
-    curl -fsSL https://get.docker.com | bash
+    curl -fsSL https://get.docker.io | bash
     sudo usermod -aG docker $USER
     ```
 
@@ -118,6 +118,8 @@ After you have setup the Cross-Compilation environment on Ubuntu using Windows S
   sudo service binfmt-support start
   ```
 
+  Note: You may want to add these lines to your `~/.bashrc` file if you wish to start these services automatically when starting a new WSL v2 instance
+
 3. Clone jetson-containers project into WSL v2 environment and Open in VS Code
 
 * Clone the jetson-containers project and open in VS Code by running the following on the bash prompt of the WSL v2 instance:
@@ -130,4 +132,4 @@ After you have setup the Cross-Compilation environment on Ubuntu using Windows S
 
 3. Run build tasks in VS Code to create jetson-containers images
 
-  * In the previous step, a new Visual Studio Code instance should have opened.  Inside of the VS Code instance, press "CTRL+SHIFT++B" to bring up a list of available build tasks and select one to begin building the associated jetson-containers image(s)
+  * In the previous step, a new Visual Studio Code instance should have opened.  Inside of the VS Code instance, press "CTRL+SHIFT+B" to bring up a list of available build tasks and select one to begin building the associated jetson-containers image(s)
