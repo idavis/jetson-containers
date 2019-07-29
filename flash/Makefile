@@ -22,14 +22,14 @@ all: jetpack-image
 
 jetpack-image: jetpack-4.2.1-image jetpack-4.2-image
 
-jetpack-4.2-image: l4t-32.1-nano-dev-jetpack-4.2-image l4t-32.1-tx2-jetpack-4.2-image l4t-32.1-jax-jetpack-4.2-image
+jetpack-4.2-image: 32.1-nano-dev-jetpack-4.2-image 32.1-tx2-jetpack-4.2-image 32.1-jax-jetpack-4.2-image
 
-jetpack-4.2.1-image: l4t-32.2-jax-jetpack-4.2.1-image l4t-32.2-tx2-jetpack-4.2.1-image l4t-32.2-tx2i-jetpack-4.2.1-image l4t-32.2-tx2-4gb-jetpack-4.2.1-image l4t-32.2-tx1-jetpack-4.2.1-image l4t-32.2-nano-dev-jetpack-4.2.1-image l4t-32.2-nano-jetpack-4.2.1-image 
+jetpack-4.2.1-image: 32.2-jax-jetpack-4.2.1-image 32.2-tx2-jetpack-4.2.1-image 32.2-tx2i-jetpack-4.2.1-image 32.2-tx2-4gb-jetpack-4.2.1-image 32.2-tx1-jetpack-4.2.1-image 32.2-nano-dev-jetpack-4.2.1-image 32.2-nano-jetpack-4.2.1-image 
 
-l4t-32.1-%-jetpack-4.2-image:
+32.1-%-jetpack-4.2-image:
 	(DOCKER_BUILD_ROOT="$(CURDIR)/l4t/32.1" $(CURDIR)/build.sh ./conf/$@ $(REPO):$@)
 
-l4t-32.2-%-jetpack-4.2.1-image:
+32.2-%-jetpack-4.2.1-image:
 	(DOCKER_BUILD_ROOT="$(CURDIR)/l4t/32.2" $(CURDIR)/build.sh ./conf/$@ $(REPO):$@)
 
 32.1-cti-v203-image: $(addsuffix -image,$(addprefix 32.1-cti-v203-,rogue rogue-imx274-2cam mimic-image))
