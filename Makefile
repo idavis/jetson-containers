@@ -47,6 +47,9 @@ image-%:
 deps-%:
 	make -C $(CURDIR)/docker/jetpack $*-deps
 
+from-deps-folder-%:
+	make -C $(CURDIR)/docker/jetpack $*-from-deps-folder
+
 # JetPack
 
 jetpacks: $(addprefix jetpack-,4.2.1 4.2)

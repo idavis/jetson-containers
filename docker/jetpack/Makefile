@@ -33,7 +33,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 
 32.1-jetpack-4.2-deps: $(addprefix 32.1-,$(addsuffix -jetpack-4.2-deps,jax nano-dev tx2 host))
 
-%-from-folder:
+%-from-deps-folder:
 	$(DOCKER) build \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
 					-t $(REPO):$* \
