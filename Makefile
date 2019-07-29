@@ -120,9 +120,10 @@ build-%-deepstream-4.0:
 					$(DOCKER_CONTEXT)
 
 build-%-deepstream-4.0-release:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+	$(DOCKER) build --squash \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg TAG=$* \
+					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
 					-t $(REPO):$*-deepstream-4.0-release \
 					-f $(CURDIR)/docker/examples/deepstream/$*.Dockerfile \
 					$(DOCKER_CONTEXT)
