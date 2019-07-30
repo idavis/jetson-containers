@@ -16,12 +16,17 @@ IMAGE ?= INVALID
 
 .PHONY: all
 
-all: opencv-4.0.1-l4t-32.1-jetpack-4.2
+all: opencv-4.0.1-32.1-jax-jetpack-4.2 opencv-4.0.1-32.2-jax-jetpack-4.2.1
 
-opencv-4.0.1-l4t-32.1-jetpack-4.2: DOCKERFILE := bionic.Dockerfile
-opencv-4.0.1-l4t-32.1-jetpack-4.2: CUDA_ARCH_BIN := 5.3;6.2;7.2
-opencv-4.0.1-l4t-32.1-jetpack-4.2: IMAGE := 32.1-jax-jetpack-4.2-devel
-opencv-4.0.1-l4t-32.1-jetpack-4.2: build-opencv-4.0.1-l4t-32.1-jetpack-4.2
+opencv-4.0.1-32.1-jax-jetpack-4.2: DOCKERFILE := bionic.Dockerfile
+opencv-4.0.1-32.1-jax-jetpack-4.2: CUDA_ARCH_BIN := 5.3;6.2;7.2
+opencv-4.0.1-32.1-jax-jetpack-4.2: IMAGE := 32.1-jax-jetpack-4.2-devel
+opencv-4.0.1-32.1-jax-jetpack-4.2: build-opencv-4.0.1-32.1-jax-jetpack-4.2
+
+opencv-4.0.1-32.2-jax-jetpack-4.2.1: DOCKERFILE := bionic.Dockerfile
+opencv-4.0.1-32.2-jax-jetpack-4.2.1: CUDA_ARCH_BIN := 5.3;6.2;7.2
+opencv-4.0.1-32.2-jax-jetpack-4.2.1: IMAGE := 32.2-jax-jetpack-4.2.1-devel
+opencv-4.0.1-32.2-jax-jetpack-4.2.1: build-opencv-4.0.1-32.2-jax-jetpack-4.2.1
 
 build-%:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \

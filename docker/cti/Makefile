@@ -38,6 +38,6 @@ cti-32.1-tx2-%-deps:
 %-from-folder:
 	$(DOCKER) build \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					-t $(REPO):$* \
+					-t $(REPO):$*-deps \
 					-f $(CURDIR)/dependencies.Dockerfile \
 					$(SDKM_DOWNLOADS)

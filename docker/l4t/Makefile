@@ -12,7 +12,7 @@ all: 32.2 32.1
 32.2-jax:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2.1-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-jax-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/jax/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -20,7 +20,7 @@ all: 32.2 32.1
 32.2-tx2:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-jetpack-4.2.1-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/tx2/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -28,7 +28,7 @@ all: 32.2 32.1
 32.2-tx2i:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2i-jetpack-4.2.1-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2i-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/tx2i/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -36,7 +36,7 @@ all: 32.2 32.1
 32.2-tx2-4gb:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-4gb-jetpack-4.2.1-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-4gb-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/tx2-4gb/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -44,7 +44,7 @@ all: 32.2 32.1
 32.2-tx1:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx1-jetpack-4.2.1-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx1-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/tx1/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -52,7 +52,7 @@ all: 32.2 32.1
 32.2-nano:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-jetpack-4.2.1-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/nano/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -60,7 +60,7 @@ all: 32.2 32.1
 32.2-nano-dev:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-dev-jetpack-4.2.1-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-dev-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/nano-dev/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -70,7 +70,7 @@ all: 32.2 32.1
 32.1-jax:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):jax-jetpack-4.2-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-jax-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.1/jax-tx2/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -78,7 +78,7 @@ all: 32.2 32.1
 32.1-tx2:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):tx2-jetpack-4.2-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-tx2-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.1/jax-tx2/Dockerfile \
 					$(DOCKER_CONTEXT)
@@ -88,7 +88,7 @@ all: 32.2 32.1
 32.1-nano-dev:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):nano-dev-jetpack-4.2-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-nano-dev-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.1/nano-dev/Dockerfile \
 					$(DOCKER_CONTEXT)

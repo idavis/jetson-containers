@@ -133,8 +133,8 @@ build-%-deepstream-4.0-release:
 
 # Libraries
 
-opencv-4.0.1-l4t-32.1-jetpack-4.2:
+opencv-4.0.1-%:
 	make -C $(CURDIR)/docker/OpenCV $@
 
-pytorch-1.1.0-l4t-32.1-jetpack-4.2:
+pytorch-1.1.0-%:
 	make -C $(CURDIR)/docker/pytorch $@
