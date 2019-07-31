@@ -57,7 +57,23 @@
             "group": "build",
             "command": "make",
             "args": [
-                "${input:pickDependencyBuilds}"
+                "deps-${input:pickDependencyBuilds}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <jetpack dep folder options>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "from-deps-folder-${input:pickDependencyFolderBuilds}"
             ],
             "problemMatcher":{
                 "pattern":{
@@ -73,7 +89,7 @@
             "group": "build",
             "command": "make",
             "args": [
-                "image-l4t-${input:pickImagingBuilds}"
+                "image-${input:pickImagingBuilds}"
             ],
             "problemMatcher":{
                 "pattern":{
@@ -98,6 +114,38 @@
                     "message": 2 
                 }
             }
+        },
+        {
+            "label": "make <CTI deps options>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickCtiDependencyBuilds}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <deepstream 4.0 options>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "build-${input:pickDeepStream}-deepstream-4.0-release"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
         }
     ],
     "inputs": [
@@ -106,31 +154,19 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "driver-pack-28.1",
-                "driver-pack-28.2",
-                "driver-pack-28.2.1",
-                "driver-pack-28.3",
-                "driver-pack-31.1",
-                "driver-pack-32.1",
                 "driver-pack-32.2",
+                "driver-pack-32.1",
                 "driver-packs",
-                "l4t-28.1-tx1",
-                "l4t-28.1-tx2",
-                "l4t-28.2.1-tx2",
-                "l4t-28.2-tx1",
-                "l4t-28.3-tx1",
-                "l4t-28.3-tx2",
-                "l4t-31.1-jax",
-                "l4t-32.1-jax",
-                "l4t-32.1-nano-dev",
-                "l4t-32.1-tx2",
                 "l4t-32.2-jax",
                 "l4t-32.2-tx2",
                 "l4t-32.2-tx2i",
                 "l4t-32.2-tx2-4gb",
                 "l4t-32.2-tx1",
                 "l4t-32.2-nano",
-                "l4t-32.2-nano-dev"
+                "l4t-32.2-nano-dev",
+                "l4t-32.1-jax",
+                "l4t-32.1-nano-dev",
+                "l4t-32.1-tx2"
             ]
         },
         {
@@ -148,21 +184,26 @@
                 "32.1-tx2-jetpack-4.2",
                 "32.1-nano-dev-jetpack-4.2",
                 "32.1-jax-jetpack-4.2",
-                "31.1-jax-jetpack-4.1.1",
-                "28.3-tx2-jetpack-3.3",
-                "28.3-tx2-jetpack-3.2.1",
-                "28.3-tx1-jetpack-3.3",
-                "28.3-tx1-jetpack-3.2.1",
-                "28.2-tx1-jetpack-3.3",
-                "28.2-tx1-jetpack-3.2.1",
-                "28.2.1-tx2-jetpack-3.3",
-                "28.2.1-tx2-jetpack-3.2.1",
                 "jetpack-4.2.1",
                 "jetpack-4.2",
-                "jetpack-4.1.1",
-                "jetpack-3.3",
-                "jetpack-3.2.1",
                 "jetpacks"
+            ]
+        },
+        {
+            "id": "pickDependencyFolderBuilds",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2-jax-jetpack-4.2.1",
+                "32.2-tx2-jetpack-4.2.1",
+                "32.2-tx2i-jetpack-4.2.1",
+                "32.2-tx2-4gb-jetpack-4.2.1",
+                "32.2-tx1-jetpack-4.2.1",
+                "32.2-nano-jetpack-4.2.1",
+                "32.2-nano-dev-jetpack-4.2.1",
+                "32.1-jax-jetpack-4.2",
+                "32.1-nano-dev-jetpack-4.2",
+                "32.1-tx2-jetpack-4.2"
             ]
         },
         {
@@ -170,30 +211,20 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "jetpack-4.2.1-deps",
-                "jax-jetpack-4.2.1-deps",
-                "tx2-jetpack-4.2.1-deps",
-                "tx2i-jetpack-4.2.1-deps",
-                "tx2-4gb-jetpack-4.2.1-deps",
-                "tx1-jetpack-4.2.1-deps",
-                "nano-jetpack-4.2.1-deps",
-                "nano-dev-jetpack-4.2.1-deps",
-                "host-jetpack-4.2.1-deps",
-                "jax-jetpack-4.2.1-deps-from-folder",
-                "tx2-jetpack-4.2.1-deps-from-folder",
-                "tx2i-jetpack-4.2.1-deps-from-folder",
-                "tx2-4gb-jetpack-4.2.1-deps-from-folder",
-                "tx1-jetpack-4.2.1-deps-from-folder",
-                "nano-jetpack-4.2.1-deps-from-folder",
-                "nano-dev-jetpack-4.2.1-deps-from-folder",
-                "jetpack-4.2-deps",
-                "jax-jetpack-4.2-deps",
-                "nano-dev-jetpack-4.2-deps",
-                "tx2-jetpack-4.2-deps",
-                "host-jetpack-4.2-deps",
-                "jax-jetpack-4.2-deps-from-folder",
-                "nano-dev-jetpack-4.2-deps-from-folder",
-                "tx2-jetpack-4.2-deps-from-folder"
+                "32.2-jetpack-4.2.1",
+                "32.2-jax-jetpack-4.2.1",
+                "32.2-tx2-jetpack-4.2.1",
+                "32.2-tx2i-jetpack-4.2.1",
+                "32.2-tx2-4gb-jetpack-4.2.1",
+                "32.2-tx1-jetpack-4.2.1",
+                "32.2-nano-jetpack-4.2.1",
+                "32.2-nano-dev-jetpack-4.2.1",
+                "32.2-host-jetpack-4.2.1",
+                "32.1-jetpack-4.2",
+                "32.1-jax-jetpack-4.2",
+                "32.1-nano-dev-jetpack-4.2",
+                "32.1-tx2-jetpack-4.2",
+                "32.1-host-jetpack-4.2"
             ]
         },
         {
@@ -211,20 +242,24 @@
                 "build-32.1-jax-jetpack-4.2-samples",
                 "build-32.1-nano-dev-jetpack-4.2-samples",
                 "build-32.1-tx2-jetpack-4.2-samples",
-                "opencv-4.0.1-l4t-28.3-jetpack-3.3",
-                "opencv-4.0.1-l4t-32.1-jetpack-4.2",
-                "pytorch-1.1.0-l4t-28.3-jetpack-3.3",
-                "pytorch-1.1.0-l4t-32.1-jetpack-4.2",
-                "run-32.2-jax-jetpack-4.2.1-samples",
-                "run-32.2-tx2-jetpack-4.2.1-samples",
-                "run-32.2-tx2i-jetpack-4.2.1-samples",
-                "run-32.2-tx2-4gb-jetpack-4.2.1-samples",
-                "run-32.2-tx1-jetpack-4.2.1-samples",
-                "run-32.2-nano-jetpack-4.2.1-samples",
-                "run-32.2-nano-dev-jetpack-4.2.1-samples",
-                "run-32.1-jax-jetpack-4.2-samples",
-                "run-32.1-nano-dev-jetpack-4.2-samples",
-                "run-32.1-tx2-jetpack-4.2-samples"
+                "opencv-4.0.1-32.1-jax-jetpack-4.2",
+                "opencv-4.0.1-32.2-jax-jetpack-4.2.1",
+                "pytorch-1.1.0-32.1-jax-jetpack-4.2",
+                "pytorch-1.1.0-32.2-jax-jetpack-4.2.1"
+            ]
+        },
+        {
+            "id": "pickDeepStream",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2-jax-jetpack-4.2.1",
+                "32.2-tx2-jetpack-4.2.1",
+                "32.2-tx2i-jetpack-4.2.1",
+                "32.2-tx2-4gb-jetpack-4.2.1",
+                "32.2-tx1-jetpack-4.2.1",
+                "32.2-nano-jetpack-4.2.1",
+                "32.2-nano-dev-jetpack-4.2.1",
             ]
         },
         {
@@ -232,25 +267,32 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "32.2-jax-jetpack-4.2.1-base",
-                "32.2-tx2-jetpack-4.2.1-base",
-                "32.2-tx2i-jetpack-4.2.1-base",
-                "32.2-tx2-4gb-jetpack-4.2.1-base",
-                "32.2-tx1-jetpack-4.2.1-base",
-                "32.2-nano-jetpack-4.2.1-base",
-                "32.2-nano-dev-jetpack-4.2.1-base",
-                "32.1-tx2-jetpack-4.2-base",
-                "32.1-nano-dev-jetpack-4.2-base",
-                "32.1-jax-jetpack-4.2-base",
-                "31.1-jax-jetpack-4.1.1-base",
-                "28.3-tx2-jetpack-3.3-base",
-                "28.3-tx2-jetpack-3.2.1-base",
-                "28.3-tx1-jetpack-3.3-base",
-                "28.3-tx1-jetpack-3.2.1-base",
-                "28.2-tx1-jetpack-3.3-base",
-                "28.2-tx1-jetpack-3.2.1-base",
-                "28.2.1-tx2-jetpack-3.3-base",
-                "28.2.1-tx2-jetpack-3.2.1-base"
+                "32.2-jax-jetpack-4.2.1",
+                "32.2-tx2-jetpack-4.2.1",
+                "32.2-tx2i-jetpack-4.2.1",
+                "32.2-tx2-4gb-jetpack-4.2.1",
+                "32.2-tx1-jetpack-4.2.1",
+                "32.2-nano-jetpack-4.2.1",
+                "32.2-nano-dev-jetpack-4.2.1",
+                "32.1-tx2-jetpack-4.2",
+                "32.1-nano-dev-jetpack-4.2",
+                "32.1-jax-jetpack-4.2"
+            ]
+        },
+        {
+            "id": "pickCtiDependencyBuilds",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "cti-32.1-jax-203-deps",
+                "cti-32.1-tx2i-125-deps",
+                "cti-32.1-tx2i-124-deps",
+                "cti-32.1-tx2-125-deps",
+                "cti-32.1-tx2-124-deps",
+                "cti-all-deps",
+                "cti-32.1-jax-deps",
+                "cti-32.1-tx2i-deps",
+                "cti-32.1-tx2-deps"
             ]
         },
         {
@@ -258,44 +300,78 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "32.1-cti-v203",
-                "32.1-cti-v124",
-                "32.1-cti-v203-rogue",
-                "32.1-cti-v203-rogue-imx274-2cam",
-                "32.1-cti-v203-mimic-base",
-                "32.1-cti-v124-astro-mpcie",
-                "32.1-cti-v124-astro-mpcie-tx2i",
-                "32.1-cti-v124-astro-usb3",
-                "32.1-cti-v124-astro-usb3-tx2i",
-                "32.1-cti-v124-astro-revG+",
-                "32.1-cti-v124-astro-revG+-tx2i",
-                "32.1-cti-v124-elroy-mpcie",
-                "32.1-cti-v124-elroy-mpcie-tx2i",
-                "32.1-cti-v124-elroy-usb3",
-                "32.1-cti-v124-elroy-usb3-tx2i",
-                "32.1-cti-v124-elroy-revF+",
-                "32.1-cti-v124-elroy-refF+-tx2i",
-                "32.1-cti-v124-orbitty",
-                "32.1-cti-v124-orbitty-tx2i",
-                "32.1-cti-v124-rosie",
-                "32.1-cti-v124-rosie-tx2i",
-                "32.1-cti-v124-rudi-mpcie",
-                "32.1-cti-v124-rudi-mpcie-tx2i",
-                "32.1-cti-v124-rudi-usb3",
-                "32.1-cti-v124-rudi-usb3-tx2i ",
-                "32.1-cti-v124-rudi",
-                "32.1-cti-v124-rudi-tx2i",
-                "32.1-cti-v124-sprocket",
-                "32.1-cti-v124-spacely-base",
-                "32.1-cti-v124-spacely-base-tx2i",
-                "32.1-cti-v124-spacely-imx274-6cam",
-                "32.1-cti-v124-spacely-imx274-6cam-tx2i",
-                "32.1-cti-v124-spacely-imx274-3cam",
-                "32.1-cti-v124-spacely-imx274-3cam-tx2i",
-                "32.1-cti-v124-cogswell",
-                "32.1-cti-v124-cogswell-tx2i",
-                "32.1-cti-v124-vpg003-base",
-                "32.1-cti-v124-vpg003-base-tx2i"
+                "cti-32.1-v203",
+                "cti-32.1-v124",
+                "cti-32.1-v125",
+                "cti-32.1-v203-rogue",
+                "cti-32.1-v203-rogue-imx274-2cam",
+                "cti-32.1-v203-mimic-base",
+                "cti-32.1-v124-astro-mpcie",
+                "cti-32.1-v124-astro-mpcie-tx2i",
+                "cti-32.1-v124-astro-usb3",
+                "cti-32.1-v124-astro-usb3-tx2i",
+                "cti-32.1-v124-astro-revG+",
+                "cti-32.1-v124-astro-revG+-tx2i",
+                "cti-32.1-v124-elroy-mpcie",
+                "cti-32.1-v124-elroy-mpcie-tx2i",
+                "cti-32.1-v124-elroy-usb3",
+                "cti-32.1-v124-elroy-usb3-tx2i",
+                "cti-32.1-v124-elroy-revF+",
+                "cti-32.1-v124-elroy-refF+-tx2i",
+                "cti-32.1-v124-orbitty",
+                "cti-32.1-v124-orbitty-tx2i",
+                "cti-32.1-v124-rosie",
+                "cti-32.1-v124-rosie-tx2i",
+                "cti-32.1-v124-rudi-mpcie",
+                "cti-32.1-v124-rudi-mpcie-tx2i",
+                "cti-32.1-v124-rudi-usb3",
+                "cti-32.1-v124-rudi-usb3-tx2i ",
+                "cti-32.1-v124-rudi",
+                "cti-32.1-v124-rudi-tx2i",
+                "cti-32.1-v124-sprocket",
+                "cti-32.1-v124-spacely-base",
+                "cti-32.1-v124-spacely-base-tx2i",
+                "cti-32.1-v124-spacely-imx274-6cam",
+                "cti-32.1-v124-spacely-imx274-6cam-tx2i",
+                "cti-32.1-v124-spacely-imx274-3cam",
+                "cti-32.1-v124-spacely-imx274-3cam-tx2i",
+                "cti-32.1-v124-cogswell",
+                "cti-32.1-v124-cogswell-tx2i",
+                "cti-32.1-v124-vpg003-base",
+                "cti-32.1-v124-vpg003-base-tx2i",
+                "cti-32.1-v125-astro-mpcie",
+                "cti-32.1-v125-astro-mpcie-tx2i",
+                "cti-32.1-v125-astro-usb3",
+                "cti-32.1-v125-astro-usb3-tx2i",
+                "cti-32.1-v125-astro-revG+",
+                "cti-32.1-v125-astro-revG+-tx2i",
+                "cti-32.1-v125-elroy-mpcie",
+                "cti-32.1-v125-elroy-mpcie-tx2i",
+                "cti-32.1-v125-elroy-usb3",
+                "cti-32.1-v125-elroy-usb3-tx2i",
+                "cti-32.1-v125-elroy-revF+",
+                "cti-32.1-v125-elroy-refF+-tx2i",
+                "cti-32.1-v125-orbitty",
+                "cti-32.1-v125-orbitty-tx2i",
+                "cti-32.1-v125-rosie",
+                "cti-32.1-v125-rosie-tx2i",
+                "cti-32.1-v125-rudi-mpcie",
+                "cti-32.1-v125-rudi-mpcie-tx2i",
+                "cti-32.1-v125-rudi-usb3",
+                "cti-32.1-v125-rudi-usb3-tx2i ",
+                "cti-32.1-v125-rudi",
+                "cti-32.1-v125-rudi-tx2i",
+                "cti-32.1-v125-sprocket",
+                "cti-32.1-v125-spacely-base",
+                "cti-32.1-v125-spacely-base-tx2i",
+                "cti-32.1-v125-spacely-imx274-6cam",
+                "cti-32.1-v125-spacely-imx274-6cam-tx2i",
+                "cti-32.1-v125-spacely-imx274-3cam",
+                "cti-32.1-v125-spacely-imx274-3cam-tx2i",
+                "cti-32.1-v125-cogswell",
+                "cti-32.1-v125-cogswell-tx2i",
+                "cti-32.1-v125-vpg003-base",
+                "cti-32.1-v125-vpg003-base-tx2i"
             ]
         }
     ]

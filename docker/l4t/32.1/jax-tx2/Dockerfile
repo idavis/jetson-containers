@@ -1,4 +1,9 @@
 ARG VERSION_ID
+ARG DEPENDENCIES_IMAGE
+ARG IMAGE_NAME
+FROM ${DEPENDENCIES_IMAGE} as dependencies
+
+ARG VERSION_ID
 # using a smaller image doesn't save us any space as the layers are used by the other images.
 FROM ubuntu:${VERSION_ID} as qemu
 
@@ -8,23 +13,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends qemu-user-stati
     rm -rf /var/lib/apt/lists/*
 
 # start of the real image base
+ARG VERSION_ID
 FROM arm64v8/ubuntu:${VERSION_ID}
 
-ARG URL=https://developer.download.nvidia.com/embedded/L4T/r32_Release_v1.0/jax-tx2/BSP
-
-ARG DRIVER_PACK=JAX-TX2-Jetson_Linux_R32.1.0_aarch64.tbz2
+ARG DRIVER_PACK=Jetson_Linux_R32.1.0_aarch64.tbz2
 
 # pre-req qemu binary for aarch64 emulation if this container image is built directly on x86 host
 COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
+ARG DEPENDENCIES_IMAGE
+COPY --from=dependencies /data/${DRIVER_PACK} ${DRIVER_PACK}
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bzip2 \
-    ca-certificates \
-    curl \
     lbzip2 \
     sudo \
     && \
-    curl -sSL $URL/${DRIVER_PACK} -o ${DRIVER_PACK} && \
     echo "602fa50432d7ad7e4bc11db505b66bd01f366e85 *./${DRIVER_PACK}" | sha1sum -c --strict - && \
     tar -xpj --overwrite -f ./${DRIVER_PACK} && \
     sed -i '/.*tar -I lbzip2 -xpmf ${LDK_NV_TEGRA_DIR}\/config\.tbz2.*/c\tar -I lbzip2 -xpm --overwrite -f ${LDK_NV_TEGRA_DIR}\/config.tbz2' ./Linux_for_Tegra/apply_binaries.sh && \
@@ -32,7 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf ./Linux_for_Tegra && \
     rm ./${DRIVER_PACK} \
     && \
-    apt-get purge --autoremove -y bzip2 curl lbzip2 && \
+    apt-get purge --autoremove -y bzip2 lbzip2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

@@ -1,5 +1,6 @@
 ARG IMAGE_NAME
-FROM ${IMAGE_NAME}:32.1-jax-jetpack-4.2-devel
+ARG TAG
+FROM ${IMAGE_NAME}:${TAG}-release
 
 # install python & depedencies
 RUN apt-get update && apt-get install -y \

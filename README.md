@@ -23,13 +23,9 @@ These containers enable the OS can be flashed without JetPack having only the ma
 
 When building third party libraries, such as OpenCV and PyTorch, a swapfile will *likely* have to be created in the host OS. These packages require more memory than the system contains and will crash with very cryptic errors if they run out of memory.
 
-### JetPack 4.2
+The JetPack base images follow the Nvidia pattern of having base, runtime, and devel images for each device to start from. You cannot download the JetPack installers without logging in with the SDK manager, so the make tasks herein will automate the download/login through the SDK Manager and save off the device specific packages.
 
-The JetPack 4.2 base images follow the Nvidia pattern of having base, runtime, and devel images for each device to start from. Staring in JetPack 4.2, you cannot download the JetPack installers without logging in with the SDK manager, so the make tasks herein will automate the download/login through the SDK Manager and save off the device specific packages.
-
-### Older
-
-Each image, whether Linux for Tegra (L4T) or JetPack based provides args for the `URL` to pull installers from. Once the JetPack installer has been run, copy the packages to your own source for downloading. This will likely increase your download speed and allow building images if the package URLs ever change. This could be automated to follow the pattern used in 4.2+, but it is a lot of effort at the moment.
+Note: if you have the SDK Manager open, the command line will not work. Nvidia has incorrectly handled their single instance implementation and the CLI will fail to run.
 
 ## Configuration
 
@@ -61,12 +57,12 @@ Storing these images will also require significant disk space. It is highly reco
 
 The project uses `make` to set up the dependent builds constructing the final images. The recipes fall into a few categories:
 
-- Driver packs (32.1, 31.,1 28.3, 28.2.1, 28.2, 28.1)
-- JetPack Dependencies (4.2)
-- JetPack (4.2, 4.1.1, 3.3, 3.2.1)
+- Driver packs (32.2, 32.1)
+- JetPack Dependencies (4.2.1, 4.2)
+- JetPack (4.2.1, 4.2)
 - Devices (jax (xavier), tx2, tx1, nano-dev)
 - Flashing containers
-- OpenCV (4.0.1)
+- OpenCV (4.1.0)
 
 ### Dependencies
 
@@ -76,11 +72,19 @@ The JetPack dependency builds must be run on an `x86_64` host. They can be built
 - Make sure `DOCKER_HOST`, if set, is pointing to an `x86_64` host
 - `make jax-jetpack-4.2-deps`, or `make nano-dev-jetpack-4.2-deps`, or `make tx2-jetpack-4.2-deps`, or `make jetpack-4.2-deps` to build them all
 - Wait, then enter your Nvidia developer password when prompted
-- Enter `pass`
-- Enter `pass`
 - Upload finished image to your container registry
 
-All other steps for JetPack 4.2+ require these previous steps to have been completed.
+All other steps for JetPack require these previous steps to have been completed.
+
+#### CTI Dependencies
+
+CTI has a board support package which must be installed into the rootfs. When building flash images for CTI boards, there are three options:
+
+1. Run `~/jetson-containers$ make cti-<driver pack>-<device>-deps` such as `~/jetson-containers$ make cti-32.1-tx2-deps` which will download the BSP and generate an image `l4t:cti-32.1-tx2-deps` with the driver pack installed into `/data`.
+2. Download the BSP from the CTI web site and save it to an empty folder. In the `.env` file, set the `SDKM_DOWNLOADS` to this folder and run `~/jetson-containers$ make cti-<driver pack>-<device>-deps-from-folder`. For example: `~/jetson-containers$ make cti-32.1-tx2-deps-from-folder` which will generate an image `l4t:cti-32.1-tx2-deps` with the driver pack installed into `/data`.
+3. Download the BSP into the folder with the downloads from the SDK Manager. In the `.env` file, set the `SDKM_DOWNLOADS` to the chosen folder. Run `~/jetson-containers$ make <device>-jetpack-<version>-deps-from-folder`. For example: `~/jetson-containers$ make tx2-jetpack-4.2-deps-from-folder` which will generate an image `l4t:tx2-jetpack-4.2-deps` with the BSP and JetPack dependencies installed into `/data`. 
+
+For all of these, open your `.env` and set `BSP_DEPENDENCIES_IMAGE` to the dependency image created. In the last example it will be the same image as the `DEPENDENCIES_IMAGE` setting found in the `/cti/<version>/drivers/*.conf` file associated with the image being flashed.
 
 ### Driver Packs
 
@@ -100,11 +104,9 @@ examples:
 
 ```bash
 make driver-packs # build all driver pack bases
-make jetpack-4.2 # build all JetPack 4.2. device builds and the driver packs they depend on
+make jetpack-4.2.1 # build all JetPack 4.2.1. device builds and the driver packs they depend on
 make 32.1-jax-jetpack-4.2
-make 28.3-tx2-jetpack-3.3
-make 28.2.1-tx2-jetpack-3.2.1
-make 28.2-tx1-jetpack-3.2.1
+make 32.1-tx2-jetpack-4.2.1
 ```
 
 There are additional recipes for building the `32.1-jax-jetpack-4.2` samples container (`make build-32.1-jax-jetpack-4.2-samples`) and running the container (`make run-32.1-jax-jetpack-4.2-samples`) which demonstrates mult-stage builds based on `devel` images.
@@ -138,11 +140,10 @@ The `DOCKER_RUN_ARGS` variable can be set in the `.env` file to `DOCKER_RUN_ARGS
 
 Building OpenCV can take a few hours depending on your device and performance mode. When the OpenCV builds are complete, the install `.sh` file can be found in the `/dist` folder.
 
-### Building OpenCV
+### Building Custom OpenCV
 
 ```
 make opencv-4.0.1-l4t-32.1-jetpack-4.2
-make opencv-4.0.1-l4t-28.3-jetpack-3.3
 ```
 
 ## Flashing Devices
@@ -153,10 +154,9 @@ There are default profiles which match the device and JetPack versions in the `f
 
 Examples:
 ```bash
-make image-bionic-server-20190402 # Set up an image which can flash bionic server to the device
-make image-jetpack-bases # create all jetpack default configuration images for flashing.
-make image-l4t-28.3-tx2-jetpack-3.3-base # JetPack 3.3 for TX2 with driver pack 28.3
-make image-l4t-32.1-jax-jetpack-4.2-base # JetPack 4.2 for Xavier with driver pack 32.1
+make image-jetpack # create all jetpack default configuration images for flashing.
+make image-32.2-tx2i-jetpack-4.2.1 # JetPack 4.2.1 for TX2i with driver pack 32.2
+make image-32.1-jax-jetpack-4.2 # JetPack 4.2 for Xavier with driver pack 32.1
 ```
 
 Note: Ensure that if the `DOCKER_HOST` variable is set, the host specified must be `x86_64`.
@@ -167,11 +167,10 @@ To flash the device, put the device into recovery mode and connect it to the hos
 ```bash
 >:~/jetson-containers/flash$ docker images
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-l4t:28.3-tx2-jetpack-3.3-base        latest              cc58f9478aa2        22 hours ago        3.35GB
-l4t:32.1-jax-jetpack-4.2-base     latest              e59950b4ebdc        5 hours ago         3.73GB
+l4t:32.1-jax-jetpack-4.2-image     latest              e59950b4ebdc        5 hours ago         3.73GB
 ```
 
-We can flash the Xavier with the default JetPack 4.2 configuration by executing `./flash.sh l4t-32.1-jax-jetpack-4.2-base`. If your device is not in recovery mode, you will see an error similar to:
+We can flash the Xavier with the default JetPack 4.2 configuration by executing `./flash.sh l4t:32.1-jax-jetpack-4.2-image`. If your device is not in recovery mode, you will see an error similar to:
 
 ```
 ###############################################################################
@@ -185,6 +184,23 @@ Error: probing the target board failed.
 ```
 
 If your device was in recovery mode, you should see progress displayed. Once the device has been flashed, it will automatically restart.
+
+### CTI BSPs Flashing
+
+1. Build BSP dependencies image
+2. Build JetPack dependencies image
+3. Build flashing image
+
+Example: Building Orbitty
+
+```bash
+>:~/jetson-containers/$ make cti-32.1-tx2-125-deps
+>:~/jetson-containers/$ make 32.1-tx2-jetpack-4.2-deps
+>:~/jetson-containers/$ make image-cti-32.1-v125-orbitty
+>:~/jetson-containers/$ ./flash/flash.sh l4t:cti-32.1-v125-orbitty-image
+```
+
+If you want to use a different dependency image for the BSP, set `BSP_DEPENDENCIES_IMAGE` in the `.env` file.
 
 ## Image sizes
 
@@ -203,34 +219,58 @@ Note that these are only used on build machines.
 
 | Repository | Driver | Size |
 |---|---|---|
-| l4t | jax-jetpack-4.2.1-deps | 3.57GB |
-| l4t | jax-jetpack-4.2-deps | 3.32GB |
-| l4t | nano-dev-jetpack-4.2-deps | 3.31GB |
-| l4t | tx2-jetpack-4.2-deps | 3.31GB |
+| l4t | host-jetpack-4.2.1-deps | 2.6GB |
+| l4t | jax-jetpack-4.2.1-deps | 3.48GB |
+| l4t | tx2-jetpack-4.2.1-deps | 3.48GB |
+| l4t | tx2i-jetpack-4.2.1-deps | 3.48GB |
+| l4t | tx2-4gb-jetpack-4.2.1-deps | 3.48GB |
+| l4t | tx1-jetpack-4.2.1-deps | 3.55GB |
+| l4t | nano-dev-jetpack-4.2.1-deps | 3.55GB |
+| l4t | nano-jetpack-4.2.1-deps | 3.55GB |
+| l4t | jax-jetpack-4.2-deps | 3.30GB |
+| l4t | tx2-jetpack-4.2-deps | 3.30GB |
+| l4t | nano-dev-jetpack-4.2-deps | 3.29GB |
 
 #### Driver packs:
 
 | Repository | Driver | Size |
 |---|---|---|
-| l4t | 28.1-tx1 | 371MB |
-| l4t | 28.1-tx2 | 435MB |
-| l4t | 28.2.1-tx2 | 460MB |
-| l4t | 28.2-tx1 | 414MB |
-| l4t | 28.3-tx1 | 459MB |
-| l4t | 28.3-tx2 | 551MB |
-| l4t | 31.1-jax | 370MB |
 | l4t | 32.1-jax | 479MB |
 | l4t | 32.1-nano-dev | 469MB |
 | l4t | 32.1-tx2 | 479MB |
-| l4t | 32.2-jax | 493MB |
+| l4t | 32.2-jax | 470MB |
+| l4t | 32.2-tx2 | 470MB |
+| l4t | 32.2-tx2i | 470MB |
+| l4t | 32.2-tx2-4gb | 470MB |
+| l4t | 32.2-tx1 | 460MB |
+| l4t | 32.2-nano-dev | 460MB |
+| l4t | 32.2-nano | 460MB |
 
 #### JetPack 4.2.1
 
 | Repository | Tag | Size |
 |---|---|---|
-| l4t | 32.2-jax-jetpack-4.2.1-base | 503MB |
-| l4t | 32.2-jax-jetpack-4.2.1-runtime | 1.26GB |
-| l4t | 32.2-jax-jetpack-4.2.1-devel | 5.83GB |
+| l4t | 32.2-jax-jetpack-4.2.1-base | 480MB |
+| l4t | 32.2-jax-jetpack-4.2.1-runtime | 1.23GB |
+| l4t | 32.2-jax-jetpack-4.2.1-devel | 5.79GB |
+| l4t | 32.2-tx1-jetpack-4.2.1-base | 470MB |
+| l4t | 32.2-tx2-jetpack-4.2.1-base | 480MB |
+| l4t | 32.2-tx2-jetpack-4.2.1-runtime | 1.23GB |
+| l4t | 32.2-tx2-jetpack-4.2.1-devel | 5.79GB |
+| l4t | 32.2-tx2i-jetpack-4.2.1-base | 480MB |
+| l4t | 32.2-tx2i-jetpack-4.2.1-runtime | 1.23GB |
+| l4t | 32.2-tx2i-jetpack-4.2.1-devel | 5.79GB |
+| l4t | 32.2-tx2-4gb-jetpack-4.2.1-base | 480MB |
+| l4t | 32.2-tx2-4gb-jetpack-4.2.1-runtime | 1.23GB |
+| l4t | 32.2-tx2-4gb-jetpack-4.2.1-devel | 5.79GB |
+| l4t | 32.2-tx1-jetpack-4.2.1-runtime | 1.22GB |
+| l4t | 32.2-tx1-jetpack-4.2.1-devel | 5.78GB |
+| l4t | 32.2-nano-jetpack-4.2.1-base | 470MB |
+| l4t | 32.2-nano-jetpack-4.2.1-runtime | 1.22GB |
+| l4t | 32.2-nano-jetpack-4.2.1-devel | 5.78GB |
+| l4t | 32.2-nano-dev-jetpack-4.2.1-base | 470MB |
+| l4t | 32.2-nano-dev-jetpack-4.2.1-runtime | 1.22GB |
+| l4t | 32.2-nano-dev-jetpack-4.2.1-devel | 5.78GB |
 
 #### JetPack 4.2
 
@@ -246,27 +286,3 @@ Note that these are only used on build machines.
 | l4t | 32.1-tx2-jetpack-4.2-base | 489MB |
 | l4t | 32.1-tx2-jetpack-4.2-runtime | 1.21GB |
 | l4t | 32.1-tx2-jetpack-4.2-devel | 5.67GB |
-
-#### JetPack 4.1.1
-
-| Repository | Tag | Size |
-|---|---|---|
-| l4t | 31.1-jax-jetpack-4.1.1 | 5.61GB |
-
-#### JetPack 3.3
-
-| Repository | Tag | Size |
-|---|---|---|
-| l4t | 28.3-tx1-jetpack-3.3 | 4.48GB |
-| l4t | 28.3-tx2-jetpack-3.3 | 4.58GB |
-| l4t | 28.2.1-tx2-jetpack-3.3 | 4.47GB |
-| l4t | 28.2-tx1-jetpack-3.3 | 4.43GB |
-
-#### JetPack 3.2.1
-
-| Repository | Tag | Size |
-|---|---|---|
-| l4t | 28.3-tx1-jetpack-3.2.1 | 4.09GB |
-| l4t | 28.3-tx2-jetpack-3.2.1 | 4.18GB |
-| l4t | 28.2.1-tx2-jetpack-3.2.1 | 4.08GB |
-| l4t | 28.2-tx1-jetpack-3.2.1 | 4.03GB |

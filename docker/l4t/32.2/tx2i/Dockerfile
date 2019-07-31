@@ -25,8 +25,6 @@ ARG DEPENDENCIES_IMAGE
 COPY --from=dependencies /data/${DRIVER_PACK} ${DRIVER_PACK}
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bzip2 \
-    ca-certificates \
-    curl \
     lbzip2 \
     sudo \
     && \
@@ -37,7 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf ./Linux_for_Tegra && \
     rm ./${DRIVER_PACK} \
     && \
-    apt-get purge --autoremove -y bzip2 curl lbzip2 && \
+    apt-get purge --autoremove -y bzip2 lbzip2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

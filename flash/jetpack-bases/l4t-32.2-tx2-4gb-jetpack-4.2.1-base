@@ -1,3 +1,0 @@
-DEPENDENCIES_IMAGE=l4t:tx2-4gb-jetpack-4.2.1-deps
-source ./drivers/32.2-tx2-4gb.conf
-source ./rootfs/tegra-linux-sample-32.2.0-tx2-4gb.conf

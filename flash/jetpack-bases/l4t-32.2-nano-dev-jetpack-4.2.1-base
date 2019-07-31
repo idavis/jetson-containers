@@ -1,3 +1,0 @@
-DEPENDENCIES_IMAGE=l4t:nano-dev-jetpack-4.2.1-deps
-source ./drivers/32.2-nano-dev.conf
-source ./rootfs/tegra-linux-sample-32.2.0-nano-dev.conf
