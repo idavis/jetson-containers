@@ -114,7 +114,7 @@ run-%-tf_to_trt_image_classification:
 				$(REPO):$*-tf_to_trt_image_classification
 
 
-build-%-deepstream-4.0:
+build-%-deepstream-4.0-devel:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg TAG=$* \
