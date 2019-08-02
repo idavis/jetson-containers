@@ -23,6 +23,8 @@ export DOCKER_CONTEXT ?= .
 
 export SDKM_DOWNLOADS ?= invalid
 
+export DOCKERFILE_PREFIX ?= default
+
 .PHONY: all
 
 all: jetpack-deps driver-packs jetpacks

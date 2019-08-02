@@ -88,7 +88,7 @@ pushd "${DOCKER_BUILD_ROOT}"
     echo "    ."
 
 
-    ${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.Dockerfile" -t "$DOCKER_TAG" \
+    ${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DOCKERFILE_PREFIX}.Dockerfile" -t "$DOCKER_TAG" \
         --build-arg DEPENDENCIES_IMAGE=$DEPENDENCIES_IMAGE \
         --build-arg DRIVER_PACK=$DRIVER_PACK \
         --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \

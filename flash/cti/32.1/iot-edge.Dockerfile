@@ -1,11 +1,17 @@
 ARG VERSION_ID
 ARG DEPENDENCIES_IMAGE
 ARG FS_DEPENDENCIES_IMAGE
+ARG BSP_DEPENDENCIES_IMAGE
 FROM ${DEPENDENCIES_IMAGE} as dependencies
 
 ARG VERSION_ID
 ARG FS_DEPENDENCIES_IMAGE
+ARG BSP_DEPENDENCIES_IMAGE
 FROM ${FS_DEPENDENCIES_IMAGE} as fs-dependencies
+
+ARG VERSION_ID
+ARG BSP_DEPENDENCIES_IMAGE
+FROM ${BSP_DEPENDENCIES_IMAGE} as bsp-dependencies
 
 ARG VERSION_ID
 FROM ubuntu:${VERSION_ID} as qemu
@@ -52,9 +58,19 @@ COPY --from=fs-dependencies /data/${ROOT_FS} ${ROOT_FS}
 RUN echo "${ROOT_FS_SHA} *./${ROOT_FS}" | sha1sum -c --strict - && \
     cd /Linux_for_Tegra/rootfs && \
     tar -xp --overwrite -f /${ROOT_FS} && \
-    rm /${ROOT_FS} && \
-    cd .. && \
-    ./apply_binaries.sh
+    rm /${ROOT_FS}
+ 
+WORKDIR /Linux_for_Tegra
+
+ARG BSP
+ARG BSP_SHA
+
+# apply_binaries is handled in the install.sh
+COPY --from=bsp-dependencies /data/${BSP} ${BSP}
+RUN echo "${BSP_SHA} *./${BSP}" | sha1sum -c --strict - && \
+    tar -xzf ${BSP} && \
+    cd ./CTI-L4T && \
+    sudo ./install.sh
 
 WORKDIR /Linux_for_Tegra/rootfs
 

@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends qemu-user-stati
 ARG VERSION_ID
 FROM ubuntu:${VERSION_ID}
 
-# For chrooting
 COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
 RUN apt-get update && apt-get install -y \
