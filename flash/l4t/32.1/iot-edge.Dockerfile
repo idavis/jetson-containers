@@ -67,13 +67,16 @@ WORKDIR /Linux_for_Tegra/rootfs
 RUN cp /usr/bin/qemu-aarch64-static usr/bin/ 
 
 RUN echo "#!/bin/bash" >> configure-chroot.sh && \
-     echo "sudo mv etc/resolv.conf etc/resolv.conf.saved" >> configure-chroot.sh && \
-     echo "sudo cp /etc/resolv.conf etc" >> configure-chroot.sh && \
-     echo "mount --bind /dev/ dev/" >> configure-chroot.sh && \
-     echo "mount --bind /sys/ sys/" >> configure-chroot.sh && \
-     echo "mount --bind /proc/ proc/" >> configure-chroot.sh && \
-     chmod +x configure-chroot.sh
+    echo "cp /etc/resolv.conf etc/resolv.conf.host" >> configure-chroot.sh && \
+    echo "mount --bind /dev/ dev/" >> configure-chroot.sh && \
+    echo "mount --bind /sys/ sys/" >> configure-chroot.sh && \
+    echo "mount --bind /proc/ proc/" >> configure-chroot.sh && \
+    chmod +x configure-chroot.sh
+
 RUN echo "#!/bin/bash" >> install-iot-edge.sh && \
+    echo "cp -P /etc/resolv.conf /etc/resolv.conf.saved" >> install-iot-edge.sh && \
+    echo "rm /etc/resolv.conf" >> install-iot-edge.sh && \
+    echo "cp /etc/resolv.conf.host /etc/resolv.conf" >> install-iot-edge.sh && \
     echo "apt update" >> install-iot-edge.sh && \
     echo "apt install ca-certificates gpg curl -y --no-install-recommends" >> install-iot-edge.sh && \
     echo "curl https://packages.microsoft.com/config/ubuntu/18.04/multiarch/prod.list > ./microsoft-prod.list" >> install-iot-edge.sh && \
@@ -85,13 +88,20 @@ RUN echo "#!/bin/bash" >> install-iot-edge.sh && \
     echo "apt-get install moby-engine -y --no-install-recommends" >> install-iot-edge.sh && \
     echo "apt-get install moby-cli -y --no-install-recommends" >> install-iot-edge.sh && \
     echo "apt-get install iotedge -y --no-install-recommends" >> install-iot-edge.sh && \
+    echo "apt-get install iotedge -y --no-install-recommends" >> install-iot-edge.sh && \
+    echo "rm /etc/resolv.conf" >> install-iot-edge.sh && \
+    echo "cp -P /etc/resolv.conf.saved /etc/resolv.conf" >> install-iot-edge.sh && \
+    echo "rm /etc/resolv.conf.saved" >> install-iot-edge.sh && \
+    echo "rm /etc/resolv.conf.host" >> install-iot-edge.sh && \
     echo "exit" >> install-iot-edge.sh && \
     chmod +x install-iot-edge.sh
+
 RUN echo "#!/bin/bash" >> cleanup-chroot.sh && \
     echo "umount ./proc" >> cleanup-chroot.sh && \
     echo "umount ./sys" >> cleanup-chroot.sh && \
     echo "umount ./dev" >> cleanup-chroot.sh && \
-    echo "mv etc/resolv.conf.saved etc/resolv.conf" >> cleanup-chroot.sh && \
+    echo "cp -P etc/resolv.conf.saved etc/resolv.conf" >> cleanup-chroot.sh && \
+    echo "rm etc/resolv.conf.saved" >> cleanup-chroot.sh && \
     echo "rm usr/bin/qemu-aarch64-static" >> cleanup-chroot.sh && \
     chmod +x cleanup-chroot.sh
 
