@@ -32,7 +32,7 @@ jetpack-4.2.1-image: 32.2-jax-jetpack-4.2.1-image 32.2-tx2-jetpack-4.2.1-image 3
 32.2-%-jetpack-4.2.1-image:
 	(DOCKER_BUILD_ROOT="$(CURDIR)/l4t/32.2" $(CURDIR)/build.sh ./conf/$@ $(REPO):$@)
 
-cti-32.1-v203-image: $(addsuffix -image,$(addprefix cti-32.1-v203-,rogue rogue-imx274-2cam mimic-image))
+cti-32.1-v203-image: $(addsuffix -image,$(addprefix cti-32.1-v203-,rogue rogue-imx274-2cam mimic-base))
 cti-32.1-v124-image: $(addsuffix -image,$(addprefix cti-32.1-v124-,\
 											astro-mpcie astro-mpcie-tx2i astro-usb3 astro-usb3-tx2i astro-revG+ astro-revG+-tx2i \
 											elroy-mpcie elroy-mpcie-tx2i elroy-usb3 elroy-usb3-tx2i elroy-revF+ elroy-refF+-tx2i \
@@ -40,9 +40,9 @@ cti-32.1-v124-image: $(addsuffix -image,$(addprefix cti-32.1-v124-,\
 											rosie rosie-tx2i \
 											rudi-mpcie rudi-mpcie-tx2i rudi-usb3 rudi-usb3-tx2i rudi rudi-tx2i \
 											sprocket \
-											spacely-image spacely-image-tx2i spacely-imx274-6cam spacely-imx274-6cam-tx2i spacely-imx274-3cam spacely-imx274-3cam-tx2i \
+											spacely-base spacely-base-tx2i spacely-imx274-6cam spacely-imx274-6cam-tx2i spacely-imx274-3cam spacely-imx274-3cam-tx2i \
 											cogswell cogswell-tx2i \
-											vpg003-image vpg003-image-tx2i \
+											vpg003-base vpg003-base-tx2i \
 						))
 
 cti-32.1-v125-image: $(addsuffix -image,$(addprefix cti-32.1-v125-,\
@@ -52,9 +52,9 @@ cti-32.1-v125-image: $(addsuffix -image,$(addprefix cti-32.1-v125-,\
 											rosie rosie-tx2i \
 											rudi-mpcie rudi-mpcie-tx2i rudi-usb3 rudi-usb3-tx2i rudi rudi-tx2i \
 											sprocket \
-											spacely-image spacely-image-tx2i spacely-imx274-6cam spacely-imx274-6cam-tx2i spacely-imx274-3cam spacely-imx274-3cam-tx2i \
+											spacely-base spacely-base-tx2i spacely-imx274-6cam spacely-imx274-6cam-tx2i spacely-imx274-3cam spacely-imx274-3cam-tx2i \
 											cogswell cogswell-tx2i \
-											vpg003-image vpg003-image-tx2i \
+											vpg003-base vpg003-base-tx2i \
 						))
 
 cti-32.1-v203-%:
