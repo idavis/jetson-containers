@@ -27,6 +27,12 @@ FROM ubuntu:${VERSION_ID}
 
 COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
+RUN apt-get update && apt-get install -y --allow-downgrades \
+    bzip2=1.0.6-8.1 libbz2-1.0=1.0.6-8.1 \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN apt-get update && apt-get install -y \
     apt-utils \
     bzip2 \
