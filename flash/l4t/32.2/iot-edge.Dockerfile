@@ -102,6 +102,9 @@ RUN echo "#!/bin/bash" >> entrypoint.sh && \
     echo "./configure-chroot.sh" >> entrypoint.sh && \
     echo "chroot . /bin/bash -c ./install-iot-edge.sh" >> entrypoint.sh && \
     echo "./cleanup-chroot.sh" >> entrypoint.sh && \
+    echo "rm configure-chroot.sh" >> entrypoint.sh && \
+    echo "rm install-iot-edge.sh" >> entrypoint.sh && \
+    echo "rm cleanup-chroot.sh" >> entrypoint.sh && \
     echo "cd /Linux_for_Tegra" >> entrypoint.sh && \
     echo "[ -f /conf/config.yaml ] && sudo cp /conf/config.yaml /Linux_for_Tegra/rootfs/etc/iotedge/config.yaml" >> entrypoint.sh && \
     echo "echo \"sudo ./flash.sh \$* ${TARGET_BOARD} ${ROOT_DEVICE}\"" >> entrypoint.sh && \
