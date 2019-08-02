@@ -42,6 +42,9 @@ cti-%:
 image-%:
 	make -C $(CURDIR)/flash $*-image
 
+rootfs-%:
+	make -C $(CURDIR)/flash/rootfs $*-rootfs
+
 # Dependencies
 
 deps-%:
