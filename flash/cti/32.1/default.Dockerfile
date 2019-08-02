@@ -1,7 +1,13 @@
 ARG VERSION_ID
 ARG DEPENDENCIES_IMAGE
+ARG FS_DEPENDENCIES_IMAGE
 ARG BSP_DEPENDENCIES_IMAGE
 FROM ${DEPENDENCIES_IMAGE} as dependencies
+
+ARG VERSION_ID
+ARG FS_DEPENDENCIES_IMAGE
+ARG BSP_DEPENDENCIES_IMAGE
+FROM ${FS_DEPENDENCIES_IMAGE} as fs-dependencies
 
 ARG VERSION_ID
 ARG BSP_DEPENDENCIES_IMAGE
@@ -51,7 +57,7 @@ RUN echo "${DRIVER_PACK_SHA} *./${DRIVER_PACK}" | sha1sum -c --strict - && \
 ARG ROOT_FS
 ARG ROOT_FS_SHA
 
-COPY --from=dependencies /data/${ROOT_FS} ${ROOT_FS}
+COPY --from=fs-dependencies /data/${ROOT_FS} ${ROOT_FS}
 RUN echo "${ROOT_FS_SHA} *./${ROOT_FS}" | sha1sum -c --strict - && \
     cd /Linux_for_Tegra/rootfs && \
     tar -xp --overwrite -f /${ROOT_FS} && \

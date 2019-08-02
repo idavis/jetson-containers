@@ -16,6 +16,8 @@ export VERSION_ID ?= bionic-20190307
 # DOCKER_BUILD_ARGS ?= ""
 export DOCKER_CONTEXT ?= .
 
+export DOCKERFILE_PREFIX ?= default
+
 .PHONY: all
 
 all: jetpack-image
@@ -67,15 +69,3 @@ cti-32.1-v124-%:
 cti-32.1-v125-%:
 	# $(subst +,plus,$(REPO):$@) replaces '+' with 'plus' in the docker tag
 	(DOCKER_BUILD_ROOT="$(CURDIR)/cti/32.1" TARGET_BOARD=$* $(CURDIR)/build.sh $(CURDIR)/cti/32.1/rootfs/tegra-linux-sample-32.1.0-tx2.conf $(CURDIR)/cti/32.1/bsp/v125.conf $(subst +,plus,$(REPO):$@))
-
-
-# These have to be constantly updated or cached off.
-# Get the ubuntu-18.04-server-cloudimg-arm64-root.tar.xz from https://cloud-images.ubuntu.com/bionic/
-#bionic-server-20190402 : $(addprefix bionic-server-20190402-,32.2 32.1)
-
-#bionic-server-20190402-32.1: $(addprefix bionic-server-cloudimg-20190402-32.1-,jax tx2 nano-dev)
-
-#bionic-server-20190402-32.2: $(addprefix bionic-server-cloudimg-20190402-32.2-,jax tx2 tx2i tx2-4gb tx1 nano-dev nano)
-
-#bionic-server-cloudimg-20190402-%:	
-#	$(CURDIR)/build.sh $(CURDIR)/rootfs/bionic-server-cloudimg-20190402.conf $(CURDIR)/drivers/$*.conf $(REPO):$@

@@ -1,3 +1,4 @@
 source ./bsp/tx2i.conf
 source ./rootfs/tegra-linux-sample-32.2.0-tx2i.conf
 DEPENDENCIES_IMAGE="${DEPENDENCIES_IMAGE:=l4t:32.2-tx2i-jetpack-4.2.1-deps}"
+FS_DEPENDENCIES_IMAGE="${FS_DEPENDENCIES_IMAGE:=l4t:32.2-tx2i-jetpack-4.2.1-deps}"
