@@ -11,7 +11,10 @@ export VERSION_ID ?= bionic-20190307
 
 #!make
 
-bases: $(addsuffix -rootfs,bionic-base-20190426 bionic-server-cloudimg-20190722.1)
+all-rootfs: $(addsuffix -rootfs,bionic-base-20190426 bionic-server-cloudimg-20190722.1)
 
-%-rootfs:
-	$(CURDIR)/build-rootfs.sh $(CURDIR)/$*.conf $(REPO):$@
+bionic-server-cloudimg-20190722.1-rootfs:
+	$(CURDIR)/build-rootfs.sh $(CURDIR)/$(subst -rootfs,,$@).conf $(REPO):$@
+
+bionic-base-20190426-rootfs:
+	$(CURDIR)/build-rootfs.sh $(CURDIR)/$(subst -rootfs,,$@).conf $(REPO):$@

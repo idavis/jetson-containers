@@ -194,6 +194,22 @@
                     "message": 2 
                 }
             }
+        },
+        {
+            "label": "make <rootfs>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "rootfs-${input:pickRootFS}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
         }
     ],
     "inputs": [
@@ -349,6 +365,16 @@
                 "32.1-tx2-jetpack-4.2",
                 "32.1-nano-dev-jetpack-4.2",
                 "32.1-jax-jetpack-4.2"
+            ]
+        },
+        {
+            "id": "pickRootFS",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "all",
+                "bionic-server-cloudimg-20190722.1",
+                "bionic-base-20190426"
             ]
         },
         {
