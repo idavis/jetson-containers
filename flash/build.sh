@@ -54,24 +54,29 @@ pushd "${DOCKER_BUILD_ROOT}"
         exit 9
     fi
 
+    if [ -z "$FS_DEPENDENCIES_IMAGE" ]; then
+        >&2 echo "The FS_DEPENDENCIES_IMAGE variable must be set."
+        exit 10
+    fi
+
     if [ -z "$ROOT_DEVICE" ]; then
         ROOT_DEVICE=mmcblk0p1
     fi
 
-    if [ -z "$DEVICE" ]; then
-        DEVICE=$(echo $TARGET_BOARD | awk -F"-" '{print $2}')
+    if [ -z "$DOCKERFILE_PREFIX" ]; then
+        DOCKERFILE_PREFIX="default"
     fi
 
     if [ -z "DOCKER_BUILD_ROOT" ]; then
         DOCKER_BUILD_ROOT="./"
     fi
 
-
     # Show what is going to be executed.
-    echo "${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DOCKER_BUILD_ROOT}/${DEVICE}.Dockerfile" -t "$DOCKER_TAG" \\"
+    echo "${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DOCKER_BUILD_ROOT}/${DOCKERFILE_PREFIX}.Dockerfile" -t "$DOCKER_TAG" \\"
     echo "    --build-arg DEPENDENCIES_IMAGE=$DEPENDENCIES_IMAGE \\"
     echo "    --build-arg DRIVER_PACK=$DRIVER_PACK \\"
     echo "    --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \\"
+    echo "    --build-arg FS_DEPENDENCIES_IMAGE=$FS_DEPENDENCIES_IMAGE \\"
     echo "    --build-arg ROOT_FS=$ROOT_FS \\"
     echo "    --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \\"
     echo "    --build-arg BSP_DEPENDENCIES_IMAGE=$BSP_DEPENDENCIES_IMAGE \\"
@@ -83,10 +88,11 @@ pushd "${DOCKER_BUILD_ROOT}"
     echo "    ."
 
 
-    ${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DEVICE}.Dockerfile" -t "$DOCKER_TAG" \
+    ${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DOCKERFILE_PREFIX}.Dockerfile" -t "$DOCKER_TAG" \
         --build-arg DEPENDENCIES_IMAGE=$DEPENDENCIES_IMAGE \
         --build-arg DRIVER_PACK=$DRIVER_PACK \
         --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \
+        --build-arg FS_DEPENDENCIES_IMAGE=$FS_DEPENDENCIES_IMAGE \
         --build-arg ROOT_FS=$ROOT_FS \
         --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \
         --build-arg BSP_DEPENDENCIES_IMAGE=$BSP_DEPENDENCIES_IMAGE \

@@ -1,6 +1,17 @@
 ARG VERSION_ID
 ARG DEPENDENCIES_IMAGE
+ARG FS_DEPENDENCIES_IMAGE
+ARG BSP_DEPENDENCIES_IMAGE
 FROM ${DEPENDENCIES_IMAGE} as dependencies
+
+ARG VERSION_ID
+ARG FS_DEPENDENCIES_IMAGE
+ARG BSP_DEPENDENCIES_IMAGE
+FROM ${FS_DEPENDENCIES_IMAGE} as fs-dependencies
+
+ARG VERSION_ID
+ARG BSP_DEPENDENCIES_IMAGE
+FROM ${BSP_DEPENDENCIES_IMAGE} as bsp-dependencies
 
 
 ARG VERSION_ID
@@ -15,8 +26,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends qemu-user-stati
 ARG VERSION_ID
 FROM ubuntu:${VERSION_ID}
 
-# pre-req qemu binary for aarch64 emulation if this container image is built directly on x86 host
 COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
+
+RUN apt-get update && apt-get install -y --allow-downgrades  \
+    bzip2=1.0.6-8.1 libbz2-1.0=1.0.6-8.1 \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y \
     apt-utils \
@@ -42,25 +58,27 @@ RUN echo "${DRIVER_PACK_SHA} *./${DRIVER_PACK}" | sha1sum -c --strict - && \
     tar -xp --overwrite -f ./${DRIVER_PACK} && \
     rm /${DRIVER_PACK}
 
+
 ARG ROOT_FS
 ARG ROOT_FS_SHA
 
-COPY --from=dependencies /data/${ROOT_FS} ${ROOT_FS}
+COPY --from=fs-dependencies /data/${ROOT_FS} ${ROOT_FS}
 RUN echo "${ROOT_FS_SHA} *./${ROOT_FS}" | sha1sum -c --strict - && \
     cd /Linux_for_Tegra/rootfs && \
     tar -xp --overwrite -f /${ROOT_FS} && \
-    rm /${ROOT_FS} && \
-    cd .. && \
-    ./apply_binaries.sh
+    rm /${ROOT_FS}
+ 
+WORKDIR /Linux_for_Tegra
 
-WORKDIR /Linux_for_Tegra/rootfs
+ARG BSP
+ARG BSP_SHA
 
-RUN cp /usr/bin/qemu-aarch64-static usr/bin/ 
-
-# Do any custom work with chroot
-#RUN chroot . <command>
-
-RUN rm usr/bin/qemu-aarch64-static
+# apply_binaries is handled in the install.sh
+COPY --from=bsp-dependencies /data/${BSP} ${BSP}
+RUN echo "${BSP_SHA} *./${BSP}" | sha1sum -c --strict - && \
+    tar -xzf ${BSP} && \
+    cd ./CTI-L4T && \
+    sudo ./install.sh
 
 WORKDIR /Linux_for_Tegra
 
