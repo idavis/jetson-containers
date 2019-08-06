@@ -1,3 +1,5 @@
 .env
 *.cid
 dist/
+*.deb
+*.tbz2
