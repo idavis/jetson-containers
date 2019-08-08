@@ -47,6 +47,9 @@ image-%:
 rootfs-%:
 	make -C $(CURDIR)/flash/rootfs $*-rootfs
 
+from-file-rootfs-%:
+	make -C $(CURDIR)/flash/rootfs $*-from-file-rootfs
+
 # Dependencies
 
 deps-%:

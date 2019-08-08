@@ -100,7 +100,7 @@
             }
         },
         {
-            "label": "make <jetpack depependencies from folder>",
+            "label": "make <jetpack dependencies from folder>",
             "type": "shell",
             "group": "build",
             "command": "make",
@@ -202,6 +202,22 @@
             "command": "make",
             "args": [
                 "rootfs-${input:pickRootFS}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <rootfs from file>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "from-file-rootfs-${input:pickRootFsFile}"
             ],
             "problemMatcher":{
                 "pattern":{
@@ -376,6 +392,11 @@
                 "bionic-server-cloudimg-20190722.1",
                 "bionic-base-20190426"
             ]
+        },
+        {
+            "id": "pickRootFsFile",
+            "type": "promptString",
+            "description": "What is the name you want to use for the container image?"
         },
         {
             "id": "pickCtiDependencyBuilds",

@@ -88,7 +88,6 @@ RUN echo "#!/bin/bash" >> install-iot-edge.sh && \
     echo "apt-get install moby-engine -y --no-install-recommends" >> install-iot-edge.sh && \
     echo "apt-get install moby-cli -y --no-install-recommends" >> install-iot-edge.sh && \
     echo "apt-get install iotedge -y --no-install-recommends" >> install-iot-edge.sh && \
-    echo "apt-get install iotedge -y --no-install-recommends" >> install-iot-edge.sh && \
     echo "rm /etc/resolv.conf" >> install-iot-edge.sh && \
     echo "cp -P /etc/resolv.conf.saved /etc/resolv.conf" >> install-iot-edge.sh && \
     echo "rm /etc/resolv.conf.saved" >> install-iot-edge.sh && \

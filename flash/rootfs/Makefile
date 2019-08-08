@@ -18,3 +18,6 @@ bionic-server-cloudimg-20190722.1-rootfs:
 
 bionic-base-20190426-rootfs:
 	$(CURDIR)/build-rootfs.sh $(CURDIR)/$(subst -rootfs,,$@).conf $(REPO):$@
+
+%-from-file-rootfs:
+	ROOT_FS_ARCHIVE=$(ROOT_FS_ARCHIVE) $(CURDIR)/build-rootfs-from-file.sh $(REPO):$*-rootfs
