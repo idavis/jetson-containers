@@ -139,6 +139,14 @@ build-%-deepstream-4.0-release:
 					-f $(CURDIR)/docker/examples/deepstream/$*.Dockerfile \
 					$(DOCKER_CONTEXT)
 
+build-%-tensorflow-zoo:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					-t $(REPO):$*-tensorflow-zoo \
+					-f $(CURDIR)/docker/examples/tensorflow/zoo/Dockerfile \
+					$(CURDIR)/docker/examples/tensorflow/zoo/
+
 # Libraries
 
 opencv-4.0.1-%:

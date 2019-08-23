@@ -1,0 +1,6 @@
+Cython
+contextlib2
+lxml
+numpy
+matplotlib
+Pillow
