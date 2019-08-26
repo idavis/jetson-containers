@@ -55,7 +55,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ARG TF_MODELS_VERSION=master
 RUN git clone --depth 1 https://github.com/tensorflow/models.git -b ${TF_MODELS_VERSION}
 
-WORKDIR models/research
+WORKDIR /models/research
 
 # Compile the Protos
 
@@ -84,19 +84,7 @@ RUN python3 -m pip install object_detection-0.1-py3-none-any.whl && \
     rm object_detection-0.1-py3-none-any.whl && \
     rm slim-0.1-py3-none-any.whl
 
-RUN mkdir app
-WORKDIR /app
-
-# We just really need the data folder from the repo, but this is faster at the moment.
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-ARG TF_MODELS_VERSION=master
-RUN git clone --depth 1 https://github.com/tensorflow/models.git -b ${TF_MODELS_VERSION}
+COPY --from=objectdetection-builder /models/research/object_detection/data /data
 
 # App dependencies
 
@@ -125,16 +113,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 FROM app-base
 
-WORKDIR /app/models/research/object_detection
+RUN mkdir app
+WORKDIR /app
 
 COPY requirements.txt ./
 
 RUN python3 -m pip install --user -r requirements.txt
-
-RUN mkdir app
-WORKDIR /app
-
-WORKDIR /app/models/research/object_detection
 
 COPY app.py ./
 
