@@ -17,10 +17,6 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast astor termcolor
-# should be a noop because of python3-h5py above
-RUN python3 -m pip install -U h5py==2.7.1
-
-#RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
 
 # Install TensorFlow
 
@@ -38,17 +34,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     protobuf-compiler \
     && \
     rm -rf /var/lib/apt/lists/*
-
-# Install Protobuf Compiler
-
-# ARG PROTOBUF_VERSION=3.5.1
-# RUN wget --no-check-certificate https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-aarch_64.zip \
-#     && unzip protoc-*.zip -d protoc_tmp \
-#     && chmod +x protoc_tmp/bin/protoc \
-#     && mv protoc_tmp/bin/* /usr/local/bin/ \
-#     && mv protoc_tmp/include/* /usr/local/include/ \
-#     && rm -r protoc_tmp \
-#     && rm protoc-*.zip
 
 # Clone the TensorFlow Models Repository
 # the release branches usually don't contain the research folder, so we have to use master.
@@ -126,3 +111,10 @@ COPY app.py ./
 #USER moduleuser
 
 #ENTRYPOINT [ "python3", "-u", "./main.py" ]
+
+RUN echo "#!/bin/bash" >> entrypoint.sh && \
+    echo "echo \"sudo ./flash.sh \$* ${TARGET_BOARD} ${ROOT_DEVICE}\"" >> entrypoint.sh && \
+    echo "python3 app.py --video \$*" >> entrypoint.sh && \
+    chmod +x entrypoint.sh
+
+ENTRYPOINT ["sh", "-c", "sudo ./entrypoint.sh $*", "--"]

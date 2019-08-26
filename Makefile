@@ -139,12 +139,21 @@ build-%-deepstream-4.0-release:
 					-f $(CURDIR)/docker/examples/deepstream/$*.Dockerfile \
 					$(DOCKER_CONTEXT)
 
-build-%-tensorflow-zoo:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+build-%-tensorflow-zoo-devel:
+	$(DOCKER) build --squash \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg TAG=$* \
 					-t $(REPO):$*-tensorflow-zoo \
 					-f $(CURDIR)/docker/examples/tensorflow/zoo/Dockerfile \
+					$(CURDIR)/docker/examples/tensorflow/zoo/
+
+build-%-tensorflow-zoo-release:
+	$(DOCKER) build --squash \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
+					-t $(REPO):$*-tensorflow-zoo-release \
+					-f $(CURDIR)/docker/examples/tensorflow/zoo/$*.Dockerfile \
 					$(CURDIR)/docker/examples/tensorflow/zoo/
 
 # Libraries
