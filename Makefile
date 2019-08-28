@@ -143,7 +143,7 @@ build-%-tensorflow-zoo-devel:
 	$(DOCKER) build --squash \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg TAG=$* \
-					-t $(REPO):$*-tensorflow-zoo \
+					-t $(REPO):$*-tensorflow-zoo-devel \
 					-f $(CURDIR)/docker/examples/tensorflow/zoo/Dockerfile \
 					$(CURDIR)/docker/examples/tensorflow/zoo/
 
