@@ -156,6 +156,15 @@ build-%-tensorflow-zoo-release:
 					-f $(CURDIR)/docker/examples/tensorflow/zoo/$*.Dockerfile \
 					$(CURDIR)/docker/examples/tensorflow/zoo/
 
+build-%-tensorflow-zoo-min:
+	$(DOCKER) build --squash \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
+					-t $(REPO):$*-tensorflow-zoo-min \
+					-f $(CURDIR)/docker/examples/tensorflow/zoo/$*-min.Dockerfile \
+					$(CURDIR)/docker/examples/tensorflow/zoo/
+
 # Libraries
 
 opencv-4.0.1-%:
