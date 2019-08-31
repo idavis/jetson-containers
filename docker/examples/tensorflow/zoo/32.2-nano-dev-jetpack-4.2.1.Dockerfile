@@ -259,8 +259,8 @@ COPY app.py ./
 #ENTRYPOINT [ "python3", "-u", "./main.py" ]
 
 RUN echo "#!/bin/bash" >> entrypoint.sh && \
-    echo "python3 app.py --video \$*" >> entrypoint.sh && \
+    echo "python3 app.py \$*" >> entrypoint.sh && \
     chmod +x entrypoint.sh
 
-ENTRYPOINT ["sh", "-c", "python3 app.py $*", "--"]
+ENTRYPOINT ["sh", "-c", "./entrypoint.sh $*", "--"]
 
