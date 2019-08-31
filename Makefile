@@ -147,13 +147,13 @@ build-%-tensorflow-zoo-devel:
 					-f $(CURDIR)/docker/examples/tensorflow/zoo/Dockerfile \
 					$(CURDIR)/docker/examples/tensorflow/zoo/
 
-build-%-tensorflow-zoo-release:
+build-%-tensorflow-zoo-min-full:
 	$(DOCKER) build --squash \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg TAG=$* \
 					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
-					-t $(REPO):$*-tensorflow-zoo-release \
-					-f $(CURDIR)/docker/examples/tensorflow/zoo/$*.Dockerfile \
+					-t $(REPO):$*-tensorflow-zoo-min-full \
+					-f $(CURDIR)/docker/examples/tensorflow/zoo/$*-min-full.Dockerfile \
 					$(CURDIR)/docker/examples/tensorflow/zoo/
 
 build-%-tensorflow-zoo-min:
