@@ -1,0 +1,5 @@
+Cython
+contextlib2
+numpy
+matplotlib
+Pillow

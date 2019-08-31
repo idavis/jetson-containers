@@ -3,7 +3,7 @@ ARG TAG
 FROM ${IMAGE_NAME}:${TAG}-devel as builder
 
 WORKDIR /usr/local/cuda-10.0/samples
-RUN make -j$($(nproc) - 1)
+RUN make -j4
 
 ARG IMAGE_NAME
 ARG TAG
