@@ -19,7 +19,6 @@ export XENIAL_VERSION_ID ?= xenial-20190610
 
 # Allow additional options such as --squash
 # DOCKER_BUILD_ARGS ?= ""
-export DOCKER_CONTEXT ?= .
 
 export SDKM_DOWNLOADS ?= invalid
 
@@ -84,7 +83,7 @@ build-%-samples:
 					--build-arg TAG=$* \
 					-t $(REPO):$*-samples \
 					-f $(CURDIR)/docker/examples/samples/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 run-%-samples:
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
@@ -105,7 +104,7 @@ build-%-tf_to_trt_image_classification:
 					--build-arg TAG=$* \
 					-t $(REPO):$*-tf_to_trt_image_classification \
 					-f $(CURDIR)/docker/tf_to_trt_image_classification/samples/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 run-%-tf_to_trt_image_classification:
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
@@ -128,7 +127,7 @@ build-%-deepstream-4.0-devel:
 					--build-arg TAG=$* \
 					-t $(REPO):$*-deepstream-4.0 \
 					-f $(CURDIR)/docker/examples/deepstream/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 build-%-deepstream-4.0-release:
 	$(DOCKER) build --squash \
@@ -137,7 +136,7 @@ build-%-deepstream-4.0-release:
 					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
 					-t $(REPO):$*-deepstream-4.0-release \
 					-f $(CURDIR)/docker/examples/deepstream/$*.Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 build-%-tensorflow-zoo-devel:
 	$(DOCKER) build --squash \

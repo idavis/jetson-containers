@@ -14,7 +14,6 @@ export VERSION_ID ?= bionic-20190307
 
 # Allow additional options such as --squash
 # DOCKER_BUILD_ARGS ?= ""
-export DOCKER_CONTEXT ?= .
 
 .PHONY: all
 

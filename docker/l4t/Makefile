@@ -15,7 +15,7 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-jax-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/jax/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -23,7 +23,7 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/tx2/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2i:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -31,7 +31,7 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2i-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/tx2i/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2-4gb:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -39,7 +39,7 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-4gb-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/tx2-4gb/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx1:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -47,7 +47,7 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx1-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/tx1/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-nano:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -55,7 +55,7 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/nano/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-nano-dev:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -63,7 +63,7 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-dev-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2/nano-dev/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1: $(addprefix 32.1-,jax tx2 jax-tx2 nano-dev)
 
@@ -73,7 +73,7 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-jax-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.1/jax-tx2/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-tx2:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -81,7 +81,7 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-tx2-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.1/jax-tx2/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-jax-tx2: 32.1-jax 32.1-tx2
 
@@ -91,4 +91,4 @@ all: 32.2 32.1
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-nano-dev-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.1/nano-dev/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
