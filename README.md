@@ -39,7 +39,6 @@ The `Makefile` scripts will import a `.env` file (for an example look at the `.e
 - `DOCKER_HOST` - Setting the `DOCKER_HOST` variable will proxy builds to another machine such as a Jetson device. This allows running the `make` scripts from an `x86_x64` host. This feature was added in November 2018. When using this feature, it is helpful to add your public key to the device's `~/.ssh/authorized_keys` file. This will prevent credential checks on every build.
 - `DOCKER_BUILD_ARGS` - Allows adding arguments such as volume mounting or cleanup (`-rm/--squash`) during build operations.
 - `DOCKER_RUN_ARGS` -  Allows adding arguments such as environment variables, mounts, network configuration, etc when running images. Can also be used to configure X11 forwarding.
-- `DOCKER_CONTEXT` - Defaults to `.` but can be overridden in some circumstances for testing.
 
 ### Docker
 

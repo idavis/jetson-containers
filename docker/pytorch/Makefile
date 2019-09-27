@@ -32,7 +32,7 @@ build-%:
 					--build-arg TORCH_CUDA_ARCH_LIST="$(TORCH_CUDA_ARCH_LIST)" \
 					-t $(REPO):$* \
 					-f $(CURDIR)/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 	$(MKDIR) -p $(DIST_DIR)/$*
 	rm -f $*.cid

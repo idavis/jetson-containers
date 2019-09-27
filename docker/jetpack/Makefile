@@ -155,7 +155,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-jax-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/jax/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-jax-jetpack-4.2.1-runtime: 32.2-jax-jetpack-4.2.1-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -163,7 +163,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-jax-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/jax/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-jax-jetpack-4.2.1-devel: 32.2-jax-jetpack-4.2.1-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -171,7 +171,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-jax-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/jax/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2-jetpack-4.2.1-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -179,7 +179,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx2/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2-jetpack-4.2.1-runtime: 32.2-tx2-jetpack-4.2.1-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -187,7 +187,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx2/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2-jetpack-4.2.1-devel: 32.2-tx2-jetpack-4.2.1-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -195,7 +195,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx2/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2i-jetpack-4.2.1-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -203,7 +203,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2i-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx2i/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2i-jetpack-4.2.1-runtime: 32.2-tx2i-jetpack-4.2.1-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -211,7 +211,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2i-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx2i/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2i-jetpack-4.2.1-devel: 32.2-tx2i-jetpack-4.2.1-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -219,7 +219,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2i-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx2i/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2-4gb-jetpack-4.2.1-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -227,7 +227,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-4gb-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx2-4gb/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2-4gb-jetpack-4.2.1-runtime: 32.2-tx2-4gb-jetpack-4.2.1-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -235,7 +235,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-4gb-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx2-4gb/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx2-4gb-jetpack-4.2.1-devel: 32.2-tx2-4gb-jetpack-4.2.1-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -243,7 +243,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx2-4gb-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx2-4gb/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx1-jetpack-4.2.1-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -251,7 +251,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx1-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx1/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx1-jetpack-4.2.1-runtime: 32.2-tx1-jetpack-4.2.1-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -259,7 +259,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx1-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx1/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-tx1-jetpack-4.2.1-devel: 32.2-tx1-jetpack-4.2.1-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -267,7 +267,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-tx1-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/tx1/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-nano-jetpack-4.2.1-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -275,7 +275,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/nano/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-nano-jetpack-4.2.1-runtime: 32.2-nano-jetpack-4.2.1-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -283,7 +283,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/nano/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-nano-jetpack-4.2.1-devel: 32.2-nano-jetpack-4.2.1-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -291,7 +291,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/nano/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-nano-dev-jetpack-4.2.1-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -299,7 +299,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-dev-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/nano-dev/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-nano-dev-jetpack-4.2.1-runtime: 32.2-nano-dev-jetpack-4.2.1-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -307,7 +307,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-dev-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/nano-dev/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.2-nano-dev-jetpack-4.2.1-devel: 32.2-nano-dev-jetpack-4.2.1-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -315,7 +315,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2-nano-dev-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f 4.2.1/nano-dev/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-jax-jetpack-4.2-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -323,7 +323,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-jax-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/jax/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-jax-jetpack-4.2-runtime: 32.1-jax-jetpack-4.2-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -331,7 +331,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-jax-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/jax/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-jax-jetpack-4.2-devel: 32.1-jax-jetpack-4.2-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -339,7 +339,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-jax-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/jax/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-nano-dev-jetpack-4.2: $(addprefix 32.1-nano-dev-jetpack-4.2-,base devel runtime)
 
@@ -349,7 +349,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-nano-dev-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/nano-dev/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-nano-dev-jetpack-4.2-runtime: 32.1-nano-dev-jetpack-4.2-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -357,14 +357,14 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-nano-dev-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/nano-dev/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-nano-dev-jetpack-4.2-devel: 32.1-nano-dev-jetpack-4.2-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-nano-dev-jetpack-4.2-deps \
 					-t $(REPO):$@ -f 4.2/nano-dev/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-tx2-jetpack-4.2: $(addprefix 32.1-tx2-jetpack-4.2-,base devel runtime)
 
@@ -374,7 +374,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-tx2-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/tx2/base/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-tx2-jetpack-4.2-runtime: 32.1-tx2-jetpack-4.2-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -382,7 +382,7 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-tx2-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/tx2/runtime/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.
 
 32.1-tx2-jetpack-4.2-devel: 32.1-tx2-jetpack-4.2-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
@@ -390,4 +390,4 @@ all: 32.2-jetpack-4.2.1 32.1-jetpack-4.2
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-tx2-jetpack-4.2-deps \
 					-t $(REPO):$@ \
 					-f 4.2/tx2/devel/Dockerfile \
-					$(DOCKER_CONTEXT)
+					.

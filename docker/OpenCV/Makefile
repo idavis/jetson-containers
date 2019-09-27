@@ -35,7 +35,7 @@ build-%:
 					--build-arg CUDA_ARCH_BIN="$(CUDA_ARCH_BIN)" \
 					-t $(REPO):$* \
 					-f $(CURDIR)/$(DOCKERFILE) \
-					$(DOCKER_CONTEXT)
+					.
 
 	$(MKDIR) -p $(DIST_DIR)/$*
 	rm -f $*.cid
