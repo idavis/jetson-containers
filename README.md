@@ -246,16 +246,6 @@ Note that these are only used on build machines.
 
 | Repository | Driver | Size |
 |---|---|---|
-| l4t | 32.1-jax | 479MB |
-| l4t | 32.1-nano-dev | 469MB |
-| l4t | 32.1-tx2 | 479MB |
-| l4t | 32.2-jax | 470MB |
-| l4t | 32.2-tx2 | 470MB |
-| l4t | 32.2-tx2i | 470MB |
-| l4t | 32.2-tx2-4gb | 470MB |
-| l4t | 32.2-tx1 | 460MB |
-| l4t | 32.2-nano-dev | 460MB |
-| l4t | 32.2-nano | 460MB |
 | l4t | 32.2.1-jax | 465MB |
 | l4t | 32.2.1-jax-8gb | 465MB |
 | l4t | 32.2.1-tx2 | 465MB |
@@ -264,6 +254,16 @@ Note that these are only used on build machines.
 | l4t | 32.2.1-tx1 | 454MB |
 | l4t | 32.2.1-nano-dev | 454MB |
 | l4t | 32.2.1-nano | 454MB |
+| l4t | 32.2-jax | 470MB |
+| l4t | 32.2-tx2 | 470MB |
+| l4t | 32.2-tx2i | 470MB |
+| l4t | 32.2-tx2-4gb | 470MB |
+| l4t | 32.2-tx1 | 460MB |
+| l4t | 32.2-nano-dev | 460MB |
+| l4t | 32.2-nano | 460MB |
+| l4t | 32.1-jax | 479MB |
+| l4t | 32.1-nano-dev | 469MB |
+| l4t | 32.1-tx2 | 479MB |
 
 #### JetPack 4.2.2
 
