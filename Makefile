@@ -135,7 +135,7 @@ build-%-deepstream-4.0-devel:
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg TAG=$* \
 					-t $(REPO):$*-deepstream-4.0 \
-					-f $(CURDIR)/docker/examples/deepstream/Dockerfile \
+					-f $(CURDIR)/docker/examples/deepstream/4.0/Dockerfile \
 					.
 
 build-%-deepstream-4.0-release:
@@ -144,7 +144,24 @@ build-%-deepstream-4.0-release:
 					--build-arg TAG=$* \
 					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
 					-t $(REPO):$*-deepstream-4.0-release \
-					-f $(CURDIR)/docker/examples/deepstream/$*.Dockerfile \
+					-f $(CURDIR)/docker/examples/deepstream/4.0/$*.Dockerfile \
+					.
+
+build-%-deepstream-4.0.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					-t $(REPO):$*-deepstream-4.0.1 \
+					-f $(CURDIR)/docker/examples/deepstream/4.0.1/Dockerfile \
+					.
+
+build-%-deepstream-4.0.1-release:
+	$(DOCKER) build --squash \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
+					-t $(REPO):$*-deepstream-4.0.1-release \
+					-f $(CURDIR)/docker/examples/deepstream/4.0.1/$*.Dockerfile \
 					.
 
 build-%-tensorflow-zoo-devel:

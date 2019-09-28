@@ -180,12 +180,44 @@
             }
         },
         {
+            "label": "make <deepstream 4.0.1 release>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "build-${input:pickDeepStream}-deepstream-4.0.1-release"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
             "label": "make <deepstream 4.0 devel>",
             "type": "shell",
             "group": "build",
             "command": "make",
             "args": [
                 "build-${input:pickDeepStream}-deepstream-4.0-devel"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <deepstream 4.0.1 devel>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "build-${input:pickDeepStream}-deepstream-4.0.1-devel"
             ],
             "problemMatcher":{
                 "pattern":{
