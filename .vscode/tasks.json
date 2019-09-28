@@ -169,7 +169,7 @@
             "group": "build",
             "command": "make",
             "args": [
-                "build-${input:pickDeepStream}-deepstream-4.0-release"
+                "build-${input:pickDeepStream40}-deepstream-4.0-release"
             ],
             "problemMatcher":{
                 "pattern":{
@@ -185,7 +185,7 @@
             "group": "build",
             "command": "make",
             "args": [
-                "build-${input:pickDeepStream}-deepstream-4.0.1-release"
+                "build-${input:pickDeepStream401}-deepstream-4.0.1-release"
             ],
             "problemMatcher":{
                 "pattern":{
@@ -201,7 +201,7 @@
             "group": "build",
             "command": "make",
             "args": [
-                "build-${input:pickDeepStream}-deepstream-4.0-devel"
+                "build-${input:pickDeepStream40}-deepstream-4.0-devel"
             ],
             "problemMatcher":{
                 "pattern":{
@@ -217,7 +217,7 @@
             "group": "build",
             "command": "make",
             "args": [
-                "build-${input:pickDeepStream}-deepstream-4.0.1-devel"
+                "build-${input:pickDeepStream401}-deepstream-4.0.1-devel"
             ],
             "problemMatcher":{
                 "pattern":{
@@ -437,7 +437,7 @@
             ]
         },
         {
-            "id": "pickDeepStream",
+            "id": "pickDeepStream40",
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
@@ -447,7 +447,22 @@
                 "32.2-tx2-4gb-jetpack-4.2.1",
                 "32.2-tx1-jetpack-4.2.1",
                 "32.2-nano-jetpack-4.2.1",
-                "32.2-nano-dev-jetpack-4.2.1",
+                "32.2-nano-dev-jetpack-4.2.1"
+            ]
+        },
+        {
+            "id": "pickDeepStream401",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.1-jax-jetpack-4.2.2",
+                "32.2.1-jax-8gb-jetpack-4.2.2",
+                "32.2.1-tx2-jetpack-4.2.2",
+                "32.2.1-tx2i-jetpack-4.2.2",
+                "32.2.1-tx2-4gb-jetpack-4.2.2",
+                "32.2.1-tx1-jetpack-4.2.2",
+                "32.2.1-nano-jetpack-4.2.2",
+                "32.2.1-nano-dev-jetpack-4.2.2"
             ]
         },
         {
