@@ -7,7 +7,7 @@ export REPO ?= l4t
 export IMAGE_NAME ?= $(REPO)
 
 # Used for creating the flashing container.
-export VERSION_ID ?= bionic-20190307
+export VERSION_ID ?= bionic-20190912.1
 
 #!make
 

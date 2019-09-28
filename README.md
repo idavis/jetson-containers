@@ -207,8 +207,11 @@ If you want to use a different dependency image for the BSP, set `BSP_DEPENDENCI
 
 | Repository | Tag | Size |
 |---|---|---|
+| arm64v8/ubuntu | bionic-20190912.1 | 57.7MB |
 | arm64v8/ubuntu | bionic-20190612 | 80.4MB |
+| arm64v8/ubuntu | xenial-20190904 | 110MB |
 | arm64v8/ubuntu | xenial-20190610 | 108MB |
+
 
 ### Jetson
 
@@ -218,25 +221,39 @@ Note that these are only used on build machines.
 
 | Repository | Driver | Size |
 |---|---|---|
-| l4t | host-jetpack-4.2.1-deps | 2.6GB |
-| l4t | jax-jetpack-4.2.1-deps | 3.48GB |
-| l4t | tx2-jetpack-4.2.1-deps | 3.48GB |
-| l4t | tx2i-jetpack-4.2.1-deps | 3.48GB |
-| l4t | tx2-4gb-jetpack-4.2.1-deps | 3.48GB |
-| l4t | tx1-jetpack-4.2.1-deps | 3.55GB |
-| l4t | nano-dev-jetpack-4.2.1-deps | 3.55GB |
-| l4t | nano-jetpack-4.2.1-deps | 3.55GB |
-| l4t | jax-jetpack-4.2-deps | 3.30GB |
-| l4t | tx2-jetpack-4.2-deps | 3.30GB |
-| l4t | nano-dev-jetpack-4.2-deps | 3.29GB |
+| l4t | 32.2.1-host-jetpack-4.2.2-deps | 2.6GB |
+| l4t | 32.2.1-jax-jetpack-4.2.2-deps | 3.49GB |
+| l4t | 32.2.1-jax-8gb-jetpack-4.2.2-deps | 3.49GB |
+| l4t | 32.2.1-tx2-jetpack-4.2.2-deps | 3.49GB |
+| l4t | 32.2.1-tx2i-jetpack-4.2.2-deps | 3.49GB |
+| l4t | 32.2.1-tx2-4gb-jetpack-4.2.2-deps | 3.49GB |
+| l4t | 32.2.1-tx1-jetpack-4.2.2-deps | 3.56GB |
+| l4t | 32.2.1-nano-dev-jetpack-4.2.2-deps | 3.56GB |
+| l4t | 32.2.1-nano-jetpack-4.2.2-deps | 3.56GB |
+| l4t | 32.2-host-jetpack-4.2.2-deps | 2.58GB |
+| l4t | 32.2-jax-jetpack-4.2.1-deps | 3.48GB |
+| l4t | 32.2-tx2-jetpack-4.2.1-deps | 3.48GB |
+| l4t | 32.2-tx2i-jetpack-4.2.1-deps | 3.48GB |
+| l4t | 32.2-tx2-4gb-jetpack-4.2.1-deps | 3.48GB |
+| l4t | 32.2-tx1-jetpack-4.2.1-deps | 3.55GB |
+| l4t | 32.2-nano-dev-jetpack-4.2.1-deps | 3.55GB |
+| l4t | 32.2-nano-jetpack-4.2.1-deps | 3.55GB |
+| l4t | 32.1-jax-jetpack-4.2-deps | 3.30GB |
+| l4t | 32.1-tx2-jetpack-4.2-deps | 3.30GB |
+| l4t | 32.1-nano-dev-jetpack-4.2-deps | 3.29GB |
 
 #### Driver packs:
 
 | Repository | Driver | Size |
 |---|---|---|
-| l4t | 32.1-jax | 479MB |
-| l4t | 32.1-nano-dev | 469MB |
-| l4t | 32.1-tx2 | 479MB |
+| l4t | 32.2.1-jax | 465MB |
+| l4t | 32.2.1-jax-8gb | 465MB |
+| l4t | 32.2.1-tx2 | 465MB |
+| l4t | 32.2.1-tx2i | 465MB |
+| l4t | 32.2.1-tx2-4gb | 465MB |
+| l4t | 32.2.1-tx1 | 454MB |
+| l4t | 32.2.1-nano-dev | 454MB |
+| l4t | 32.2.1-nano | 454MB |
 | l4t | 32.2-jax | 470MB |
 | l4t | 32.2-tx2 | 470MB |
 | l4t | 32.2-tx2i | 470MB |
@@ -244,6 +261,38 @@ Note that these are only used on build machines.
 | l4t | 32.2-tx1 | 460MB |
 | l4t | 32.2-nano-dev | 460MB |
 | l4t | 32.2-nano | 460MB |
+| l4t | 32.1-jax | 479MB |
+| l4t | 32.1-nano-dev | 469MB |
+| l4t | 32.1-tx2 | 479MB |
+
+#### JetPack 4.2.2
+
+| Repository | Tag | Size |
+|---|---|---|
+| l4t | 32.2.1-jax-jetpack-4.2.2-base | 475MB |
+| l4t | 32.2.1-jax-jetpack-4.2.2-runtime | 1.23GB |
+| l4t | 32.2.1-jax-jetpack-4.2.2-devel | 5.78GB |
+| l4t | 32.2.1-jax-8gb-jetpack-4.2.2-base | 475MB |
+| l4t | 32.2.1-jax-8gb-jetpack-4.2.2-runtime | 1.23GB |
+| l4t | 32.2.1-jax-8gb-jetpack-4.2.2-devel | 5.78GB |
+| l4t | 32.2.1-tx2-jetpack-4.2.2-base | 475MB |
+| l4t | 32.2.1-tx2-jetpack-4.2.2-runtime | 1.23GB |
+| l4t | 32.2.1-tx2-jetpack-4.2.2-devel | 5.78GB |
+| l4t | 32.2.1-tx2i-jetpack-4.2.2-base | 475MB |
+| l4t | 32.2.1-tx2i-jetpack-4.2.2-runtime | 1.23GB |
+| l4t | 32.2.1-tx2i-jetpack-4.2.2-devel | 5.78GB |
+| l4t | 32.2.1-tx2-4gb-jetpack-4.2.2-base | 475MB |
+| l4t | 32.2.1-tx2-4gb-jetpack-4.2.2-runtime | 1.23GB |
+| l4t | 32.2.1-tx2-4gb-jetpack-4.2.2-devel | 5.78GB |
+| l4t | 32.2.1-tx1-jetpack-4.2.2-base | 464MB |
+| l4t | 32.2.1-tx1-jetpack-4.2.2-runtime | 1.22GB |
+| l4t | 32.2.1-tx1-jetpack-4.2.2-devel | 5.77GB |
+| l4t | 32.2.1-nano-jetpack-4.2.2-base | 464MB |
+| l4t | 32.2.1-nano-jetpack-4.2.2-runtime | 1.22GB |
+| l4t | 32.2.1-nano-jetpack-4.2.2-devel | 5.77GB |
+| l4t | 32.2.1-nano-dev-jetpack-4.2.2-base | 464MB |
+| l4t | 32.2.1-nano-dev-jetpack-4.2.2-runtime | 1.22GB |
+| l4t | 32.2.1-nano-dev-jetpack-4.2.2-devel | 5.77GB |
 
 #### JetPack 4.2.1
 
@@ -252,7 +301,6 @@ Note that these are only used on build machines.
 | l4t | 32.2-jax-jetpack-4.2.1-base | 480MB |
 | l4t | 32.2-jax-jetpack-4.2.1-runtime | 1.23GB |
 | l4t | 32.2-jax-jetpack-4.2.1-devel | 5.79GB |
-| l4t | 32.2-tx1-jetpack-4.2.1-base | 470MB |
 | l4t | 32.2-tx2-jetpack-4.2.1-base | 480MB |
 | l4t | 32.2-tx2-jetpack-4.2.1-runtime | 1.23GB |
 | l4t | 32.2-tx2-jetpack-4.2.1-devel | 5.79GB |
@@ -262,6 +310,7 @@ Note that these are only used on build machines.
 | l4t | 32.2-tx2-4gb-jetpack-4.2.1-base | 480MB |
 | l4t | 32.2-tx2-4gb-jetpack-4.2.1-runtime | 1.23GB |
 | l4t | 32.2-tx2-4gb-jetpack-4.2.1-devel | 5.79GB |
+| l4t | 32.2-tx1-jetpack-4.2.1-base | 470MB |
 | l4t | 32.2-tx1-jetpack-4.2.1-runtime | 1.22GB |
 | l4t | 32.2-tx1-jetpack-4.2.1-devel | 5.78GB |
 | l4t | 32.2-nano-jetpack-4.2.1-base | 470MB |

@@ -10,7 +10,7 @@ export REPO ?= l4t
 export IMAGE_NAME ?= $(REPO)
 
 # Used for creating the flashing container.
-export VERSION_ID ?= bionic-20190307
+export VERSION_ID ?= bionic-20190912.1
 
 # Allow additional options such as --squash
 # DOCKER_BUILD_ARGS ?= ""
@@ -23,13 +23,18 @@ jetpack-image: jetpack-4.2.1-image jetpack-4.2-image
 
 jetpack-4.2-image: 32.1-nano-dev-jetpack-4.2-image 32.1-tx2-jetpack-4.2-image 32.1-jax-jetpack-4.2-image
 
-jetpack-4.2.1-image: 32.2-jax-jetpack-4.2.1-image 32.2-tx2-jetpack-4.2.1-image 32.2-tx2i-jetpack-4.2.1-image 32.2-tx2-4gb-jetpack-4.2.1-image 32.2-tx1-jetpack-4.2.1-image 32.2-nano-dev-jetpack-4.2.1-image 32.2-nano-jetpack-4.2.1-image 
+jetpack-4.2.1-image: 32.2-jax-jetpack-4.2.1-image 32.2-tx2-jetpack-4.2.1-image 32.2-tx2i-jetpack-4.2.1-image 32.2-tx2-4gb-jetpack-4.2.1-image 32.2-tx1-jetpack-4.2.1-image 32.2-nano-dev-jetpack-4.2.1-image 32.2-nano-jetpack-4.2.1-image
+
+jetpack-4.2.2-image: 32.2.1-jax-jetpack-4.2.2-image 32.2.1-jax-8gb-jetpack-4.2.2-image 32.2.1-tx2-jetpack-4.2.2-image 32.2.1-tx2i-jetpack-4.2.2-image 32.2.1-tx2-4gb-jetpack-4.2.2-image 32.2.1-tx1-jetpack-4.2.2-image 32.2.1-nano-dev-jetpack-4.2.2-image 32.2.1-nano-jetpack-4.2.2-image
 
 32.1-%-jetpack-4.2-image:
 	(DOCKER_BUILD_ROOT="$(CURDIR)/l4t/32.1" $(CURDIR)/build.sh ./conf/$@ $(REPO):$@)
 
 32.2-%-jetpack-4.2.1-image:
 	(DOCKER_BUILD_ROOT="$(CURDIR)/l4t/32.2" $(CURDIR)/build.sh ./conf/$@ $(REPO):$@)
+
+32.2.1-%-jetpack-4.2.2-image:
+	(DOCKER_BUILD_ROOT="$(CURDIR)/l4t/32.2.1" $(CURDIR)/build.sh ./conf/$@ $(REPO):$@)
 
 cti-32.1-v203-image: $(addsuffix -image,$(addprefix cti-32.1-v203-,rogue rogue-imx274-2cam mimic-base))
 
@@ -69,7 +74,7 @@ cti-32.2-v126-image: $(addsuffix -image,$(addprefix cti-32.2-v126-,\
 											spacely-base spacely-base-tx2i spacely-imx274-6cam spacely-imx274-6cam-tx2i spacely-imx274-3cam spacely-imx274-3cam-tx2i \
 											cogswell cogswell-tx2i \
 											vpg003-base vpg003-base-tx2i \
-))
+						))
 
 cti-32.1-v203-%:
 	(DOCKER_BUILD_ROOT="$(CURDIR)/cti/32.1" TARGET_BOARD=$(subst -image,,$*) $(CURDIR)/build.sh $(CURDIR)/cti/32.1/rootfs/tegra-linux-sample-32.1.0-jax.conf $(CURDIR)/cti/32.1/bsp/v203.conf $(REPO):$@)

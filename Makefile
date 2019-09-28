@@ -14,8 +14,8 @@ export REPO ?= l4t
 export IMAGE_NAME ?= $(REPO)
 
 # Used in driver pack base
-export BIONIC_VERSION_ID ?= bionic-20190612
-export XENIAL_VERSION_ID ?= xenial-20190610
+export BIONIC_VERSION_ID ?= bionic-20190912.1
+export XENIAL_VERSION_ID ?= xenial-20190904
 
 # Allow additional options such as --squash
 # DOCKER_BUILD_ARGS ?= ""
@@ -28,7 +28,9 @@ export DOCKERFILE_PREFIX ?= default
 
 all: jetpack-deps driver-packs jetpacks
 
-driver-packs: $(addprefix driver-pack-,32.2 32.1)
+driver-packs: $(addprefix driver-pack-,32.2.1 32.2 32.1)
+
+driver-pack-32.2.1: $(addprefix l4t-32.2.1-,jax jax-8gb tx2 tx2i tx2-4gb tx1 nano nano-dev)
 
 driver-pack-32.2: $(addprefix l4t-32.2-,jax tx2 tx2i tx2-4gb tx1 nano nano-dev)
 
@@ -59,11 +61,18 @@ from-deps-folder-%:
 
 # JetPack
 
-jetpacks: $(addprefix jetpack-,4.2.1 4.2)
+jetpacks: $(addprefix jetpack-,4.2.2 4.2.1 4.2)
+
+jetpack-4.2.2: 32.2.1-jax-jetpack-4.2.2 32.2.1-jax-8gb-jetpack-4.2.2 32.2.1-tx2-jetpack-4.2.2 32.2.1-tx2i-jetpack-4.2.2 32.2.1-tx2-4gb-jetpack-4.2.2 32.2.1-tx1-jetpack-4.2.2 32.2.1-nano-jetpack-4.2.2 32.2.1-nano-dev-jetpack-4.2.2
 
 jetpack-4.2.1: 32.2-jax-jetpack-4.2.1 32.2-tx2-jetpack-4.2.1 32.2-tx2i-jetpack-4.2.1 32.2-tx2-4gb-jetpack-4.2.1 32.2-tx1-jetpack-4.2.1 32.2-nano-jetpack-4.2.1 32.2-nano-dev-jetpack-4.2.1
 
 jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-dev-jetpack-4.2
+
+# JetPack 4.2.2
+
+32.2.1-%:
+	make -C $(CURDIR)/docker/jetpack $@
 
 # JetPack 4.2.1
 
@@ -126,7 +135,7 @@ build-%-deepstream-4.0-devel:
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg TAG=$* \
 					-t $(REPO):$*-deepstream-4.0 \
-					-f $(CURDIR)/docker/examples/deepstream/Dockerfile \
+					-f $(CURDIR)/docker/examples/deepstream/4.0/Dockerfile \
 					.
 
 build-%-deepstream-4.0-release:
@@ -135,7 +144,24 @@ build-%-deepstream-4.0-release:
 					--build-arg TAG=$* \
 					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
 					-t $(REPO):$*-deepstream-4.0-release \
-					-f $(CURDIR)/docker/examples/deepstream/$*.Dockerfile \
+					-f $(CURDIR)/docker/examples/deepstream/4.0/$*.Dockerfile \
+					.
+
+build-%-deepstream-4.0.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					-t $(REPO):$*-deepstream-4.0.1 \
+					-f $(CURDIR)/docker/examples/deepstream/4.0.1/Dockerfile \
+					.
+
+build-%-deepstream-4.0.1-release:
+	$(DOCKER) build --squash \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg TAG=$* \
+					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
+					-t $(REPO):$*-deepstream-4.0.1-release \
+					-f $(CURDIR)/docker/examples/deepstream/4.0.1/$*.Dockerfile \
 					.
 
 build-%-tensorflow-zoo-devel:
