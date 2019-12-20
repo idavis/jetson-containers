@@ -1,0 +1,184 @@
+{
+    "information": {
+        "schemaUrl": "", 
+        "schemaVersion": "2.0", 
+        "fileVersion": "0.1", 
+        "release": {
+            "productCategory": "Jetson", 
+            "targetOS": "Linux", 
+            "releaseVersion": "4.3", 
+            "releaseEdition": "", 
+            "releaseRevision": 0, 
+            "serverType": [
+                "DEVZONE"
+            ]
+        }, 
+        "additionalSDKs": {
+            "id": "NV_JETPACK_ADDITIONAL_SDK_DEEPSTREAM", 
+            "title": "DeepStream", 
+            "description": "DeepStream SDK provides a complete streaming analytics toolkit for situational awareness through computer vision, intelligent video analytics (IVA) and multi-sensor processing.", 
+            "version": "4.0", 
+            "revision": 0, 
+            "estimateTargetDiskSizeInGB": "0", 
+            "pidGroupId": "616", 
+            "devzoneProgramId": "", 
+            "installedOn": [
+                "target"
+            ], 
+            "canInstallStandAlone": false
+        }, 
+        "targetAccessInfo": {
+            "user": "", 
+            "password": "", 
+            "host": "192.168.55.1", 
+            "port": "22"
+        }
+    }, 
+    "compDirectory": "https://developer.nvidia.com/assets/embedded/secure/tools/files/jetpack-sdks/jetpack-4.3/JETPACK_43_b132_DEEPSTREAM/", 
+    "groups": {
+        "NV_DEEPSTREAM_TARGET_GROUP": {
+            "id": "NV_DEEPSTREAM_TARGET_GROUP", 
+            "name": "DeepStream", 
+            "groupType": "target", 
+            "installedOn": "target", 
+            "description": "DeepStream SDK provides a complete streaming analytics toolkit for situational awareness through computer vision, intelligent video analytics (IVA) and multi-sensor processing.", 
+            "versions": [
+                {
+                    "version": "4.0.2", 
+                    "components": [
+                        {
+                            "id": "NV_DEEPSTREAM_TARGET_POST_INSTALL_COMP", 
+                            "version": "4.0.2"
+                        }
+                    ]
+                }
+            ]
+        }
+    }, 
+    "components": {
+        "NV_DEEPSTREAM_TARGET_POST_INSTALL_COMP": {
+            "id": "NV_DEEPSTREAM_TARGET_POST_INSTALL_COMP", 
+            "name": "DeepStream", 
+            "description": "DeepStream SDK provides a complete streaming analytics toolkit for situational awareness through computer vision, intelligent video analytics (IVA) and multi-sensor processing.", 
+            "compType": "target", 
+            "isVisible": true, 
+            "licenseId": "NV_JETPACK_OS_EULA", 
+            "isDetectableInstall": true, 
+            "isInstallPathCustomizable": false, 
+            "versions": [
+                {
+                    "version": "4.0.2", 
+                    "operatingSystems": [
+                        "ubuntu1604", 
+                        "ubuntu1804"
+                    ], 
+                    "installSizeMB": 0, 
+                    "downloadFiles": [
+                        {
+                            "url": "deepstream-4.0_4.0.2-1_arm64.deb", 
+                            "fileName": "deepstream-4.0_4.0.2-1_arm64.deb", 
+                            "size": 213954416, 
+                            "checksum": "d6e65a1b6bf498119b738010a2b4f663", 
+                            "checksumType": "md5", 
+                            "installParameters": {
+                                "installType": "target_deb", 
+                                "additionalParameters": {
+                                    "packagesInfo": [
+                                        {
+                                            "version": "4.0.2-1", 
+                                            "name": "deepstream-4.0"
+                                        }
+                                    ], 
+                                    "preInstallCommands": [
+                                        {
+                                            "remoteExecBash": [
+                                                "sudo apt-get update", 
+                                                "safe_apt_install \"sudo apt-get install -y libssl1.0.0 libgstreamer1.0-0 libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav libgstrtspserver-1.0-0 libjansson4 librdkafka1=0.11.3-1build1 \" 5"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ], 
+                    "targetIds": [
+                        "P2888", 
+                        "P2888-0060"
+                    ], 
+                    "dependencies": [
+                        {
+                            "id": "NV_L4T_TENSORRT_DLA_TARGET_POST_INSTALL_COMP", 
+                            "operator": "==", 
+                            "ver": "6.0", 
+                            "type": "required", 
+                            "additionalSDKId": "BASE_SDK"
+                        }
+                    ], 
+                    "external_dependencies": []
+                }, 
+                {
+                    "version": "4.0.2", 
+                    "operatingSystems": [
+                        "ubuntu1604", 
+                        "ubuntu1804"
+                    ], 
+                    "installSizeMB": 0, 
+                    "downloadFiles": [
+                        {
+                            "url": "deepstream-4.0_4.0.2-1_arm64.deb", 
+                            "fileName": "deepstream-4.0_4.0.2-1_arm64.deb", 
+                            "size": 213954416, 
+                            "checksum": "d6e65a1b6bf498119b738010a2b4f663", 
+                            "checksumType": "md5", 
+                            "installParameters": {
+                                "installType": "target_deb", 
+                                "additionalParameters": {
+                                    "packagesInfo": [
+                                        {
+                                            "version": "4.0.2-1", 
+                                            "name": "deepstream-4.0"
+                                        }
+                                    ], 
+                                    "preInstallCommands": [
+                                        {
+                                            "remoteExecBash": [
+                                                "sudo apt-get update", 
+                                                "safe_apt_install \"sudo apt-get install -y libssl1.0.0 libgstreamer1.0-0 libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav libgstrtspserver-1.0-0 libjansson4 librdkafka1=0.11.3-1build1 \" 5"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ], 
+                    "targetIds": [
+                        "P3310", 
+                        "P3489-0000", 
+                        "P3489-0080", 
+                        "P2180", 
+                        "P3448-0000", 
+                        "P3448-0020"
+                    ], 
+                    "dependencies": [
+                        {
+                            "id": "NV_L4T_TENSORRT_NODLA_TARGET_POST_INSTALL_COMP", 
+                            "operator": "==", 
+                            "ver": "6.0", 
+                            "type": "required", 
+                            "additionalSDKId": "BASE_SDK"
+                        }
+                    ], 
+                    "external_dependencies": []
+                }
+            ]
+        }
+    }, 
+    "externals": {}, 
+    "licenses": {
+        "NV_JETPACK_OS_EULA": {
+            "id": "NV_JETPACK_OS_EULA", 
+            "name": "Software License Agreement for OS", 
+            "url": "NV_JETPACK_OS_EULA.txt"
+        }
+    }
+}
