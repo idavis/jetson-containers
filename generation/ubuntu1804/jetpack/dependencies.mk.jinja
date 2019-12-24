@@ -1,0 +1,28 @@
+#!make
+
+NV_LOGIN_TYPE ?= devzone
+
+%-from-deps-folder:
+	$(DOCKER) build \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$*-deps \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					$(SDKM_DOWNLOADS)
+
+{% for driver_version, value in ctx.items() %}
+{%- for device_name, driver_details in ctx[driver_version].items() %}
+{%- if loop.first %}{{ driver_version }}-jetpack-{{ driver_details.jetpackVersion }}-deps: {% endif %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps{{ ", " if not loop.last else "" }}{%- endfor %}
+{% endfor %}
+
+{% for driver_version, value in ctx.items() %}
+{% for device_name, driver_details in ctx[driver_version].items() %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps:
+	DEVICE_ID={{ driver_details.deviceId }} DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="{{ driver_details.sdkmanagerJetPackVersion }}" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
+
+	$(DOCKER) build \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					/tmp/{{ driver_details.sdkmanagerJetPackVersion }}/{{ driver_details.deviceId }}
+{% endfor %}
+{% endfor %}

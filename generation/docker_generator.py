@@ -57,19 +57,27 @@ class DockerGenerator(cli.Application):
 
 
     def main(self):
-        #for device, name in deviceIdToFriendlyNameLookup.items():
-            #for jetpack_version in active_versions:
-                # filename = "l4t.yml"
-                # context_file = pathlib.Path(f"dist/{jetpack_version}/l4t.yml")
-                # template_dockerfile = pathlib.Path(f"generation/ubuntu1804/l4t/Dockerfile.jinja")
-        
-                # self.generate_l4t_dockerfiles(context_file, template_dockerfile, jetpack_version, device)
-        
-        # l4t_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/l4t/Makefile.jinja")
-        # self.generate_l4t_makefile(l4t_makefile_template_filepath)
+        for device, name in deviceIdToFriendlyNameLookup.items():
+            for jetpack_version in active_versions:
+                filename = "l4t.yml"
+                context_file = pathlib.Path(f"dist/{jetpack_version}/l4t.yml")
 
-        jetpack_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/Makefile.jinja")
+                l4t_template_dockerfile = pathlib.Path(f"generation/ubuntu1804/l4t/Dockerfile.jinja")
+                self.generate_l4t_dockerfiles(context_file, l4t_template_dockerfile, jetpack_version, device)
+
+                self.generate_jetpack_dockerfiles(context_file, jetpack_version, device)
+        
+        l4t_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/l4t/Makefile.jinja")
+        self.generate_l4t_makefile(l4t_makefile_template_filepath)
+
+        jetpack_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/jetpack.mk.jinja")
         self.generate_jetpack_makefile(jetpack_makefile_template_filepath)
+
+        jetpack_deps_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/dependencies.mk.jinja")
+        self.generate_jetpack_makefile(jetpack_deps_makefile_template_filepath)
+
+        jetpack_main_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/Makefile.jinja")
+        self.generate_jetpack_makefile(jetpack_main_makefile_template_filepath)
                     
         log.info("Done")
 
@@ -113,6 +121,31 @@ class DockerGenerator(cli.Application):
             log.info(f"Writing {new_output_path}/{new_filename}")
             with open(f"{new_output_path}/{new_filename}", "w") as f2:
                 f2.write(template.render(ctx=deviceData))
+
+    def generate_jetpack_dockerfiles(self, context_file, jetpack_version, device):
+        for img in ["base", "devel", "runtime"]:
+            template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/{img}/Dockerfile.jinja")
+
+            context = self.read_yml_dictionary(context_file)
+            if device not in context:
+                log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
+                return
+            deviceData = context[device]
+            driverVersion = deviceData["drivers"]["version"]
+            output_path = pathlib.Path(f"docker/jetpack/{jetpack_version}/{deviceIdToShortNameLookup[device]}")
+
+            with open(template_filepath) as f:
+                log.debug("Processing template %s", template_filepath)
+                new_output_path = pathlib.Path(output_path)
+                new_filename = template_filepath.name[:-6]
+    
+                template = Template(f.read())
+                if not new_output_path.exists():
+                    log.debug(f"Creating {new_output_path}")
+                    new_output_path.mkdir(parents=True)
+                log.info(f"Writing {new_output_path}/{new_filename}")
+                with open(f"{new_output_path}/{new_filename}", "w") as f2:
+                    f2.write(template.render(ctx=deviceData))
 
     def generate_l4t_makefile(self, template_filepath):
         context = self.generate_l4t_makefile_context()
