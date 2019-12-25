@@ -2,12 +2,12 @@
 
 {% for driver_version, value in ctx.items() %}
 {%- for device_name, driver_details in ctx[driver_version].items() %}
-{%- if loop.first %}{{ driver_version }}-jetpack-{{ driver_details.jetpackVersion }}: {% endif %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}{{ ", " if not loop.last else "" }}{%- endfor %}
+{%- if loop.first %}{{ driver_version }}-jetpack-{{ driver_details.jetpackVersion }}: {% endif %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }} {% endfor %}
 {% endfor %}
 
 {% for driver_version, value in ctx.items() %}
 {% for device_name, driver_details in ctx[driver_version].items() %}
-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base, {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime, {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel {% endfor %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel {% endfor %}
 {% endfor %}
 
 {% for driver_version, value in ctx.items() %}

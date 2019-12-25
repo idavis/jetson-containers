@@ -132,7 +132,7 @@ class DockerGenerator(cli.Application):
                 return
             deviceData = context[device]
             driverVersion = deviceData["drivers"]["version"]
-            output_path = pathlib.Path(f"docker/jetpack/{jetpack_version}/{deviceIdToShortNameLookup[device]}")
+            output_path = pathlib.Path(f"docker/jetpack/{jetpack_version}/{deviceIdToShortNameLookup[device]}/{img}")
 
             with open(template_filepath) as f:
                 log.debug("Processing template %s", template_filepath)

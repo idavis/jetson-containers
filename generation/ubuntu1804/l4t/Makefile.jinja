@@ -5,10 +5,10 @@ DOCKER_BUILD_ARGS ?= --squash
 
 .PHONY: all
 
-all: {% for driver_version, value in ctx.items() %}{{ driver_version }}{{ ", " if not loop.last else "" }} {% endfor %}
+all:{% for driver_version, value in ctx.items() %} {{ driver_version }}{%- endfor %}
 
 {% for driver_version, value in ctx.items() %}
-{{ driver_version }} : {% for device_name, driver_details in ctx[driver_version].items() %} {{ driver_version }}-{{ device_name }}{% endfor %}
+{{ driver_version }}:{% for device_name, driver_details in ctx[driver_version].items() %} {{ driver_version }}-{{ device_name }}{%- endfor %}
 {% endfor %}
 
 {% for driver_version, value in ctx.items() %}

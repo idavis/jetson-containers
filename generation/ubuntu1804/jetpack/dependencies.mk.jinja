@@ -2,7 +2,7 @@
 
 NV_LOGIN_TYPE ?= devzone
 
-all-dependencies: {% for driver_version, value in ctx.items() -%}{%- for device_name, driver_details in ctx[driver_version].items() -%}{%- if loop.first -%}{{ driver_version }}-jetpack-{{ driver_details.jetpackVersion }}-deps{%- endif -%}{%- endfor -%}{{ ", " if not loop.last else "" }}{% endfor %}
+all-dependencies: {% for driver_version, value in ctx.items() -%}{%- for device_name, driver_details in ctx[driver_version].items() -%}{%- if loop.first -%}{{ driver_version }}-jetpack-{{ driver_details.jetpackVersion }}-deps {% endif -%}{%- endfor -%} {% endfor %}
 
 %-from-deps-folder:
 	$(DOCKER) build \
@@ -14,7 +14,7 @@ all-dependencies: {% for driver_version, value in ctx.items() -%}{%- for device_
 
 {% for driver_version, value in ctx.items() %}
 {%- for device_name, driver_details in ctx[driver_version].items() %}
-{%- if loop.first %}{{ driver_version }}-jetpack-{{ driver_details.jetpackVersion }}-deps: {% endif %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps{{ ", " if not loop.last else "" }}{%- endfor %}
+{%- if loop.first %}{{ driver_version }}-jetpack-{{ driver_details.jetpackVersion }}-deps: {% endif %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps {% endfor %}
 {% endfor %}
 
 {% for driver_version, value in ctx.items() %}
