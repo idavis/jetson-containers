@@ -1,6 +1,7 @@
 import os
 import io
 import sys
+import re
 import pathlib
 from plumbum import cli
 from plumbum.cmd import rm
@@ -263,12 +264,18 @@ class ManifestProcessor(cli.Application):
                         if fileContext["version"] == "32.3":
                             if "32.3.1" in fileContext["fileName"]:
                                 fileContext["version"] = "32.3.1"
-
+   
                     componentFileName = fileContext["fileName"]
                     if "packageName" in fileContext:
                         componentFileName = fileContext["packageName"]
                     if componentContext is not fileContext:
                         componentContext[componentFileName] = fileContext
+
+                    if componentName == "cuda":
+                        p = re.compile("cuda-repo-l4t-10-0-local-(\d+\.\d+\.\d+)_1.0-1_arm64.deb")
+                        result = p.search(fileContext["fileName"])
+                        version = result.group(1)
+                        fileContext["version"] = version
 
     def get_component_name(self, componentName):
         if componentName in ignoredSections:

@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     bzip2 \
     lbzip2 \
 {%- if ctx.drivers.version == "32.3.1" %}
+    ca-certificates \
     gnupg \
 {%- endif %}
     sudo
@@ -46,6 +47,10 @@ RUN sed -i '/.*	LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*
 RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${deb_list\[\@\]}\".*/c\apt install -y --no-install-recommends \"${deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 {%- endif %}
 RUN ./Linux_for_Tegra/apply_binaries.sh -r /
+{%- if ctx.drivers.version == "32.3.1" %}
+# Patch OTA apt source
+RUN sed -i "s/<SOC>/t{{ ctx.SOC }}/g" "/etc/apt/sources.list.d/nvidia-l4t-apt-source.list"
+{%- endif %}
 RUN rm -rf ./Linux_for_Tegra && \
     rm ./{{ ctx.drivers.fileName }} \
     && \

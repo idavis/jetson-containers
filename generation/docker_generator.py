@@ -19,6 +19,16 @@ deviceIdToFriendlyNameLookup = {
     "P3448-0000": "Jetson Nano (Developer Kit version)",
     "P3448-0020": "Jetson Nano"
 }
+deviceToSoCLookup = {
+    "P3310": "186",
+    "P3489-0000": "186",
+    "P3489-0080": "186",
+    "P2888": "194",
+    "P2888-0060": "194",
+    "P3448-0000": "210",
+    "P3448-0020": "210",
+    "P2180": "210"
+}
 
 deviceIdToShortNameLookup = {
     "P2888": "jax",
@@ -60,12 +70,13 @@ class DockerGenerator(cli.Application):
         for device, name in deviceIdToFriendlyNameLookup.items():
             for jetpack_version in active_versions:
                 filename = "l4t.yml"
-                context_file = pathlib.Path(f"dist/{jetpack_version}/l4t.yml")
+                l4t_context_file = pathlib.Path(f"dist/{jetpack_version}/l4t.yml")
 
                 l4t_template_dockerfile = pathlib.Path(f"generation/ubuntu1804/l4t/Dockerfile.jinja")
-                self.generate_l4t_dockerfiles(context_file, l4t_template_dockerfile, jetpack_version, device)
+                self.generate_l4t_dockerfiles(l4t_context_file, l4t_template_dockerfile, jetpack_version, device)
 
-                self.generate_jetpack_dockerfiles(context_file, jetpack_version, device)
+                jetpack_context_file = pathlib.Path(f"dist/{jetpack_version}/jetpack.yml")
+                self.generate_jetpack_dockerfiles(jetpack_context_file, l4t_context_file, jetpack_version, device)
         
         l4t_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/l4t/Makefile.jinja")
         self.generate_l4t_makefile(l4t_makefile_template_filepath)
@@ -107,6 +118,8 @@ class DockerGenerator(cli.Application):
             return
         deviceData = context[device]
         driverVersion = deviceData["drivers"]["version"]
+        deviceData["SOC"] = deviceToSoCLookup[device]
+        
         output_path = pathlib.Path(f"docker/l4t/{driverVersion}/{deviceIdToShortNameLookup[device]}")
 
         with open(template_filepath) as f:
@@ -122,16 +135,26 @@ class DockerGenerator(cli.Application):
             with open(f"{new_output_path}/{new_filename}", "w") as f2:
                 f2.write(template.render(ctx=deviceData))
 
-    def generate_jetpack_dockerfiles(self, context_file, jetpack_version, device):
-        for img in ["base", "devel", "runtime"]:
-            template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/{img}/Dockerfile.jinja")
+    def generate_jetpack_dockerfiles(self, jetpack_context_file, l4t_context_file, jetpack_version, device):
 
-            context = self.read_yml_dictionary(context_file)
+        context = self.read_yml_dictionary(jetpack_context_file)
             if device not in context:
                 log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
                 return
+
             deviceData = context[device]
-            driverVersion = deviceData["drivers"]["version"]
+
+        driver_context = self.read_yml_dictionary(l4t_context_file)
+        device_driver_context = driver_context[device]
+        for key, value in device_driver_context.items():
+            deviceData[key] = value
+        deviceData["shortName"] = deviceIdToShortNameLookup[device]
+        deviceData["jetpackVersion"] = jetpack_version
+
+        for img in ["base", "devel", "runtime"]:
+            print(f"{device}-{jetpack_version}-{img}")
+            template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/{img}/Dockerfile.jinja")
+
             output_path = pathlib.Path(f"docker/jetpack/{jetpack_version}/{deviceIdToShortNameLookup[device]}/{img}")
 
             with open(template_filepath) as f:

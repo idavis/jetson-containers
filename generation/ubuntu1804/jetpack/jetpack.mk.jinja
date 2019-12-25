@@ -12,6 +12,28 @@
 
 {% for driver_version, value in ctx.items() %}
 {% for device_name, driver_details in ctx[driver_version].items() %}
+{% if driver_version == "32.3.1" %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/base/Dockerfile \
+					.
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/runtime/Dockerfile \
+					.
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/Dockerfile \
+					.
+{% else %}
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
@@ -35,5 +57,6 @@
 					-t $(REPO):$@ \
 					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/Dockerfile \
 					.
+{% endif %}
 {% endfor %}
 {% endfor %}
