@@ -2,12 +2,15 @@
 
 NV_LOGIN_TYPE ?= devzone
 
+all-dependencies: {% for driver_version, value in ctx.items() -%}{%- for device_name, driver_details in ctx[driver_version].items() -%}{%- if loop.first -%}{{ driver_version }}-jetpack-{{ driver_details.jetpackVersion }}-deps{%- endif -%}{%- endfor -%}{{ ", " if not loop.last else "" }}{% endfor %}
+
 %-from-deps-folder:
 	$(DOCKER) build \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
 					-t $(REPO):$*-deps \
 					-f $(CURDIR)/dependencies.Dockerfile \
 					$(SDKM_DOWNLOADS)
+					.
 
 {% for driver_version, value in ctx.items() %}
 {%- for device_name, driver_details in ctx[driver_version].items() %}
