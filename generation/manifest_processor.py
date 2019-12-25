@@ -228,7 +228,8 @@ class ManifestProcessor(cli.Application):
     def build_component_definitions(self, context, datastore, section, operatingSystem):
         targetHW = datastore["information"]["release"]["targetHW"]
         for targetDevice in targetHW:
-            context[targetDevice] = {}
+            if targetDevice not in context:
+                context[targetDevice] = {}
             for cv in self.get_components_for_device(datastore, section, targetDevice, operatingSystem):
 
                 componentName = self.get_component_name(cv[0])
