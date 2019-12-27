@@ -20,7 +20,7 @@ ENV CUDNN_PKG_VERSION=${CUDA_VERSION}-1
 LABEL com.nvidia.cudnn.version="${CUDNN_VERSION}"
 
 RUN apt update && \
-    apt install -y --no-install-recommends {{ ctx.cudnn.libcudnn7.packageName }} {{ ctx.cudnn["libcudnn7-dev"].packageName }} {{ ctx.cudnn["libcudnn7-doc"].packageName }} \
+    apt install -y --no-install-recommends /{{ ctx.cudnn.libcudnn7.packageName }} {{ ctx.cudnn["libcudnn7-dev"].packageName }} {{ ctx.cudnn["libcudnn7-doc"].packageName }} \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -81,24 +81,24 @@ LABEL com.nvidia.cudnn.version="${CUDNN_VERSION}"
 
 COPY --from=dependencies /data/{{ ctx.cudnn.libcudnn7.fileName }} {{ ctx.cudnn.libcudnn7.fileName }}
 RUN echo "{{ ctx.cudnn.libcudnn7.checksum }} {{ ctx.cudnn.libcudnn7.fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.cudnn.libcudnn7.fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.cudnn.libcudnn7.fileName }} && \
     rm {{ ctx.cudnn.libcudnn7.fileName }}
 
 COPY --from=dependencies /data/{{ ctx.cudnn['libcudnn7-dev'].fileName }} {{ ctx.cudnn['libcudnn7-dev'].fileName }}
 RUN echo "{{ ctx.cudnn['libcudnn7-dev'].checksum }} {{ ctx.cudnn['libcudnn7-dev'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.cudnn['libcudnn7-dev'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.cudnn['libcudnn7-dev'].fileName }} && \
     rm {{ ctx.cudnn['libcudnn7-dev'].fileName }}
 
 COPY --from=dependencies /data/{{ ctx.cudnn['libcudnn7-doc'].fileName }} {{ ctx.cudnn['libcudnn7-doc'].fileName }}
 RUN echo "{{ ctx.cudnn['libcudnn7-doc'].checksum }} {{ ctx.cudnn['libcudnn7-doc'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.cudnn['libcudnn7-doc'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.cudnn['libcudnn7-doc'].fileName }} && \
     rm {{ ctx.cudnn['libcudnn7-doc'].fileName }}
 
 # NVIDIA VisionWorks Toolkit
 
 COPY --from=dependencies /data/{{ ctx.visionworks.libvisionworks.fileName }} {{ ctx.visionworks.libvisionworks.fileName }}
 RUN echo "{{ ctx.visionworks.libvisionworks.checksum }} {{ ctx.visionworks.libvisionworks.fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.visionworks.libvisionworks.fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.visionworks.libvisionworks.fileName }} && \
     apt-key add /var/visionworks-repo/GPGKEY && \
     apt-get update && \
     apt-get install -y --allow-unauthenticated libvisionworks libvisionworks-dev libvisionworks-samples && \
@@ -110,7 +110,7 @@ RUN echo "{{ ctx.visionworks.libvisionworks.checksum }} {{ ctx.visionworks.libvi
 # NVIDIA VisionWorks Plus (SFM)
 COPY --from=dependencies /data/{{ ctx.visionworks['libvisionworks-sfm'].fileName }} {{ ctx.visionworks['libvisionworks-sfm'].fileName }}
 RUN echo "{{ ctx.visionworks['libvisionworks-sfm'].checksum }} {{ ctx.visionworks['libvisionworks-sfm'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.visionworks['libvisionworks-sfm'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.visionworks['libvisionworks-sfm'].fileName }} && \
     apt-key add /var/visionworks-sfm-repo/GPGKEY && \
     apt-get update && \
     apt-get install -y --allow-unauthenticated libvisionworks-sfm libvisionworks-sfm-dev && \
@@ -122,7 +122,7 @@ RUN echo "{{ ctx.visionworks['libvisionworks-sfm'].checksum }} {{ ctx.visionwork
 # NVIDIA VisionWorks Object Tracker
 COPY --from=dependencies /data/{{ ctx.visionworks['libvisionworks-tracking'].fileName }} {{ ctx.visionworks['libvisionworks-tracking'].fileName }}
 RUN echo "{{ ctx.visionworks['libvisionworks-tracking'].checksum }} {{ ctx.visionworks['libvisionworks-tracking'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.visionworks['libvisionworks-tracking'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.visionworks['libvisionworks-tracking'].fileName }} && \
     apt-key add /var/visionworks-tracking-repo/GPGKEY && \
     apt-get update && \
     apt-get install -y --allow-unauthenticated libvisionworks-tracking libvisionworks-tracking-dev && \
@@ -138,17 +138,17 @@ LABEL com.nvidia.libinfer.version="${LIBINFER_VERSION}"
 
 COPY --from=dependencies /data/{{ ctx.tensorrt.libnvinfer5.fileName }} {{ ctx.tensorrt.libnvinfer5.fileName }}
 RUN echo "{{ ctx.tensorrt.libnvinfer5.checksum }} {{ ctx.tensorrt.libnvinfer5.fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt.libnvinfer5.fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt.libnvinfer5.fileName }} && \
     rm {{ ctx.tensorrt.libnvinfer5.fileName }}
 
 COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-dev'].fileName }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
 RUN echo "{{ ctx.tensorrt['libnvinfer-dev'].checksum }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['libnvinfer-dev'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['libnvinfer-dev'].fileName }} && \
     rm {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
 
 COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-samples'].fileName }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
 RUN echo "{{ ctx.tensorrt['libnvinfer-samples'].checksum }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['libnvinfer-samples'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['libnvinfer-samples'].fileName }} && \
     rm {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
 
 ENV TENSORRT_VERSION {{ ctx.tensorrt.tensorrt.version }}
@@ -159,42 +159,42 @@ ENV TENSORRT_PKG tensorrt_${TENSORRT_PKG_VERSION}+cuda10.0_arm64.deb
 
 COPY --from=dependencies /data/{{ ctx.tensorrt.tensorrt.fileName }} {{ ctx.tensorrt.tensorrt.fileName }}
 RUN echo "{{ ctx.tensorrt.tensorrt.checksum }} {{ ctx.tensorrt.tensorrt.fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt.tensorrt.fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt.tensorrt.fileName }} && \
     rm {{ ctx.tensorrt.tensorrt.fileName }}
 
 
 # Python2 support for TensorRT
 COPY --from=dependencies /data/{{ ctx.tensorrt['python-libnvinfer'].fileName }} {{ ctx.tensorrt['python-libnvinfer'].fileName }}
 RUN echo "{{ ctx.tensorrt['python-libnvinfer'].checksum }} {{ ctx.tensorrt['python-libnvinfer'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['python-libnvinfer'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python-libnvinfer'].fileName }} && \
     rm {{ ctx.tensorrt['python-libnvinfer'].fileName }}
 
 COPY --from=dependencies /data/{{ ctx.tensorrt['python-libnvinfer-dev'].fileName }} {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}
 RUN echo "{{ ctx.tensorrt['python-libnvinfer-dev'].checksum }} {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python-libnvinfer-dev'].fileName }} && \
     rm {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}
 
 # Python3 support for TensorRT
 COPY --from=dependencies /data/{{ ctx.tensorrt['python3-libnvinfer'].fileName }} {{ ctx.tensorrt['python3-libnvinfer'].fileName }}
 RUN echo "{{ ctx.tensorrt['python3-libnvinfer'].checksum }} {{ ctx.tensorrt['python3-libnvinfer'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['python3-libnvinfer'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python3-libnvinfer'].fileName }} && \
     rm {{ ctx.tensorrt['python3-libnvinfer'].fileName }}
 
 COPY --from=dependencies /data/{{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }} {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}
 RUN echo "{{ ctx.tensorrt['python3-libnvinfer-dev'].checksum }} {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }} && \
     rm {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}
 
 # Graph Surgeon
 COPY --from=dependencies /data/{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
 RUN echo "{{ ctx.tensorrt['graphsurgeon-tf'].checksum }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['graphsurgeon-tf'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} && \
     rm {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
 
 # UFF Converter
 COPY --from=dependencies /data/{{ ctx.tensorrt['uff-converter-tf'].fileName }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}
 RUN echo "{{ ctx.tensorrt['uff-converter-tf'].checksum }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['uff-converter-tf'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['uff-converter-tf'].fileName }} && \
     rm {{ ctx.tensorrt['uff-converter-tf'].fileName }}
 
 # Multimedia API
@@ -207,25 +207,25 @@ RUN echo "{{ ctx.tensorrt['uff-converter-tf'].checksum }} {{ ctx.tensorrt['uff-c
 
 COPY --from=dependencies /data/{{ ctx.opencv.libopencv.fileName }} {{ ctx.opencv.libopencv.fileName }}
 RUN echo "{{ ctx.opencv.libopencv.checksum }} {{ ctx.opencv.libopencv.fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.opencv.libopencv.fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv.libopencv.fileName }} && \
     rm {{ ctx.opencv.libopencv.fileName }}
 
 # Open CV python binding
 COPY --from=dependencies /data/{{ ctx.opencv['libopencv-python'].fileName }} {{ ctx.opencv['libopencv-python'].fileName }}
 RUN echo "{{ ctx.opencv['libopencv-python'].checksum }} {{ ctx.opencv['libopencv-python'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.opencv['libopencv-python'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv['libopencv-python'].fileName }} && \
     rm {{ ctx.opencv['libopencv-python'].fileName }}
 
 # Open CV dev
 COPY --from=dependencies /data/{{ ctx.opencv['libopencv-dev'].fileName }} {{ ctx.opencv['libopencv-dev'].fileName }}
 RUN echo "{{ ctx.opencv['libopencv-dev'].checksum }} {{ ctx.opencv['libopencv-dev'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.opencv['libopencv-dev'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv['libopencv-dev'].fileName }} && \
     rm {{ ctx.opencv['libopencv-dev'].fileName }}
 
 # Open CV samples
 COPY --from=dependencies /data/{{ ctx.opencv['libopencv-samples'].fileName }} {{ ctx.opencv['libopencv-samples'].fileName }}
 RUN echo "{{ ctx.opencv['libopencv-samples'].checksum }} {{ ctx.opencv['libopencv-samples'].fileName }}" | md5sum -c - && \
-    apt-get update && apt-get install -y --no-install-recommends {{ ctx.opencv['libopencv-samples'].fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv['libopencv-samples'].fileName }} && \
     rm {{ ctx.opencv['libopencv-samples'].fileName }}
 
 {%- endif %}
