@@ -55,6 +55,9 @@ active_manifests = {
     "4.2.1": {"manifest": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_421_b107_rev2.json")},
 }
 
+cuda_matcher = re.compile("cuda-repo-l4t-10-0-local-(\d+\.\d+\.\d+)_1.0-1_arm64.deb")
+cudnn_matcher = re.compile("libcudnn7-*[a-zA-Z]*_(\d+\.\d+\.\d+\.*\d*)-1\+cuda10.0_arm64.deb")
+libnvinfer_matcher = re.compile("(?:tensorrt|graphsurgeon-tf|uff-converter-tf|libnvinfer[0-9]*)-*[a-zA-Z]*_(\d+\.\d+\.\d+\.*\d*)-1\+cuda10.0_(?:all|arm64).deb")
 
 class ManifestProcessor(cli.Application):
     PROGNAME = "Jetson Containers Manifest Processor"
@@ -268,14 +271,27 @@ class ManifestProcessor(cli.Application):
                     componentFileName = fileContext["fileName"]
                     if "packageName" in fileContext:
                         componentFileName = fileContext["packageName"]
+                        if componentFileName == "cuda-toolkit-10-0":
+                            componentFileName = "toolkit"
                     if componentContext is not fileContext:
                         componentContext[componentFileName] = fileContext
 
                     if componentName == "cuda":
-                        p = re.compile("cuda-repo-l4t-10-0-local-(\d+\.\d+\.\d+)_1.0-1_arm64.deb")
-                        result = p.search(fileContext["fileName"])
+                        result = cuda_matcher.search(fileContext["fileName"])
                         version = result.group(1)
                         fileContext["version"] = version
+                    elif componentName == "cudnn":
+                        if fileContext["packageName"].startswith("libcudnn7"):
+                            fname = fileContext["fileName"]    
+                            result = cudnn_matcher.search(fname)
+                            if result is not None:
+                                version = result.group(1)
+                                fileContext["version"] = version
+                    elif componentName == "tensorrt":
+                        result = libnvinfer_matcher.search(fileContext["fileName"])
+                        if result is not None:
+                            version = result.group(1)
+                            fileContext["version"] = version
 
     def get_component_name(self, componentName):
         if componentName in ignoredSections:

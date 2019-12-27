@@ -138,11 +138,11 @@ class DockerGenerator(cli.Application):
     def generate_jetpack_dockerfiles(self, jetpack_context_file, l4t_context_file, jetpack_version, device):
 
         context = self.read_yml_dictionary(jetpack_context_file)
-            if device not in context:
-                log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
-                return
+        if device not in context:
+            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
+            return
 
-            deviceData = context[device]
+        deviceData = context[device]
 
         driver_context = self.read_yml_dictionary(l4t_context_file)
         device_driver_context = driver_context[device]

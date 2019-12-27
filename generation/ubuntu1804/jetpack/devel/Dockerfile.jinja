@@ -1,3 +1,58 @@
+{%- if ctx.drivers.version == "32.3.1" %}
+ARG IMAGE_NAME
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-runtime
+
+# CUDA Toolkit for L4T
+
+RUN apt-get update && \
+    apt-get install -y --allow-downgrades --no-install-recommends cuda-toolkit-10-0 && \
+    dpkg --purge cuda-repo-l4t-10-0-local-{{ ctx.cuda.toolkit.version }} \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA CUDA Deep Neural Network library (cuDNN)
+
+ENV CUDNN_VERSION ctx.cudnn.libcudnn7.version
+
+ENV CUDNN_PKG_VERSION=${CUDA_VERSION}-1
+
+LABEL com.nvidia.cudnn.version="${CUDNN_VERSION}"
+
+RUN apt update && \
+    apt install -y --no-install-recommends {{ ctx.cudnn.libcudnn7.packageName }} {{ ctx.cudnn["libcudnn7-dev"].packageName }} {{ ctx.cudnn["libcudnn7-doc"].packageName }} \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA VisionWorks Toolkit
+
+RUN apt install -y --no-install-recommends libvisionworks-repo && \
+    apt-key add /var/visionworks-repo/GPGKEY && \
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated libvisionworks libvisionworks-dev libvisionworks-samples && \
+    dpkg --purge libvisionworks-repo && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA VisionWorks Plus (SFM)
+RUN apt install -y --no-install-recommends libvisionworks-sfm-repo && \
+    apt-key add /var/visionworks-sfm-repo/GPGKEY && \
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated libvisionworks-sfm libvisionworks-sfm-dev && \
+    dpkg --purge libvisionworks-sfm-repo && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA VisionWorks Object Tracker
+RUN apt install -y --no-install-recommends libvisionworks-tracking-repo && \
+    apt-key add /var/visionworks-tracking-repo/GPGKEY && \
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated libvisionworks-tracking libvisionworks-tracking-dev && \
+    dpkg --purge libvisionworks-tracking-repo && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+{% else %}
 ARG DEPENDENCIES_IMAGE
 ARG IMAGE_NAME
 FROM ${DEPENDENCIES_IMAGE} as dependencies
@@ -7,174 +62,140 @@ FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.
 
 # CUDA Toolkit for L4T
 
-ARG CUDA_TOOLKIT_PKG="cuda-repo-l4t-10-0-local-${CUDA_PKG_VERSION}_arm64.deb"
-
-COPY --from=dependencies /data/${CUDA_TOOLKIT_PKG} ${CUDA_TOOLKIT_PKG}
-RUN echo "{{ ctx.cuda['cuda-toolkit-10-0'].checksum }} ${CUDA_TOOLKIT_PKG}" | md5sum -c - && \
-    dpkg --force-all -i ${CUDA_TOOLKIT_PKG} && \
-    rm ${CUDA_TOOLKIT_PKG} && \
+COPY --from=dependencies /data/{{ ctx.cuda.toolkit.fileName }} {{ ctx.cuda.toolkit.fileName }}
+RUN echo "{{ ctx.cuda.toolkit.checksum }} {{ ctx.cuda.toolkit.fileName }}" | md5sum -c - && \
+    dpkg --force-all -i {{ ctx.cuda.toolkit.fileName }} && \
+    rm {{ ctx.cuda.toolkit.fileName }} && \
     apt-get update && \
     apt-get install -y --allow-downgrades --no-install-recommends cuda-toolkit-10-0 && \
-    dpkg --purge cuda-repo-l4t-10-0-local-{{ ctx.cuda['cuda-toolkit-10-0'].version }} \
+    dpkg --purge cuda-repo-l4t-10-0-local-{{ ctx.cuda.toolkit.version }} \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA CUDA Deep Neural Network library (cuDNN)
 
-ENV CUDNN_VERSION 7.5.0.56
-
-ENV CUDNN_PKG_VERSION=${CUDA_VERSION}-1
+ENV CUDNN_VERSION {{ ctx.cudnn.libcudnn7.version }}
 
 LABEL com.nvidia.cudnn.version="${CUDNN_VERSION}"
 
-COPY --from=dependencies /data/libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb
-RUN echo "9f30aa86e505a3b83b127ed7a51309a1 libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb" | md5sum -c - && \
-    dpkg -i libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb && \
-    rm libcudnn7_$CUDNN_VERSION-1+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.cudnn.libcudnn7.fileName }} {{ ctx.cudnn.libcudnn7.fileName }}
+RUN echo "{{ ctx.cudnn.libcudnn7.checksum }} {{ ctx.cudnn.libcudnn7.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.cudnn.libcudnn7.fileName }} && \
+    rm {{ ctx.cudnn.libcudnn7.fileName }}
 
-COPY --from=dependencies /data/libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb
-RUN echo "a010637c80859b2143ef24461ee2ef97 libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb" | md5sum -c - && \
-    dpkg -i libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb && \
-    rm libcudnn7-dev_$CUDNN_VERSION-1+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.cudnn['libcudnn7-dev'].fileName }} {{ ctx.cudnn['libcudnn7-dev'].fileName }}
+RUN echo "{{ ctx.cudnn['libcudnn7-dev'].checksum }} {{ ctx.cudnn['libcudnn7-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.cudnn['libcudnn7-dev'].fileName }} && \
+    rm {{ ctx.cudnn['libcudnn7-dev'].fileName }}
 
-COPY --from=dependencies /data/libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb
-RUN echo "f9e43d15ff69d65a85d2aade71a43870 libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb" | md5sum -c - && \
-    dpkg -i libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb && \
-    rm libcudnn7-doc_$CUDNN_VERSION-1+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.cudnn['libcudnn7-doc'].fileName }} {{ ctx.cudnn['libcudnn7-doc'].fileName }}
+RUN echo "{{ ctx.cudnn['libcudnn7-doc'].checksum }} {{ ctx.cudnn['libcudnn7-doc'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.cudnn['libcudnn7-doc'].fileName }} && \
+    rm {{ ctx.cudnn['libcudnn7-doc'].fileName }}
 
 # NVIDIA VisionWorks Toolkit
-COPY --from=dependencies /data/libvisionworks-repo_1.6.0.500n_arm64.deb libvisionworks-repo_1.6.0.500n_arm64.deb
-RUN echo "e70d49ff115bc5782a3d07b572b5e3c0 libvisionworks-repo_1.6.0.500n_arm64.deb" | md5sum -c - && \
-    dpkg -i libvisionworks-repo_1.6.0.500n_arm64.deb && \
+
+COPY --from=dependencies /data/{{ ctx.visionworks.libvisionworks.fileName }} {{ ctx.visionworks.libvisionworks.fileName }}
+RUN echo "{{ ctx.visionworks.libvisionworks.checksum }} {{ ctx.visionworks.libvisionworks.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.visionworks.libvisionworks.fileName }} && \
     apt-key add /var/visionworks-repo/GPGKEY && \
     apt-get update && \
     apt-get install -y --allow-unauthenticated libvisionworks libvisionworks-dev libvisionworks-samples && \
     dpkg --purge libvisionworks-repo && \
-    rm libvisionworks-repo_1.6.0.500n_arm64.deb && \
+    rm {{ ctx.visionworks.libvisionworks.fileName }} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA VisionWorks Plus (SFM)
-COPY --from=dependencies /data/libvisionworks-sfm-repo_0.90.4_arm64.deb libvisionworks-sfm-repo_0.90.4_arm64.deb
-RUN echo "647b0ae86a00745fc6d211545a9fcefe libvisionworks-sfm-repo_0.90.4_arm64.deb" | md5sum -c - && \
-    dpkg -i libvisionworks-sfm-repo_0.90.4_arm64.deb && \
+COPY --from=dependencies /data/{{ ctx.visionworks['libvisionworks-sfm'].fileName }} {{ ctx.visionworks['libvisionworks-sfm'].fileName }}
+RUN echo "{{ ctx.visionworks['libvisionworks-sfm'].checksum }} {{ ctx.visionworks['libvisionworks-sfm'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.visionworks['libvisionworks-sfm'].fileName }} && \
     apt-key add /var/visionworks-sfm-repo/GPGKEY && \
     apt-get update && \
     apt-get install -y --allow-unauthenticated libvisionworks-sfm libvisionworks-sfm-dev && \
     dpkg --purge libvisionworks-sfm-repo && \
-    rm libvisionworks-sfm-repo_0.90.4_arm64.deb && \
+    rm {{ ctx.visionworks['libvisionworks-sfm'].fileName }} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA VisionWorks Object Tracker
-COPY --from=dependencies /data/libvisionworks-tracking-repo_0.88.2_arm64.deb libvisionworks-tracking-repo_0.88.2_arm64.deb
-RUN echo "7630f0309c883cc6d8a1ab5a712938a5 libvisionworks-tracking-repo_0.88.2_arm64.deb" | md5sum -c - && \
-    dpkg -i libvisionworks-tracking-repo_0.88.2_arm64.deb && \
+COPY --from=dependencies /data/{{ ctx.visionworks['libvisionworks-tracking'].fileName }} {{ ctx.visionworks['libvisionworks-tracking'].fileName }}
+RUN echo "{{ ctx.visionworks['libvisionworks-tracking'].checksum }} {{ ctx.visionworks['libvisionworks-tracking'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.visionworks['libvisionworks-tracking'].fileName }} && \
     apt-key add /var/visionworks-tracking-repo/GPGKEY && \
     apt-get update && \
     apt-get install -y --allow-unauthenticated libvisionworks-tracking libvisionworks-tracking-dev && \
     dpkg --purge libvisionworks-tracking-repo && \
-    rm libvisionworks-tracking-repo_0.88.2_arm64.deb && \
+    rm {{ ctx.visionworks['libvisionworks-tracking'].fileName }} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA TensorRT
-ENV LIBINFER_VERSION 5.1.6
-
-ENV LIBINFER_PKG_VERSION=${LIBINFER_VERSION}-1
+ENV LIBINFER_VERSION {{ ctx.tensorrt.libnvinfer5.version }}
 
 LABEL com.nvidia.libinfer.version="${LIBINFER_VERSION}"
 
-ENV LIBINFER_PKG libnvinfer5_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.tensorrt.libnvinfer5.fileName }} {{ ctx.tensorrt.libnvinfer5.fileName }}
+RUN echo "{{ ctx.tensorrt.libnvinfer5.checksum }} {{ ctx.tensorrt.libnvinfer5.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt.libnvinfer5.fileName }} && \
+    rm {{ ctx.tensorrt.libnvinfer5.fileName }}
 
-ENV LIBINFER_DEV_PKG libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-dev'].fileName }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
+RUN echo "{{ ctx.tensorrt['libnvinfer-dev'].checksum }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['libnvinfer-dev'].fileName }} && \
+    rm {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
 
-ENV LIBINFER_SAMPLES_PKG libnvinfer-samples_${LIBINFER_PKG_VERSION}+cuda10.0_all.deb
+COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-samples'].fileName }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
+RUN echo "{{ ctx.tensorrt['libnvinfer-samples'].checksum }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['libnvinfer-samples'].fileName }} && \
+    rm {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
 
-COPY --from=dependencies /data/${LIBINFER_PKG} ${LIBINFER_PKG}
-RUN echo "9da0093178ae3dde92942e74274e8e3a ${LIBINFER_PKG}" | md5sum -c - && \
-    dpkg -i ${LIBINFER_PKG} && \
-    rm ${LIBINFER_PKG}
-
-COPY --from=dependencies /data/${LIBINFER_DEV_PKG} ${LIBINFER_DEV_PKG}
-RUN echo "1a580a0b8b1aad0a497c722fbd4e77c2 ${LIBINFER_DEV_PKG}" | md5sum -c - && \
-    dpkg -i ${LIBINFER_DEV_PKG} && \
-    rm ${LIBINFER_DEV_PKG}
-
-COPY --from=dependencies /data/${LIBINFER_SAMPLES_PKG} ${LIBINFER_SAMPLES_PKG}
-RUN echo "c8cc2db854381b7f92a5e7604da66e36 ${LIBINFER_SAMPLES_PKG}" | md5sum -c - && \
-    dpkg -i ${LIBINFER_SAMPLES_PKG} && \
-    rm ${LIBINFER_SAMPLES_PKG}
-
-ENV TENSORRT_VERSION 5.1.6.1
-
-ENV TENSORRT_PKG_VERSION=${TENSORRT_VERSION}-1
+ENV TENSORRT_VERSION {{ ctx.tensorrt.tensorrt.version }}
 
 LABEL com.nvidia.tensorrt.version="${TENSORRT_VERSION}"
 
 ENV TENSORRT_PKG tensorrt_${TENSORRT_PKG_VERSION}+cuda10.0_arm64.deb
 
-COPY --from=dependencies /data/${TENSORRT_PKG} ${TENSORRT_PKG}
-RUN echo "9fbd6ca009cdf96391e2572f1d9ee773 ${TENSORRT_PKG}" | md5sum -c - && \
-    dpkg -i ${TENSORRT_PKG} && \
-    rm ${TENSORRT_PKG}
+COPY --from=dependencies /data/{{ ctx.tensorrt.tensorrt.fileName }} {{ ctx.tensorrt.tensorrt.fileName }}
+RUN echo "{{ ctx.tensorrt.tensorrt.checksum }} {{ ctx.tensorrt.tensorrt.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt.tensorrt.fileName }} && \
+    rm {{ ctx.tensorrt.tensorrt.fileName }}
 
-RUN apt-get update && apt-get install -y \
-        python-dev \
-        python-numpy \
-        python-pip \
-        python-py \
-        python-pytest \
-    && \
-    python -m pip install -U pip && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
 
 # Python2 support for TensorRT
-COPY --from=dependencies /data/python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "05f07c96421bb1bfc828c1dd3bcf5fad python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
-    dpkg -i python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    rm python-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.tensorrt['python-libnvinfer'].fileName }} {{ ctx.tensorrt['python-libnvinfer'].fileName }}
+RUN echo "{{ ctx.tensorrt['python-libnvinfer'].checksum }} {{ ctx.tensorrt['python-libnvinfer'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['python-libnvinfer'].fileName }} && \
+    rm {{ ctx.tensorrt['python-libnvinfer'].fileName }}
 
-COPY --from=dependencies /data/python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "35febdc63ec98a92ce1695bb10a2b5e8 python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
-    dpkg -i python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    rm python-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-
-RUN apt-get update && apt-get install -y \
-        python3-dev \
-        python3-numpy \
-        python3-pip \
-        python3-py \
-        python3-pytest \
-    && \
-    python3 -m pip install -U pip && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+COPY --from=dependencies /data/{{ ctx.tensorrt['python-libnvinfer-dev'].fileName }} {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}
+RUN echo "{{ ctx.tensorrt['python-libnvinfer-dev'].checksum }} {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }} && \
+    rm {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}
 
 # Python3 support for TensorRT
-COPY --from=dependencies /data/python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "88104606e76544cac8d79b4288372f0e python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
-    dpkg -i python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    rm python3-libnvinfer_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.tensorrt['python3-libnvinfer'].fileName }} {{ ctx.tensorrt['python3-libnvinfer'].fileName }}
+RUN echo "{{ ctx.tensorrt['python3-libnvinfer'].checksum }} {{ ctx.tensorrt['python3-libnvinfer'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['python3-libnvinfer'].fileName }} && \
+    rm {{ ctx.tensorrt['python3-libnvinfer'].fileName }}
 
-COPY --from=dependencies /data/python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "1b703b6ab7a477b24ac9e90e64945799 python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
-    dpkg -i python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    rm python3-libnvinfer-dev_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }} {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}
+RUN echo "{{ ctx.tensorrt['python3-libnvinfer-dev'].checksum }} {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }} && \
+    rm {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}
 
 # Graph Surgeon
-COPY --from=dependencies /data/graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "c88082e2cc9fa71e24c560b26e6f5a5b graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
-    dpkg -i graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    rm graphsurgeon-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
+RUN echo "{{ ctx.tensorrt['graphsurgeon-tf'].checksum }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['graphsurgeon-tf'].fileName }} && \
+    rm {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
 
 # UFF Converter
-COPY --from=dependencies /data/uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
-RUN echo "7eddfa1cba81da4a96a5014cdc9198e1 uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb" | md5sum -c - && \
-    dpkg -i uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb && \
-    rm uff-converter-tf_${LIBINFER_PKG_VERSION}+cuda10.0_arm64.deb
+COPY --from=dependencies /data/{{ ctx.tensorrt['uff-converter-tf'].fileName }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}
+RUN echo "{{ ctx.tensorrt['uff-converter-tf'].checksum }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.tensorrt['uff-converter-tf'].fileName }} && \
+    rm {{ ctx.tensorrt['uff-converter-tf'].fileName }}
 
 # Multimedia API
 # 6b870acbb906fc923828e110d23a096f8450fc7f  Tegra_Multimedia_API_R32.2.1_aarch64.tbz2
@@ -182,49 +203,32 @@ RUN echo "7eddfa1cba81da4a96a5014cdc9198e1 uff-converter-tf_${LIBINFER_PKG_VERSI
 
 # Install dependencies for OpenCV
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        libavcodec-extra57 \
-        libavformat57 \
-        libavutil55 \
-        libcairo2 \
-        libgtk2.0-0 \
-        libswscale4 \
-        libtbb2 \
-        libtbb-dev \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Open CV {{ ctx.opencv.libopencv.version }}
 
-# Open CV 3.3.1
+COPY --from=dependencies /data/{{ ctx.opencv.libopencv.fileName }} {{ ctx.opencv.libopencv.fileName }}
+RUN echo "{{ ctx.opencv.libopencv.checksum }} {{ ctx.opencv.libopencv.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.opencv.libopencv.fileName }} && \
+    rm {{ ctx.opencv.libopencv.fileName }}
 
-ENV OPENCV_VERSION 3.3.1
-
-ENV OPENCV_PKG_VERSION=${OPENCV_VERSION}-2-g31ccdfe11
-
-## Open CV
-
-COPY --from=dependencies /data/libopencv_${OPENCV_PKG_VERSION}_arm64.deb libopencv_${OPENCV_PKG_VERSION}_arm64.deb
-RUN echo "dd5b571c08a0098141203daec2ea1acc libopencv_${OPENCV_PKG_VERSION}_arm64.deb" | md5sum -c - && \
-    dpkg -i libopencv_${OPENCV_PKG_VERSION}_arm64.deb && \
-    rm libopencv_${OPENCV_PKG_VERSION}_arm64.deb
-
-## Open CV python binding
-COPY --from=dependencies /data/libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb
-RUN echo "35776ce159afa78a0fe727d4a3c5b6fa libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb" | md5sum -c - && \
-    dpkg -i libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb && \
-    rm libopencv-python_${OPENCV_PKG_VERSION}_arm64.deb
+# Open CV python binding
+COPY --from=dependencies /data/{{ ctx.opencv['libopencv-python'].fileName }} {{ ctx.opencv['libopencv-python'].fileName }}
+RUN echo "{{ ctx.opencv['libopencv-python'].checksum }} {{ ctx.opencv['libopencv-python'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.opencv['libopencv-python'].fileName }} && \
+    rm {{ ctx.opencv['libopencv-python'].fileName }}
 
 # Open CV dev
-COPY --from=dependencies /data/libopencv-dev_${OPENCV_PKG_VERSION}_arm64.deb libopencv-dev_${OPENCV_PKG_VERSION}_arm64.deb
-RUN echo "d29571f888a59dd290da2650dc202623 libopencv-dev_${OPENCV_PKG_VERSION}_arm64.deb" | md5sum -c - && \
-    dpkg -i libopencv-dev_${OPENCV_PKG_VERSION}_arm64.deb && \
-    rm libopencv-dev_${OPENCV_PKG_VERSION}_arm64.deb
+COPY --from=dependencies /data/{{ ctx.opencv['libopencv-dev'].fileName }} {{ ctx.opencv['libopencv-dev'].fileName }}
+RUN echo "{{ ctx.opencv['libopencv-dev'].checksum }} {{ ctx.opencv['libopencv-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.opencv['libopencv-dev'].fileName }} && \
+    rm {{ ctx.opencv['libopencv-dev'].fileName }}
 
 # Open CV samples
-COPY --from=dependencies /data/libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb
-RUN echo "4f28a7792425b5e1470d5aa73c2a470d libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb" | md5sum -c - && \
-    dpkg -i libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb && \
-    rm libopencv-samples_${OPENCV_PKG_VERSION}_arm64.deb
+COPY --from=dependencies /data/{{ ctx.opencv['libopencv-samples'].fileName }} {{ ctx.opencv['libopencv-samples'].fileName }}
+RUN echo "{{ ctx.opencv['libopencv-samples'].checksum }} {{ ctx.opencv['libopencv-samples'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends {{ ctx.opencv['libopencv-samples'].fileName }} && \
+    rm {{ ctx.opencv['libopencv-samples'].fileName }}
+
+{%- endif %}
 
 # Install dependencies for TensorFlow
 #RUN apt-get update && apt-get install -y \
