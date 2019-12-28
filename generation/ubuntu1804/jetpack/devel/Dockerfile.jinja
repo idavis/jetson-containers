@@ -1,4 +1,4 @@
-{%- if ctx.drivers.version == "32.3.1" %}
+{%- if ctx.drivers.version == "32.3.1" -%}
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-runtime
 
@@ -6,53 +6,111 @@ FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.
 
 RUN apt-get update && \
     apt-get install -y --allow-downgrades --no-install-recommends cuda-toolkit-10-0 && \
-    dpkg --purge cuda-repo-l4t-10-0-local-{{ ctx.cuda.toolkit.version }} \
-    && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA CUDA Deep Neural Network library (cuDNN)
 
-ENV CUDNN_VERSION ctx.cudnn.libcudnn7.version
+ENV CUDNN_VERSION {{ ctx.cudnn.libcudnn7.version }}
 
-ENV CUDNN_PKG_VERSION=${CUDA_VERSION}-1
+LABEL com.nvidia.cudnn.version="{{ ctx.cudnn.libcudnn7.version }}"
 
-LABEL com.nvidia.cudnn.version="${CUDNN_VERSION}"
-
-RUN apt update && \
-    apt install -y --no-install-recommends /{{ ctx.cudnn.libcudnn7.packageName }} {{ ctx.cudnn["libcudnn7-dev"].packageName }} {{ ctx.cudnn["libcudnn7-doc"].packageName }} \
-    && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends {{ ctx.cudnn.libcudnn7.packageName }} {{ ctx.cudnn["libcudnn7-dev"].packageName }} {{ ctx.cudnn["libcudnn7-doc"].packageName }} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA VisionWorks Toolkit
 
-RUN apt install -y --no-install-recommends libvisionworks-repo && \
-    apt-key add /var/visionworks-repo/GPGKEY && \
-    apt-get update && \
-    apt-get install -y --allow-unauthenticated libvisionworks libvisionworks-dev libvisionworks-samples && \
-    dpkg --purge libvisionworks-repo && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libvisionworks libvisionworks-dev libvisionworks-samples && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA VisionWorks Plus (SFM)
-RUN apt install -y --no-install-recommends libvisionworks-sfm-repo && \
-    apt-key add /var/visionworks-sfm-repo/GPGKEY && \
-    apt-get update && \
-    apt-get install -y --allow-unauthenticated libvisionworks-sfm libvisionworks-sfm-dev && \
-    dpkg --purge libvisionworks-sfm-repo && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libvisionworks-sfm libvisionworks-sfm-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # NVIDIA VisionWorks Object Tracker
-RUN apt install -y --no-install-recommends libvisionworks-tracking-repo && \
-    apt-key add /var/visionworks-tracking-repo/GPGKEY && \
-    apt-get update && \
-    apt-get install -y --allow-unauthenticated libvisionworks-tracking libvisionworks-tracking-dev && \
-    dpkg --purge libvisionworks-tracking-repo && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libvisionworks-tracking libvisionworks-tracking-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-{% else %}
+
+
+# NVIDIA TensorRT
+
+#LABEL com.nvidia.libinfer.version="ctx.tensorrt.libnvinfer5.version "
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvinfer6 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvinfer-bin libnvinfer-dev libnvinfer-doc libnvinfer-samples && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvinfer-plugin-dev libnvinfer-plugin6 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Fix for 4.3 as  ctx.tensorrt.tensorrt is gone
+#LABEL com.nvidia.tensorrt.version="ctx.tensorrt.tensorrt.version"
+
+#ENV TENSORRT_PKG tensorrt_${TENSORRT_PKG_VERSION}+cuda10.0_arm64.deb
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends tensorrt && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python-libnvinfer python-libnvinfer-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python3-libnvinfer python3-libnvinfer-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Graph Surgeon
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends graphsurgeon-tf && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# UFF Converter
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends uff-converter-tf && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Multimedia API
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends nvidia-l4t-jetson-multimedia-api && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+
+# Install dependencies for OpenCV
+
+# Open CV {{ ctx.opencv.libopencv.version }}
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libopencv libopencv-dev libopencv-python libopencv-samples opencv-licenses && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{%- else %}
 ARG DEPENDENCIES_IMAGE
 ARG IMAGE_NAME
 FROM ${DEPENDENCIES_IMAGE} as dependencies

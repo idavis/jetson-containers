@@ -6,11 +6,10 @@ LABEL com.nvidia.jetpack.version="{{ ctx.jetpackVersion }}"
 
 ENV CUDA_VERSION "{{ ctx.cuda.toolkit.version }}"
 
-ENV CUDA_PKG_VERSION=${CUDA_VERSION}_1.0-1
-
 LABEL com.nvidia.cuda.version="${CUDA_VERSION}"
 
-RUN apt-get update && apt-get install -y --no-install-recommends --allow-downgrades cuda-cudart-10-0 cuda-nvtx-10-0 && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends --allow-downgrades cuda-cudart-10-0 cuda-nvtx-10-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 {% else %}

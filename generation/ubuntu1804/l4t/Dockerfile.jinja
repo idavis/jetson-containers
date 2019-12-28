@@ -18,8 +18,6 @@ FROM arm64v8/ubuntu:${VERSION_ID}
 
 LABEL maintainer "Ian Davis"
 
-ARG DEPENDENCIES_IMAGE
-COPY --from=dependencies /data/{{ ctx.drivers.fileName }} {{ ctx.drivers.fileName }}
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bzip2 \
     lbzip2 \
@@ -28,13 +26,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gnupg \
 {%- endif %}
     sudo
+
+# Copy the driver pack and verify
+ARG DEPENDENCIES_IMAGE
+COPY --from=dependencies /data/{{ ctx.drivers.fileName }} {{ ctx.drivers.fileName }}
 {%- if ctx.drivers.checksumType == "sha1" %}
 RUN echo "{{ ctx.drivers.checksum }} *./{{ ctx.drivers.fileName }}" | sha1sum -c --strict -
 {%- elif ctx.drivers.checksumType == "md5" %}
 RUN echo "{{ ctx.drivers.checksum }} *./{{ ctx.drivers.fileName }}" | md5sum -c -
 {%- endif %}
 RUN tar -xpj --overwrite -f ./{{ ctx.drivers.fileName }}
-#if jp > 4.2, since 4.2 isn't supported yet, just do it.
+
+#if jp > 4.2, since 4.2 isn't supported yet, we'll do this always
 RUN sed -i '/.*tar -I lbzip2 -xpmf ${LDK_NV_TEGRA_DIR}\/config\.tbz2.*/c\tar -I lbzip2 -xpm --overwrite -f ${LDK_NV_TEGRA_DIR}\/config.tbz2' ./Linux_for_Tegra/apply_binaries.sh
 {%- if ctx.drivers.version == "32.3.1" %}
 # pre-req for Linux_for_Tegra/nv_tegra/nv-apply-debs.sh as it tries to chroot
@@ -46,11 +49,15 @@ RUN sed -i '/.*rm -f \"${L4T_ROOTFS_DIR}\/etc\/apt\/jetson-ota-public.key\".*/c\
 RUN sed -i '/.*	LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${pre_deb_list\[\@\]}\".*/c\	apt install -y --no-install-recommends \"${pre_deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${deb_list\[\@\]}\".*/c\apt install -y --no-install-recommends \"${deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 {%- endif %}
+
+# In 32.3.1, this will use deb packages instead of the archive overlay
 RUN ./Linux_for_Tegra/apply_binaries.sh -r /
 {%- if ctx.drivers.version == "32.3.1" %}
 # Patch OTA apt source
 RUN sed -i "s/<SOC>/t{{ ctx.SOC }}/g" "/etc/apt/sources.list.d/nvidia-l4t-apt-source.list"
 {%- endif %}
+
+# Cleanup so --squash will be effective
 RUN rm -rf ./Linux_for_Tegra && \
     rm ./{{ ctx.drivers.fileName }} \
     && \

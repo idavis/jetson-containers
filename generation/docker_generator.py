@@ -78,22 +78,43 @@ class DockerGenerator(cli.Application):
                 jetpack_context_file = pathlib.Path(f"dist/{jetpack_version}/jetpack.yml")
                 self.generate_jetpack_dockerfiles(jetpack_context_file, l4t_context_file, jetpack_version, device)
         
+        context = self.generate_l4t_makefile_context()
+
         l4t_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/l4t/Makefile.jinja")
-        self.generate_l4t_makefile(l4t_makefile_template_filepath)
+        self.generate_l4t_makefile(context, l4t_makefile_template_filepath)
 
         jetpack_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/jetpack.mk.jinja")
-        self.generate_jetpack_makefile(jetpack_makefile_template_filepath)
+        self.generate_jetpack_makefile(context, jetpack_makefile_template_filepath)
 
         jetpack_deps_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/dependencies.mk.jinja")
-        self.generate_jetpack_makefile(jetpack_deps_makefile_template_filepath)
+        self.generate_jetpack_makefile(context, jetpack_deps_makefile_template_filepath)
 
         jetpack_main_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/Makefile.jinja")
-        self.generate_jetpack_makefile(jetpack_main_makefile_template_filepath)
-                    
+        self.generate_jetpack_makefile(context, jetpack_main_makefile_template_filepath)
+
+        main_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/Makefile.jinja")
+        self.generate_main_makefile(context, main_makefile_template_filepath)
+
         log.info("Done")
 
-    def generate_jetpack_makefile(self, template_filepath):
-        context = self.generate_l4t_makefile_context()
+    def generate_main_makefile(self, context, template_filepath):
+        # TODO, handle cases where context/template don't suport the device
+        output_path = pathlib.Path(f"./")
+
+        with open(template_filepath) as f:
+            log.debug("Processing template %s", template_filepath)
+            new_output_path = pathlib.Path(output_path)
+            new_filename = template_filepath.name[:-6]
+ 
+            template = Template(f.read())
+            if not new_output_path.exists():
+                log.debug(f"Creating {new_output_path}")
+                new_output_path.mkdir(parents=True)
+            log.info(f"Writing {new_output_path}/{new_filename}")
+            with open(f"{new_output_path}/{new_filename}", "w") as f2:
+                f2.write(template.render(ctx=context))
+
+    def generate_jetpack_makefile(self, context, template_filepath):
         # TODO, handle cases where context/template don't suport the device
         output_path = pathlib.Path(f"docker/jetpack")
 
@@ -116,6 +137,7 @@ class DockerGenerator(cli.Application):
         if device not in context:
             log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
             return
+        print(f'l4t-{device}-jetpack-{jetpack_version}')
         deviceData = context[device]
         driverVersion = deviceData["drivers"]["version"]
         deviceData["SOC"] = deviceToSoCLookup[device]
@@ -136,7 +158,6 @@ class DockerGenerator(cli.Application):
                 f2.write(template.render(ctx=deviceData))
 
     def generate_jetpack_dockerfiles(self, jetpack_context_file, l4t_context_file, jetpack_version, device):
-
         context = self.read_yml_dictionary(jetpack_context_file)
         if device not in context:
             log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
@@ -170,8 +191,7 @@ class DockerGenerator(cli.Application):
                 with open(f"{new_output_path}/{new_filename}", "w") as f2:
                     f2.write(template.render(ctx=deviceData))
 
-    def generate_l4t_makefile(self, template_filepath):
-        context = self.generate_l4t_makefile_context()
+    def generate_l4t_makefile(self, context, template_filepath):
         # TODO, handle cases where context/template don't suport the device
         output_path = pathlib.Path(f"docker/l4t")
 
