@@ -70,6 +70,16 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvparsers6 libnvparsers-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvonnxparsers6 libnvonnxparsers-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
     apt-get install -y --no-install-recommends python-libnvinfer python-libnvinfer-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -302,7 +312,27 @@ RUN echo "{{ ctx.opencv['libopencv-samples'].checksum }} {{ ctx.opencv['libopenc
 
 #RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
 
+{% if ctx.jetpackVersion == 4.3 %}
+# Available versions:
+# tensorflow_gpu-1.15.0+nv19.12-cp36-cp36m-linux_aarch64.whl 217MB
+# tensorflow_gpu-2.0.0+nv19.12-cp36-cp36m-linux_aarch64.whl 198MB
+
 # Install TensorFlow
-#RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
+# RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu
 # can browse from https://developer.download.nvidia.com/compute/redist/jp/
-# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==$TF_VERSION+nv$NV_VERSION
+# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
+{% else %}
+# Available versions:
+# tensorflow_gpu-1.13.1+nv19.4-cp36-cp36m-linux_aarch64.whl 195MB
+# tensorflow_gpu-1.13.1+nv19.5-cp36-cp36m-linux_aarch64.whl 195MB
+# tensorflow_gpu-1.14.0+nv19.7-cp36-cp36m-linux_aarch64.whl 214MB
+# tensorflow_gpu-1.14.0+nv19.9-cp36-cp36m-linux_aarch64.whl 214MB
+# tensorflow_gpu-1.14.0+nv19.10-cp36-cp36m-linux_aarch64.whl 214MB
+# tensorflow_gpu-1.15.0+nv19.11-cp36-cp36m-linux_aarch64.whl 217MB
+# tensorflow_gpu-2.0.0+nv19.11-cp36-cp36m-linux_aarch64.whl 198MB
+
+# Install TensorFlow
+# RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
+# can browse from https://developer.download.nvidia.com/compute/redist/jp/
+# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
+{% endif %}
