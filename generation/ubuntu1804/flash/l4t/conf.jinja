@@ -1,0 +1,4 @@
+source ./bsp/{{ ctx.bsp }}
+source ./rootfs/{{ ctx.rootfs }}
+DEPENDENCIES_IMAGE="${DEPENDENCIES_IMAGE:={{ ctx.deps_image }}}"
+FS_DEPENDENCIES_IMAGE="${FS_DEPENDENCIES_IMAGE:={{ ctx.fs_deps_image }}}"

@@ -34,8 +34,8 @@ pushd "${DOCKER_BUILD_ROOT}"
         exit 4
     fi
 
-    if [ -z "$DRIVER_PACK_SHA" ]; then
-        >&2 echo "The DRIVER_PACK_SHA variable must be set."
+    if [ -z "$DRIVER_PACK_MD5" ]; then
+        >&2 echo "The DRIVER_PACK_MD5 variable must be set."
         exit 5
     fi
 
@@ -44,8 +44,8 @@ pushd "${DOCKER_BUILD_ROOT}"
         exit 7
     fi
 
-    if [ -z "$ROOT_FS_SHA" ]; then
-        >&2 echo "The ROOT_FS_SHA variable must be set."
+    if [ -z "$ROOT_FS_MD5" ]; then
+        >&2 echo "The ROOT_FS_MD5 variable must be set."
         exit 8
     fi
 
@@ -75,10 +75,10 @@ pushd "${DOCKER_BUILD_ROOT}"
     echo "${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DOCKER_BUILD_ROOT}/${DOCKERFILE_PREFIX}.Dockerfile" -t "$DOCKER_TAG" \\"
     echo "    --build-arg DEPENDENCIES_IMAGE=$DEPENDENCIES_IMAGE \\"
     echo "    --build-arg DRIVER_PACK=$DRIVER_PACK \\"
-    echo "    --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \\"
+    echo "    --build-arg DRIVER_PACK_MD5=$DRIVER_PACK_MD5 \\"
     echo "    --build-arg FS_DEPENDENCIES_IMAGE=$FS_DEPENDENCIES_IMAGE \\"
     echo "    --build-arg ROOT_FS=$ROOT_FS \\"
-    echo "    --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \\"
+    echo "    --build-arg ROOT_FS_MD5=$ROOT_FS_MD5 \\"
     echo "    --build-arg BSP_DEPENDENCIES_IMAGE=$BSP_DEPENDENCIES_IMAGE \\"
     echo "    --build-arg BSP=$BSP \\"
     echo "    --build-arg BSP_SHA=$BSP_SHA \\"
@@ -91,10 +91,10 @@ pushd "${DOCKER_BUILD_ROOT}"
     ${DOCKER} build ${DOCKER_BUILD_ARGS} -f "${DOCKERFILE_PREFIX}.Dockerfile" -t "$DOCKER_TAG" \
         --build-arg DEPENDENCIES_IMAGE=$DEPENDENCIES_IMAGE \
         --build-arg DRIVER_PACK=$DRIVER_PACK \
-        --build-arg DRIVER_PACK_SHA=$DRIVER_PACK_SHA \
+        --build-arg DRIVER_PACK_MD5=$DRIVER_PACK_MD5 \
         --build-arg FS_DEPENDENCIES_IMAGE=$FS_DEPENDENCIES_IMAGE \
         --build-arg ROOT_FS=$ROOT_FS \
-        --build-arg ROOT_FS_SHA=$ROOT_FS_SHA \
+        --build-arg ROOT_FS_MD5=$ROOT_FS_MD5 \
         --build-arg BSP_DEPENDENCIES_IMAGE=$BSP_DEPENDENCIES_IMAGE \
         --build-arg BSP=$BSP \
         --build-arg BSP_SHA=$BSP_SHA \
