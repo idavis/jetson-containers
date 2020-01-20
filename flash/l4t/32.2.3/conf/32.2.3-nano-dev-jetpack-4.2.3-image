@@ -1,0 +1,4 @@
+source ./bsp/nano-dev.conf
+source ./rootfs/tegra-linux-sample-32.2.3-nano-dev.conf
+DEPENDENCIES_IMAGE="${DEPENDENCIES_IMAGE:=$REPO:32.2.3-nano-dev-jetpack-4.2.3-deps}"
+FS_DEPENDENCIES_IMAGE="${FS_DEPENDENCIES_IMAGE:=$REPO:32.2.3-nano-dev-jetpack-4.2.3-deps}"

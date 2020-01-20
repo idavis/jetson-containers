@@ -28,7 +28,7 @@ export DOCKERFILE_PREFIX ?= default
 
 all: jetpack-deps driver-packs jetpacks
 
-driver-packs: driver-pack-32.3.1 driver-pack-32.2.3 driver-pack-32.2.1 driver-pack-32.2.0
+driver-packs: driver-pack-32.3.1 driver-pack-32.2.3 driver-pack-32.2.1 driver-pack-32.2.0 driver-pack-32.1
 
 
 driver-pack-32.3.1: l4t-32.3.1-tx1 l4t-32.3.1-jax l4t-32.3.1-jax-8gb l4t-32.3.1-tx2 l4t-32.3.1-nano-dev l4t-32.3.1-nano l4t-32.3.1-tx2i l4t-32.3.1-tx2-4gb
@@ -38,6 +38,8 @@ driver-pack-32.2.3: l4t-32.2.3-tx1 l4t-32.2.3-jax l4t-32.2.3-jax-8gb l4t-32.2.3-
 driver-pack-32.2.1: l4t-32.2.1-tx1 l4t-32.2.1-jax l4t-32.2.1-jax-8gb l4t-32.2.1-tx2 l4t-32.2.1-nano-dev l4t-32.2.1-nano l4t-32.2.1-tx2i l4t-32.2.1-tx2-4gb
 
 driver-pack-32.2.0: l4t-32.2.0-tx1 l4t-32.2.0-jax l4t-32.2.0-tx2 l4t-32.2.0-nano-dev l4t-32.2.0-nano l4t-32.2.0-tx2i l4t-32.2.0-tx2-4gb
+
+driver-pack-32.1: l4t-32.1-jax l4t-32.1-tx2 l4t-32.1-nano-dev l4t-32.1-tx2i
 
 
 l4t-%:
@@ -76,6 +78,9 @@ from-deps-folder-%:
 	make -C $(CURDIR)/docker/jetpack $@
 
 32.2.0-%:
+	make -C $(CURDIR)/docker/jetpack $@
+
+32.1-%:
 	make -C $(CURDIR)/docker/jetpack $@
 
 

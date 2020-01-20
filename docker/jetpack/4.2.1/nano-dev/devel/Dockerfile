@@ -108,7 +108,6 @@ RUN echo "66e6df17b7a92d32dd3465bdfca9fc8d tensorrt_5.1.6.1-1+cuda10.0_arm64.deb
     apt-get update && apt-get install -y --no-install-recommends /tensorrt_5.1.6.1-1+cuda10.0_arm64.deb && \
     rm tensorrt_5.1.6.1-1+cuda10.0_arm64.deb
 
-
 # Python2 support for TensorRT
 COPY --from=dependencies /data/python-libnvinfer_5.1.6-1+cuda10.0_arm64.deb python-libnvinfer_5.1.6-1+cuda10.0_arm64.deb
 RUN echo "ae1a0c1b859345df172781f3d6d5d6f9 python-libnvinfer_5.1.6-1+cuda10.0_arm64.deb" | md5sum -c - && \

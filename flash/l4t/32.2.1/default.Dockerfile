@@ -44,18 +44,19 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 ARG DRIVER_PACK
-ARG DRIVER_PACK_SHA
+ARG DRIVER_PACK_MD5
 
 COPY --from=dependencies /data/${DRIVER_PACK} ${DRIVER_PACK}
-RUN echo "${DRIVER_PACK_SHA} *./${DRIVER_PACK}" | sha1sum -c --strict - && \
+
+RUN echo "${DRIVER_PACK_MD5} *./${DRIVER_PACK}" | md5sum -c - && \
     tar -xp --overwrite -f ./${DRIVER_PACK} && \
     rm /${DRIVER_PACK}
 
 ARG ROOT_FS
-ARG ROOT_FS_SHA
+ARG ROOT_FS_MD5
 
 COPY --from=fs-dependencies /data/${ROOT_FS} ${ROOT_FS}
-RUN echo "${ROOT_FS_SHA} *./${ROOT_FS}" | sha1sum -c --strict - && \
+RUN echo "${ROOT_FS_MD5} *./${ROOT_FS}" | md5sum -c - && \
     cd /Linux_for_Tegra/rootfs && \
     tar -xp --overwrite -f /${ROOT_FS} && \
     rm /${ROOT_FS} && \

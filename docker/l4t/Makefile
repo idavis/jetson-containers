@@ -5,7 +5,7 @@ DOCKER_BUILD_ARGS ?= --squash
 
 .PHONY: all
 
-all: 32.3.1 32.2.3 32.2.1 32.2.0
+all: 32.3.1 32.2.3 32.2.1 32.2.0 32.1
 
 
 32.3.1: 32.3.1-tx1 32.3.1-jax 32.3.1-jax-8gb 32.3.1-tx2 32.3.1-nano-dev 32.3.1-nano 32.3.1-tx2i 32.3.1-tx2-4gb
@@ -15,6 +15,8 @@ all: 32.3.1 32.2.3 32.2.1 32.2.0
 32.2.1: 32.2.1-tx1 32.2.1-jax 32.2.1-jax-8gb 32.2.1-tx2 32.2.1-nano-dev 32.2.1-nano 32.2.1-tx2i 32.2.1-tx2-4gb
 
 32.2.0: 32.2.0-tx1 32.2.0-jax 32.2.0-tx2 32.2.0-nano-dev 32.2.0-nano 32.2.0-tx2i 32.2.0-tx2-4gb
+
+32.1: 32.1-jax 32.1-tx2 32.1-nano-dev 32.1-tx2i
 
 
 
@@ -271,5 +273,39 @@ all: 32.3.1 32.2.3 32.2.1 32.2.0
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.2.0-tx2-4gb-jetpack-4.2.1-deps \
 					-t $(REPO):$@ \
 					-f $(CURDIR)/32.2.0/tx2-4gb/Dockerfile \
+					.
+
+
+
+32.1-jax:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-jax-jetpack-4.2-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.1/jax/Dockerfile \
+					.
+
+32.1-tx2:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-tx2-jetpack-4.2-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.1/tx2/Dockerfile \
+					.
+
+32.1-nano-dev:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-nano-dev-jetpack-4.2-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.1/nano-dev/Dockerfile \
+					.
+
+32.1-tx2i:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):32.1-tx2i-jetpack-4.2-deps \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/32.1/tx2i/Dockerfile \
 					.
 
