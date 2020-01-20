@@ -241,6 +241,7 @@ RUN echo "{{ ctx.tensorrt.tensorrt.checksum }} {{ ctx.tensorrt.tensorrt.fileName
     apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt.tensorrt.fileName }} && \
     rm {{ ctx.tensorrt.tensorrt.fileName }}
 
+{%- if ctx.jetpackVersion != "4.2" %}
 
 # Python2 support for TensorRT
 COPY --from=dependencies /data/{{ ctx.tensorrt['python-libnvinfer'].fileName }} {{ ctx.tensorrt['python-libnvinfer'].fileName }}
@@ -263,6 +264,7 @@ COPY --from=dependencies /data/{{ ctx.tensorrt['python3-libnvinfer-dev'].fileNam
 RUN echo "{{ ctx.tensorrt['python3-libnvinfer-dev'].checksum }} {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}" | md5sum -c - && \
     apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }} && \
     rm {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}
+{%-endif %}
 
 # Graph Surgeon
 COPY --from=dependencies /data/{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}

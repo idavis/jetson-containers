@@ -58,7 +58,9 @@ active_versions = [
 
     "4.2.3",
     "4.2.2",
-    "4.2.1"
+    "4.2.1",
+
+    "4.2"
 ]
 
 activeVersionsToSdkManagerVersionsLookup = {
@@ -66,7 +68,11 @@ activeVersionsToSdkManagerVersionsLookup = {
 
     "4.2.3": "GA_4.2.3",
     "4.2.2": "GA_4.2.2",
-    "4.2.1": "GA_4.2.1"
+    "4.2.1": "GA_4.2.1",
+
+    "4.2": "4.2"
+
+    #GA_3.3.2, GA_3.3.1
 }
 
 class DockerGenerator(cli.Application):
