@@ -28,13 +28,17 @@ export DOCKERFILE_PREFIX ?= default
 
 all: jetpack-deps driver-packs jetpacks
 
-driver-packs: $(addprefix driver-pack-,32.2.1 32.2 32.1)
+driver-packs: driver-pack-32.3.1 driver-pack-32.2.3 driver-pack-32.2.1 driver-pack-32.2.0
 
-driver-pack-32.2.1: $(addprefix l4t-32.2.1-,jax jax-8gb tx2 tx2i tx2-4gb tx1 nano nano-dev)
 
-driver-pack-32.2: $(addprefix l4t-32.2-,jax tx2 tx2i tx2-4gb tx1 nano nano-dev)
+driver-pack-32.3.1: l4t-32.3.1-tx1 l4t-32.3.1-jax l4t-32.3.1-jax-8gb l4t-32.3.1-tx2 l4t-32.3.1-nano-dev l4t-32.3.1-nano l4t-32.3.1-tx2i l4t-32.3.1-tx2-4gb
 
-driver-pack-32.1: $(addprefix l4t-32.1-,jax tx2 nano-dev)
+driver-pack-32.2.3: l4t-32.2.3-tx1 l4t-32.2.3-jax l4t-32.2.3-jax-8gb l4t-32.2.3-tx2 l4t-32.2.3-nano-dev l4t-32.2.3-nano l4t-32.2.3-tx2i l4t-32.2.3-tx2-4gb
+
+driver-pack-32.2.1: l4t-32.2.1-tx1 l4t-32.2.1-jax l4t-32.2.1-jax-8gb l4t-32.2.1-tx2 l4t-32.2.1-nano-dev l4t-32.2.1-nano l4t-32.2.1-tx2i l4t-32.2.1-tx2-4gb
+
+driver-pack-32.2.0: l4t-32.2.0-tx1 l4t-32.2.0-jax l4t-32.2.0-tx2 l4t-32.2.0-nano-dev l4t-32.2.0-nano l4t-32.2.0-tx2i l4t-32.2.0-tx2-4gb
+
 
 l4t-%:
 	make -C $(CURDIR)/docker/l4t $*
@@ -61,28 +65,19 @@ from-deps-folder-%:
 
 # JetPack
 
-jetpacks: $(addprefix jetpack-,4.2.2 4.2.1 4.2)
 
-jetpack-4.2.2: 32.2.1-jax-jetpack-4.2.2 32.2.1-jax-8gb-jetpack-4.2.2 32.2.1-tx2-jetpack-4.2.2 32.2.1-tx2i-jetpack-4.2.2 32.2.1-tx2-4gb-jetpack-4.2.2 32.2.1-tx1-jetpack-4.2.2 32.2.1-nano-jetpack-4.2.2 32.2.1-nano-dev-jetpack-4.2.2
+32.3.1-%:
+	make -C $(CURDIR)/docker/jetpack $@
 
-jetpack-4.2.1: 32.2-jax-jetpack-4.2.1 32.2-tx2-jetpack-4.2.1 32.2-tx2i-jetpack-4.2.1 32.2-tx2-4gb-jetpack-4.2.1 32.2-tx1-jetpack-4.2.1 32.2-nano-jetpack-4.2.1 32.2-nano-dev-jetpack-4.2.1
-
-jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-dev-jetpack-4.2
-
-# JetPack 4.2.2
+32.2.3-%:
+	make -C $(CURDIR)/docker/jetpack $@
 
 32.2.1-%:
 	make -C $(CURDIR)/docker/jetpack $@
 
-# JetPack 4.2.1
-
-32.2-%:
+32.2.0-%:
 	make -C $(CURDIR)/docker/jetpack $@
 
-# JetPack 4.2
-
-32.1-%:
-	make -C $(CURDIR)/docker/jetpack $@
 
 # Samples
 
