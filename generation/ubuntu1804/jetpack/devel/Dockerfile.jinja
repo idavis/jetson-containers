@@ -42,7 +42,19 @@ RUN apt-get update && \
 
 # NVIDIA TensorRT
 
-#LABEL com.nvidia.libinfer.version="ctx.tensorrt.libnvinfer5.version "
+{% if 'tensorflownodla' in ctx %}
+{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer5.version }}"
+{%- else %}
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer6.version }}"
+{%- endif %}
+{%- elif 'deepstreamdla' in ctx %}
+{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer6.version }}"
+{%- else %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer6.version }}"
+{%- endif %}
+{%- endif %}
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends libnvinfer6 && \
@@ -59,10 +71,19 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Fix for 4.3 as  ctx.tensorrt.tensorrt is gone
-#LABEL com.nvidia.tensorrt.version="ctx.tensorrt.tensorrt.version"
-
-#ENV TENSORRT_PKG tensorrt_${TENSORRT_PKG_VERSION}+cuda10.0_arm64.deb
+{% if 'tensorflownodla' in ctx %}
+{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
+{%- else %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
+{%- endif %}
+{%- elif 'deepstreamdla' in ctx %}
+{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
+{%- else %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
+{%- endif %}
+{%- endif %}
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends tensorrt && \
@@ -303,6 +324,12 @@ RUN echo "{{ ctx.opencv['libopencv-samples'].checksum }} {{ ctx.opencv['libopenc
 #RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
 
 # Install TensorFlow
+{%- if ctx.drivers.version == "32.3.1" -%}
+#RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu
+# can browse from https://developer.download.nvidia.com/compute/redist/jp/
+# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu==$TF_VERSION+nv$NV_VERSION
+{% else %}
 #RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
 # can browse from https://developer.download.nvidia.com/compute/redist/jp/
 # RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==$TF_VERSION+nv$NV_VERSION
+{% endif %}

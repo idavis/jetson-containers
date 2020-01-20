@@ -292,6 +292,11 @@ class ManifestProcessor(cli.Application):
                         if result is not None:
                             version = result.group(1)
                             fileContext["version"] = version
+                    elif componentName == "deepstreamdla" or componentName == "tensorflownodla":
+                        result = libnvinfer_matcher.search(fileContext["fileName"])
+                        if result is not None:
+                            version = result.group(1)
+                            fileContext["version"] = version
 
     def get_component_name(self, componentName):
         if componentName in ignoredSections:
