@@ -100,6 +100,10 @@ class DockerGenerator(cli.Application):
         
         context = self.generate_l4t_makefile_context()
 
+        l4t_flash_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/flash/l4t/jetpack.mk.jinja")
+        output_path = pathlib.Path(f"flash/")
+        self.write_template(context, l4t_flash_makefile_template_filepath, output_path)
+
         l4t_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/l4t/Makefile.jinja")
         self.generate_l4t_makefile(context, l4t_makefile_template_filepath)
 
