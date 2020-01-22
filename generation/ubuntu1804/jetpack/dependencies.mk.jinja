@@ -10,7 +10,6 @@ all-dependencies: {% for driver_version, value in ctx.items() -%}{%- for device_
 					-t $(REPO):$*-deps \
 					-f $(CURDIR)/dependencies.Dockerfile \
 					$(SDKM_DOWNLOADS)
-					.
 
 {% for driver_version, value in ctx.items() %}
 {%- for device_name, driver_details in ctx[driver_version].items() %}

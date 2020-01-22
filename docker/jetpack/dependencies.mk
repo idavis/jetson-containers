@@ -10,7 +10,6 @@ all-dependencies: 32.3.1-jetpack-4.3-deps 32.2.3-jetpack-4.2.3-deps 32.2.1-jetpa
 					-t $(REPO):$*-deps \
 					-f $(CURDIR)/dependencies.Dockerfile \
 					$(SDKM_DOWNLOADS)
-					.
 
 32.3.1-jetpack-4.3-deps: 32.3.1-tx1-jetpack-4.3-deps 32.3.1-jax-jetpack-4.3-deps 32.3.1-jax-8gb-jetpack-4.3-deps 32.3.1-tx2-jetpack-4.3-deps 32.3.1-nano-dev-jetpack-4.3-deps 32.3.1-nano-jetpack-4.3-deps 32.3.1-tx2i-jetpack-4.3-deps 32.3.1-tx2-4gb-jetpack-4.3-deps 
 32.2.3-jetpack-4.2.3-deps: 32.2.3-tx1-jetpack-4.2.3-deps 32.2.3-jax-jetpack-4.2.3-deps 32.2.3-jax-8gb-jetpack-4.2.3-deps 32.2.3-tx2-jetpack-4.2.3-deps 32.2.3-nano-dev-jetpack-4.2.3-deps 32.2.3-nano-jetpack-4.2.3-deps 32.2.3-tx2i-jetpack-4.2.3-deps 32.2.3-tx2-4gb-jetpack-4.2.3-deps 
