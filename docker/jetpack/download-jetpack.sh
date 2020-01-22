@@ -41,7 +41,7 @@ if [ -z "$ACCEPT_SDK_LICENCE" ]; then
     exit 8
 fi
 
-if [[ $(uname -a) == *"-microsoft-"* ]]; then
+if [[ $(uname -a) == *"-microsoft-"* ]] || ! [[ $(xhost >& /dev/null) ]]; then
 	# Check if xvfb installed 
 	if [ -x "$(command -v xvfb-run)" ]; 
 	then
