@@ -107,6 +107,10 @@ class DockerGenerator(cli.Application):
         l4t_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/l4t/Makefile.jinja")
         self.generate_l4t_makefile(context, l4t_makefile_template_filepath)
 
+        tasksjson_template_filepath = pathlib.Path(f"generation/ubuntu1804/tasks.json.jinja")
+        output_path = pathlib.Path(f".vscode/")
+        self.write_template(context, tasksjson_template_filepath, output_path)
+
         jetpack_makefile_template_filepath = pathlib.Path(f"generation/ubuntu1804/jetpack/jetpack.mk.jinja")
         self.generate_jetpack_makefile(context, jetpack_makefile_template_filepath)
 

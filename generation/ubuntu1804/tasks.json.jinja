@@ -266,104 +266,25 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "driver-pack-32.3.1",
-                "driver-pack-32.2.3",
-                "driver-pack-32.2.1",
-                "driver-pack-32.2.0",
-                "driver-pack-32.1",
-
-                "l4t-32.3.1-tx1",
-                "l4t-32.3.1-jax",
-                "l4t-32.3.1-jax-8gb",
-                "l4t-32.3.1-tx2",
-                "l4t-32.3.1-nano-dev",
-                "l4t-32.3.1-nano",
-                "l4t-32.3.1-tx2i",
-                "l4t-32.3.1-tx2-4gb",
-
-                "l4t-32.2.3-tx1",
-                "l4t-32.2.3-jax",
-                "l4t-32.2.3-jax-8gb",
-                "l4t-32.2.3-tx2",
-                "l4t-32.2.3-nano-dev",
-                "l4t-32.2.3-nano",
-                "l4t-32.2.3-tx2i",
-                "l4t-32.2.3-tx2-4gb",
-
-                "l4t-32.2.1-tx1",
-                "l4t-32.2.1-jax",
-                "l4t-32.2.1-jax-8gb",
-                "l4t-32.2.1-tx2",
-                "l4t-32.2.1-nano-dev",
-                "l4t-32.2.1-nano",
-                "l4t-32.2.1-tx2i",
-                "l4t-32.2.1-tx2-4gb",
-
-                "l4t-32.2.0-tx1",
-                "l4t-32.2.0-jax",
-                "l4t-32.2.0-tx2",
-                "l4t-32.2.0-nano-dev",
-                "l4t-32.2.0-nano",
-                "l4t-32.2.0-tx2i",
-                "l4t-32.2.0-tx2-4gb",
-
-                "l4t-32.1-jax",
-                "l4t-32.1-tx2",
-                "l4t-32.1-nano-dev",
-                "l4t-32.1-tx2i"
-            ]
+{% for driver_version, value in ctx.items() %}                "driver-pack-{{ driver_version }}",
+{% endfor %}
+{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
+{% for device_name, driver_details in ctx[driver_version].items() %}                "l4t-{{ driver_version }}-{{ device_name }}"{{ "," if not (outer_loop.last and loop.last) }}
+{% endfor %}{%- endfor %}            ]
         },
         {
             "id": "pickJetPacks",
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "32.3.1-tx1-jetpack-4.3",
-                "32.3.1-jax-jetpack-4.3",
-                "32.3.1-jax-8gb-jetpack-4.3",
-                "32.3.1-tx2-jetpack-4.3",
-                "32.3.1-nano-dev-jetpack-4.3",
-                "32.3.1-nano-jetpack-4.3",
-                "32.3.1-tx2i-jetpack-4.3",
-                "32.3.1-tx2-4gb-jetpack-4.3",
-
-                "32.2.3-tx1-jetpack-4.2.3",
-                "32.2.3-jax-jetpack-4.2.3",
-                "32.2.3-jax-8gb-jetpack-4.2.3",
-                "32.2.3-tx2-jetpack-4.2.3",
-                "32.2.3-nano-dev-jetpack-4.2.3",
-                "32.2.3-nano-jetpack-4.2.3",
-                "32.2.3-tx2i-jetpack-4.2.3",
-                "32.2.3-tx2-4gb-jetpack-4.2.3",
-
-                "32.2.1-tx1-jetpack-4.2.2",
-                "32.2.1-jax-jetpack-4.2.2",
-                "32.2.1-jax-8gb-jetpack-4.2.2",
-                "32.2.1-tx2-jetpack-4.2.2",
-                "32.2.1-nano-dev-jetpack-4.2.2",
-                "32.2.1-nano-jetpack-4.2.2",
-                "32.2.1-tx2i-jetpack-4.2.2",
-                "32.2.1-tx2-4gb-jetpack-4.2.2",
-
-                "32.2.0-tx1-jetpack-4.2.1",
-                "32.2.0-jax-jetpack-4.2.1",
-                "32.2.0-tx2-jetpack-4.2.1",
-                "32.2.0-nano-dev-jetpack-4.2.1",
-                "32.2.0-nano-jetpack-4.2.1",
-                "32.2.0-tx2i-jetpack-4.2.1",
-                "32.2.0-tx2-4gb-jetpack-4.2.1",
-
-                "32.1-jax-jetpack-4.2",
-                "32.1-tx2-jetpack-4.2",
-                "32.1-nano-dev-jetpack-4.2",
-                "32.1-tx2i-jetpack-4.2",
-
-                "jetpack-4.3",
-                "jetpack-4.2.3",
-                "jetpack-4.2.2",
-                "jetpack-4.2.1",
-                "jetpack-4.2",
-                "jetpacks"
+{%- for driver_version, value in ctx.items() %}
+{%- for device_name, driver_details in ctx[driver_version].items() %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}",{% endfor %}
+{% endfor %}
+{% for driver_version, value in ctx.items() %}
+{%- for device_name, driver_details in ctx[driver_version].items() %}
+{%- if loop.first %}                "jetpack-{{ driver_details.jetpackVersion }}",{% endif %}{% endfor %}
+{% endfor %}                "jetpacks"
             ]
         },
         {
@@ -371,184 +292,40 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "32.3.1-tx1-jetpack-4.3",
-                "32.3.1-jax-jetpack-4.3",
-                "32.3.1-jax-8gb-jetpack-4.3",
-                "32.3.1-tx2-jetpack-4.3",
-                "32.3.1-nano-dev-jetpack-4.3",
-                "32.3.1-nano-jetpack-4.3",
-                "32.3.1-tx2i-jetpack-4.3",
-                "32.3.1-tx2-4gb-jetpack-4.3",
-
-                "32.2.3-tx1-jetpack-4.2.3",
-                "32.2.3-jax-jetpack-4.2.3",
-                "32.2.3-jax-8gb-jetpack-4.2.3",
-                "32.2.3-tx2-jetpack-4.2.3",
-                "32.2.3-nano-dev-jetpack-4.2.3",
-                "32.2.3-nano-jetpack-4.2.3",
-                "32.2.3-tx2i-jetpack-4.2.3",
-                "32.2.3-tx2-4gb-jetpack-4.2.3",
-
-                "32.2.1-tx1-jetpack-4.2.2",
-                "32.2.1-jax-jetpack-4.2.2",
-                "32.2.1-jax-8gb-jetpack-4.2.2",
-                "32.2.1-tx2-jetpack-4.2.2",
-                "32.2.1-nano-dev-jetpack-4.2.2",
-                "32.2.1-nano-jetpack-4.2.2",
-                "32.2.1-tx2i-jetpack-4.2.2",
-                "32.2.1-tx2-4gb-jetpack-4.2.2",
-
-                "32.2.0-tx1-jetpack-4.2.1",
-                "32.2.0-jax-jetpack-4.2.1",
-                "32.2.0-tx2-jetpack-4.2.1",
-                "32.2.0-nano-dev-jetpack-4.2.1",
-                "32.2.0-nano-jetpack-4.2.1",
-                "32.2.0-tx2i-jetpack-4.2.1",
-                "32.2.0-tx2-4gb-jetpack-4.2.1",
-
-                "32.1-jax-jetpack-4.2",
-                "32.1-tx2-jetpack-4.2",
-                "32.1-nano-dev-jetpack-4.2",
-                "32.1-tx2i-jetpack-4.2"
-            ]
+{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx[driver_version].items() %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
         },
         {
             "id": "pickDependencyBuilds",
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "32.3.1-tx1-jetpack-4.3",
-                "32.3.1-jax-jetpack-4.3",
-                "32.3.1-jax-8gb-jetpack-4.3",
-                "32.3.1-tx2-jetpack-4.3",
-                "32.3.1-nano-dev-jetpack-4.3",
-                "32.3.1-nano-jetpack-4.3",
-                "32.3.1-tx2i-jetpack-4.3",
-                "32.3.1-tx2-4gb-jetpack-4.3",
-
-                "32.2.3-tx1-jetpack-4.2.3",
-                "32.2.3-jax-jetpack-4.2.3",
-                "32.2.3-jax-8gb-jetpack-4.2.3",
-                "32.2.3-tx2-jetpack-4.2.3",
-                "32.2.3-nano-dev-jetpack-4.2.3",
-                "32.2.3-nano-jetpack-4.2.3",
-                "32.2.3-tx2i-jetpack-4.2.3",
-                "32.2.3-tx2-4gb-jetpack-4.2.3",
-
-                "32.2.1-tx1-jetpack-4.2.2",
-                "32.2.1-jax-jetpack-4.2.2",
-                "32.2.1-jax-8gb-jetpack-4.2.2",
-                "32.2.1-tx2-jetpack-4.2.2",
-                "32.2.1-nano-dev-jetpack-4.2.2",
-                "32.2.1-nano-jetpack-4.2.2",
-                "32.2.1-tx2i-jetpack-4.2.2",
-                "32.2.1-tx2-4gb-jetpack-4.2.2",
-
-                "32.2.0-tx1-jetpack-4.2.1",
-                "32.2.0-jax-jetpack-4.2.1",
-                "32.2.0-tx2-jetpack-4.2.1",
-                "32.2.0-nano-dev-jetpack-4.2.1",
-                "32.2.0-nano-jetpack-4.2.1",
-                "32.2.0-tx2i-jetpack-4.2.1",
-                "32.2.0-tx2-4gb-jetpack-4.2.1",
-
-                "32.1-jax-jetpack-4.2",
-                "32.1-tx2-jetpack-4.2",
-                "32.1-nano-dev-jetpack-4.2",
-                "32.1-tx2i-jetpack-4.2"
-            ]
+{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx[driver_version].items() %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
         },
         {
             "id": "pickBuildSamples",
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "build-32.3.1-tx1-jetpack-4.3-samples",
-                "build-32.3.1-jax-jetpack-4.3-samples",
-                "build-32.3.1-jax-8gb-jetpack-4.3-samples",
-                "build-32.3.1-tx2-jetpack-4.3-samples",
-                "build-32.3.1-nano-dev-jetpack-4.3-samples",
-                "build-32.3.1-nano-jetpack-4.3-samples",
-                "build-32.3.1-tx2i-jetpack-4.3-samples",
-                "build-32.3.1-tx2-4gb-jetpack-4.3-samples",
-
-                "build-32.2.3-tx1-jetpack-4.2.3-samples",
-                "build-32.2.3-jax-jetpack-4.2.3-samples",
-                "build-32.2.3-jax-8gb-jetpack-4.2.3-samples",
-                "build-32.2.3-tx2-jetpack-4.2.3-samples",
-                "build-32.2.3-nano-dev-jetpack-4.2.3-samples",
-                "build-32.2.3-nano-jetpack-4.2.3-samples",
-                "build-32.2.3-tx2i-jetpack-4.2.3-samples",
-                "build-32.2.3-tx2-4gb-jetpack-4.2.3-samples",
-
-                "build-32.2.1-tx1-jetpack-4.2.2-samples",
-                "build-32.2.1-jax-jetpack-4.2.2-samples",
-                "build-32.2.1-jax-8gb-jetpack-4.2.2-samples",
-                "build-32.2.1-tx2-jetpack-4.2.2-samples",
-                "build-32.2.1-nano-dev-jetpack-4.2.2-samples",
-                "build-32.2.1-nano-jetpack-4.2.2-samples",
-                "build-32.2.1-tx2i-jetpack-4.2.2-samples",
-                "build-32.2.1-tx2-4gb-jetpack-4.2.2-samples",
-
-                "build-32.2.0-tx1-jetpack-4.2.1-samples",
-                "build-32.2.0-jax-jetpack-4.2.1-samples",
-                "build-32.2.0-tx2-jetpack-4.2.1-samples",
-                "build-32.2.0-nano-dev-jetpack-4.2.1-samples",
-                "build-32.2.0-nano-jetpack-4.2.1-samples",
-                "build-32.2.0-tx2i-jetpack-4.2.1-samples",
-                "build-32.2.0-tx2-4gb-jetpack-4.2.1-samples",
-
-                "build-32.1-jax-jetpack-4.2-samples",
-                "build-32.1-tx2-jetpack-4.2-samples",
-                "build-32.1-nano-dev-jetpack-4.2-samples",
-                "build-32.1-tx2i-jetpack-4.2-samples"
-            ]
+{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx[driver_version].items() %}
+                "build-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-samples"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
         },
         {
             "id": "pickRunSamples",
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "run-32.3.1-tx1-jetpack-4.3-samples",
-                "run-32.3.1-jax-jetpack-4.3-samples",
-                "run-32.3.1-jax-8gb-jetpack-4.3-samples",
-                "run-32.3.1-tx2-jetpack-4.3-samples",
-                "run-32.3.1-nano-dev-jetpack-4.3-samples",
-                "run-32.3.1-nano-jetpack-4.3-samples",
-                "run-32.3.1-tx2i-jetpack-4.3-samples",
-                "run-32.3.1-tx2-4gb-jetpack-4.3-samples",
-
-                "run-32.2.3-tx1-jetpack-4.2.3-samples",
-                "run-32.2.3-jax-jetpack-4.2.3-samples",
-                "run-32.2.3-jax-8gb-jetpack-4.2.3-samples",
-                "run-32.2.3-tx2-jetpack-4.2.3-samples",
-                "run-32.2.3-nano-dev-jetpack-4.2.3-samples",
-                "run-32.2.3-nano-jetpack-4.2.3-samples",
-                "run-32.2.3-tx2i-jetpack-4.2.3-samples",
-                "run-32.2.3-tx2-4gb-jetpack-4.2.3-samples",
-
-                "run-32.2.1-tx1-jetpack-4.2.2-samples",
-                "run-32.2.1-jax-jetpack-4.2.2-samples",
-                "run-32.2.1-jax-8gb-jetpack-4.2.2-samples",
-                "run-32.2.1-tx2-jetpack-4.2.2-samples",
-                "run-32.2.1-nano-dev-jetpack-4.2.2-samples",
-                "run-32.2.1-nano-jetpack-4.2.2-samples",
-                "run-32.2.1-tx2i-jetpack-4.2.2-samples",
-                "run-32.2.1-tx2-4gb-jetpack-4.2.2-samples",
-
-                "run-32.2.0-tx1-jetpack-4.2.1-samples",
-                "run-32.2.0-jax-jetpack-4.2.1-samples",
-                "run-32.2.0-tx2-jetpack-4.2.1-samples",
-                "run-32.2.0-nano-dev-jetpack-4.2.1-samples",
-                "run-32.2.0-nano-jetpack-4.2.1-samples",
-                "run-32.2.0-tx2i-jetpack-4.2.1-samples",
-                "run-32.2.0-tx2-4gb-jetpack-4.2.1-samples",
-
-                "run-32.1-jax-jetpack-4.2-samples",
-                "run-32.1-tx2-jetpack-4.2-samples",
-                "run-32.1-nano-dev-jetpack-4.2-samples",
-                "run-32.1-tx2i-jetpack-4.2-samples"
-            ]
+{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx[driver_version].items() %}
+                "run-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-samples"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
         },
         {
             "id": "pickOthers",
@@ -595,46 +372,10 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "32.3.1-tx1-jetpack-4.3",
-                "32.3.1-jax-jetpack-4.3",
-                "32.3.1-jax-8gb-jetpack-4.3",
-                "32.3.1-tx2-jetpack-4.3",
-                "32.3.1-nano-dev-jetpack-4.3",
-                "32.3.1-nano-jetpack-4.3",
-                "32.3.1-tx2i-jetpack-4.3",
-                "32.3.1-tx2-4gb-jetpack-4.3",
-
-                "32.2.3-tx1-jetpack-4.2.3",
-                "32.2.3-jax-jetpack-4.2.3",
-                "32.2.3-jax-8gb-jetpack-4.2.3",
-                "32.2.3-tx2-jetpack-4.2.3",
-                "32.2.3-nano-dev-jetpack-4.2.3",
-                "32.2.3-nano-jetpack-4.2.3",
-                "32.2.3-tx2i-jetpack-4.2.3",
-                "32.2.3-tx2-4gb-jetpack-4.2.3",
-
-                "32.2.1-tx1-jetpack-4.2.2",
-                "32.2.1-jax-jetpack-4.2.2",
-                "32.2.1-jax-8gb-jetpack-4.2.2",
-                "32.2.1-tx2-jetpack-4.2.2",
-                "32.2.1-nano-dev-jetpack-4.2.2",
-                "32.2.1-nano-jetpack-4.2.2",
-                "32.2.1-tx2i-jetpack-4.2.2",
-                "32.2.1-tx2-4gb-jetpack-4.2.2",
-
-                "32.2.0-tx1-jetpack-4.2.1",
-                "32.2.0-jax-jetpack-4.2.1",
-                "32.2.0-tx2-jetpack-4.2.1",
-                "32.2.0-nano-dev-jetpack-4.2.1",
-                "32.2.0-nano-jetpack-4.2.1",
-                "32.2.0-tx2i-jetpack-4.2.1",
-                "32.2.0-tx2-4gb-jetpack-4.2.1",
-
-                "32.1-jax-jetpack-4.2",
-                "32.1-tx2-jetpack-4.2",
-                "32.1-nano-dev-jetpack-4.2",
-                "32.1-tx2i-jetpack-4.2"
-            ]
+{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx[driver_version].items() %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
         },
         {
             "id": "pickRootFS",
