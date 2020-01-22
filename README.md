@@ -27,6 +27,22 @@ The JetPack base images follow the Nvidia pattern of having base, runtime, and d
 
 Note: if you have the SDK Manager open, the command line will not work. Nvidia has incorrectly handled their single instance implementation and the CLI will fail to run.
 
+### Blog
+
+There are several walk through blog posts that may serve as helpful introductions:
+
+- [ARMing Yourself - Working with ARM on x86_64](https://codepyre.com/2019/12/arming-yourself/)
+- [Jetson Containers - Introduction](https://codepyre.com/2019/07/jetson-containers-introduction/)
+- [Jetson Containers - Samples](https://codepyre.com/2019/07/jetson-containers-samples/)
+- [Jetson Containers - Maximizing Jetson Nano Dev Kit Storage](https://codepyre.com/2019/07/maximizing-jetson-nano-storage/)
+- [Jetson Containers - Pushing Images to Devices](https://codepyre.com/2019/07/pushing-images-to-devices/)
+- [Jetson Containers - Building DeepStream Images](https://codepyre.com/2019/07/building-deepstream-images/)
+- [Jetson Containers - Building for CTI Devices](https://codepyre.com/2019/08/building-for-cti-devices/)
+- [Jetson Containers - Building Custom Root Filesystems](https://codepyre.com/2019/08/building-custom-root-filesystems/)
+- [Jetson Containers - Building Root Filesystems With Desktop UI Support](https://codepyre.com/2019/08/building-root-filesystems-with-desktop-ui-support/)
+- [Jetson Containers - Building TensorFlow Object Detection Samples](https://codepyre.com/2019/08/building-tensorflow-object-detection-samples/)
+
+
 ## Configuration
 
 ### The .env File
