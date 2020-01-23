@@ -7,6 +7,6 @@
 {% for driver_version, value in ctx.items() %}
 {% for device_name, driver_details in ctx[driver_version].items() %}
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-image:
-	(DOCKER_BUILD_ROOT="$(CURDIR)/l4t/{{ driver_version }}" $(CURDIR)/build.sh ./conf/{{ device_name }} $(REPO):$@)
+	(DOCKER_BUILD_ROOT="$(CURDIR)/l4t/{{ driver_version }}" $(CURDIR)/build.sh ./conf/$@ $(REPO):$@)
 {%- endfor %}
 {% endfor %}
