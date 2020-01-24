@@ -68,6 +68,16 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvparsers6 libnvparsers-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvonnxparsers6 libnvonnxparsers-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
     apt-get install -y --no-install-recommends python-libnvinfer python-libnvinfer-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -122,6 +132,12 @@ RUN apt-get update && \
 
 #RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
 
-# Install TensorFlow#RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu
+
+# Available versions:
+# tensorflow_gpu-1.15.0+nv19.12-cp36-cp36m-linux_aarch64.whl 217MB
+# tensorflow_gpu-2.0.0+nv19.12-cp36-cp36m-linux_aarch64.whl 198MB
+
+# Install TensorFlow
+#RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu
 # can browse from https://developer.download.nvidia.com/compute/redist/jp/
-# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu==$TF_VERSION+nv$NV_VERSION
+# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
