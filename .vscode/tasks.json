@@ -666,25 +666,25 @@
                 "cti-jax-deps",
                 "cti-nano-deps",
 
-                "cti-32.2.1-tx1-deps",
+                "cti-32.2.1-tx1-bsp-TX1-32.2.1-V001-deps",
 
-                "cti-32.1-tx2-deps",
-                "cti-32.2.0-tx2-deps",
-                "cti-32.2.1-tx2-deps",
+                "cti-32.1-tx2-bsp-V125-deps",
+                "cti-32.2.0-tx2-bsp-V126-1-deps",
+                "cti-32.2.1-tx2-bsp-TX2-32.2.1-V004-deps",
 
-                "cti-32.2.1-tx2-4gb-deps",
+                "cti-32.2.1-tx2-4gb-bsp-TX2-32.2.1-V004-deps",
 
-                "cti-32.1-tx2i-deps",
-                "cti-32.2.0-tx2i-deps",
-                "cti-32.2.1-tx2i-deps",
+                "cti-32.1-tx2i-bsp-V125-deps",
+                "cti-32.2.0-tx2i-bsp-V126-1-deps",
+                "cti-32.2.1-tx2i-bsp-TX2-32.2.1-V004-deps",
 
-                "cti-32.2.1-jax-8gb-deps",
+                "cti-32.2.1-jax-8gb-bsp-AGX-32.2.1-V002-deps",
 
-                "cti-32.1-jax-deps",
-                "cti-32.2.0-jax-deps",
-                "cti-32.2.1-jax-deps",
+                "cti-32.1-jax-bsp-V203-deps",
+                "cti-32.2.0-jax-bsp-V204-deps",
+                "cti-32.2.1-jax-bsp-AGX-32.2.1-V002-deps",
 
-                "cti-32.2.1-nano-deps"
+                "cti-32.2.1-nano-bsp-NANO-32.2.1-V001-deps"
             ]
         },
         {
