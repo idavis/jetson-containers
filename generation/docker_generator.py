@@ -10,14 +10,25 @@ import logging
 log = logging.getLogger()
 
 # Derived from
-# http://connecttech.com/support/resource-center/nvidia-jetson-tx2-tx1-product-support/
+# http://connecttech.com/resource-center/l4t-board-support-packages/
 cti_bsp_table = {
     "tx1": {
         "4.2.2": {
             "drivers": {"version": "32.2.1"},
             "bsp": {
                 "version": "TX1-32.2.1-V001",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX1-32.2.1-V001.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX1-32.2.1-V001.tgz",
+                "notes": "has a rosie profile, but can't configure it in the ui.",
+                "prefix": "cti/",
+                "profiles": [
+                    "astro",
+                    "elroy",
+                    "spacely-base",
+                    "cogswell",
+                    "orbitty",
+                    "rudi",
+                    "sprocket-base",
+                ]
             },
         },
     },
@@ -26,21 +37,100 @@ cti_bsp_table = {
             "drivers": {"version": "32.1"},
             "bsp": {
                 "version": "V125",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V125.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V125.tgz",
+                "profiles": [
+                    "astro-mpcie",
+                    "astro-usb3",
+                    "astro-revG+",
+                    "elroy-mpcie",
+                    "elroy-usb3",
+                    "elroy-revF+",
+                    "orbitty",
+                    "rosie",
+                    "rudi-mpcie",
+                    "rudi-usb3",
+                    "rudi",
+                    "sprocket",
+                    "spacely-base",
+                    "spacely-imx185-6cam",
+                    "spacely-imx185-3cam",
+                    "spacely-imx274-6cam",
+                    "spacely-imx274-3cam",
+                    "cogswell",
+                    "vpg003-base"
+                ]
             },
         },
         "4.2.1": {
             "drivers": {"version": "32.2.0"},
             "bsp": {
                 "version": "V126-1",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V126-1.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V126-1.tgz",
+                "prefix": "cti/tx2/",
+                "profiles": [
+                    "astro-mpcie",
+                    "astro-revG+",
+                    "astro-usb3",
+                    "cogswell",
+                    "elroy-mpcie",
+                    "elroy-revF+",
+                    "elroy-usb3",
+                    "orbitty",
+                    "quasar-base",
+                    "quasar-imx185",
+                    "quasar-imx274",
+                    "rosie",
+                    "rudi",
+                    "rudi-mpcie",
+                    "rudi-usb3",
+                    "spacely-base",
+                    "spacely-imx185-3cam",
+                    "spacely-imx185-6cam",
+                    "spacely-imx274-3cam",
+                    "spacely-imx274-6cam",
+                    "sprocket",
+                    "sprocket-imx185",
+                    "sprocket-imx274",
+                    "vpg003",
+                    "vpg003-imx185-3cam",
+                    "vpg003-imx274-3cam"
+                ]
             },
         },
         "4.2.2": {
             "drivers": {"version": "32.2.1"},
             "bsp": {
                 "version": "TX2-32.2.1-V004",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz",
+                "prefix": "cti/tx2/",
+                "profiles": [
+                    "astro-mpcie",
+                    "astro-revG+",
+                    "astro-usb3",
+                    "cogswell",
+                    "elroy-mpcie",
+                    "elroy-revF+",
+                    "elroy-usb3",
+                    "orbitty",
+                    "quasar-base",
+                    "quasar-imx185",
+                    "quasar-imx274",
+                    "rosie",
+                    "rudi",
+                    "rudi-mpcie",
+                    "rudi-usb3",
+                    "spacely-base",
+                    "spacely-imx185-3cam",
+                    "spacely-imx185-6cam",
+                    "spacely-imx274-3cam",
+                    "spacely-imx274-6cam",
+                    "sprocket",
+                    "sprocket-imx185",
+                    "sprocket-imx274",
+                    "vpg003",
+                    "vpg003-imx185-3cam",
+                    "vpg003-imx274-3cam"
+                ]
             },
         },
     },
@@ -49,7 +139,37 @@ cti_bsp_table = {
             "drivers": {"version": "32.2.1"},
             "bsp": {
                 "version": "TX2-32.2.1-V004",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz",
+                "prefix": "cti/tx2-4G/",
+                "profiles": [
+                    "astro-mpcie",
+                    "astro-revG+",
+                    "astro-usb3",
+                    "cogswell",
+                    "elroy-mpcie",
+                    "elroy-revF+",
+                    "elroy-usb3",
+                    "orbitty",
+                    "quasar-base",
+                    "quasar-imx185",
+                    "quasar-imx274",
+                    "rosie",
+                    "rudi",
+                    "rudi-mpcie",
+                    "rudi-usb3",
+                    "spacely-base",
+                    "spacely-imx185-3cam",
+                    "spacely-imx185-6cam",
+                    "spacely-imx274-3cam",
+                    "spacely-imx274-6cam",
+                    "sprocket-base",
+                    "sprocket",
+                    "sprocket-imx185",
+                    "sprocket-imx274",
+                    "vpg003",
+                    "vpg003-imx185-3cam",
+                    "vpg003-imx274-3cam"
+                ]
             },
         },
     },
@@ -58,21 +178,106 @@ cti_bsp_table = {
             "drivers": {"version": "32.1"},
             "bsp": {
                 "version": "V125",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V125.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V125.tgz",
+                "profiles": [
+                    "astro-mpcie-tx2i",
+                    "astro-usb3-tx2i",
+                    "astro-revG+-tx2i",
+                    "elroy-mpcie-tx2i",
+                    "elroy-usb3-tx2i",
+                    "elroy-refF+-tx2i",
+                    "orbitty-tx2i",
+                    "rosie-tx2i",
+                    "rudi-mpcie-tx2i",
+                    "rudi-usb3-tx2i",
+                    "rudi-tx2i",
+                    "spacely-base-tx2i",
+                    "spacely-imx185-6cam-tx2i",
+                    "spacely-imx185-3cam-tx2i",
+                    "spacely-imx274-6cam-tx2i",
+                    "spacely-imx274-3cam-tx2i",
+                    "cogswell-tx2i",
+                    "vpg003-base-tx2i"
+                ]
             },
         },
         "4.2.1": {
             "drivers": {"version": "32.2.0"},
             "bsp": {
                 "version": "V126-1",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V126-1.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V126-1.tgz",
+                "prefix": "cti/tx2i/",
+                "profiles": [
+                    "astro-mpcie",
+                    "astro-revG+",
+                    "astro-usb3",
+                    "astro-usb",
+                    "cogswell",
+                    "elroy-mpcie",
+                    "elroy-revF+",
+                    "elroy-usb3",
+                    "orbitty-base",
+                    "orbitty",
+                    "quasar-base",
+                    "quasar-imx185",
+                    "quasar-imx274",
+                    "rosie",
+                    "rudi-base",
+                    "rudi",
+                    "rudi-mpcie",
+                    "rudi-usb3",
+                    "spacely-base",
+                    "spacely-imx185-3cam",
+                    "spacely-imx185-6cam",
+                    "spacely-imx274-3cam",
+                    "spacely-imx274-6cam",
+                    "sprocket-base",
+                    "sprocket",
+                    "sprocket-imx185",
+                    "sprocket-imx274",
+                    "vpg003",
+                    "vpg003-imx185-3cam",
+                    "vpg003-imx274-3cam"
+                ],
             },
         },
         "4.2.2": {
             "drivers": {"version": "32.2.1"},
             "bsp": {
                 "version": "TX2-32.2.1-V004",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz",
+                "prefix": "cti/tx2i/",
+                "profiles": [
+                    "astro-mpcie",
+                    "astro-revG+",
+                    "astro-usb3",
+                    "astro-usb",
+                    "cogswell",
+                    "elroy-mpcie",
+                    "elroy-revF+",
+                    "elroy-usb3",
+                    "orbitty-base",
+                    "orbitty",
+                    "quasar-base",
+                    "quasar-imx185",
+                    "quasar-imx274",
+                    "rosie",
+                    "rudi",
+                    "rudi-mpcie",
+                    "rudi-usb3",
+                    "spacely-base",
+                    "spacely-imx185-3cam",
+                    "spacely-imx185-6cam",
+                    "spacely-imx274-3cam",
+                    "spacely-imx274-6cam",
+                    "sprocket-base",
+                    "sprocket",
+                    "sprocket-imx185",
+                    "sprocket-imx274",
+                    "vpg003",
+                    "vpg003-imx185-3cam",
+                    "vpg003-imx274-3cam"
+                ]
             },
         },
     },
@@ -81,7 +286,12 @@ cti_bsp_table = {
             "drivers": {"version": "32.2.1"},
             "bsp": {
                 "version": "AGX-32.2.1-V002",
-                "url": "http://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.2.1-V002.tgz"
+                "url": "http://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.2.1-V002.tgz",
+                "profiles": [
+                    "rogue",
+                    "rogue-imx274-2cam",
+                    "mimic-base"
+                ]
             },
         },
     },
@@ -90,21 +300,37 @@ cti_bsp_table = {
             "drivers": {"version": "32.1"},
             "bsp": {
                 "version": "V203",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V203.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V203.tgz",
+                "profiles": [
+                    "rogue",
+                    "rogue-imx274-2cam",
+                    "mimic-base"
+                ],
             },
         },
         "4.2.1": {
             "drivers": {"version": "32.2.0"},
             "bsp": {
                 "version": "V204",
-                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V204.tgz"
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V204.tgz",
+                "prefix": "cti/xavier/",
+                "profiles": [
+                    "rogue",
+                    "rogue-imx274-2cam",
+                    "mimic-base"
+                ],
             },
         },
         "4.2.2": {
             "drivers": {"version": "32.2.1"},
             "bsp": {
                 "version": "AGX-32.2.1-V002",
-                "url": "http://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.2.1-V002.tgz"
+                "url": "http://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.2.1-V002.tgz",
+                "profiles": [
+                    "rogue",
+                    "rogue-imx274-2cam",
+                    "mimic-base"
+                ],
             },
         },
     },
@@ -113,7 +339,11 @@ cti_bsp_table = {
             "drivers": {"version": "32.2.1"},
             "bsp": {
                 "version": "NANO-32.2.1-V001",
-                "url": "http://connecttech.com/ftp/Drivers/CTI-L4T-NANO-32.2.1-V001.tgz"
+                "url": "http://connecttech.com/ftp/Drivers/CTI-L4T-NANO-32.2.1-V001.tgz",
+                "prefix": "cti/nano/",
+                "profiles": [
+                    "photon"
+                ]
             },
         },
     },
