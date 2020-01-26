@@ -1,0 +1,305 @@
+# Derived from
+# http://connecttech.com/resource-center/l4t-board-support-packages/
+
+jax:
+  "4.2":
+    bsp:
+      profiles:
+        - rogue
+        - rogue-imx274-2cam
+        - mimic-base
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-V203.tgz
+      version: V203
+    drivers:
+      version: "32.1"
+  4.2.1:
+    bsp:
+      prefix: cti/xavier/
+      profiles:
+        - rogue
+        - rogue-imx274-2cam
+        - mimic-base
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-V204.tgz
+      version: V204
+    drivers:
+      version: 32.2.0
+  4.2.2:
+    bsp:
+      profiles:
+        - rogue
+        - rogue-imx274-2cam
+        - mimic-base
+      url: http://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.2.1-V002.tgz
+      version: AGX-32.2.1-V002
+    drivers:
+      version: 32.2.1
+jax-8gb:
+  4.2.2:
+    bsp:
+      profiles:
+        - rogue
+        - rogue-imx274-2cam
+        - mimic-base
+      url: http://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.2.1-V002.tgz
+      version: AGX-32.2.1-V002
+    drivers:
+      version: 32.2.1
+nano:
+  4.2.2:
+    bsp:
+      prefix: cti/nano/
+      profiles:
+        - photon
+      url: http://connecttech.com/ftp/Drivers/CTI-L4T-NANO-32.2.1-V001.tgz
+      version: NANO-32.2.1-V001
+    drivers:
+      version: 32.2.1
+tx1:
+  4.2.2:
+    bsp:
+      notes: has a rosie profile, but can't configure it in the ui.
+      prefix: cti/
+      profiles:
+        - astro
+        - elroy
+        - spacely-base
+        - cogswell
+        - orbitty
+        - rudi
+        - sprocket-base
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX1-32.2.1-V001.tgz
+      version: TX1-32.2.1-V001
+    drivers:
+      version: 32.2.1
+tx2:
+  "4.2":
+    bsp:
+      profiles:
+        - astro-mpcie
+        - astro-usb3
+        - astro-revG+
+        - elroy-mpcie
+        - elroy-usb3
+        - elroy-revF+
+        - orbitty
+        - rosie
+        - rudi-mpcie
+        - rudi-usb3
+        - rudi
+        - sprocket
+        - spacely-base
+        - spacely-imx185-6cam
+        - spacely-imx185-3cam
+        - spacely-imx274-6cam
+        - spacely-imx274-3cam
+        - cogswell
+        - vpg003-base
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-V125.tgz
+      version: V125
+    drivers:
+      version: "32.1"
+  4.2.1:
+    bsp:
+      prefix: cti/tx2/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty
+        - quasar-base
+        - quasar-imx185
+        - quasar-imx274
+        - rosie
+        - rudi
+        - rudi-mpcie
+        - rudi-usb3
+        - spacely-base
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - sprocket
+        - sprocket-imx185
+        - sprocket-imx274
+        - vpg003
+        - vpg003-imx185-3cam
+        - vpg003-imx274-3cam
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-V126-1.tgz
+      version: V126-1
+    drivers:
+      version: 32.2.0
+  4.2.2:
+    bsp:
+      prefix: cti/tx2/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty
+        - quasar-base
+        - quasar-imx185
+        - quasar-imx274
+        - rosie
+        - rudi
+        - rudi-mpcie
+        - rudi-usb3
+        - spacely-base
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - sprocket
+        - sprocket-imx185
+        - sprocket-imx274
+        - vpg003
+        - vpg003-imx185-3cam
+        - vpg003-imx274-3cam
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz
+      version: TX2-32.2.1-V004
+    drivers:
+      version: 32.2.1
+tx2-4gb:
+  4.2.2:
+    bsp:
+      prefix: cti/tx2-4G/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty
+        - quasar-base
+        - quasar-imx185
+        - quasar-imx274
+        - rosie
+        - rudi
+        - rudi-mpcie
+        - rudi-usb3
+        - spacely-base
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - sprocket-base
+        - sprocket
+        - sprocket-imx185
+        - sprocket-imx274
+        - vpg003
+        - vpg003-imx185-3cam
+        - vpg003-imx274-3cam
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz
+      version: TX2-32.2.1-V004
+    drivers:
+      version: 32.2.1
+tx2i:
+  "4.2":
+    bsp:
+      profiles:
+        - astro-mpcie-tx2i
+        - astro-usb3-tx2i
+        - astro-revG+-tx2i
+        - elroy-mpcie-tx2i
+        - elroy-usb3-tx2i
+        - elroy-refF+-tx2i
+        - orbitty-tx2i
+        - rosie-tx2i
+        - rudi-mpcie-tx2i
+        - rudi-usb3-tx2i
+        - rudi-tx2i
+        - spacely-base-tx2i
+        - spacely-imx185-6cam-tx2i
+        - spacely-imx185-3cam-tx2i
+        - spacely-imx274-6cam-tx2i
+        - spacely-imx274-3cam-tx2i
+        - cogswell-tx2i
+        - vpg003-base-tx2i
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-V125.tgz
+      version: V125
+    drivers:
+      version: "32.1"
+  4.2.1:
+    bsp:
+      prefix: cti/tx2i/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - astro-usb
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty-base
+        - orbitty
+        - quasar-base
+        - quasar-imx185
+        - quasar-imx274
+        - rosie
+        - rudi-base
+        - rudi
+        - rudi-mpcie
+        - rudi-usb3
+        - spacely-base
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - sprocket-base
+        - sprocket
+        - sprocket-imx185
+        - sprocket-imx274
+        - vpg003
+        - vpg003-imx185-3cam
+        - vpg003-imx274-3cam
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-V126-1.tgz
+      version: V126-1
+    drivers:
+      version: 32.2.0
+  4.2.2:
+    bsp:
+      prefix: cti/tx2i/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - astro-usb
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty-base
+        - orbitty
+        - quasar-base
+        - quasar-imx185
+        - quasar-imx274
+        - rosie
+        - rudi
+        - rudi-mpcie
+        - rudi-usb3
+        - spacely-base
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - sprocket-base
+        - sprocket
+        - sprocket-imx185
+        - sprocket-imx274
+        - vpg003
+        - vpg003-imx185-3cam
+        - vpg003-imx274-3cam
+      url: http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz
+      version: TX2-32.2.1-V004
+    drivers:
+      version: 32.2.1
