@@ -163,6 +163,8 @@ class DockerGenerator(cli.Application):
         deviceData = context[device]
         driverVersion = deviceData["drivers"]["version"]
         deviceData["SOC"] = deviceToSoCLookup[device]
+        deviceData["jetpackVersion"] = jetpack_version
+        deviceData["target_overlay"] = False
 
         output_path = pathlib.Path(
             f"docker/l4t/{driverVersion}/{deviceIdToShortNameLookup[device]}")
@@ -225,6 +227,7 @@ class DockerGenerator(cli.Application):
         deviceData = context[device]
         driverVersion = deviceData["drivers"]["version"]
         deviceData["SOC"] = deviceToSoCLookup[device]
+        deviceData["target_overlay"] = True
         deviceData["target_board"] = deviceIdToTargetBoardLookup[device]
 
         device = deviceIdToShortNameLookup[device]
