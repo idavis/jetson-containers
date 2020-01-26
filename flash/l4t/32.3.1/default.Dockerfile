@@ -59,11 +59,11 @@ COPY --from=fs-dependencies /data/${ROOT_FS} ${ROOT_FS}
 RUN echo "${ROOT_FS_MD5} *./${ROOT_FS}" | md5sum -c - && \
     cd /Linux_for_Tegra/rootfs && \
     tar -xp --overwrite -f /${ROOT_FS} && \
-    rm /${ROOT_FS} && \
-    cd .. && \
-    ./apply_binaries.sh
+    rm /${ROOT_FS}
 
 WORKDIR /Linux_for_Tegra
+RUN ./apply_binaries.sh --target-overlay
+
 
 ARG TARGET_BOARD
 ARG ROOT_DEVICE
