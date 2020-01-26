@@ -656,15 +656,35 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "cti-32.1-jax-203-deps",
-                "cti-32.1-tx2i-125-deps",
-                "cti-32.1-tx2i-124-deps",
-                "cti-32.1-tx2-125-deps",
-                "cti-32.1-tx2-124-deps",
-                "cti-all-deps",
-                "cti-32.1-jax-deps",
+                "cti-deps",
+
+                "cti-tx1-deps",
+                "cti-tx2-deps",
+                "cti-tx2-4gb-deps",
+                "cti-tx2i-deps",
+                "cti-jax-8gb-deps",
+                "cti-jax-deps",
+                "cti-nano-deps",
+
+                "cti-32.2.1-tx1-deps",
+
+                "cti-32.1-tx2-deps",
+                "cti-32.2.0-tx2-deps",
+                "cti-32.2.1-tx2-deps",
+
+                "cti-32.2.1-tx2-4gb-deps",
+
                 "cti-32.1-tx2i-deps",
-                "cti-32.1-tx2-deps"
+                "cti-32.2.0-tx2i-deps",
+                "cti-32.2.1-tx2i-deps",
+
+                "cti-32.2.1-jax-8gb-deps",
+
+                "cti-32.1-jax-deps",
+                "cti-32.2.0-jax-deps",
+                "cti-32.2.1-jax-deps",
+
+                "cti-32.2.1-nano-deps"
             ]
         },
         {
