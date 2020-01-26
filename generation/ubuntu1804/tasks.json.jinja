@@ -266,10 +266,10 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-{% for driver_version, value in ctx.items() %}                "driver-pack-{{ driver_version }}",
+{% for driver_version, value in ctx.l4t.items() %}                "driver-pack-{{ driver_version }}",
 {% endfor %}
-{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
-{% for device_name, driver_details in ctx[driver_version].items() %}                "l4t-{{ driver_version }}-{{ device_name }}"{{ "," if not (outer_loop.last and loop.last) }}
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{% for device_name, driver_details in ctx.l4t[driver_version].items() %}                "l4t-{{ driver_version }}-{{ device_name }}"{{ "," if not (outer_loop.last and loop.last) }}
 {% endfor %}{%- endfor %}            ]
         },
         {
@@ -277,12 +277,12 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-{%- for driver_version, value in ctx.items() %}
-{%- for device_name, driver_details in ctx[driver_version].items() %}
+{%- for driver_version, value in ctx.l4t.items() %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}",{% endfor %}
 {% endfor %}
-{% for driver_version, value in ctx.items() %}
-{%- for device_name, driver_details in ctx[driver_version].items() %}
+{% for driver_version, value in ctx.l4t.items() %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
 {%- if loop.first %}                "jetpack-{{ driver_details.jetpackVersion }}",{% endif %}{% endfor %}
 {% endfor %}                "jetpacks"
             ]
@@ -292,8 +292,8 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
-{%- for device_name, driver_details in ctx[driver_version].items() %}
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
 {% endfor %}            ]
         },
@@ -302,8 +302,8 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
-{%- for device_name, driver_details in ctx[driver_version].items() %}
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
 {% endfor %}            ]
         },
@@ -312,8 +312,8 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
-{%- for device_name, driver_details in ctx[driver_version].items() %}
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
                 "build-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-samples"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
 {% endfor %}            ]
         },
@@ -322,8 +322,8 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
-{%- for device_name, driver_details in ctx[driver_version].items() %}
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
                 "run-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-samples"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
 {% endfor %}            ]
         },
@@ -372,8 +372,8 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-{%- for driver_version, value in ctx.items() %}{% set outer_loop = loop %}
-{%- for device_name, driver_details in ctx[driver_version].items() %}
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
 {% endfor %}            ]
         },
@@ -397,16 +397,13 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "cti-32.1-jax-203-deps",
-                "cti-32.1-tx2i-125-deps",
-                "cti-32.1-tx2i-124-deps",
-                "cti-32.1-tx2-125-deps",
-                "cti-32.1-tx2-124-deps",
-                "cti-all-deps",
-                "cti-32.1-jax-deps",
-                "cti-32.1-tx2i-deps",
-                "cti-32.1-tx2-deps"
-            ]
+                "cti-deps",
+{% for device_name, value in ctx.cti.items() %}
+                "cti-{{ device_name }}-deps",{% endfor %}
+{% for device_name, value in ctx.cti.items() %}{% set outer_loop = loop %}
+{%- for jetpackVersion, driver_details in ctx.cti[device_name].items() %}
+                "cti-{{ driver_details.drivers.version }}-{{ device_name }}-deps"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
         },
         {
             "id": "pickCtiImagingBuilds",

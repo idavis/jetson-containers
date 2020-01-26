@@ -9,6 +9,117 @@ from jinja2 import Template
 import logging
 log = logging.getLogger()
 
+# Derived from
+# http://connecttech.com/support/resource-center/nvidia-jetson-tx2-tx1-product-support/
+cti_bsp_table = {
+    "tx1": {
+        "4.2.2": {
+            "drivers": {"version": "32.2.1"},
+            "bsp": {
+                "version": "TX1-32.2.1-V001",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX1-32.2.1-V001.tgz"
+            },
+        },
+    },
+    "tx2": {
+        "4.2": {
+            "drivers": {"version": "32.1"},
+            "bsp": {
+                "version": "V125",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V125.tgz"
+            },
+        },
+        "4.2.1": {
+            "drivers": {"version": "32.2.0"},
+            "bsp": {
+                "version": "V126-1",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V126-1.tgz"
+            },
+        },
+        "4.2.2": {
+            "drivers": {"version": "32.2.1"},
+            "bsp": {
+                "version": "TX2-32.2.1-V004",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz"
+            },
+        },
+    },
+    "tx2-4gb": {
+        "4.2.2": {
+            "drivers": {"version": "32.2.1"},
+            "bsp": {
+                "version": "TX2-32.2.1-V004",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz"
+            },
+        },
+    },
+    "tx2i": {
+        "4.2": {
+            "drivers": {"version": "32.1"},
+            "bsp": {
+                "version": "V125",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V125.tgz"
+            },
+        },
+        "4.2.1": {
+            "drivers": {"version": "32.2.0"},
+            "bsp": {
+                "version": "V126-1",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V126-1.tgz"
+            },
+        },
+        "4.2.2": {
+            "drivers": {"version": "32.2.1"},
+            "bsp": {
+                "version": "TX2-32.2.1-V004",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.2.1-V004.tgz"
+            },
+        },
+    },
+    "jax-8gb": {
+        "4.2.2": {
+            "drivers": {"version": "32.2.1"},
+            "bsp": {
+                "version": "AGX-32.2.1-V002",
+                "url": "http://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.2.1-V002.tgz"
+            },
+        },
+    },
+    "jax": {
+        "4.2": {
+            "drivers": {"version": "32.1"},
+            "bsp": {
+                "version": "V203",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V203.tgz"
+            },
+        },
+        "4.2.1": {
+            "drivers": {"version": "32.2.0"},
+            "bsp": {
+                "version": "V204",
+                "url": "http://www.connecttech.com/ftp/Drivers/CTI-L4T-V204.tgz"
+            },
+        },
+        "4.2.2": {
+            "drivers": {"version": "32.2.1"},
+            "bsp": {
+                "version": "AGX-32.2.1-V002",
+                "url": "http://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.2.1-V002.tgz"
+            },
+        },
+    },
+    "nano": {
+        "4.2.2": {
+            "drivers": {"version": "32.2.1"},
+            "bsp": {
+                "version": "NANO-32.2.1-V001",
+                "url": "http://connecttech.com/ftp/Drivers/CTI-L4T-NANO-32.2.1-V001.tgz"
+            },
+        },
+    },
+}
+
+
 deviceIdToFriendlyNameLookup = {
     "P2888": "Jetson AGX Xavier",
     "P2888-0060": "Jetson AGX Xavier 8GB",
@@ -119,7 +230,9 @@ class DockerGenerator(cli.Application):
         tasksjson_template_filepath = pathlib.Path(
             f"generation/ubuntu1804/tasks.json.jinja")
         output_path = pathlib.Path(f".vscode/")
-        self.write_template(context, tasksjson_template_filepath, output_path)
+        tasks_context = {"l4t": context, "cti": cti_bsp_table}
+        self.write_template(
+            tasks_context, tasksjson_template_filepath, output_path)
 
         jetpack_makefile_template_filepath = pathlib.Path(
             f"generation/ubuntu1804/jetpack/jetpack.mk.jinja")
@@ -140,6 +253,11 @@ class DockerGenerator(cli.Application):
             f"generation/ubuntu1804/Makefile.jinja")
         self.generate_main_makefile(context, main_makefile_template_filepath)
 
+        cti_makefile_template_filepath = pathlib.Path(
+            f"generation/ubuntu1804/cti/Makefile.jinja")
+        output_path = pathlib.Path(f"docker/cti")
+        self.write_template(
+            cti_bsp_table, cti_makefile_template_filepath, output_path)
         log.info("Done")
 
     def generate_main_makefile(self, context, template_filepath):
