@@ -124,6 +124,13 @@ class DockerGenerator(cli.Application):
         self.write_template(
             tasks_context, tasksjson_template_filepath, output_path)
 
+        cti_bsp_template_filepath = pathlib.Path(
+            f"generation/ubuntu1804/flash/cti.mk.jinja")
+        output_path = pathlib.Path(f"flash/")
+        tasks_context = {"l4t": context, "cti": cti_bsp_table}
+        self.write_template(
+            tasks_context, cti_bsp_template_filepath, output_path)
+
         jetpack_makefile_template_filepath = pathlib.Path(
             f"generation/ubuntu1804/jetpack/jetpack.mk.jinja")
         self.generate_jetpack_makefile(
