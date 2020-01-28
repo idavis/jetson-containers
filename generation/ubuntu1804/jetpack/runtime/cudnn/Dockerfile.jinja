@@ -1,0 +1,24 @@
+ARG IMAGE_NAME
+{%- if ctx.drivers.version != "32.3.1" %}
+ARG DEPENDENCIES_IMAGE
+FROM ${DEPENDENCIES_IMAGE} as dependencies
+ARG IMAGE_NAME
+{%- endif %}
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-runtime
+
+# NVIDIA CUDA Deep Neural Network library (cuDNN)
+ENV CUDNN_VERSION {{ ctx.cudnn.libcudnn7.version }}
+
+LABEL com.nvidia.cudnn.version="{{ ctx.cudnn.libcudnn7.version }}"
+
+{% if ctx.drivers.version == "32.3.1" %}
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends {{ ctx.cudnn.libcudnn7.packageName }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+{%- else %}
+COPY --from=dependencies /data/{{ ctx.cudnn.libcudnn7.fileName }} {{ ctx.cudnn.libcudnn7.fileName }}
+RUN echo "{{ ctx.cudnn.libcudnn7.checksum }} {{ ctx.cudnn.libcudnn7.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.cudnn.libcudnn7.fileName }} && \
+    rm {{ ctx.cudnn.libcudnn7.fileName }}
+{% endif %}

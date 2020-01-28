@@ -7,7 +7,7 @@
 
 {% for driver_version, value in ctx.items() %}
 {% for device_name, driver_details in ctx[driver_version].items() %}
-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel {% endfor %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-build-agent {% endfor %}
 {% endfor %}
 
 {% for driver_version, value in ctx.items() %}
@@ -27,17 +27,39 @@
 					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/runtime/Dockerfile \
 					.
 
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/runtime/cudnn/Dockerfile \
+					.
+
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					-t $(REPO):$@ \
 					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/Dockerfile \
 					.
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/cudnn/Dockerfile \
+					.
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-build-agent: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/build-agent/Dockerfile \
+					.
+
 {% else %}
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base:
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-jax-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
 					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/base/Dockerfile \
 					.
@@ -45,18 +67,43 @@
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-jax-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
 					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/runtime/Dockerfile \
+					.
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/runtime/cudnn/Dockerfile \
 					.
 
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-jax-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
 					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/Dockerfile \
 					.
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/cudnn/Dockerfile \
+					.
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-build-agent: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/build-agent/Dockerfile \
+					.
+
 {% endif %}
 {% endfor %}
 {% endfor %}
