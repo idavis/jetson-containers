@@ -53,6 +53,17 @@ deviceIdToShortNameLookup = {
     "P3448-0020": "nano"
 }
 
+shortNameToDeviceIdLookup = {
+    "jax": "P2888",
+    "jax-8gb": "P2888-0060",
+    "tx2": "P3310",
+    "tx2i": "P3489-0000",
+    "tx2-4gb": "P3489-0080",
+    "tx1": "P2180",
+    "nano-dev": "P3448-0000",
+    "nano": "P3448-0020"
+}
+
 active_versions = [
     "4.3",
 
@@ -90,6 +101,9 @@ class DockerGenerator(cli.Application):
                 filename = "l4t.yml"
                 l4t_context_file = pathlib.Path(
                     f"dist/{jetpack_version}/l4t.yml")
+
+                self.generate_cti_flash_files(
+                    l4t_context_file, jetpack_version, device)
 
                 self.generate_l4t_flash_files(
                     l4t_context_file, jetpack_version, device)
@@ -282,6 +296,74 @@ class DockerGenerator(cli.Application):
             f"generation/ubuntu1804/flash/l4t/{component}.jinja")
         output_path = pathlib.Path(f"flash/l4t/{driverVersion}/")
         self.write_template(deviceData, template_filepath, output_path)
+
+    def generate_cti_flash_files(self, context_file, jetpack_version, device):
+
+        # TODO, handle cases where context/template don't suport the device
+        l4t_context = self.read_yml_dictionary(context_file)
+        if device not in l4t_context:
+            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            return
+        cti_bsp_table = self.read_yml_dictionary("generation/cti-bsp.yml")
+        if deviceIdToShortNameLookup[device] not in cti_bsp_table:
+            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            return
+        if jetpack_version not in cti_bsp_table[deviceIdToShortNameLookup[device]]:
+            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            return
+        targetBsp = cti_bsp_table[deviceIdToShortNameLookup[device]
+                                  ][jetpack_version]
+
+        print(f'cti-flash-{device}')
+        deviceData = l4t_context[device]
+
+        driverVersion = deviceData["drivers"]["version"]
+        deviceData["SOC"] = deviceToSoCLookup[device]
+
+        deviceData["target_overlay"] = True
+        deviceData["target_board"] = deviceIdToTargetBoardLookup[device]
+        device = deviceIdToShortNameLookup[device]
+        bspVersion = targetBsp["bsp"]["version"].lower()
+        targetBsp["bsp"]["bsp_deps_image"] = f"$REPO:cti-{driverVersion}-{device}-bsp-{bspVersion}-deps"
+        context = {"l4t": deviceData, "cti": targetBsp}
+
+        component = "bsp"
+
+        template_filepath = pathlib.Path(
+            f"generation/ubuntu1804/flash/cti/{component}.jinja")
+
+        output_path = pathlib.Path(
+            f"flash/cti/{driverVersion}/{component}/{bspVersion}.conf")
+        self.write_template_to_target(
+            context, template_filepath, output_path)
+
+        component = "conf"
+        template_filepath = pathlib.Path(
+            f"generation/ubuntu1804/flash/cti/{component}.jinja")
+        conf_context = {}
+        conf_context["bsp"] = f"{bspVersion}.conf"
+        conf_context["rootfs"] = f"tegra-linux-sample-{driverVersion}-{device}.conf"
+        conf_context["deps_image"] = f"$REPO:{driverVersion}-{device}-jetpack-{jetpack_version}-deps"
+        conf_context["fs_deps_image"] = f"$REPO:{driverVersion}-{device}-jetpack-{jetpack_version}-deps"
+
+        output_path = pathlib.Path(
+            f"flash/cti/{driverVersion}/{component}/{driverVersion}-{device}-jetpack-{jetpack_version}-image")
+        self.write_template_to_target(
+            conf_context, template_filepath, output_path)
+
+        component = "rootfs"
+        template_filepath = pathlib.Path(
+            f"generation/ubuntu1804/flash/cti/{component}.jinja")
+        output_path = pathlib.Path(
+            f"flash/cti/{driverVersion}/{component}/tegra-linux-sample-{driverVersion}-{device}.conf")
+        self.write_template_to_target(
+            context, template_filepath, output_path)
+
+        component = "default.Dockerfile"
+        template_filepath = pathlib.Path(
+            f"generation/ubuntu1804/flash/cti/{component}.jinja")
+        output_path = pathlib.Path(f"flash/cti/{driverVersion}/")
+        self.write_template(context, template_filepath, output_path)
 
     def write_template_to_target(self, deviceData, template_filepath, output_path):
         with open(template_filepath) as f:
