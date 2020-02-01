@@ -33,7 +33,12 @@ ignoredSections = [
 ]
 
 inactive_manifests = {
-    # 4.2.1 rev 0 replaced by 4.2.1 rev 2
+    # 4.2.2 rev 1 replaced by 4.2.2 rev 1 b30
+    "4.2.2": {"manifest": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_422_rev1.json")},
+
+    # 4.2.1 b103 rev 2 replaced by 4.2.1 b107 rev2
+    "4.2.1": {"manifest": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_421_b103_rev2.json")},
+    # 4.2.1 rev 0 replaced by 4.2.1 b103 rev 2
     "4.2.1": {"manifest": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_421.json")},
 
     # These have the right schema, but unless someone asks for it, I don't want to maintain them.
