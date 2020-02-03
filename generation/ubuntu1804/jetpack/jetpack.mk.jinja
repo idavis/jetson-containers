@@ -7,7 +7,7 @@
 
 {% for driver_version, value in ctx.items() %}
 {% for device_name, driver_details in ctx[driver_version].items() %}
-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all {% endfor %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deepstream {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all {% endfor %}
 {% endfor %}
 
 {% for driver_version, value in ctx.items() %}
