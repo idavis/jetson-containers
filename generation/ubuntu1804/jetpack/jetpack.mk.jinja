@@ -88,12 +88,15 @@
 					.
 {% if driver_details.jetpackVersion != "4.2" %}
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deepstream: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base
+	-($(DOCKER) run $(DOCKER_RUN_ARGS) $(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps /bin/bash -c "[ -f /data/deepstream*arm64.deb ]") && \
+	[ $$? -eq 0 ] && \
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
 					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/deepstream/Dockerfile \
-					.
+					. \
+	|| echo "Skipping: DeeepStream was not found in the dependencies image: $(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps"
 {% else %}
 {%- endif %}
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
