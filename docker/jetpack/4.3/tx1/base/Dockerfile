@@ -14,6 +14,15 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
+RUN ln -s /usr/local/cuda-10.0 /usr/local/cuda && \
+    ln -s /usr/local/cuda-10.0/targets/aarch64-linux/include /usr/local/cuda/include && \
+    ln -s /usr/local/cuda-10.0/targets/aarch64-linux/lib /usr/local/cuda/lib64
+
+RUN echo "/usr/lib/aarch64-linux-gnu/tegra" >> /etc/ld.so.conf.d/nvidia-tegra.conf && \
+    echo "/usr/lib/aarch64-linux-gnu/tegra-egl" >> /etc/ld.so.conf.d/nvidia-tegra.conf && \
+    echo "/usr/local/cuda-10.0/targets/aarch64-linux/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
+    ldconfig
+
 RUN export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH} && \
     export LIBRARY_PATH=/usr/local/cuda/lib64/stubs && \
     grep -q "export PATH=.*/usr/local/cuda/bin" ~/.bashrc || echo "export PATH=/usr/local/cuda/bin:$PATH">>~/.bashrc && \
