@@ -78,7 +78,7 @@ We will use the Ubuntu 18.04 WSL v2 environment to cross-compile AARCH64 compati
 
     ```
     sudo apt update
-    sudo apt install -y  libcanberra-gtk-module libgconf-2-4 libgtk-3-0 libxss1 libnss3 xvfb  
+    sudo apt install -y --no-install-recommends libcanberra-gtk-module libgconf-2-4 libgtk-3-0 libxss1 libnss3 xvfb
     sudo dpkg -i /mnt/c/sdkmanager/sdkmanager_*.deb
     ```
 
