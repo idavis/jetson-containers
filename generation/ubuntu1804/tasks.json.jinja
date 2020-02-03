@@ -164,70 +164,6 @@
             }
         },
         {
-            "label": "make <deepstream 4.0 release>",
-            "type": "shell",
-            "group": "build",
-            "command": "make",
-            "args": [
-                "build-${input:pickDeepStream40}-deepstream-4.0-release"
-            ],
-            "problemMatcher":{
-                "pattern":{
-                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
-                    "kind": "file",
-                    "message": 2 
-                }
-            }
-        },
-        {
-            "label": "make <deepstream 4.0.1 release>",
-            "type": "shell",
-            "group": "build",
-            "command": "make",
-            "args": [
-                "build-${input:pickDeepStream401}-deepstream-4.0.1-release"
-            ],
-            "problemMatcher":{
-                "pattern":{
-                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
-                    "kind": "file",
-                    "message": 2 
-                }
-            }
-        },
-        {
-            "label": "make <deepstream 4.0 devel>",
-            "type": "shell",
-            "group": "build",
-            "command": "make",
-            "args": [
-                "build-${input:pickDeepStream40}-deepstream-4.0-devel"
-            ],
-            "problemMatcher":{
-                "pattern":{
-                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
-                    "kind": "file",
-                    "message": 2 
-                }
-            }
-        },
-        {
-            "label": "make <deepstream 4.0.1 devel>",
-            "type": "shell",
-            "group": "build",
-            "command": "make",
-            "args": [
-                "build-${input:pickDeepStream401}-deepstream-4.0.1-devel"
-            ],
-            "problemMatcher":{
-                "pattern":{
-                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
-                    "kind": "file",
-                    "message": 2 
-                }
-            }
-        },
-        {
             "label": "make <rootfs>",
             "type": "shell",
             "group": "build",
@@ -290,6 +226,7 @@
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base",
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime",
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn",
+{% if driver_details.jetpackVersion != "4.2" %}                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deepstream",{% else -%}{% endif %}
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel",
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn",
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-build-agent",
@@ -347,35 +284,6 @@
                 "opencv-4.0.1-32.2-jax-jetpack-4.2.1",
                 "pytorch-1.1.0-32.1-jax-jetpack-4.2",
                 "pytorch-1.1.0-32.2-jax-jetpack-4.2.1"
-            ]
-        },
-        {
-            "id": "pickDeepStream40",
-            "type": "pickString",
-            "description": "What make target do you want to run?",
-            "options": [
-                "32.2-jax-jetpack-4.2.1",
-                "32.2-tx2-jetpack-4.2.1",
-                "32.2-tx2i-jetpack-4.2.1",
-                "32.2-tx2-4gb-jetpack-4.2.1",
-                "32.2-tx1-jetpack-4.2.1",
-                "32.2-nano-jetpack-4.2.1",
-                "32.2-nano-dev-jetpack-4.2.1"
-            ]
-        },
-        {
-            "id": "pickDeepStream401",
-            "type": "pickString",
-            "description": "What make target do you want to run?",
-            "options": [
-                "32.2.1-jax-jetpack-4.2.2",
-                "32.2.1-jax-8gb-jetpack-4.2.2",
-                "32.2.1-tx2-jetpack-4.2.2",
-                "32.2.1-tx2i-jetpack-4.2.2",
-                "32.2.1-tx2-4gb-jetpack-4.2.2",
-                "32.2.1-tx1-jetpack-4.2.2",
-                "32.2.1-nano-jetpack-4.2.2",
-                "32.2.1-nano-dev-jetpack-4.2.2"
             ]
         },
         {

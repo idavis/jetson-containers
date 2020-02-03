@@ -215,7 +215,10 @@ class DockerGenerator(cli.Application):
         deviceData["shortName"] = deviceIdToShortNameLookup[device]
         deviceData["jetpackVersion"] = jetpack_version
 
-        for img in ["base", "runtime", "runtime/cudnn", "devel", "devel/cudnn", "build-agent"]:
+        for img in ["base", "runtime", "runtime/cudnn", "deepstream", "devel", "devel/cudnn", "build-agent"]:
+            if img is "deepstream" and "deepstream" not in deviceData:
+                continue
+
             print(f"{device}-{jetpack_version}-{img}")
             template_filepath = pathlib.Path(
                 f"generation/ubuntu1804/jetpack/{img}/Dockerfile.jinja")

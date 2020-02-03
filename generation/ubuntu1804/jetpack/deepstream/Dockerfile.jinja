@@ -1,0 +1,197 @@
+ARG IMAGE_NAME
+{%- if ctx.drivers.version != "32.3.1" %}
+ARG DEPENDENCIES_IMAGE
+FROM ${DEPENDENCIES_IMAGE} as dependencies
+ARG IMAGE_NAME
+{%- endif %}
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-base
+
+{%- if ctx.drivers.version == "32.3.1" %}
+
+# DeepStream
+
+RUN apt-get update && apt-get install -y --no-install-recommends {{ ctx.deepstream['deepstream-4.0'].packageName }}={{ ctx.deepstream['deepstream-4.0'].packageVersion }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{%- else %}
+
+# CUDA libraries for L4T
+
+# TensorRT: cuda-cublas-dev-10-0 cuda-cudart-dev-10-0
+# DeepStream: cuda-npp-dev-10-0
+
+COPY --from=dependencies /data/{{ ctx.cuda.toolkit.fileName }} {{ ctx.cuda.toolkit.fileName }}
+RUN echo "{{ ctx.cuda.toolkit.checksum }} {{ ctx.cuda.toolkit.fileName }}" | md5sum -c - && \
+    dpkg --force-all -i {{ ctx.cuda.toolkit.fileName }} && \
+    rm {{ ctx.cuda.toolkit.fileName }} && \
+    apt-get update && apt-get install -y --no-install-recommends --allow-downgrades cuda-cublas-dev-10-0 cuda-cudart-dev-10-0 cuda-npp-dev-10-0 && \ && \
+    dpkg --purge cuda-repo-l4t-10-0-local-{{ ctx.cuda.toolkit.version }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA CUDA Deep Neural Network library (cuDNN)
+
+ENV CUDNN_VERSION {{ ctx.cudnn.libcudnn7.version }}
+
+LABEL com.nvidia.cudnn.version="{{ ctx.cudnn.libcudnn7.version }}"
+
+COPY --from=dependencies /data/{{ ctx.cudnn.libcudnn7.fileName }} {{ ctx.cudnn.libcudnn7.fileName }}
+RUN echo "{{ ctx.cudnn.libcudnn7.checksum }} {{ ctx.cudnn.libcudnn7.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.cudnn.libcudnn7.fileName }} && \
+    rm {{ ctx.cudnn.libcudnn7.fileName }}
+
+COPY --from=dependencies /data/{{ ctx.cudnn['libcudnn7-dev'].fileName }} {{ ctx.cudnn['libcudnn7-dev'].fileName }}
+RUN echo "{{ ctx.cudnn['libcudnn7-dev'].checksum }} {{ ctx.cudnn['libcudnn7-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.cudnn['libcudnn7-dev'].fileName }} && \
+    rm {{ ctx.cudnn['libcudnn7-dev'].fileName }}
+
+# NVIDIA VisionWorks Toolkit
+
+COPY --from=dependencies /data/{{ ctx.visionworks.libvisionworks.fileName }} {{ ctx.visionworks.libvisionworks.fileName }}
+RUN echo "{{ ctx.visionworks.libvisionworks.checksum }} {{ ctx.visionworks.libvisionworks.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.visionworks.libvisionworks.fileName }} && \
+    apt-key add /var/visionworks-repo/GPGKEY && \
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated --no-install-recommends libvisionworks && \
+    dpkg --purge libvisionworks-repo && \
+    rm {{ ctx.visionworks.libvisionworks.fileName }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA VisionWorks Plus (SFM)
+COPY --from=dependencies /data/{{ ctx.visionworks['libvisionworks-sfm'].fileName }} {{ ctx.visionworks['libvisionworks-sfm'].fileName }}
+RUN echo "{{ ctx.visionworks['libvisionworks-sfm'].checksum }} {{ ctx.visionworks['libvisionworks-sfm'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.visionworks['libvisionworks-sfm'].fileName }} && \
+    apt-key add /var/visionworks-sfm-repo/GPGKEY && \
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated --no-install-recommends libvisionworks-sfm && \
+    dpkg --purge libvisionworks-sfm-repo && \
+    rm {{ ctx.visionworks['libvisionworks-sfm'].fileName }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA VisionWorks Object Tracker
+COPY --from=dependencies /data/{{ ctx.visionworks['libvisionworks-tracking'].fileName }} {{ ctx.visionworks['libvisionworks-tracking'].fileName }}
+RUN echo "{{ ctx.visionworks['libvisionworks-tracking'].checksum }} {{ ctx.visionworks['libvisionworks-tracking'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.visionworks['libvisionworks-tracking'].fileName }} && \
+    apt-key add /var/visionworks-tracking-repo/GPGKEY && \
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated --no-install-recommends libvisionworks-tracking && \
+    dpkg --purge libvisionworks-tracking-repo && \
+    rm {{ ctx.visionworks['libvisionworks-tracking'].fileName }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA TensorRT
+ENV LIBINFER_VERSION {{ ctx.tensorrt.libnvinfer5.version }}
+
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorrt.libnvinfer5.version }}"
+
+COPY --from=dependencies /data/{{ ctx.tensorrt.libnvinfer5.fileName }} {{ ctx.tensorrt.libnvinfer5.fileName }}
+RUN echo "{{ ctx.tensorrt.libnvinfer5.checksum }} {{ ctx.tensorrt.libnvinfer5.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt.libnvinfer5.fileName }} && \
+    rm {{ ctx.tensorrt.libnvinfer5.fileName }}
+
+COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-dev'].fileName }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
+RUN echo "{{ ctx.tensorrt['libnvinfer-dev'].checksum }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['libnvinfer-dev'].fileName }} && \
+    rm {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
+
+COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-samples'].fileName }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
+RUN echo "{{ ctx.tensorrt['libnvinfer-samples'].checksum }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['libnvinfer-samples'].fileName }} && \
+    rm {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
+
+ENV TENSORRT_VERSION {{ ctx.tensorrt.tensorrt.version }}
+
+LABEL com.nvidia.tensorrt.version="{{ ctx.tensorrt.tensorrt.version }}"
+
+COPY --from=dependencies /data/{{ ctx.tensorrt.tensorrt.fileName }} {{ ctx.tensorrt.tensorrt.fileName }}
+RUN echo "{{ ctx.tensorrt.tensorrt.checksum }} {{ ctx.tensorrt.tensorrt.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt.tensorrt.fileName }} && \
+    rm {{ ctx.tensorrt.tensorrt.fileName }}
+
+# Graph Surgeon
+COPY --from=dependencies /data/{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
+RUN echo "{{ ctx.tensorrt['graphsurgeon-tf'].checksum }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} && \
+    rm {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
+
+# UFF Converter
+COPY --from=dependencies /data/{{ ctx.tensorrt['uff-converter-tf'].fileName }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}
+RUN echo "{{ ctx.tensorrt['uff-converter-tf'].checksum }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['uff-converter-tf'].fileName }} && \
+    rm {{ ctx.tensorrt['uff-converter-tf'].fileName }}
+
+# Install dependencies for OpenCV
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libavcodec-extra57 \
+        libavformat57 \
+        libavutil55 \
+        libcairo2 \
+        libgtk2.0-0 \
+        libswscale4 \
+        libtbb2 \
+        libtbb-dev \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+## Additional OpenCV dependencies usually installed by the CUDA Toolkit
+
+RUN apt-get update && \
+    apt-get install -y \
+    libgstreamer1.0-0 \
+    libgstreamer-plugins-base1.0-0 \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Open CV {{ ctx.opencv.libopencv.version }}
+
+COPY --from=dependencies /data/{{ ctx.opencv.libopencv.fileName }} {{ ctx.opencv.libopencv.fileName }}
+RUN echo "{{ ctx.opencv.libopencv.checksum }} {{ ctx.opencv.libopencv.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv.libopencv.fileName }} && \
+    rm {{ ctx.opencv.libopencv.fileName }}
+
+# DeepStream Dependencies
+
+RUN apt-get update && \
+    apt-get install -y \
+    libssl1.0.0 \
+    libgstreamer1.0-0 \
+    gstreamer1.0-tools \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-libav \
+    libgstrtspserver-1.0-0 \
+    libjansson4 \
+    libjson-glib-1.0-0 \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+## Additional DeepStream dependencies usually installed by the CUDA Toolkit
+
+RUN apt-get update && \
+    apt-get install -y \
+    libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# DeepStream
+
+COPY --from=dependencies /data/{{ ctx.deepstream['deepstream-4.0'].fileName }} {{ ctx.deepstream['deepstream-4.0'].fileName }}
+RUN echo "{{ ctx.deepstream['deepstream-4.0'].checksum }} {{ ctx.deepstream['deepstream-4.0'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.deepstream['deepstream-4.0'].fileName }} && \
+    rm {{ ctx.deepstream['deepstream-4.0'].fileName }}
+
+{%- endif %}
+
+RUN ldconfig
+WORKDIR /opt/nvidia/deepstream/deepstream-4.0/samples

@@ -57,9 +57,9 @@ mkdir -p /tmp/${JETPACK_VERSION}/${DEVICE_ID}
 
 
 if [[ ${JETPACK_VERSION} == "4.2" ]]; then
-    echo "${XVFB} sdkmanager --cli downloadonly --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} ${DEVICE_OPTION} ${DEVICE_ID} --flash --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${JETPACK_VERSION}/${DEVICE_ID}"
-    ${XVFB} sdkmanager --cli downloadonly --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} ${DEVICE_OPTION} ${DEVICE_ID} --flash --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${JETPACK_VERSION}/${DEVICE_ID}
+    echo "${XVFB} sdkmanager --cli downloadonly --exitonfinish --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} ${DEVICE_OPTION} ${DEVICE_ID} --flash --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${JETPACK_VERSION}/${DEVICE_ID}"
+    ${XVFB} sdkmanager --cli downloadonly --exitonfinish --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} ${DEVICE_OPTION} ${DEVICE_ID} --flash --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${JETPACK_VERSION}/${DEVICE_ID}
 else
-    echo "${XVFB} sdkmanager --cli downloadonly --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} ${DEVICE_OPTION} ${DEVICE_ID} --flash --installontarget --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${JETPACK_VERSION}/${DEVICE_ID}"
-    ${XVFB} sdkmanager --cli downloadonly --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} ${DEVICE_OPTION} ${DEVICE_ID} --flash --installontarget --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${JETPACK_VERSION}/${DEVICE_ID}
+    echo "${XVFB} sdkmanager --cli downloadonly --exitonfinish --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} ${DEVICE_OPTION} ${DEVICE_ID} --flash --installontarget --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${JETPACK_VERSION}/${DEVICE_ID} --additionalsdk DeepStream"
+    ${XVFB} sdkmanager --cli downloadonly --exitonfinish --user ${NV_USER} --logintype ${NV_LOGIN_TYPE} --product ${PRODUCT} --version ${JETPACK_VERSION} --targetos ${TARGET_OS} ${DEVICE_OPTION} ${DEVICE_ID} --flash --installontarget --license ${ACCEPT_SDK_LICENCE} --downloadfolder /tmp/${JETPACK_VERSION}/${DEVICE_ID} --additionalsdk DeepStream
 fi
