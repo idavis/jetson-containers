@@ -229,7 +229,7 @@
 {% if driver_details.jetpackVersion != "4.2" %}                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deepstream",{% else -%}{% endif %}
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel",
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn",
-                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-build-agent",
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all",
 {%- endfor %}
 {%- endfor %}
                 "jetpacks"

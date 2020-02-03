@@ -7,7 +7,7 @@
 
 {% for driver_version, value in ctx.items() %}
 {% for device_name, driver_details in ctx[driver_version].items() %}
-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-build-agent {% endfor %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all {% endfor %}
 {% endfor %}
 
 {% for driver_version, value in ctx.items() %}
@@ -55,11 +55,11 @@
 					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/cudnn/Dockerfile \
 					.
 
-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-build-agent: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					-t $(REPO):$@ \
-					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/build-agent/Dockerfile \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/all/Dockerfile \
 					.
 
 {% else %}
@@ -112,12 +112,12 @@
 					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/cudnn/Dockerfile \
 					.
 
-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-build-agent: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn
 	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
-					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/build-agent/Dockerfile \
+					-f {{ driver_details.jetpackVersion }}/{{ device_name }}/all/Dockerfile \
 					.
 
 {% endif %}
