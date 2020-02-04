@@ -95,8 +95,7 @@ build-%-samples:
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg TAG=$* \
 					-t $(REPO):$*-samples \
-					-f $(CURDIR)/docker/examples/samples/Dockerfile \
-					.
+					- < $(CURDIR)/docker/examples/samples/Dockerfile
 
 run-%-samples:
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
@@ -116,8 +115,7 @@ build-%-tf_to_trt_image_classification:
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg TAG=$* \
 					-t $(REPO):$*-tf_to_trt_image_classification \
-					-f $(CURDIR)/docker/tf_to_trt_image_classification/samples/Dockerfile \
-					.
+					- < $(CURDIR)/docker/tf_to_trt_image_classification/samples/Dockerfile
 
 run-%-tf_to_trt_image_classification:
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
