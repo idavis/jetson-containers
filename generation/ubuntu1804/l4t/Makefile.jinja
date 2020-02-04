@@ -15,7 +15,6 @@ all:{% for driver_version, value in ctx.items() %} {{ driver_version }}{%- endfo
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
-					-f $(CURDIR)/{{ driver_version }}/{{ device_name }}/Dockerfile \
-					.
+					- < $(CURDIR)/{{ driver_version }}/{{ device_name }}/Dockerfile
 {% endfor %}
 {% endfor %}
