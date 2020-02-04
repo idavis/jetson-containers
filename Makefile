@@ -17,8 +17,12 @@ export IMAGE_NAME ?= $(REPO)
 export BIONIC_VERSION_ID ?= bionic-20200112
 export XENIAL_VERSION_ID ?= xenial-20200114
 
+# Default squash as our base images which need to copy from a
+# dependencies image. Without this the images will be massive.
+# Starting with JP 4.3, can can use layers again with the apt source.
 # Allow additional options such as --squash
 # DOCKER_BUILD_ARGS ?= ""
+DOCKER_DEPS_IMAGE_BUILD_ARGS ?= --squash
 
 export SDKM_DOWNLOADS ?= invalid
 
@@ -128,41 +132,6 @@ run-%-tf_to_trt_image_classification:
 				--device=/dev/nvhost-vic \
 				--device=/dev/tegra_dc_ctrl \
 				$(REPO):$*-tf_to_trt_image_classification
-
-
-build-%-deepstream-4.0-devel:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg TAG=$* \
-					-t $(REPO):$*-deepstream-4.0 \
-					-f $(CURDIR)/docker/examples/deepstream/4.0/Dockerfile \
-					.
-
-build-%-deepstream-4.0-release:
-	$(DOCKER) build --squash \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg TAG=$* \
-					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
-					-t $(REPO):$*-deepstream-4.0-release \
-					-f $(CURDIR)/docker/examples/deepstream/4.0/$*.Dockerfile \
-					.
-
-build-%-deepstream-4.0.1-devel:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg TAG=$* \
-					-t $(REPO):$*-deepstream-4.0.1 \
-					-f $(CURDIR)/docker/examples/deepstream/4.0.1/Dockerfile \
-					.
-
-build-%-deepstream-4.0.1-release:
-	$(DOCKER) build --squash \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg TAG=$* \
-					--build-arg DEPENDENCIES_IMAGE=$(IMAGE_NAME):$*-deps \
-					-t $(REPO):$*-deepstream-4.0.1-release \
-					-f $(CURDIR)/docker/examples/deepstream/4.0.1/$*.Dockerfile \
-					.
 
 build-%-tensorflow-zoo-devel:
 	$(DOCKER) build --squash \
