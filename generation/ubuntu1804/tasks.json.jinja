@@ -321,7 +321,7 @@
                 "cti-{{ device_name }}-deps",{% endfor %}
 {% for device_name, value in ctx.cti.items() %}{% set outer_loop = loop %}
 {%- for jetpackVersion, driver_details in ctx.cti[device_name].items() %}
-                "cti-{{ driver_details.drivers.version }}-{{ device_name }}-bsp-{{ driver_details.bsp.version }}-deps"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+                "cti-{{ driver_details.drivers.version }}-{{ device_name }}-bsp-{{ driver_details.bsp.version.lower() }}-deps"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
 {% endfor %}            ]
         },
         {
