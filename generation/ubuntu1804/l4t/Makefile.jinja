@@ -1,8 +1,5 @@
 #!make
 
-# Default squash as our base images need to be small unless overridden
-DOCKER_BUILD_ARGS ?= --squash
-
 .PHONY: all
 
 all:{% for driver_version, value in ctx.items() %} {{ driver_version }}{%- endfor %}
@@ -14,7 +11,7 @@ all:{% for driver_version, value in ctx.items() %} {{ driver_version }}{%- endfo
 {% for driver_version, value in ctx.items() %}
 {% for device_name, driver_details in ctx[driver_version].items() %}
 {{ driver_version }}-{{ device_name }}:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \

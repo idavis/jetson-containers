@@ -64,7 +64,7 @@
 
 {% else %}
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
@@ -72,7 +72,7 @@
 					.
 
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
@@ -80,7 +80,7 @@
 					.
 
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
@@ -90,7 +90,7 @@
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deepstream: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base
 	-($(DOCKER) run $(DOCKER_RUN_ARGS) $(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps /bin/bash -c "[ -f /data/deepstream*arm64.deb ]") && \
 	[ $$? -eq 0 ] && \
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
@@ -100,7 +100,7 @@
 {% else %}
 {%- endif %}
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
@@ -108,7 +108,7 @@
 					.
 
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
@@ -116,7 +116,7 @@
 					.
 
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
 					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
 					-t $(REPO):$@ \
