@@ -1,0 +1,5 @@
+DRIVER_PACK="${DRIVER_PACK:={{ ctx.l4t.drivers.fileName }}}"
+DRIVER_PACK_MD5="${DRIVER_PACK_MD5:={{ ctx.l4t.drivers.checksum }}}"
+BSP={{ ctx.cti.bsp.version }}.tgz
+BSP_MD5={{ ctx.cti.bsp.checksum }}
+BSP_DEPENDENCIES_IMAGE="${BSP_DEPENDENCIES_IMAGE:={{ ctx.cti.bsp.bsp_deps_image }}}"

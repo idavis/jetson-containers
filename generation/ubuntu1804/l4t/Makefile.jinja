@@ -1,0 +1,20 @@
+#!make
+
+.PHONY: all
+
+all:{% for driver_version, value in ctx.items() %} {{ driver_version }}{%- endfor %}
+
+{% for driver_version, value in ctx.items() %}
+{{ driver_version }}:{% for device_name, driver_details in ctx[driver_version].items() %} {{ driver_version }}-{{ device_name }}{%- endfor %}
+{% endfor %}
+
+{% for driver_version, value in ctx.items() %}
+{% for device_name, driver_details in ctx[driver_version].items() %}
+{{ driver_version }}-{{ device_name }}:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					- < $(CURDIR)/{{ driver_version }}/{{ device_name }}/Dockerfile
+{% endfor %}
+{% endfor %}

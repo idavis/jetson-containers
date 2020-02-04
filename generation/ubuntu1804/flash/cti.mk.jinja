@@ -1,0 +1,36 @@
+#!make
+
+{% for device_name, value in ctx.cti.items() %}
+{%- if loop.first %}cti-images: {% endif %}cti-{{ device_name }}-images {% endfor %}
+
+{% for device_name, value in ctx.cti.items() %}
+{%- for jetpackVersion, jetpack_details in ctx.cti[device_name].items() %}
+{%- if loop.first %}cti-{{ device_name }}-images: {% endif %}cti-{{ jetpack_details.drivers.version }}-{{ device_name }}-bsp-{{ jetpack_details.bsp.version.lower() }}-image {% endfor %}
+{% endfor %}
+
+{% for device_name, value in ctx.cti.items() %}
+#
+# {{ device_name }} - Drivers / BSP
+#
+
+{% for jetpackVersion, jetpack_details in ctx.cti[device_name].items() %}
+{%- for profile in jetpack_details.bsp.profiles %}
+{%- if loop.first %}cti-{{ jetpack_details.drivers.version }}-{{ device_name }}-bsp-{{ jetpack_details.bsp.version.lower() }}-image: {% endif %}cti-{{ jetpack_details.drivers.version }}-{{ device_name }}-bsp-{{ jetpack_details.bsp.version.lower() }}-{{profile}}-image {% endfor %}
+{% endfor %}
+{% endfor %}
+
+
+{% for device_name, value in ctx.cti.items() %}
+#
+# {{ device_name }} - Device Level
+#
+
+{% for jetpackVersion, jetpack_details in ctx.cti[device_name].items() %}
+# Device: L4T: {{ jetpack_details.drivers.version }} - BSP: {{ jetpack_details.bsp.version }}
+{%- for profile in jetpack_details.bsp.profiles %}
+
+cti-{{ jetpack_details.drivers.version }}-{{ device_name }}-bsp-{{ jetpack_details.bsp.version.lower() }}-{{profile}}-image:
+	(DOCKER_BUILD_ROOT="$(CURDIR)/cti/{{ jetpack_details.drivers.version }}" TARGET_BOARD="{{ jetpack_details.bsp.prefix }}{{ profile }}" $(CURDIR)/build.sh $(CURDIR)/cti/{{ jetpack_details.drivers.version }}/rootfs/tegra-linux-sample-{{ jetpack_details.drivers.version }}-{{device_name}}.conf $(CURDIR)/cti/{{ jetpack_details.drivers.version }}/bsp/{{ jetpack_details.bsp.version.lower() }}.conf $(subst +,plus,$(REPO):$@)){% endfor %}
+
+{% endfor %}
+{% endfor %}

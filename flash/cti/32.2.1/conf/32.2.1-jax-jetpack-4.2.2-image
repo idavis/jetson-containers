@@ -1,0 +1,4 @@
+source ./bsp/agx-32.2.1-v002.conf
+source ./rootfs/tegra-linux-sample-32.2.1-jax.conf
+DEPENDENCIES_IMAGE="${DEPENDENCIES_IMAGE:=$REPO:32.2.1-jax-jetpack-4.2.2-deps}"
+FS_DEPENDENCIES_IMAGE="${FS_DEPENDENCIES_IMAGE:=$REPO:32.2.1-jax-jetpack-4.2.2-deps}"

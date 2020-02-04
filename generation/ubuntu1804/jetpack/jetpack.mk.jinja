@@ -1,0 +1,114 @@
+#!make
+
+{% for driver_version, value in ctx.items() %}
+{%- for device_name, driver_details in ctx[driver_version].items() %}
+{%- if loop.first %}{{ driver_version }}-jetpack-{{ driver_details.jetpackVersion }}: {% endif %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }} {% endfor %}
+{% endfor %}
+
+{% for driver_version, value in ctx.items() %}
+{% for device_name, driver_details in ctx[driver_version].items() %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn {%if driver_details.jetpackVersion != "4.2" %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deepstream {% endif %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all {% endfor %}
+{% endfor %}
+
+{% for driver_version, value in ctx.items() %}
+{% for device_name, driver_details in ctx[driver_version].items() %}
+{% if driver_version == "32.3.1" %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/base/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/runtime/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/runtime/cudnn/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deepstream: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/deepstream/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/cudnn/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/all/Dockerfile
+
+{% else %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/base/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/runtime/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/runtime/cudnn/Dockerfile
+{% if driver_details.jetpackVersion != "4.2" %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deepstream:
+	-($(DOCKER) run $(DOCKER_RUN_ARGS) $(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps /bin/bash -c "[ -f /data/deepstream*arm64.deb ]") && \
+	[ $$? -eq 0 ] && \
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/deepstream/Dockerfile \
+	|| echo "Skipping: DeeepStream was not found in the dependencies image: $(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps"
+{% else %}
+{%- endif %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/devel/cudnn/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/all/Dockerfile
+
+{% endif %}
+{% endfor %}
+{% endfor %}

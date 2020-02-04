@@ -1,0 +1,28 @@
+#!make
+
+{% for device_name, value in ctx.items() %}
+{%- if loop.first %}cti-deps: {% endif %}cti-{{ device_name }}-deps {% endfor %}
+
+{% for device_name, value in ctx.items() %}
+{%- for jetpackVersion, driver_details in ctx[device_name].items() %}
+{%- if loop.first %}cti-{{ device_name }}-deps: {% endif %}cti-{{ driver_details.drivers.version }}-{{ device_name }}-bsp-{{ driver_details.bsp.version }}-deps {% endfor %}
+{% endfor %}
+
+{% for device_name, value in ctx.items() %}
+{%- for jetpackVersion, driver_details in ctx[device_name].items() %}
+cti-{{ driver_details.drivers.version }}-{{ device_name }}-{{ driver_details.bsp.version }}-deps:
+	BSP_VERSION={{ driver_details.bsp.version }} /bin/bash -c ./download-bsp.sh
+
+	$(DOCKER) build \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$@ \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					/tmp/CTI-L4T-{{ driver_details.bsp.version }}
+{% endfor %}
+{% endfor %}
+%-from-folder:
+	$(DOCKER) build \
+					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
+					-t $(REPO):$*-deps \
+					-f $(CURDIR)/dependencies.Dockerfile \
+					$(SDKM_DOWNLOADS)

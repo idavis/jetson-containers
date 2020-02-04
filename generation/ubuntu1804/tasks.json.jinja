@@ -1,0 +1,347 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "make <driver packs>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickDriverPacks}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <jetpack>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickJetPacks}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <build samples>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickBuildSamples}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <run samples>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickRunSamples}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <other>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickOthers}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <jetpack dependencies>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "deps-${input:pickDependencyBuilds}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <jetpack dependencies from folder>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "from-deps-folder-${input:pickDependencyFolderBuilds}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <imaging options>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "image-${input:pickImagingBuilds}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <CTI imaging options>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "image-${input:pickCtiImagingBuilds}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <CTI dependencies>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickCtiDependencyBuilds}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <rootfs>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "rootfs-${input:pickRootFS}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make <rootfs from file>",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "from-file-rootfs-${input:pickRootFsFile}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "pickDriverPacks",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+{% for driver_version, value in ctx.l4t.items() %}                "driver-pack-{{ driver_version }}",
+{% endfor %}
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{% for device_name, driver_details in ctx.l4t[driver_version].items() %}                "l4t-{{ driver_version }}-{{ device_name }}"{{ "," if not (outer_loop.last and loop.last) }}
+{% endfor %}{%- endfor %}            ]
+        },
+        {
+            "id": "pickJetPacks",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+{%- for driver_version, value in ctx.l4t.items() %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}",{% endfor %}
+{% endfor %}
+{% for driver_version, value in ctx.l4t.items() %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
+{%- if loop.first %}                "jetpack-{{ driver_details.jetpackVersion }}",{% endif %}{% endfor %}
+{% endfor %}
+{% for driver_version, value in ctx.l4t.items() %}
+{% for device_name, driver_details in ctx.l4t[driver_version].items() %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-base",
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime",
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-runtime-cudnn",
+{% if driver_details.jetpackVersion != "4.2" %}                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deepstream",{% else -%}{% endif %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel",
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-devel-cudnn",
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-all",
+{%- endfor %}
+{%- endfor %}
+                "jetpacks"
+            ]
+        },
+        {
+            "id": "pickDependencyFolderBuilds",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
+        },
+        {
+            "id": "pickDependencyBuilds",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
+        },
+        {
+            "id": "pickBuildSamples",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
+                "build-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-samples"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
+        },
+        {
+            "id": "pickRunSamples",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
+                "run-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-samples"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
+        },
+        {
+            "id": "pickOthers",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "opencv-4.0.1-32.1-jax-jetpack-4.2",
+                "opencv-4.0.1-32.2-jax-jetpack-4.2.1",
+                "pytorch-1.1.0-32.1-jax-jetpack-4.2",
+                "pytorch-1.1.0-32.2-jax-jetpack-4.2.1"
+            ]
+        },
+        {
+            "id": "pickImagingBuilds",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+{%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
+        },
+        {
+            "id": "pickRootFS",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "all",
+                "bionic-server-cloudimg-20190722.1",
+                "bionic-base-20190426"
+            ]
+        },
+        {
+            "id": "pickRootFsFile",
+            "type": "promptString",
+            "description": "What is the name you want to use for the container image?"
+        },
+        {
+            "id": "pickCtiDependencyBuilds",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "cti-deps",
+{% for device_name, value in ctx.cti.items() %}
+                "cti-{{ device_name }}-deps",{% endfor %}
+{% for device_name, value in ctx.cti.items() %}{% set outer_loop = loop %}
+{%- for jetpackVersion, driver_details in ctx.cti[device_name].items() %}
+                "cti-{{ driver_details.drivers.version }}-{{ device_name }}-bsp-{{ driver_details.bsp.version }}-deps"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+{% endfor %}            ]
+        },
+        {
+            "id": "pickCtiImagingBuilds",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "cti-images",
+{% for device_name, value in ctx.cti.items() %}
+                "cti-{{ device_name }}-images",{% endfor %}
+{% for device_name, value in ctx.cti.items() %}
+{%- for jetpackVersion, jetpack_details in ctx.cti[device_name].items() %}
+                "cti-{{ jetpack_details.drivers.version }}-{{ device_name }}-bsp-{{ jetpack_details.bsp.version.lower() }}-image",{% endfor %}
+{% endfor %}
+{% for device_name, value in ctx.cti.items() %}{% set outer_loop = loop %}
+{%- for jetpackVersion, jetpack_details in ctx.cti[device_name].items() %}{% set mid_loop = loop %}
+{%- for profile in jetpack_details.bsp.profiles %}
+                "cti-{{ jetpack_details.drivers.version }}-{{ device_name }}-bsp-{{ jetpack_details.bsp.version.lower() }}-{{profile}}-image"{{ "," if not (outer_loop.last and mid_loop.last and loop.last) }}{% endfor %}
+{%- endfor %}
+{% endfor %}            ]
+        }
+    ]
+}

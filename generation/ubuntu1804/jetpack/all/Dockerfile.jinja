@@ -1,0 +1,309 @@
+{%- if ctx.drivers.version == "32.3.1" -%}
+ARG IMAGE_NAME
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-devel-cudnn
+
+# NVIDIA VisionWorks Toolkit
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libvisionworks libvisionworks-dev libvisionworks-samples && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA VisionWorks Plus (SFM)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libvisionworks-sfm libvisionworks-sfm-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA VisionWorks Object Tracker
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libvisionworks-tracking libvisionworks-tracking-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+
+# NVIDIA TensorRT
+
+{% if 'tensorflownodla' in ctx %}
+{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer5.version }}"
+{%- else %}
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer6.version }}"
+{%- endif %}
+{%- elif 'deepstreamdla' in ctx %}
+{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer6.version }}"
+{%- else %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer6.version }}"
+{%- endif %}
+{%- endif %}
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvinfer6 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvinfer-bin libnvinfer-dev libnvinfer-doc libnvinfer-samples && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvinfer-plugin-dev libnvinfer-plugin6 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{% if 'tensorflownodla' in ctx %}
+{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
+{%- else %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
+{%- endif %}
+{%- elif 'deepstreamdla' in ctx %}
+{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
+{%- else %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
+{%- endif %}
+{%- endif %}
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends tensorrt && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvparsers6 libnvparsers-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvonnxparsers6 libnvonnxparsers-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python-libnvinfer python-libnvinfer-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python3-libnvinfer python3-libnvinfer-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Graph Surgeon
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends graphsurgeon-tf && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# UFF Converter
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends uff-converter-tf && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Multimedia API
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends nvidia-l4t-jetson-multimedia-api && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+
+# Install dependencies for OpenCV
+
+# Open CV {{ ctx.opencv.libopencv.version }}
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libopencv libopencv-dev libopencv-python libopencv-samples opencv-licenses && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{%- else %}
+ARG DEPENDENCIES_IMAGE
+ARG IMAGE_NAME
+FROM ${DEPENDENCIES_IMAGE} as dependencies
+
+ARG IMAGE_NAME
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-devel-cudnn
+
+# NVIDIA VisionWorks Toolkit
+
+COPY --from=dependencies /data/{{ ctx.visionworks.libvisionworks.fileName }} {{ ctx.visionworks.libvisionworks.fileName }}
+RUN echo "{{ ctx.visionworks.libvisionworks.checksum }} {{ ctx.visionworks.libvisionworks.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.visionworks.libvisionworks.fileName }} && \
+    apt-key add /var/visionworks-repo/GPGKEY && \
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated libvisionworks libvisionworks-dev libvisionworks-samples && \
+    dpkg --purge libvisionworks-repo && \
+    rm {{ ctx.visionworks.libvisionworks.fileName }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA VisionWorks Plus (SFM)
+COPY --from=dependencies /data/{{ ctx.visionworks['libvisionworks-sfm'].fileName }} {{ ctx.visionworks['libvisionworks-sfm'].fileName }}
+RUN echo "{{ ctx.visionworks['libvisionworks-sfm'].checksum }} {{ ctx.visionworks['libvisionworks-sfm'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.visionworks['libvisionworks-sfm'].fileName }} && \
+    apt-key add /var/visionworks-sfm-repo/GPGKEY && \
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated libvisionworks-sfm libvisionworks-sfm-dev && \
+    dpkg --purge libvisionworks-sfm-repo && \
+    rm {{ ctx.visionworks['libvisionworks-sfm'].fileName }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA VisionWorks Object Tracker
+COPY --from=dependencies /data/{{ ctx.visionworks['libvisionworks-tracking'].fileName }} {{ ctx.visionworks['libvisionworks-tracking'].fileName }}
+RUN echo "{{ ctx.visionworks['libvisionworks-tracking'].checksum }} {{ ctx.visionworks['libvisionworks-tracking'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.visionworks['libvisionworks-tracking'].fileName }} && \
+    apt-key add /var/visionworks-tracking-repo/GPGKEY && \
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated libvisionworks-tracking libvisionworks-tracking-dev && \
+    dpkg --purge libvisionworks-tracking-repo && \
+    rm {{ ctx.visionworks['libvisionworks-tracking'].fileName }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# NVIDIA TensorRT
+ENV LIBINFER_VERSION {{ ctx.tensorrt.libnvinfer5.version }}
+
+LABEL com.nvidia.libinfer.version="${LIBINFER_VERSION}"
+
+COPY --from=dependencies /data/{{ ctx.tensorrt.libnvinfer5.fileName }} {{ ctx.tensorrt.libnvinfer5.fileName }}
+RUN echo "{{ ctx.tensorrt.libnvinfer5.checksum }} {{ ctx.tensorrt.libnvinfer5.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt.libnvinfer5.fileName }} && \
+    rm {{ ctx.tensorrt.libnvinfer5.fileName }}
+
+COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-dev'].fileName }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
+RUN echo "{{ ctx.tensorrt['libnvinfer-dev'].checksum }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['libnvinfer-dev'].fileName }} && \
+    rm {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
+
+COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-samples'].fileName }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
+RUN echo "{{ ctx.tensorrt['libnvinfer-samples'].checksum }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['libnvinfer-samples'].fileName }} && \
+    rm {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
+
+ENV TENSORRT_VERSION {{ ctx.tensorrt.tensorrt.version }}
+
+LABEL com.nvidia.tensorrt.version="${TENSORRT_VERSION}"
+
+ENV TENSORRT_PKG tensorrt_${TENSORRT_PKG_VERSION}+cuda10.0_arm64.deb
+
+COPY --from=dependencies /data/{{ ctx.tensorrt.tensorrt.fileName }} {{ ctx.tensorrt.tensorrt.fileName }}
+RUN echo "{{ ctx.tensorrt.tensorrt.checksum }} {{ ctx.tensorrt.tensorrt.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt.tensorrt.fileName }} && \
+    rm {{ ctx.tensorrt.tensorrt.fileName }}
+
+{%- if ctx.jetpackVersion != "4.2" %}
+
+# Python2 support for TensorRT
+COPY --from=dependencies /data/{{ ctx.tensorrt['python-libnvinfer'].fileName }} {{ ctx.tensorrt['python-libnvinfer'].fileName }}
+RUN echo "{{ ctx.tensorrt['python-libnvinfer'].checksum }} {{ ctx.tensorrt['python-libnvinfer'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python-libnvinfer'].fileName }} && \
+    rm {{ ctx.tensorrt['python-libnvinfer'].fileName }}
+
+COPY --from=dependencies /data/{{ ctx.tensorrt['python-libnvinfer-dev'].fileName }} {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}
+RUN echo "{{ ctx.tensorrt['python-libnvinfer-dev'].checksum }} {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python-libnvinfer-dev'].fileName }} && \
+    rm {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}
+
+# Python3 support for TensorRT
+COPY --from=dependencies /data/{{ ctx.tensorrt['python3-libnvinfer'].fileName }} {{ ctx.tensorrt['python3-libnvinfer'].fileName }}
+RUN echo "{{ ctx.tensorrt['python3-libnvinfer'].checksum }} {{ ctx.tensorrt['python3-libnvinfer'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python3-libnvinfer'].fileName }} && \
+    rm {{ ctx.tensorrt['python3-libnvinfer'].fileName }}
+
+COPY --from=dependencies /data/{{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }} {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}
+RUN echo "{{ ctx.tensorrt['python3-libnvinfer-dev'].checksum }} {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }} && \
+    rm {{ ctx.tensorrt['python3-libnvinfer-dev'].fileName }}
+{%-endif %}
+
+# Graph Surgeon
+COPY --from=dependencies /data/{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
+RUN echo "{{ ctx.tensorrt['graphsurgeon-tf'].checksum }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} && \
+    rm {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
+
+# UFF Converter
+COPY --from=dependencies /data/{{ ctx.tensorrt['uff-converter-tf'].fileName }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}
+RUN echo "{{ ctx.tensorrt['uff-converter-tf'].checksum }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['uff-converter-tf'].fileName }} && \
+    rm {{ ctx.tensorrt['uff-converter-tf'].fileName }}
+
+# Multimedia API
+# 6b870acbb906fc923828e110d23a096f8450fc7f  Tegra_Multimedia_API_R32.2.1_aarch64.tbz2
+# Skipping unless needed.
+
+# Install dependencies for OpenCV
+
+# Open CV {{ ctx.opencv.libopencv.version }}
+
+COPY --from=dependencies /data/{{ ctx.opencv.libopencv.fileName }} {{ ctx.opencv.libopencv.fileName }}
+RUN echo "{{ ctx.opencv.libopencv.checksum }} {{ ctx.opencv.libopencv.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv.libopencv.fileName }} && \
+    rm {{ ctx.opencv.libopencv.fileName }}
+
+# Open CV python binding
+COPY --from=dependencies /data/{{ ctx.opencv['libopencv-python'].fileName }} {{ ctx.opencv['libopencv-python'].fileName }}
+RUN echo "{{ ctx.opencv['libopencv-python'].checksum }} {{ ctx.opencv['libopencv-python'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv['libopencv-python'].fileName }} && \
+    rm {{ ctx.opencv['libopencv-python'].fileName }}
+
+# Open CV dev
+COPY --from=dependencies /data/{{ ctx.opencv['libopencv-dev'].fileName }} {{ ctx.opencv['libopencv-dev'].fileName }}
+RUN echo "{{ ctx.opencv['libopencv-dev'].checksum }} {{ ctx.opencv['libopencv-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv['libopencv-dev'].fileName }} && \
+    rm {{ ctx.opencv['libopencv-dev'].fileName }}
+
+# Open CV samples
+COPY --from=dependencies /data/{{ ctx.opencv['libopencv-samples'].fileName }} {{ ctx.opencv['libopencv-samples'].fileName }}
+RUN echo "{{ ctx.opencv['libopencv-samples'].checksum }} {{ ctx.opencv['libopencv-samples'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv['libopencv-samples'].fileName }} && \
+    rm {{ ctx.opencv['libopencv-samples'].fileName }}
+
+{%- endif %}
+
+# Install dependencies for TensorFlow
+#RUN apt-get update && apt-get install -y \
+#    hdf5-tools \
+#    libhdf5-dev \
+#    libhdf5-serial-dev \
+#    libjpeg8-dev \
+#    zip \
+#    zlib1g-dev \
+#    && \
+#    apt-get clean && \
+#    rm -rf /var/lib/apt/lists/*
+
+#RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
+
+{% if ctx.jetpackVersion == "4.3" %}
+# Available versions:
+# tensorflow_gpu-1.15.0+nv19.12-cp36-cp36m-linux_aarch64.whl 217MB
+# tensorflow_gpu-2.0.0+nv19.12-cp36-cp36m-linux_aarch64.whl 198MB
+
+# Install TensorFlow
+#RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu
+# can browse from https://developer.download.nvidia.com/compute/redist/jp/
+# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
+{% else %}
+# Available versions:
+# tensorflow_gpu-1.13.1+nv19.4-cp36-cp36m-linux_aarch64.whl 195MB
+# tensorflow_gpu-1.13.1+nv19.5-cp36-cp36m-linux_aarch64.whl 195MB
+# tensorflow_gpu-1.14.0+nv19.7-cp36-cp36m-linux_aarch64.whl 214MB
+# tensorflow_gpu-1.14.0+nv19.9-cp36-cp36m-linux_aarch64.whl 214MB
+# tensorflow_gpu-1.14.0+nv19.10-cp36-cp36m-linux_aarch64.whl 214MB
+# tensorflow_gpu-1.15.0+nv19.11-cp36-cp36m-linux_aarch64.whl 217MB
+# tensorflow_gpu-2.0.0+nv19.11-cp36-cp36m-linux_aarch64.whl 198MB
+
+# Install TensorFlow
+# RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
+# can browse from https://developer.download.nvidia.com/compute/redist/jp/
+# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
+{% endif %}

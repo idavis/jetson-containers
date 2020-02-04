@@ -1,0 +1,4 @@
+source ./bsp/tx2-32.2.1-v004.conf
+source ./rootfs/tegra-linux-sample-32.2.1-tx2.conf
+DEPENDENCIES_IMAGE="${DEPENDENCIES_IMAGE:=$REPO:32.2.1-tx2-jetpack-4.2.2-deps}"
+FS_DEPENDENCIES_IMAGE="${FS_DEPENDENCIES_IMAGE:=$REPO:32.2.1-tx2-jetpack-4.2.2-deps}"
