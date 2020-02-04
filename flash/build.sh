@@ -81,7 +81,7 @@ pushd "${DOCKER_BUILD_ROOT}"
     echo "    --build-arg ROOT_FS_MD5=$ROOT_FS_MD5 \\"
     echo "    --build-arg BSP_DEPENDENCIES_IMAGE=$BSP_DEPENDENCIES_IMAGE \\"
     echo "    --build-arg BSP=$BSP \\"
-    echo "    --build-arg BSP_SHA=$BSP_SHA \\"
+    echo "    --build-arg BSP_MD5=$BSP_MD5 \\"
     echo "    --build-arg TARGET_BOARD=$TARGET_BOARD \\"
     echo "    --build-arg ROOT_DEVICE=$ROOT_DEVICE \\"
     echo "    --build-arg VERSION_ID=$VERSION_ID \\"
@@ -97,7 +97,7 @@ pushd "${DOCKER_BUILD_ROOT}"
         --build-arg ROOT_FS_MD5=$ROOT_FS_MD5 \
         --build-arg BSP_DEPENDENCIES_IMAGE=$BSP_DEPENDENCIES_IMAGE \
         --build-arg BSP=$BSP \
-        --build-arg BSP_SHA=$BSP_SHA \
+        --build-arg BSP_MD5=$BSP_MD5 \
         --build-arg TARGET_BOARD=$TARGET_BOARD \
         --build-arg ROOT_DEVICE=$ROOT_DEVICE \
         --build-arg VERSION_ID=$VERSION_ID \
