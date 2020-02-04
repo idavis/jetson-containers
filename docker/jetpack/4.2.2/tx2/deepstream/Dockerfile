@@ -147,7 +147,7 @@ RUN echo "dd5b571c08a0098141203daec2ea1acc libopencv_3.3.1-2-g31ccdfe11_arm64.de
 # DeepStream Dependencies
 
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
     libssl1.0.0 \
     libgstreamer1.0-0 \
     gstreamer1.0-tools \
@@ -162,10 +162,10 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-## Additional DeepStream dependencies usually installed by the CUDA Toolkit
+# Additional DeepStream dependencies usually installed by the CUDA Toolkit
 
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
     libgstreamer1.0-dev \
     libgstreamer-plugins-base1.0-dev \
     && \
