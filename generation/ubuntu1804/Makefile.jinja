@@ -21,8 +21,8 @@ export XENIAL_VERSION_ID ?= xenial-20200114
 # dependencies image. Without this the images will be massive.
 # Starting with JP 4.3, can can use layers again with the apt source.
 # Allow additional options such as --squash
-# DOCKER_BUILD_ARGS ?= ""
-DOCKER_DEPS_IMAGE_BUILD_ARGS ?= --squash
+# export DOCKER_BUILD_ARGS ?= ""
+export DOCKER_DEPS_IMAGE_BUILD_ARGS ?= --squash
 
 export SDKM_DOWNLOADS ?= invalid
 
