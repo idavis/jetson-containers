@@ -42,6 +42,7 @@ RUN sed -i '/.*LC_ALL=C APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 chroot . apt-key 
 RUN sed -i '/.*umount ${L4T_ROOTFS_DIR}\/proc.*/c\#umount ${L4T_ROOTFS_DIR}\/proc' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 RUN sed -i '/.*	LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${pre_deb_list\[\@\]}\".*/c\	apt install -y --no-install-recommends \"${pre_deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${deb_list\[\@\]}\".*/c\apt install -y --no-install-recommends \"${deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\".*/c\#rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 
 # In 32.3.1, this will use deb packages instead of the archive overlay
 RUN ./Linux_for_Tegra/apply_binaries.sh -r /
