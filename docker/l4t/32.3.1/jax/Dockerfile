@@ -3,7 +3,6 @@ ARG DEPENDENCIES_IMAGE
 ARG IMAGE_NAME
 FROM ${DEPENDENCIES_IMAGE} as dependencies
 
-
 ARG VERSION_ID
 # using a smaller image doesn't save us any space as the layers are used by the other images.
 FROM ubuntu:${VERSION_ID} as qemu
@@ -18,6 +17,10 @@ ARG VERSION_ID
 FROM arm64v8/ubuntu:${VERSION_ID}
 
 LABEL maintainer "Ian Davis"
+
+# TODO: Set up conditional QEMU support for those that haven't configured binfmt.service.
+# This is small overhead (3-4 MiB) and helps people fall into the pit of success.
+COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bzip2 \
