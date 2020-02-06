@@ -336,7 +336,7 @@ class DockerGenerator(cli.Application):
             f"generation/ubuntu1804/flash/cti/{component}.jinja")
 
         output_path = pathlib.Path(
-            f"flash/cti/{driverVersion}/{component}/{bspVersion}.conf")
+            f"flash/cti/{driverVersion}/{component}/{device}-bsp-{bspVersion}.conf")
         self.write_template_to_target(
             context, template_filepath, output_path)
 
@@ -344,13 +344,14 @@ class DockerGenerator(cli.Application):
         template_filepath = pathlib.Path(
             f"generation/ubuntu1804/flash/cti/{component}.jinja")
         conf_context = {}
+        conf_context["device"] = f"{device}"
         conf_context["bsp"] = f"{bspVersion}.conf"
         conf_context["rootfs"] = f"tegra-linux-sample-{driverVersion}-{device}.conf"
         conf_context["deps_image"] = f"$REPO:{driverVersion}-{device}-jetpack-{jetpack_version}-deps"
         conf_context["fs_deps_image"] = f"$REPO:{driverVersion}-{device}-jetpack-{jetpack_version}-deps"
 
         output_path = pathlib.Path(
-            f"flash/cti/{driverVersion}/{component}/{driverVersion}-{device}-jetpack-{jetpack_version}-image")
+            f"flash/cti/{driverVersion}/{component}/{driverVersion}-{device}-jetpack-{jetpack_version}-bsp-{bspVersion}-image")
         self.write_template_to_target(
             conf_context, template_filepath, output_path)
 

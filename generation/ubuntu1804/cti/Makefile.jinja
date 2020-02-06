@@ -5,12 +5,12 @@
 
 {% for device_name, value in ctx.items() %}
 {%- for jetpackVersion, driver_details in ctx[device_name].items() %}
-{%- if loop.first %}cti-{{ device_name }}-deps: {% endif %}cti-{{ driver_details.drivers.version }}-{{ device_name }}-bsp-{{ driver_details.bsp.version }}-deps {% endfor %}
+{%- if loop.first %}cti-{{ device_name }}-deps: {% endif %}cti-{{ driver_details.drivers.version }}-{{ device_name }}-bsp-{{ driver_details.bsp.version.lower() }}-deps {% endfor %}
 {% endfor %}
 
 {% for device_name, value in ctx.items() %}
 {%- for jetpackVersion, driver_details in ctx[device_name].items() %}
-cti-{{ driver_details.drivers.version }}-{{ device_name }}-{{ driver_details.bsp.version }}-deps:
+cti-{{ driver_details.drivers.version }}-{{ device_name }}-bsp-{{ driver_details.bsp.version.lower() }}-deps:
 	BSP_VERSION={{ driver_details.bsp.version }} /bin/bash -c ./download-bsp.sh
 
 	$(DOCKER) build \

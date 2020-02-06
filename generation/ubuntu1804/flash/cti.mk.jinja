@@ -30,7 +30,7 @@
 {%- for profile in jetpack_details.bsp.profiles %}
 
 cti-{{ jetpack_details.drivers.version }}-{{ device_name }}-bsp-{{ jetpack_details.bsp.version.lower() }}-{{profile}}-image:
-	(DOCKER_BUILD_ROOT="$(CURDIR)/cti/{{ jetpack_details.drivers.version }}" TARGET_BOARD="{{ jetpack_details.bsp.prefix }}{{ profile }}" $(CURDIR)/build.sh $(CURDIR)/cti/{{ jetpack_details.drivers.version }}/rootfs/tegra-linux-sample-{{ jetpack_details.drivers.version }}-{{device_name}}.conf $(CURDIR)/cti/{{ jetpack_details.drivers.version }}/bsp/{{ jetpack_details.bsp.version.lower() }}.conf $(subst +,plus,$(REPO):$@)){% endfor %}
+	(DOCKER_BUILD_ROOT="$(CURDIR)/cti/{{ jetpack_details.drivers.version }}" TARGET_BOARD="{{ jetpack_details.bsp.prefix }}{{ profile }}" $(CURDIR)/build.sh $(CURDIR)/cti/{{ jetpack_details.drivers.version }}/conf/{{ jetpack_details.drivers.version }}-{{device_name}}-jetpack-{{ jetpackVersion }}-bsp-{{ jetpack_details.bsp.version.lower() }}-image $(subst +,plus,$(REPO):$@)){% endfor %}
 
 {% endfor %}
 {% endfor %}
