@@ -60,19 +60,52 @@ RUN echo "${ROOT_FS_MD5} *./${ROOT_FS}" | md5sum -c - && \
     cd /Linux_for_Tegra/rootfs && \
     tar -xp --overwrite -f /${ROOT_FS} && \
     rm /${ROOT_FS}
+# pre-req for Linux_for_Tegra/nv_tegra/nv-apply-debs.sh as it tries to chroot
+COPY --from=qemu /usr/bin/qemu-aarch64-static /Linux_for_Tegra/nv_tegra/qemu-aarch64-static
+COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
+#RUN sed -i '/.*LC_ALL=C chroot . mount -t proc none \/proc.*/c\#LC_ALL=C chroot . mount -t proc none \/proc' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+#RUN sed -i '/.*umount ${L4T_ROOTFS_DIR}\/proc.*/c\#umount ${L4T_ROOTFS_DIR}\/proc' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*	LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${pre_deb_list\[\@\]}\".*/c\	LC_ALL=C chroot . apt install -y --no-install-recommends \"${pre_deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${deb_list\[\@\]}\".*/c\LC_ALL=C chroot . apt install -y --no-install-recommends \"${deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 
 WORKDIR /Linux_for_Tegra
-RUN ./apply_binaries.sh --target-overlay
+# apply binaries must be done at flash due to chroot and --target-overlay seems to be broken
+#RUN ./apply_binaries.sh --target-overlay
+
 
 
 ARG TARGET_BOARD
 ARG ROOT_DEVICE
 ENV TARGET_BOARD=$TARGET_BOARD
 ENV ROOT_DEVICE=$ROOT_DEVICE
-
+RUN echo "deb http://ports.ubuntu.com/ubuntu-ports bionic universe" >> rootfs/etc/apt/sources.list
 RUN echo "#!/bin/bash" >> entrypoint.sh && \
+    echo "set -e" >> entrypoint.sh && \
+    echo "cd rootfs" >> entrypoint.sh && \
+    echo "sudo mount --bind /dev/ dev/" >> entrypoint.sh && \
+    echo "sudo mount --bind /sys/ sys/" >> entrypoint.sh && \
+    echo "sudo mount --bind /proc/ proc/" >> entrypoint.sh && \
+    echo "sudo cp /etc/resolv.conf etc/resolv.conf.host" >> entrypoint.sh && \
+    echo "sudo mv etc/resolv.conf etc/resolv.conf.saved" >> entrypoint.sh && \
+    echo "sudo mv etc/resolv.conf.host etc/resolv.conf" >> entrypoint.sh && \
+    echo "sudo chroot . apt update" >> entrypoint.sh && \
+    echo "sudo umount ./proc" >> entrypoint.sh && \
+    echo "sudo umount ./sys" >> entrypoint.sh && \
+    echo "sudo umount ./dev" >> entrypoint.sh && \
+    echo "cd .." >> entrypoint.sh && \
+    echo "sudo ./apply_binaries.sh" >> entrypoint.sh && \
+    echo "cd rootfs" >> entrypoint.sh && \
+    echo "sudo rm etc/resolv.conf" >> entrypoint.sh && \
+    echo "sudo mv etc/resolv.conf.saved etc/resolv.conf" >> entrypoint.sh && \
+    echo "sudo rm -rf dev/*" >> entrypoint.sh && \
+    echo "sudo rm -rf var/log/*" >> entrypoint.sh && \
+    echo "sudo rm -rf var/tmp/*" >> entrypoint.sh && \
+    echo "sudo rm -rf var/cache/apt/archives/*.deb" >> entrypoint.sh && \
+    echo "sudo rm -rf tmp/*" >> entrypoint.sh && \
+    echo "sudo rm -rf var/lib/apt/lists/*" >> entrypoint.sh && \
+    echo "cd .." >> entrypoint.sh && \
     echo "echo \"sudo ./flash.sh \$* ${TARGET_BOARD} ${ROOT_DEVICE}\"" >> entrypoint.sh && \
     echo "sudo ./flash.sh \$* ${TARGET_BOARD} ${ROOT_DEVICE}" >> entrypoint.sh && \
     chmod +x entrypoint.sh
 
-ENTRYPOINT ["sh", "-c", "sudo ./entrypoint.sh $*", "--"]
+#ENTRYPOINT ["sh", "-c", "sudo ./entrypoint.sh $*", "--"]

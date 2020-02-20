@@ -61,11 +61,11 @@ RUN echo "${ROOT_FS_MD5} *./${ROOT_FS}" | md5sum -c - && \
     tar -xp --overwrite -f /${ROOT_FS} && \
     rm /${ROOT_FS}
 
-{%- if ctx.drivers.version == "32.3.1" and ctx.target_overlay == False %}
+{%- if ctx.drivers.version == "32.3.1" %}
 # pre-req for Linux_for_Tegra/nv_tegra/nv-apply-debs.sh as it tries to chroot
 COPY --from=qemu /usr/bin/qemu-aarch64-static /Linux_for_Tegra/nv_tegra/qemu-aarch64-static
-RUN sed -i '/.*LC_ALL=C chroot . mount -t proc none \/proc.*/c\#LC_ALL=C chroot . mount -t proc none \/proc' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
-RUN sed -i '/.*umount ${L4T_ROOTFS_DIR}\/proc.*/c\#umount ${L4T_ROOTFS_DIR}\/proc' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+#RUN sed -i '/.*LC_ALL=C chroot . mount -t proc none \/proc.*/c\#LC_ALL=C chroot . mount -t proc none \/proc' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+#RUN sed -i '/.*umount ${L4T_ROOTFS_DIR}\/proc.*/c\#umount ${L4T_ROOTFS_DIR}\/proc' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 RUN sed -i '/.*	LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${pre_deb_list\[\@\]}\".*/c\	apt install -y --no-install-recommends \"${pre_deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${deb_list\[\@\]}\".*/c\apt install -y --no-install-recommends \"${deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 {%- endif %}
@@ -73,16 +73,12 @@ RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\
 WORKDIR /Linux_for_Tegra
 
 {%- if ctx.drivers.version == "32.3.1" and ctx.target_overlay == True %}
-RUN ./apply_binaries.sh --target-overlay
+# apply binaries must be done at flash due to chroot and --target-overlay seems to be broken
+#RUN ./apply_binaries.sh --target-overlay
 {% else %}
 RUN ./apply_binaries.sh
-{% endif %}
-
-{%- if ctx.drivers.version == "32.3.1" and ctx.target_overlay == False %}
-# In 32.3.1, this will use deb packages instead of the archive overlay
-# Patch OTA apt source
-RUN sed -i "s/<SOC>/t{{ ctx.SOC }}/g" "/Linux_for_Tegra/rootfs/etc/apt/sources.list.d/nvidia-l4t-apt-source.list"
 {%- endif %}
+
 
 ARG TARGET_BOARD
 ARG ROOT_DEVICE
@@ -90,6 +86,9 @@ ENV TARGET_BOARD=$TARGET_BOARD
 ENV ROOT_DEVICE=$ROOT_DEVICE
 
 RUN echo "#!/bin/bash" >> entrypoint.sh && \
+{%- if ctx.drivers.version == "32.3.1" %}
+    echo "sudo ./apply_binaries.sh" >> entrypoint.sh && \
+{%- endif %}
     echo "echo \"sudo ./flash.sh \$* ${TARGET_BOARD} ${ROOT_DEVICE}\"" >> entrypoint.sh && \
     echo "sudo ./flash.sh \$* ${TARGET_BOARD} ${ROOT_DEVICE}" >> entrypoint.sh && \
     chmod +x entrypoint.sh
