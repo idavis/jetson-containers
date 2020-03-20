@@ -62,8 +62,6 @@ RUN echo "${ROOT_FS_MD5} *./${ROOT_FS}" | md5sum -c - && \
     rm /${ROOT_FS}
 
 WORKDIR /Linux_for_Tegra
-RUN ./apply_binaries.sh --target-overlay
-
 
 ARG TARGET_BOARD
 ARG ROOT_DEVICE
@@ -71,6 +69,7 @@ ENV TARGET_BOARD=$TARGET_BOARD
 ENV ROOT_DEVICE=$ROOT_DEVICE
 
 RUN echo "#!/bin/bash" >> entrypoint.sh && \
+    echo "sudo ./apply_binaries.sh" >> entrypoint.sh && \
     echo "echo \"sudo ./flash.sh \$* ${TARGET_BOARD} ${ROOT_DEVICE}\"" >> entrypoint.sh && \
     echo "sudo ./flash.sh \$* ${TARGET_BOARD} ${ROOT_DEVICE}" >> entrypoint.sh && \
     chmod +x entrypoint.sh
