@@ -262,7 +262,7 @@
             "options": [
 {%- for driver_version, value in ctx.l4t.items() %}{% set outer_loop = loop %}
 {%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
-                "build-{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-samples"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-samples"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
 {% endfor %}            ]
         },
         {

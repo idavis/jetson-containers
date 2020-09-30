@@ -122,7 +122,7 @@ make 32.1-jax-jetpack-4.2
 make 32.1-tx2-jetpack-4.2.1
 ```
 
-There are additional recipes for building the `32.1-jax-jetpack-4.2` samples container (`make build-32.1-jax-jetpack-4.2-samples`) and running the container (`make run-32.1-jax-jetpack-4.2-samples`) which demonstrates mult-stage builds based on `devel` images.
+There are additional recipes for building the `32.1-jax-jetpack-4.2` samples container (`make 32.1-jax-jetpack-4.2-samples`) and running the container (`make run-32.1-jax-jetpack-4.2-samples`) which demonstrates mult-stage builds based on `devel` images.
 
 ## Running
 
