@@ -50,7 +50,6 @@ There are several walk through blog posts that may serve as helpful introduction
 The `Makefile` scripts will import a `.env` file (for an example look at the `.envtemp` file) and export the variables defined.
 
 - `REPO` - This is for your own container registry/repo. The builds will take care of the tags and images names. For example `REPO=mycontainers.azurecr.io/l4t`
-- `NV_USER` - Sets the email address to be used when authenticating with the SDK Manager. This isn't stored and you'll be prompted for your password when the container runs.
 - `DOCKER` - Allows swapping out for another container runtime such as Moby or Balena. This variable is used in all container operations.
 - `DOCKER_HOST` - Setting the `DOCKER_HOST` variable will proxy builds to another machine such as a Jetson device. This allows running the `make` scripts from an `x86_x64` host. This feature was added in November 2018. When using this feature, it is helpful to add your public key to the device's `~/.ssh/authorized_keys` file. This will prevent credential checks on every build.
 - `DOCKER_BUILD_ARGS` - Allows adding arguments such as volume mounting or cleanup (`-rm/--squash`) during build operations.
@@ -81,9 +80,8 @@ The project uses `make` to set up the dependent builds constructing the final im
 
 ### Dependencies
 
-The JetPack dependency builds must be run on an `x86_64` host. They can be built with `make <device>-jetpack-<jetpack-version>-deps`. This will build an image using files downlaoded from the SDK Manager installed. Building this image will require authentication and `NV_USER` should be set in your `.env` file. As the container runs, enter your password when prompted. For `sudo` prompts, enter `pass` as the password. Once built, push the image to your container registry so that the device can leverage it all other builds. This may sound like a lot, but it is really just:
+The JetPack dependency builds must be run on an `x86_64` host. They can be built with `make <device>-jetpack-<jetpack-version>-deps`. This will build an image using files downlaoded from the SDK Manager installed. As the container runs, enter your password when prompted. For `sudo` prompts, enter `pass` as the password. Once built, push the image to your container registry so that the device can leverage it all other builds. This may sound like a lot, but it is really just:
 
-- Set `NV_USER` in the `.env` file
 - Make sure `DOCKER_HOST`, if set, is pointing to an `x86_64` host
 - `make jax-jetpack-4.2-deps`, or `make nano-dev-jetpack-4.2-deps`, or `make tx2-jetpack-4.2-deps`, or `make jetpack-4.2-deps` to build them all
 - Wait, then enter your Nvidia developer password when prompted
