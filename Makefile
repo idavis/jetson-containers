@@ -14,8 +14,8 @@ export REPO ?= l4t
 export IMAGE_NAME ?= $(REPO)
 
 # Used in driver pack base
-export BIONIC_VERSION_ID ?= bionic-20200112
-export XENIAL_VERSION_ID ?= xenial-20200114
+export BIONIC_VERSION_ID ?= bionic
+export XENIAL_VERSION_ID ?= xenial
 
 # Default squash as our base images which need to copy from a
 # dependencies image. Without this the images will be massive.
