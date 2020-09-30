@@ -19,7 +19,7 @@ all-dependencies: {% for driver_version, value in ctx.items() -%}{%- for device_
 {% for driver_version, value in ctx.items() %}
 {% for device_name, driver_details in ctx[driver_version].items() %}
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps:
-	DEVICE_ID={{ driver_details.deviceId }} DEVICE_OPTION=--target NV_USER=$(NV_USER) NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="{{ driver_details.sdkmanagerJetPackVersion }}" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
+	DEVICE_ID={{ driver_details.deviceId }} DEVICE_OPTION=--target NV_LOGIN_TYPE=$(NV_LOGIN_TYPE) PRODUCT=Jetson JETPACK_VERSION="{{ driver_details.sdkmanagerJetPackVersion }}" TARGET_OS=Linux ACCEPT_SDK_LICENCE=accept /bin/bash -c ./download-jetpack.sh
 
 	$(DOCKER) build \
 					--build-arg VERSION_ID="$(BIONIC_VERSION_ID)" \
