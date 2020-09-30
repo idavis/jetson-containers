@@ -114,12 +114,28 @@ RUN apt-get update && \
 
 #RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
 
+# Install TensorFlow
+# Index URLS
+# Browse https://developer.download.nvidia.com/compute/redist/jp/ for more.
+# 4.4: https://developer.download.nvidia.com/compute/redist/jp/v44/tensorflow/
+# 4.3 GPU: https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow-gpu/
+# 4.3 CPU: https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow/
+# 4.2: https://developer.download.nvidia.com/compute/redist/jp/v42/tensorflow-gpu/
+# Commands:
+# RUN python3 -m pip install --pre --extra-index-url ${TF_INDEX_URL} tensorflow-gpu
+# RUN python3 -m pip install --extra-index-url ${TF_INDEX_URL} tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
 
 # Available versions:
-# tensorflow_gpu-1.15.0+nv19.12-cp36-cp36m-linux_aarch64.whl 217MB
-# tensorflow_gpu-2.0.0+nv19.12-cp36-cp36m-linux_aarch64.whl 198MB
+# All available versions can be found by browsing https://developer.download.nvidia.com/compute/redist/jp/
 
-# Install TensorFlow
-#RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu
-# can browse from https://developer.download.nvidia.com/compute/redist/jp/
-# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
+# GPU
+# tensorflow_gpu-2.0.0+nv19.12-cp36-cp36m-linux_aarch64.whl 198MB
+# tensorflow_gpu-1.15.0+nv19.12-cp36-cp36m-linux_aarch64.whl 217MB
+# tensorflow_gpu-2.0.0+nv20.1-cp36-cp36m-linux_aarch64.whl 198MB
+# tensorflow_gpu-1.15.0+nv20.1-cp36-cp36m-linux_aarch64.whl 217MB
+
+# CPU
+# tensorflow-2.1.0+nv20.2-cp36-cp36m-linux_aarch64.whl 225MB
+# tensorflow-1.15.2+nv20.2-cp36-cp36m-linux_aarch64.whl 217MB
+# tensorflow-2.1.0+nv20.3-cp36-cp36m-linux_aarch64.whl 225MB
+# tensorflow-1.15.2+nv20.3-cp36-cp36m-linux_aarch64.whl 218MB
