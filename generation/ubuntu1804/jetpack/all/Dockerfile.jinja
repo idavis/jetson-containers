@@ -1,4 +1,4 @@
-{%- if ctx.drivers.version == "32.3.1" -%}
+{%- if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3"-%}
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-devel-cudnn
 
@@ -27,19 +27,27 @@ RUN apt-get update && \
 {% if 'tensorflownodla' in ctx %}
 {%- if 'libnvinfer5' in ctx.tensorflownodla %}
 LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer5.version }}"
-{%- else %}
+{%- elif 'libnvinfer6' in ctx.tensorflownodla %}
 LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer6.version }}"
+{%- elif 'libnvinfer7' in ctx.tensorflownodla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer7.version }}"
 {%- endif %}
 {%- elif 'deepstreamdla' in ctx %}
-{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+{%- if 'libnvinfer5' in ctx.deepstreamdla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer5.version }}"
+{%- elif 'libnvinfer6' in ctx.deepstreamdla %}
 LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer6.version }}"
-{%- else %}
-LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer6.version }}"
+{%- elif 'libnvinfer7' in ctx.deepstreamdla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer7.version }}"
 {%- endif %}
 {%- endif %}
 
 RUN apt-get update && \
+{%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvinfer6 && \
+{%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvinfer7 && \
+{%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -49,22 +57,18 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
+{%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvinfer-plugin-dev libnvinfer-plugin6 && \
+{%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvinfer-plugin-dev libnvinfer-plugin7 && \
+{%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 {% if 'tensorflownodla' in ctx %}
-{%- if 'libnvinfer5' in ctx.tensorflownodla %}
 LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
-{%- else %}
-LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
-{%- endif %}
 {%- elif 'deepstreamdla' in ctx %}
-{%- if 'libnvinfer5' in ctx.tensorflownodla %}
 LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
-{%- else %}
-LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
-{%- endif %}
 {%- endif %}
 
 RUN apt-get update && \
@@ -73,12 +77,20 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
+{%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvparsers6 libnvparsers-dev && \
+{%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvparsers7 libnvparsers-dev && \
+{%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
+{%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvonnxparsers6 libnvonnxparsers-dev && \
+{%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvonnxparsers7 libnvonnxparsers-dev && \
+{%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

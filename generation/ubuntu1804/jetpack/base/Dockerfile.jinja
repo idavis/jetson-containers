@@ -1,4 +1,19 @@
-{%- if ctx.drivers.version == "32.3.1" %}
+{%- if ctx.drivers.version == "32.4.3" %}
+ARG IMAGE_NAME
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}
+
+LABEL com.nvidia.jetpack.version="{{ ctx.jetpackVersion }}"
+
+ENV CUDA_VERSION "{{ ctx.cuda.toolkit.version }}"
+
+LABEL com.nvidia.cuda.version="${CUDA_VERSION}"
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends --allow-downgrades cuda-cudart-10-2 cuda-nvtx-10-2 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{%- elif ctx.drivers.version == "32.3.1" %}
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}
 
@@ -12,7 +27,8 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends --allow-downgrades cuda-cudart-10-0 cuda-nvtx-10-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-{% else %}
+
+{% else -%}
 ARG DEPENDENCIES_IMAGE
 ARG IMAGE_NAME
 FROM ${DEPENDENCIES_IMAGE} as dependencies
@@ -47,8 +63,19 @@ RUN echo "{{ ctx.cuda.toolkit.checksum }} {{ ctx.cuda.toolkit.fileName }}" | md5
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
 {% endif %}
 
+{%- if ctx.drivers.version == "32.4.3" %}
+RUN ln -s /usr/local/cuda-10.2 /usr/local/cuda && \
+    ln -s /usr/local/cuda-10.2/targets/aarch64-linux/include /usr/local/cuda/include && \
+    ln -s /usr/local/cuda-10.2/targets/aarch64-linux/lib /usr/local/cuda/lib64
+
+RUN echo "/usr/lib/aarch64-linux-gnu/tegra" >> /etc/ld.so.conf.d/nvidia-tegra.conf && \
+    echo "/usr/lib/aarch64-linux-gnu/tegra-egl" >> /etc/ld.so.conf.d/nvidia-tegra.conf && \
+    echo "/usr/local/cuda-10.2/targets/aarch64-linux/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
+    ldconfig
+{%- else %}
 RUN ln -s /usr/local/cuda-10.0 /usr/local/cuda && \
     ln -s /usr/local/cuda-10.0/targets/aarch64-linux/include /usr/local/cuda/include && \
     ln -s /usr/local/cuda-10.0/targets/aarch64-linux/lib /usr/local/cuda/lib64
@@ -57,6 +84,7 @@ RUN echo "/usr/lib/aarch64-linux-gnu/tegra" >> /etc/ld.so.conf.d/nvidia-tegra.co
     echo "/usr/lib/aarch64-linux-gnu/tegra-egl" >> /etc/ld.so.conf.d/nvidia-tegra.conf && \
     echo "/usr/local/cuda-10.0/targets/aarch64-linux/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
     ldconfig
+{%- endif %}
 
 RUN export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH} && \
     export LIBRARY_PATH=/usr/local/cuda/lib64/stubs && \

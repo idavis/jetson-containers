@@ -47,6 +47,11 @@ inactive_manifests = {
 }
 
 active_manifests = {
+    "4.4": {
+        "manifest": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_44_ga.json"),
+        "additionalsdk": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_44_ga_deepstream.json")
+    },
+
     "4.3": {
         "manifest": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_43_ga.json"),
         "additionalsdk": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_43_ga_deepstream.json")
@@ -59,17 +64,17 @@ active_manifests = {
 }
 
 cuda_matcher = re.compile(
-    "cuda-repo-l4t-10-0-local-(\d+\.\d+\.\d+)_1.0-1_arm64.deb")
+    "cuda-repo-l4t-10-\d-local-(\d+\.\d+\.\d+)_1.0-1_arm64.deb")
 cudnn_name_matcher = re.compile(
-    "(libcudnn7-*[a-zA-Z]*)_(?:\d+\.\d+\.\d+\.*\d*)-1\+cuda10.0_arm64.deb")
+    "(libcudnn7-*[a-zA-Z]*)_(?:\d+\.\d+\.\d+\.*\d*)-1\+cuda10.\d_arm64.deb")
 libvisionworks_name_matcher = re.compile(
     "(libvisionworks(?:(?:[a-zA-Z-]*)))-repo_(?:\d+\.\d+\.\d+\.*\d*)(?:[a-zA-Z-]*)_arm64.deb")
 cudnn_version_matcher = re.compile(
-    "libcudnn7-*[a-zA-Z]*_(\d+\.\d+\.\d+\.*\d*)-1\+cuda10.0_arm64.deb")
+    "libcudnn7-*[a-zA-Z]*_(\d+\.\d+\.\d+\.*\d*)-1\+cuda10.\d_arm64.deb")
 libnvinfer_name_matcher = re.compile(
-    "(tensorrt|graphsurgeon-tf|uff-converter-tf|libnvinfer(?:[\d_]*|-(?:(?:[a-zA-Z-]*))))_(?:\d+\.\d+\.\d+\.*\d*)(?:[a-zA-Z-]*)-1\+cuda10.0_(?:arm64|all).deb")
+    "(tensorrt|graphsurgeon-tf|uff-converter-tf|libnvinfer(?:[\d_]*|-(?:(?:[a-zA-Z-]*))))_(?:\d+\.\d+\.\d+\.*\d*)(?:[a-zA-Z-]*)-1\+cuda10.\d_(?:arm64|all).deb")
 libnvinfer_matcher = re.compile(
-    "(?:tensorrt|graphsurgeon-tf|uff-converter-tf|libnvinfer[0-9]*)-*[a-zA-Z]*_(\d+\.\d+\.\d+\.*\d*)-1\+cuda10.0_(?:all|arm64).deb")
+    "(?:tensorrt|graphsurgeon-tf|uff-converter-tf|libnvinfer[0-9]*)-*[a-zA-Z]*_(\d+\.\d+\.\d+\.*\d*)-1\+cuda10.\d_(?:all|arm64).deb")
 libopencv_name_matcher = re.compile(
     "(libopencv(?:(?:[a-zA-Z-]*)))_(?:\d+\.\d+\.\d+\.*\d*)-(?:[a-zA-Z0-9-]+)_arm64.deb")
 
@@ -90,8 +95,10 @@ class ManifestProcessor(cli.Application):
 
             if datastore["information"]["schemaVersion"] == "1.0":
                 ManifestProcessorV1().main(datastore, jetpack_version, current_jetpack)
-            else:
+            elif datastore["information"]["schemaVersion"] == "2.0":
                 ManifestProcessorV2().main(datastore, jetpack_version, current_jetpack)
+            else:
+                ManifestProcessorV4().main(datastore, jetpack_version, current_jetpack)
 
     def open_json_file(self, filepath):
         with open(filepath, 'r') as f:
@@ -175,6 +182,9 @@ class ManifestProcessorBase():
             for version in group["versions"]:
                 components = version["components"]
                 for component in components:
+                    componentName = self.get_component_name(component["id"])
+                    if componentName is None:
+                        continue
                     yield component
 
     def build_component_definitions(self, context, datastore, selectedGroups, operatingSystem):
@@ -215,7 +225,9 @@ class ManifestProcessorBase():
                         if fileContext["version"] == "32.3":
                             if "32.3.1" in fileContext["fileName"]:
                                 fileContext["version"] = "32.3.1"
-
+                        if fileContext["version"] == "32.4":
+                            if "32.4.3" in fileContext["fileName"]:
+                                fileContext["version"] = "32.4.3"
                     componentFileName = self.get_component_file_name(
                         componentName,
                         fileContext)
@@ -261,9 +273,9 @@ class ManifestProcessorBase():
             return None
         if componentName == ("NV_L4T_VISIONWORKS_TARGET_POST_INSTALL_COMP"):
             componentName = "visionworks"
-        elif componentName.startswith("NV_MULTIMEDIA_API_TARGET_POST_INSTALL"):
+        elif componentName.startswith("NV_MULTIMEDIA_API_TARGET_POST_INSTALL") or componentName.startswith("NV_L4T_MULTIMEDIA_API_TARGET_POST_INSTALL"):
             componentName = "multimedia_api"
-        elif componentName == "NV_DOCKER_TARGET_POST_INSTALL_COMP":
+        elif componentName == "NV_DOCKER_TARGET_POST_INSTALL_COMP" or componentName == "NV_L4T_DOCKER_TARGET_POST_INSTALL_COMP":
             componentName = "nvdocker"
         elif componentName == "NV_L4T_CUDA_TARGET_POST_INSTALL_COMP":
             componentName = "cuda"
@@ -281,7 +293,7 @@ class ManifestProcessorBase():
             componentName = "deepstream"
         elif componentName == "NV_L4T_TENSORRT_DLA_TARGET_POST_INSTALL_COMP":
             componentName = "deepstreamdla"
-        elif componentName == "NV_VPI_TARGET_POST_INSTALL_COMP":
+        elif componentName == "NV_VPI_TARGET_POST_INSTALL_COMP" or componentName == "NV_L4T_VPI_TARGET_POST_INSTALL_COMP":
             componentName = "vpi"
         elif componentName.startswith("NV_TENSORFLOW_TARGET_POST_INSTALL_COMP"):
             componentName = "tensorflow"
@@ -468,6 +480,46 @@ class ManifestProcessorV2(ManifestProcessorBase):
 
         return componentFileName
 
+class ManifestProcessorV4(ManifestProcessorV2):
+    def main(self, datastore, jetpack_version, current_jetpack):
+        log.info(f"Processing JetPack {jetpack_version}")
+        self.prepare_output_path(jetpack_version)
+
+        self.prepare_output_path(jetpack_version)
+
+        self.validate_manifest_schema(datastore)
+
+        self.load_additional_sdks(datastore, current_jetpack)
+
+        self.build_l4t_context(datastore)
+
+        self.build_jetpack_context(datastore)
+    
+    def validate_manifest_schema(self, datastore):
+        if datastore["information"]["schemaVersion"] != "4.0":
+            raise Exception(
+                "Version 4.0 schema required")
+        groups = {}
+        values = datastore["groups"][1::2]
+        keys = datastore["groups"][::2]
+        for idx, val in enumerate(keys):
+            groups[val] = values[idx]
+        datastore["groups"] = groups
+        sections = datastore["sections"]
+
+        # In case Nvidia introduces something new.
+        for section in sections:
+            if(section["id"] not in ["NV_HOST_SECTION", "NV_FLASH_SECTION", "NV_POSTFLASH_SECTION", "NV_ADDTIONAL_SDKS_SECTION"]):
+                raise Exception('Unexpected section', section["id"])
+
+    def get_component_file_name(self, componentName, fileContext):
+        componentFileName = fileContext["fileName"]
+        if "packageName" in fileContext:
+            componentFileName = fileContext["packageName"]
+            if componentFileName == "cuda-toolkit-10-2":
+                componentFileName = "toolkit"
+
+        return componentFileName
 
 if __name__ == "__main__":
     ManifestProcessor.run()

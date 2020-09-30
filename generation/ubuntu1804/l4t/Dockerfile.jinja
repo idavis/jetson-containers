@@ -28,6 +28,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 {%- if ctx.drivers.version == "32.3.1" %}
     ca-certificates \
     gnupg \
+{%- elif ctx.drivers.version == "32.4.3" %}
+    ca-certificates \
+    gnupg \
 {%- endif %}
     sudo
 
@@ -56,16 +59,22 @@ RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\
 RUN sed -i '/.*rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\".*/c\#rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 {% endif %}
 
-{%- if ctx.drivers.version == "32.3.1" %}
-# In 32.3.1, this will use deb packages instead of the archive overlay
+{%- if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3" %}
+# In {{ ctx.drivers.version }}, this will use deb packages instead of the archive overlay
 {%- endif %}
 {%- if ctx.drivers.version == "32.3.1" and ctx.target_overlay == True %}
+RUN ./Linux_for_Tegra/apply_binaries.sh -r / --target-overlay
+{%- elif ctx.drivers.version == "32.4.3" and ctx.target_overlay == True %}
 RUN ./Linux_for_Tegra/apply_binaries.sh -r / --target-overlay
 {% else %}
 RUN ./Linux_for_Tegra/apply_binaries.sh -r /
 {% endif %}
 
 {%- if ctx.drivers.version == "32.3.1" and ctx.target_overlay == False %}
+# Patch OTA apt source
+RUN sed -i "s/<SOC>/t{{ ctx.SOC }}/g" "/etc/apt/sources.list.d/nvidia-l4t-apt-source.list"
+{%- endif %}
+{%- if ctx.drivers.version == "32.4.3" and ctx.target_overlay == False %}
 # Patch OTA apt source
 RUN sed -i "s/<SOC>/t{{ ctx.SOC }}/g" "/etc/apt/sources.list.d/nvidia-l4t-apt-source.list"
 {%- endif %}

@@ -9,12 +9,29 @@ from jinja2 import Template
 import logging
 log = logging.getLogger()
 
+v4deviceIdToPartNameDeviceIdLookup = {
+    "JETSON_AGX_XAVIER": "P2888", # "P2888-0001"
+    "JETSON_AGX_XAVIER_8GB": "P2888-0060",
+    "JETSON_XAVIER_NX_DEVKIT": "P3668-0000",
+    "JETSON_XAVIER_NX": "P3668-0001",
+    "JETSON_TX2": "P3310", # "P3310-1000"
+    "JETSON_TX2_4GB": "P3489-0080",
+    "JETSON_TX2I": "P3489-0000",
+    "JETSON_TX1": "P2180", # "P2180-1000"
+    "JETSON_NANO_DEVKIT": "P3448-0000",
+    "JETSON_NANO": "P3448-0020"
+}
+
 deviceIdToFriendlyNameLookup = {
     "P2888": "Jetson AGX Xavier",
     "P2888-0060": "Jetson AGX Xavier 8GB",
+    "P3668-0000": "Jetson Xavier NX (Developer Kit version)",
+    "P3668-0001": "Jetson Xavier NX",
     "P3310": "Jetson TX2",
+    "P3310-1000": "Jetson TX2",
     "P3489-0000": "Jetson TX2i",
     "P3489-0080": "Jetson TX2 4GB",
+    "P3489-0888": "Jetson TX2 4GB",
     "P2180": "Jetson TX1",
     "P3448-0000": "Jetson Nano (Developer Kit version)",
     "P3448-0020": "Jetson Nano"
@@ -23,6 +40,8 @@ deviceIdToFriendlyNameLookup = {
 deviceIdToTargetBoardLookup = {
     "P2888": "jetson-xavier",
     "P2888-0060": "jetson-xavier-8gb",
+    "P3668-0000": "jetson-xavier-nx",
+    "P3668-0001": "jetson-xavier-nx-devkit-emmc",
     "P3310": "jetson-tx2",
     "P3489-0000": "jetson-tx2i",
     "P3489-0080": "jetson-tx2-4GB",
@@ -37,6 +56,8 @@ deviceToSoCLookup = {
     "P3489-0080": "186",
     "P2888": "194",
     "P2888-0060": "194",
+    "P3668-0000": "194",
+    "P3668-0001": "194",
     "P3448-0000": "210",
     "P3448-0020": "210",
     "P2180": "210"
@@ -45,6 +66,8 @@ deviceToSoCLookup = {
 deviceIdToShortNameLookup = {
     "P2888": "jax",
     "P2888-0060": "jax-8gb",
+    "P3668-0000": "nx-dev",
+    "P3668-0001": "nx",
     "P3310": "tx2",
     "P3489-0000": "tx2i",
     "P3489-0080": "tx2-4gb",
@@ -56,6 +79,8 @@ deviceIdToShortNameLookup = {
 shortNameToDeviceIdLookup = {
     "jax": "P2888",
     "jax-8gb": "P2888-0060",
+    "nx-dev": "P3668-0000",
+    "nx": "P3668-0001",
     "tx2": "P3310",
     "tx2i": "P3489-0000",
     "tx2-4gb": "P3489-0080",
@@ -65,6 +90,8 @@ shortNameToDeviceIdLookup = {
 }
 
 active_versions = [
+    "4.4",
+
     "4.3",
 
     "4.2.3",
@@ -75,6 +102,8 @@ active_versions = [
 ]
 
 activeVersionsToSdkManagerVersionsLookup = {
+    "4.4": "4.4",
+
     "4.3": "4.3",
 
     "4.2.3": "GA_4.2.3",
@@ -169,7 +198,7 @@ class DockerGenerator(cli.Application):
         output_path = pathlib.Path(f"docker/cti")
         self.write_template(
             cti_bsp_table, cti_makefile_template_filepath, output_path)
-        log.info("Done")
+        print("Done")
 
     def generate_main_makefile(self, context, template_filepath):
         # TODO, handle cases where context/template don't suport the device
@@ -185,7 +214,7 @@ class DockerGenerator(cli.Application):
         # TODO, handle cases where context/template don't suport the device
         context = self.read_yml_dictionary(context_file)
         if device not in context:
-            log.info(
+            print(
                 f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
             return
         print(f'l4t-{device}-jetpack-{jetpack_version}')
@@ -202,7 +231,7 @@ class DockerGenerator(cli.Application):
     def generate_jetpack_dockerfiles(self, jetpack_context_file, l4t_context_file, jetpack_version, device):
         context = self.read_yml_dictionary(jetpack_context_file)
         if device not in context:
-            log.info(
+            print(
                 f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
             return
 
@@ -240,6 +269,9 @@ class DockerGenerator(cli.Application):
             context = self.read_yml_dictionary(context_file)
 
             for device, deviceData in context.items():
+                if device in v4deviceIdToPartNameDeviceIdLookup:
+                    device = v4deviceIdToPartNameDeviceIdLookup[device]
+                
                 driver_version = deviceData["drivers"]["version"]
                 if driver_version not in make_context:
                     make_context[driver_version] = {}
@@ -253,7 +285,7 @@ class DockerGenerator(cli.Application):
         # TODO, handle cases where context/template don't suport the device
         context = self.read_yml_dictionary(context_file)
         if device not in context:
-            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
             return
         print(f'l4t-flash-{device}')
         deviceData = context[device]
@@ -305,14 +337,14 @@ class DockerGenerator(cli.Application):
         # TODO, handle cases where context/template don't suport the device
         l4t_context = self.read_yml_dictionary(context_file)
         if device not in l4t_context:
-            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
             return
         cti_bsp_table = self.read_yml_dictionary("generation/cti-bsp.yml")
         if deviceIdToShortNameLookup[device] not in cti_bsp_table:
-            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
             return
         if jetpack_version not in cti_bsp_table[deviceIdToShortNameLookup[device]]:
-            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
             return
         targetBsp = cti_bsp_table[deviceIdToShortNameLookup[device]
                                   ][jetpack_version]
@@ -379,7 +411,7 @@ class DockerGenerator(cli.Application):
             if not new_output_path.exists():
                 log.debug(f"Creating {new_output_path}")
                 new_output_path.mkdir(parents=True)
-            log.info(f"Writing {new_output_path}/{new_filename}")
+            print(f"Writing {new_output_path}/{new_filename}")
             with open(f"{new_output_path}/{new_filename}", "w") as f2:
                 f2.write(template.render(ctx=deviceData))
 
@@ -393,13 +425,20 @@ class DockerGenerator(cli.Application):
             if not new_output_path.exists():
                 log.debug(f"Creating {new_output_path}")
                 new_output_path.mkdir(parents=True)
-            log.info(f"Writing {new_output_path}/{new_filename}")
+            print(f"Writing {new_output_path}/{new_filename}")
             with open(f"{new_output_path}/{new_filename}", "w") as f2:
                 f2.write(template.render(ctx=context))
 
     def read_yml_dictionary(self, filepath):
         with open(filepath) as f:
-            return yaml.load(f)
+            file_context = yaml.load(f)
+            context = {}
+            for key, val in file_context.items():
+                if key in v4deviceIdToPartNameDeviceIdLookup:
+                    context[v4deviceIdToPartNameDeviceIdLookup[key]] = val
+                else:
+                    context[key] = val
+            return context
 
 
 if __name__ == "__main__":
