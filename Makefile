@@ -95,13 +95,6 @@ from-deps-folder-%:
 
 # Samples
 
-build-%-samples:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg TAG=$* \
-					-t $(REPO):$*-samples \
-					- < $(CURDIR)/docker/examples/samples/Dockerfile
-
 run-%-samples:
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \
 				--rm \
