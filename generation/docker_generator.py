@@ -9,22 +9,66 @@ from jinja2 import Template
 import logging
 log = logging.getLogger()
 
+# Current IDs
+# Jetson Xavier NX            P3668-0000    Supplied with developer kit
+#                             P3668-0001    Production
+# Jetson Nano                 P3448-0000    Supplied with developer kit
+#                             P3448-0002    Production
+# Jetson AGX Xavier series    P2888-0001    16 GB memory
+#                             P2888-0004    32 GB memory
+#                             P2888-0006    8 GB memory
+# Jetson TX2 series           P3310-1000    Jetson TX2
+#                             P3489-0000    Jetson TX2i
+#                             P3489-0888    Jetson TX2 4GB
+# Jetson TX1                  P2180-1000  
+
 v4deviceIdToPartNameDeviceIdLookup = {
-    "JETSON_AGX_XAVIER": "P2888", # "P2888-0001"
-    "JETSON_AGX_XAVIER_8GB": "P2888-0060",
+    "JETSON_AGX_XAVIER": "P2888-0001",
+    "JETSON_AGX_XAVIER_32GB": "P2888-0004",
+    "JETSON_AGX_XAVIER_8GB": "P2888-0006",
     "JETSON_XAVIER_NX_DEVKIT": "P3668-0000",
     "JETSON_XAVIER_NX": "P3668-0001",
-    "JETSON_TX2": "P3310", # "P3310-1000"
-    "JETSON_TX2_4GB": "P3489-0080",
+    "JETSON_TX2": "P3310-1000",
+    "JETSON_TX2_4GB": "P3489-0888",
     "JETSON_TX2I": "P3489-0000",
-    "JETSON_TX1": "P2180", # "P2180-1000"
+    "JETSON_TX1": "P2180-1000",
     "JETSON_NANO_DEVKIT": "P3448-0000",
-    "JETSON_NANO": "P3448-0020"
+    "JETSON_NANO": "P3448-0002"
 }
+
+deviceIdToCurrentIdLookup = {
+    "P2888": "P2888-0001",
+    "P2888-0001": "P2888-0001",
+    "P2888-0004": "P2888-0004",
+    "P2888-0060": "P2888-0006",
+    "P2888-0006": "P2888-0006",
+    "P3668-0000": "P3668-0000",
+    "P3668-0001": "P3668-0001",
+    "P3310": "P3310-1000",
+    "P3310-1000": "P3310-1000",
+    "P3489-0000": "P3489-0000",
+    "P3489-0080": "P3489-0888",
+    "P3489-0888": "P3489-0888",
+    "P2180": "P2180-1000",
+    "P2180-1000": "P2180-1000",
+    "P3448-0000": "P3448-0000",
+    "P3448-0002": "P3448-0002",
+    "P3448-0020": "P3448-0002"
+}
+
+def get_current_device_id(device):
+    if device in v4deviceIdToPartNameDeviceIdLookup:
+        return v4deviceIdToPartNameDeviceIdLookup[device]
+    if device in deviceIdToCurrentIdLookup:
+        return deviceIdToCurrentIdLookup[device]
+    raise Exception('Unexpected device', device)
 
 deviceIdToFriendlyNameLookup = {
     "P2888": "Jetson AGX Xavier",
-    "P2888-0060": "Jetson AGX Xavier 8GB",
+    "P2888-0001": "Jetson AGX Xavier",
+    "P2888-0004": "Jetson AGX Xavier [32GB]",
+    "P2888-0060": "Jetson AGX Xavier [8GB]",
+    "P2888-0006": "Jetson AGX Xavier [8GB]",
     "P3668-0000": "Jetson Xavier NX (Developer Kit version)",
     "P3668-0001": "Jetson Xavier NX",
     "P3310": "Jetson TX2",
@@ -33,60 +77,73 @@ deviceIdToFriendlyNameLookup = {
     "P3489-0080": "Jetson TX2 4GB",
     "P3489-0888": "Jetson TX2 4GB",
     "P2180": "Jetson TX1",
+    "P2180-1000": "Jetson TX1",
     "P3448-0000": "Jetson Nano (Developer Kit version)",
+    "P3448-0002": "Jetson Nano",
     "P3448-0020": "Jetson Nano"
 }
 
 deviceIdToTargetBoardLookup = {
-    "P2888": "jetson-xavier",
-    "P2888-0060": "jetson-xavier-8gb",
-    "P3668-0000": "jetson-xavier-nx",
+    "P2888-0001": "jetson-agx-xavier-devkit",
+    "P2888-0004": "jetson-agx-xavier-devkit",
+    "P2888-0006": "jetson-agx-xavier-devkit-8gb",
+    "P3668-0000": "jetson-xavier-nx-devkit",
     "P3668-0001": "jetson-xavier-nx-devkit-emmc",
-    "P3310": "jetson-tx2",
-    "P3489-0000": "jetson-tx2i",
-    "P3489-0080": "jetson-tx2-4GB",
-    "P2180": "jetson-tx1",
-    "P3448-0000": "jetson-nano-qspi-sd",
-    "P3448-0020": "jetson-nano-emmc"
+    "P3310-1000": "jetson-tx2-devkit",
+    "P3489-0000": "jetson-tx2-devkit-tx2i",
+    "P3489-0888": "jetson-tx2-devkit-4GB",
+    "P2180-1000": "jetson-tx1-devkit",
+    "P3448-0000": "jetson-nano-devkit",
+    "P3448-0002": "jetson-nano-emmc"
 }
 
 deviceToSoCLookup = {
-    "P3310": "186",
-    "P3489-0000": "186",
-    "P3489-0080": "186",
-    "P2888": "194",
-    "P2888-0060": "194",
+    "P2888-0001": "194",
+    "P2888-0004": "194",
+    "P2888-0006": "194",
     "P3668-0000": "194",
     "P3668-0001": "194",
+    "P3310-1000": "186",
+    "P3489-0000": "186",
+    "P3489-0888": "186",
+    "P2180-1000": "210",
     "P3448-0000": "210",
-    "P3448-0020": "210",
-    "P2180": "210"
+    "P3448-0002": "210"
 }
 
 deviceIdToShortNameLookup = {
     "P2888": "jax",
+    "P2888-0000": "jax",
+    "P2888-0001": "jax",
+    "P2888-0004": "jax-32gb",
+    "P2888-0006": "jax-8gb",
     "P2888-0060": "jax-8gb",
     "P3668-0000": "nx-dev",
     "P3668-0001": "nx",
     "P3310": "tx2",
+    "P3310-1000": "tx2",
     "P3489-0000": "tx2i",
+    "P3489-0888": "tx2-4gb",
     "P3489-0080": "tx2-4gb",
     "P2180": "tx1",
+    "P2180-1000": "tx1",
     "P3448-0000": "nano-dev",
-    "P3448-0020": "nano"
+    "P3448-0020": "nano",
+    "P3448-0002": "nano"
 }
 
 shortNameToDeviceIdLookup = {
-    "jax": "P2888",
-    "jax-8gb": "P2888-0060",
+    "jax": "P2888-0001",
+    "jax-32gb": "P2888-0004",
+    "jax-8gb": "P2888-0006",
     "nx-dev": "P3668-0000",
     "nx": "P3668-0001",
-    "tx2": "P3310",
+    "tx2": "P3310-1000",
     "tx2i": "P3489-0000",
-    "tx2-4gb": "P3489-0080",
-    "tx1": "P2180",
+    "tx2-4gb": "P3489-0888",
+    "tx1": "P2180-1000",
     "nano-dev": "P3448-0000",
-    "nano": "P3448-0020"
+    "nano": "P3448-0002"
 }
 
 active_versions = [
@@ -269,8 +326,7 @@ class DockerGenerator(cli.Application):
             context = self.read_yml_dictionary(context_file)
 
             for device, deviceData in context.items():
-                if device in v4deviceIdToPartNameDeviceIdLookup:
-                    device = v4deviceIdToPartNameDeviceIdLookup[device]
+                device = get_current_device_id(device)
                 
                 driver_version = deviceData["drivers"]["version"]
                 if driver_version not in make_context:

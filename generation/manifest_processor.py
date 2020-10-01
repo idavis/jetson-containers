@@ -10,16 +10,66 @@ import yaml
 import logging
 log = logging.getLogger()
 
+v4deviceIdToPartNameDeviceIdLookup = {
+    "JETSON_AGX_XAVIER": "P2888-0001",
+    "JETSON_AGX_XAVIER_32GB": "P2888-0004",
+    "JETSON_AGX_XAVIER_8GB": "P2888-0006",
+    "JETSON_XAVIER_NX_DEVKIT": "P3668-0000",
+    "JETSON_XAVIER_NX": "P3668-0001",
+    "JETSON_TX2": "P3310-1000",
+    "JETSON_TX2_4GB": "P3489-0888",
+    "JETSON_TX2I": "P3489-0000",
+    "JETSON_TX1": "P2180-1000",
+    "JETSON_NANO_DEVKIT": "P3448-0000",
+    "JETSON_NANO": "P3448-0002"
+}
+
+deviceIdToCurrentIdLookup = {
+    "P2888": "P2888-0001",
+    "P2888-0001": "P2888-0001",
+    "P2888-0004": "P2888-0004",
+    "P2888-0060": "P2888-0006",
+    "P2888-0006": "P2888-0006",
+    "P3668-0000": "P3668-0000",
+    "P3668-0001": "P3668-0001",
+    "P3310": "P3310-1000",
+    "P3310-1000": "P3310-1000",
+    "P3489-0000": "P3489-0000",
+    "P3489-0080": "P3489-0888",
+    "P3489-0888": "P3489-0888",
+    "P2180": "P2180-1000",
+    "P2180-1000": "P2180-1000",
+    "P3448-0000": "P3448-0000",
+    "P3448-0002": "P3448-0002",
+    "P3448-0020": "P3448-0002"
+}
+
 deviceIds = [
     "P2888",
+    "P2888-0001",
+    "P2888-0004",
     "P2888-0060",
+    "P2888-0006",
+    "P3668-0000",
+    "P3668-0001",
     "P3310",
+    "P3310-1000",
     "P3489-0000",
     "P3489-0080",
+    "P3489-0888",
     "P2180",
+    "P2180-1000",
     "P3448-0000",
-    "P3448-0020"
+    "P3448-0002",
+    "P3448-0020",
 ]
+
+def get_current_device_id(device):
+    if device in v4deviceIdToPartNameDeviceIdLookup:
+        return v4deviceIdToPartNameDeviceIdLookup[device]
+    if device in deviceIdToCurrentIdLookup:
+        return deviceIdToCurrentIdLookup[device]
+    raise Exception('Unexpected device', device)
 
 ignoredSections = [
     "NV_L4T_DATETIME_TARGET_SETUP_COMP",
@@ -123,8 +173,12 @@ class ManifestProcessorBase():
 
     def write_yml_dictionary(self, filename, context):
         filepath = os.path.join(self.output_path, filename)
+        adjusted = {}
+        for key, val in context.items():
+            key = get_current_device_id(key)
+            adjusted[key] = val
         with open(filepath, 'w') as outfile:
-            yaml.dump(context, outfile, default_flow_style=False)
+            yaml.dump(adjusted, outfile, default_flow_style=False)
 
     def get_components_for_device(self, datastore, selectedGroups, targetDevice, operatingSystem):
         component_versions = self.get_components_to_use(
