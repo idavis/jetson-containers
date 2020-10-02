@@ -84,6 +84,21 @@ deviceIdToFriendlyNameLookup = {
 }
 
 deviceIdToTargetBoardLookup = {
+    "P2888-0001": "jetson-xavier",
+    "P2888-0004": "jetson-xavier",
+    "P2888-0006": "jetson-xavier-8gb",
+    "P3668-0000": "jetson-xavier-nx-devkit",
+    "P3668-0001": "jetson-xavier-nx-devkit-emmc",
+    "P3310-1000": "jetson-tx2",
+    "P3489-0000": "jetson-tx2i",
+    "P3489-0888": "jetson-tx2-4GB",
+    "P2180-1000": "jetson-tx1",
+    "P3448-0000": "jetson-nano-qspi-sd",
+    "P3448-0002": "jetson-nano-emmc"
+}
+
+# Unused, just noting it is different than the SDK Manager
+deviceIdToTargetBoardLookupDoc = {
     "P2888-0001": "jetson-agx-xavier-devkit",
     "P2888-0004": "jetson-agx-xavier-devkit",
     "P2888-0006": "jetson-agx-xavier-devkit-8gb",
