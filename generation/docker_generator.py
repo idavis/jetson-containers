@@ -408,14 +408,14 @@ class DockerGenerator(cli.Application):
         # TODO, handle cases where context/template don't suport the device
         l4t_context = self.read_yml_dictionary(context_file)
         if device not in l4t_context:
-            print(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping CTI for {device} - {deviceIdToFriendlyNameLookup[device]} as no context found.")
             return
         cti_bsp_table = self.read_yml_dictionary("generation/cti-bsp.yml")
         if deviceIdToShortNameLookup[device] not in cti_bsp_table:
-            print(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping CTI for {device} - {deviceIdToFriendlyNameLookup[device]} as no BSP found.")
             return
         if jetpack_version not in cti_bsp_table[deviceIdToShortNameLookup[device]]:
-            print(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping CTI for {device} - {deviceIdToFriendlyNameLookup[device]} as BSP didn't suport JP {jetpack_version}.")
             return
         targetBsp = cti_bsp_table[deviceIdToShortNameLookup[device]
                                   ][jetpack_version]
