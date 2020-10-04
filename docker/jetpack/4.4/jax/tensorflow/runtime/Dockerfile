@@ -10,53 +10,39 @@ ARG TF_VERSION
 ARG NV_VERSION
 # CUDA Toolkit for L4T
 
-# TensorFlow: cuda-cublas-10-2 cuda-cudart-10-2 cuda-cufft-10-2
+# TensorFlow: cuda-cublas-10-2 (libcublas10) cuda-cudart-10-2 cuda-cufft-10-2
 #             cuda-curand-10-2 cuda-cusolver-10-2 cuda-cusparse-10-2
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends --allow-downgrades \
-    cuda-cublas-10-2 \
+    libcublas10 \
     cuda-cudart-10-2 \
     cuda-cufft-10-2 \
     cuda-curand-10-2 \
     cuda-cusolver-10-2 \
     cuda-cusparse-10-2 \
+    && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install dependencies for OpenCV
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libavcodec-extra57 \
-    libavformat57 \
-    libavutil55 \
-    libcairo2 \
-    libgtk2.0-0 \
-    libswscale4 \
-    libtbb2 \
-    libtbb-dev \
+    python3-pip \
+    python3-setuptools \
+    && \
+    python3 -m pip install --no-cache-dir --upgrade pip && \
+    python3 -m pip install --no-cache-dir --upgrade setuptools && \
+    python3 -m pip install --no-cache-dir --upgrade wheel && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libhdf5-dev \
+    libhdf5-serial-dev \
+    python3-h5py \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-## Additional OpenCV dependencies usually installed by the CUDA Toolkit
-
-RUN apt-get update && \
-    apt-get install -y \
-    libgstreamer1.0-0 \
-    libgstreamer-plugins-base1.0-0 \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# Open CV 4.1.1
-
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends libopencv libopencv-python opencv-licenses && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-
 
 FROM tensorflow-base as wheelhouse
 
@@ -65,20 +51,16 @@ ARG TF_PACKGAGE
 ARG TF_VERSION
 ARG NV_VERSION
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     python3-dev \
-    python3-pip \
-    python3-setuptools \
     && \
-    python3 -m pip install --no-cache-dir --upgrade pip && \
-    python3 -m pip install --no-cache-dir --upgrade setuptools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Pillow requirements
 # requires setuptools but handled above
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg-dev \
     libopenjp2-7-dev \
     libtiff5-dev \
@@ -87,16 +69,13 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# are these needed?
-RUN apt-get update && apt-get install -y \
-    libhdf5-dev \
-    libhdf5-serial-dev \
-    python3-h5py \
+# TODO: are these needed?
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    hdf5-tools \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN python3 -m pip install wheel  
 RUN mkdir /wheelhouse
 ENV PIP_WHEEL_DIR=/wheelhouse
 ENV WHEELHOUSE=/wheelhouse
@@ -120,11 +99,9 @@ RUN python3 -m pip wheel astor
 RUN python3 -m pip wheel term
 
 FROM tensorflow-base as app
-COPY --from=base /wheelhouse /wheelhouse/
+COPY --from=wheelhouse /wheelhouse /wheelhouse/
 RUN ls -1 -d /wheelhouse/*.whl | xargs python3 -m pip install --no-cache-dir && \
     rm -rf /wheelhouse
-
-# TODO Add TF VERSION argument and generate make targets for each.
 
 ARG INDEX_URL
 ARG TF_PACKGAGE

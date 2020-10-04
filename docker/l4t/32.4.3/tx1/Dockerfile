@@ -35,9 +35,11 @@ COPY --from=dependencies /data/Jetson-210_Linux_R32.4.3_aarch64.tbz2 Jetson-210_
 RUN echo "048ed5e9f225896b86ed2d5b0ca803fa *./Jetson-210_Linux_R32.4.3_aarch64.tbz2" | md5sum -c -
 RUN tar -xpj --overwrite -f ./Jetson-210_Linux_R32.4.3_aarch64.tbz2
 RUN sed -i '/.*tar -I lbzip2 -xpmf \"${LDK_NV_TEGRA_DIR}\/config\.tbz2\".*/c\tar -I lbzip2 -xpm --overwrite -f \"${LDK_NV_TEGRA_DIR}\/config.tbz2\"' ./Linux_for_Tegra/apply_binaries.sh
-# pre-req for Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
-# in 4.3 it tried to chroot, but for 4.4 it still requires this file copied.
+# pre-req for Linux_for_Tegra/nv_tegra/nv-apply-debs.sh as it tries to chroot
 COPY --from=qemu /usr/bin/qemu-aarch64-static /Linux_for_Tegra/nv_tegra/qemu-aarch64-static
+RUN sed -i '/.*	LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${pre_deb_list\[\@\]}\".*/c\	apt install -y --no-install-recommends \"${pre_deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${deb_list\[\@\]}\".*/c\apt install -y --no-install-recommends \"${deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\".*/c\#rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 
 # In 32.4.3, this will use deb packages instead of the archive overlay
 RUN ./Linux_for_Tegra/apply_binaries.sh -r /
