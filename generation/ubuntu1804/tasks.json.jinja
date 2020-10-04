@@ -179,6 +179,26 @@
                 }
             }
         },
+{%- for driver_version, value in ctx.l4t.items() %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
+        {
+            "label": "make tensorflow images for {{ device_name }}-{{ driver_version }}",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTF{{ device_name }}-{{ driver_version }}}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+{%- endfor %}
+{% endfor %}
         {
             "label": "make <rootfs from file>",
             "type": "shell",
@@ -324,6 +344,24 @@
                 "cti-{{ driver_details.drivers.version }}-{{ device_name }}-bsp-{{ driver_details.bsp.version.lower() }}-deps"{{ "," if not (outer_loop.last and loop.last) }}{% endfor %}
 {% endfor %}            ]
         },
+{%- for driver_version, value in ctx.l4t.items() %}
+{%- for device_name, driver_details in ctx.l4t[driver_version].items() %}
+        {
+            "id": "pickTF{{device_name}}-{{ driver_version }}",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+
+{%- for item in ctx.tf[driver_details.jetpackVersion] %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime",
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime-tensorrt",
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-devel",
+{%- endfor %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf"
+            ]
+        },
+{%- endfor %}
+{% endfor %}
         {
             "id": "pickCtiImagingBuilds",
             "type": "pickString",
