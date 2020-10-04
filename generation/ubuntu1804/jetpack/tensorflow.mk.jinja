@@ -1,0 +1,87 @@
+#!make
+
+{% for driver_version, value in ctx.ctx.items() %}
+{%- for device_name, driver_details in ctx.ctx[driver_version].items() %}
+{%- for item in ctx.tf[driver_details.jetpackVersion] %}
+{%- if loop.first %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf: {% endif %}{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }} {% endfor %}
+{% endfor %}
+{%- endfor %}
+
+{% for driver_version, value in ctx.ctx.items() %}
+{% for device_name, driver_details in ctx.ctx[driver_version].items() %}
+{%- for item in ctx.tf[driver_details.jetpackVersion] %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}: {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime-tensorrt {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-devel {% endfor %}
+{% endfor %}
+{%- endfor %}
+
+{% for driver_version, value in ctx.ctx.items() %}
+{% for device_name, driver_details in ctx.ctx[driver_version].items() %}
+{%- for item in ctx.tf[driver_details.jetpackVersion] %}
+{% if driver_version == "32.3.1" or driver_version == "32.4.3"%}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/{{ item.url_suffix }}" \
+					--build-arg TF_PACKGAGE="{{ item.package }}" \
+					--build-arg TF_VERSION="{{ item.version }}" \
+					--build-arg NV_VERSION="{{ item.nv_version }}" \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/tf/runtime/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/{{ item.url_suffix }}" \
+					--build-arg TF_PACKGAGE="{{ item.package }}" \
+					--build-arg TF_VERSION="{{ item.version }}" \
+					--build-arg NV_VERSION="{{ item.nv_version }}" \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/tf/runtime/tensorrt/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/{{ item.url_suffix }}" \
+					--build-arg TF_PACKGAGE="{{ item.package }}" \
+					--build-arg TF_VERSION="{{ item.version }}" \
+					--build-arg NV_VERSION="{{ item.nv_version }}" \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/tf/devel/Dockerfile
+
+{% else %}
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/{{ item.url_suffix }}" \
+					--build-arg TF_PACKGAGE="{{ item.package }}" \
+					--build-arg TF_VERSION="{{ item.version }}" \
+					--build-arg NV_VERSION="{{ item.nv_version }}" \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/tf/runtime/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/{{ item.url_suffix }}" \
+					--build-arg TF_PACKGAGE="{{ item.package }}" \
+					--build-arg TF_VERSION="{{ item.version }}" \
+					--build-arg NV_VERSION="{{ item.nv_version }}" \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/tf/runtime/tensorrt/Dockerfile
+
+{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg DEPENDENCIES_IMAGE=$(REPO):{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-deps \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/{{ item.url_suffix }}" \
+					--build-arg TF_PACKGAGE="{{ item.package }}" \
+					--build-arg TF_VERSION="{{ item.version }}" \
+					--build-arg NV_VERSION="{{ item.nv_version }}" \
+					-t $(REPO):$@ \
+					- < {{ driver_details.jetpackVersion }}/{{ device_name }}/tf/devel/Dockerfile
+{% endif %}
+{% endfor %}
+{% endfor %}
+{%- endfor %}

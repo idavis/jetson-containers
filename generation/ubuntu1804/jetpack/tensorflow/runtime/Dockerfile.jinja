@@ -1,0 +1,198 @@
+ARG IMAGE_NAME
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
+{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" %}
+ARG DEPENDENCIES_IMAGE
+FROM ${DEPENDENCIES_IMAGE} as dependencies
+ARG IMAGE_NAME
+{%- endif %}
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-base as tensorflow-base
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
+# CUDA Toolkit for L4T
+
+{%- if ctx.drivers.version == "32.4.3" %}
+
+# TensorFlow: cuda-cublas-10-2 cuda-cudart-10-2 cuda-cufft-10-2
+#             cuda-curand-10-2 cuda-cusolver-10-2 cuda-cusparse-10-2
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends --allow-downgrades \
+    cuda-cublas-10-2 \
+    cuda-cudart-10-2 \
+    cuda-cufft-10-2 \
+    cuda-curand-10-2 \
+    cuda-cusolver-10-2 \
+    cuda-cusparse-10-2 \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{%- elif ctx.drivers.version == "32.3.1" %}
+
+# TensorFlow: cuda-cublas-10-0 cuda-cudart-10-0 cuda-cufft-10-0
+#             cuda-curand-10-0 cuda-cusolver-10-0 cuda-cusparse-10-0
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends --allow-downgrades \
+    cuda-cublas-10-0 \
+    cuda-cudart-10-0 \
+    cuda-cufft-10-0 \
+    cuda-curand-10-0 \
+    cuda-cusolver-10-0 \
+    cuda-cusparse-10-0 \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{% else -%}
+
+# TensorFlow: cuda-cublas-10-0 cuda-cudart-10-0 cuda-cufft-10-0
+#             cuda-curand-10-0 cuda-cusolver-10-0 cuda-cusparse-10-0
+
+COPY --from=dependencies /data/{{ ctx.cuda.toolkit.fileName }} {{ ctx.cuda.toolkit.fileName }}
+RUN echo "{{ ctx.cuda.toolkit.checksum }} {{ ctx.cuda.toolkit.fileName }}" | md5sum -c - && \
+    dpkg --force-all -i {{ ctx.cuda.toolkit.fileName }} && \
+    rm {{ ctx.cuda.toolkit.fileName }} && \
+    apt-key add /var/cuda-repo-*-local*/*.pub && \
+    apt-get update && \
+    apt-get install -y --allow-downgrades \
+    cuda-cublas-10-0 \
+    cuda-cudart-10-0 \
+    cuda-cufft-10-0 \
+    cuda-curand-10-0 \
+    cuda-cusolver-10-0 \
+    cuda-cusparse-10-0 \
+    dpkg --purge cuda-repo-l4t-10-0-local-{{ ctx.cuda.toolkit.version }} \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{% endif %}
+
+# Install dependencies for OpenCV
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libavcodec-extra57 \
+    libavformat57 \
+    libavutil55 \
+    libcairo2 \
+    libgtk2.0-0 \
+    libswscale4 \
+    libtbb2 \
+    libtbb-dev \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+## Additional OpenCV dependencies usually installed by the CUDA Toolkit
+
+RUN apt-get update && \
+    apt-get install -y \
+    libgstreamer1.0-0 \
+    libgstreamer-plugins-base1.0-0 \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Open CV {{ ctx.opencv.libopencv.version }}
+
+{% if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3"-%}
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libopencv libopencv-python opencv-licenses && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{% else %}
+
+COPY --from=dependencies /data/{{ ctx.opencv.libopencv.fileName }} {{ ctx.opencv.libopencv.fileName }}
+RUN echo "{{ ctx.opencv.libopencv.checksum }} {{ ctx.opencv.libopencv.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv.libopencv.fileName }} && \
+    rm {{ ctx.opencv.libopencv.fileName }}
+
+COPY --from=dependencies /data/{{ ctx.opencv['libopencv-python'].fileName }} {{ ctx.opencv['libopencv-python'].fileName }}
+RUN echo "{{ ctx.opencv['libopencv-python'].checksum }} {{ ctx.opencv['libopencv-python'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.opencv['libopencv-python'].fileName }} && \
+    rm {{ ctx.opencv['libopencv-python'].fileName }}
+
+{%- endif %}
+
+FROM tensorflow-base as wheelhouse
+
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3-dev \
+    python3-pip \
+    python3-setuptools \
+    && \
+    python3 -m pip install --no-cache-dir --upgrade pip && \
+    python3 -m pip install --no-cache-dir --upgrade setuptools && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Pillow requirements
+# requires setuptools but handled above
+RUN apt-get update && apt-get install -y \
+    libjpeg-dev \
+    libopenjp2-7-dev \
+    libtiff5-dev \
+    zlib1g-dev \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# are these needed?
+RUN apt-get update && apt-get install -y \
+    libhdf5-dev \
+    libhdf5-serial-dev \
+    python3-h5py \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m pip install wheel  
+RUN mkdir /wheelhouse
+ENV PIP_WHEEL_DIR=/wheelhouse
+ENV WHEELHOUSE=/wheelhouse
+ENV PIP_FIND_LINKS=/wheelhouse
+
+RUN python3 -m pip wheel Cython
+RUN python3 -m pip wheel contextlib2
+RUN python3 -m pip wheel numpy
+RUN python3 -m pip wheel matplotlib
+RUN python3 -m pip wheel Pillow
+RUN python3 -m pip wheel grpcio
+RUN python3 -m pip wheel absl-py
+RUN python3 -m pip wheel py-cpuinfo
+RUN python3 -m pip wheel psutil
+RUN python3 -m pip wheel portpicker
+RUN python3 -m pip wheel six
+RUN python3 -m pip wheel mock
+RUN python3 -m pip wheel requests
+RUN python3 -m pip wheel gast
+RUN python3 -m pip wheel astor
+RUN python3 -m pip wheel term
+
+FROM tensorflow-base as app
+COPY --from=base /wheelhouse /wheelhouse/
+RUN ls -1 -d /wheelhouse/*.whl | xargs python3 -m pip install --no-cache-dir && \
+    rm -rf /wheelhouse
+
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
+
+# Install TensorFlow
+
+# can browse from https://developer.download.nvidia.com/compute/redist/jp/
+RUN python3 -m pip install --extra-index-url ${INDEX_URL} ${TF_PACKGAGE}==${TF_VERSION}+nv${NV_VERSION}
+
