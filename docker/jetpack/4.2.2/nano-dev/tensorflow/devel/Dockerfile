@@ -1,6 +1,16 @@
 ARG IMAGE_NAME
-ARG TAG
-FROM ${IMAGE_NAME}:${TAG}-devel as tensorflow-base
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
+ARG DEPENDENCIES_IMAGE
+FROM ${DEPENDENCIES_IMAGE} as dependencies
+ARG IMAGE_NAME
+FROM ${IMAGE_NAME}:32.2.1-nano-dev-jetpack-4.2.2-devel as tensorflow-base
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
