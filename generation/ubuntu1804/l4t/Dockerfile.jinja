@@ -63,9 +63,11 @@ RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\
 RUN sed -i '/.*rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\".*/c\#rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 {% endif %}
 {%- if ctx.drivers.version == "32.4.3" and ctx.target_overlay == False %}
-# pre-req for Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
-# in 4.3 it tried to chroot, but for 4.4 it still requires this file copied.
+# pre-req for Linux_for_Tegra/nv_tegra/nv-apply-debs.sh as it tries to chroot
 COPY --from=qemu /usr/bin/qemu-aarch64-static /Linux_for_Tegra/nv_tegra/qemu-aarch64-static
+RUN sed -i '/.*	LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${pre_deb_list\[\@\]}\".*/c\	apt install -y --no-install-recommends \"${pre_deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${deb_list\[\@\]}\".*/c\apt install -y --no-install-recommends \"${deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\".*/c\#rm -f "${L4T_ROOTFS_DIR}\/usr\/bin\/qemu-aarch64-static\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 {% endif %}
 
 {%- if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3" %}
