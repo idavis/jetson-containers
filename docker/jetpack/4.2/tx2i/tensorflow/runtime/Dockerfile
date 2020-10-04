@@ -6,34 +6,11 @@ ARG NV_VERSION
 ARG DEPENDENCIES_IMAGE
 FROM ${DEPENDENCIES_IMAGE} as dependencies
 ARG IMAGE_NAME
-FROM ${IMAGE_NAME}:32.1-tx2i-jetpack-4.2-base as tensorflow-base
+FROM ${IMAGE_NAME}:32.1-tx2i-jetpack-4.2-runtime as tensorflow-base
 ARG INDEX_URL
 ARG TF_PACKGAGE
 ARG TF_VERSION
 ARG NV_VERSION
-# CUDA Toolkit for L4T# TensorFlow: cuda-cublas-10-0 cuda-cudart-10-0 cuda-cufft-10-0
-#             cuda-curand-10-0 cuda-cusolver-10-0 cuda-cusparse-10-0
-
-COPY --from=dependencies /data/cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb
-RUN echo "5e3eedc3707305f9022d41754d6becde cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb" | md5sum -c - && \
-    dpkg --force-all -i cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb && \
-    rm cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb && \
-    apt-key add /var/cuda-repo-*-local*/*.pub && \
-    apt-get update && \
-    apt-get install -y --allow-downgrades \
-    cuda-cublas-10-0 \
-    cuda-cudart-10-0 \
-    cuda-cufft-10-0 \
-    cuda-curand-10-0 \
-    cuda-cusolver-10-0 \
-    cuda-cusparse-10-0 \
-    dpkg --purge cuda-repo-l4t-10-0-local-10.0.166 \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-
-
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \

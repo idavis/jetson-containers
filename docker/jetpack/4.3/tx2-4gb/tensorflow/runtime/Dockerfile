@@ -3,30 +3,11 @@ ARG INDEX_URL
 ARG TF_PACKGAGE
 ARG TF_VERSION
 ARG NV_VERSION
-FROM ${IMAGE_NAME}:32.3.1-tx2-4gb-jetpack-4.3-base as tensorflow-base
+FROM ${IMAGE_NAME}:32.3.1-tx2-4gb-jetpack-4.3-runtime as tensorflow-base
 ARG INDEX_URL
 ARG TF_PACKGAGE
 ARG TF_VERSION
 ARG NV_VERSION
-# CUDA Toolkit for L4T
-
-# TensorFlow: cuda-cublas-10-0 cuda-cudart-10-0 cuda-cufft-10-0
-#             cuda-curand-10-0 cuda-cusolver-10-0 cuda-cusparse-10-0
-
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends --allow-downgrades \
-    cuda-cublas-10-0 \
-    cuda-cudart-10-0 \
-    cuda-cufft-10-0 \
-    cuda-curand-10-0 \
-    cuda-cusolver-10-0 \
-    cuda-cusparse-10-0 \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-
-
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
