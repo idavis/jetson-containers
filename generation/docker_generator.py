@@ -187,6 +187,43 @@ activeVersionsToSdkManagerVersionsLookup = {
     # GA_3.3.2, GA_3.3.1
 }
 
+def get_tf_version_map():
+    tfmap = {}
+    
+    tfmap["4.4"] = [
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.2", "nv_version" :"20.4"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.7"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.2", "nv_version" : "20.6"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.6"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.7"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.1.0", "nv_version" : "20.4"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.8"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.8"},
+    ]
+    tfmap["4.3"] = [
+        {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version":"19.12"},
+        {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version":"19.12"},
+        {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version":"20.1"},
+        {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version":"20.1"},
+        {"url_suffix": "v43", "package" : "tensorflow", "version" : "2.1.0", "nv_version":"20.2"},
+        {"url_suffix": "v43", "package" : "tensorflow", "version" : "1.15.2", "nv_version":"20.2"},
+        {"url_suffix": "v43", "package" : "tensorflow", "version" : "2.1.0", "nv_version":"20.3"},
+        {"url_suffix": "v43", "package" : "tensorflow", "version" : "1.15.2", "nv_version":"20.3"},
+    ]
+    tfmap["4.2"] = [
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "nv19.3"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "nv19.4"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "nv19.5"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "nv19.7"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "nv19.9"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "nv19.10"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version" : "nv19.11"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version" : "nv19.11"},
+    ]
+    tfmap["4.2.1"] = tfmap["4.2"]
+    tfmap["4.2.2"] = tfmap["4.2"]
+    tfmap["4.2.3"] = tfmap["4.2"]
+    return tfmap
 
 class DockerGenerator(cli.Application):
     PROGNAME = "Jetson Containers Repository Generator"
@@ -235,7 +272,7 @@ class DockerGenerator(cli.Application):
         tasksjson_template_filepath = pathlib.Path(
             f"generation/ubuntu1804/tasks.json.jinja")
         output_path = pathlib.Path(f".vscode/")
-        tasks_context = {"l4t": context, "cti": cti_bsp_table}
+        tasks_context = {"l4t": context, "cti": cti_bsp_table, "tf": get_tf_version_map()}
         self.write_template(
             tasks_context, tasksjson_template_filepath, output_path)
 
@@ -290,43 +327,7 @@ class DockerGenerator(cli.Application):
     def generate_tensorflow_makefile(self, context, template_filepath):
         # TODO, handle cases where context/template don't suport the device
         output_path = pathlib.Path(f"docker/jetpack")
-        # enhance context with TF versions per jetpack
-        tfmap = {}
-        
-        tfmap["4.4"] = [
-            {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.2", "nv_version" :"20.4"},
-            {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.7"},
-            {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.2", "nv_version" : "20.6"},
-            {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.6"},
-            {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.7"},
-            {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.1.0", "nv_version" : "20.4"},
-            {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.8"},
-            {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.8"},
-        ]
-        tfmap["4.3"] = [
-            {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version":"19.12"},
-            {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version":"19.12"},
-            {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version":"20.1"},
-            {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version":"20.1"},
-            {"url_suffix": "v43", "package" : "tensorflow", "version" : "2.1.0", "nv_version":"20.2"},
-            {"url_suffix": "v43", "package" : "tensorflow", "version" : "1.15.2", "nv_version":"20.2"},
-            {"url_suffix": "v43", "package" : "tensorflow", "version" : "2.1.0", "nv_version":"20.3"},
-            {"url_suffix": "v43", "package" : "tensorflow", "version" : "1.15.2", "nv_version":"20.3"},
-        ]
-        tfmap["4.2"] = [
-            {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "nv19.3"},
-            {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "nv19.4"},
-            {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "nv19.5"},
-            {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "nv19.7"},
-            {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "nv19.9"},
-            {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "nv19.10"},
-            {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version" : "nv19.11"},
-            {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version" : "nv19.11"},
-        ]
-        tfmap["4.2.1"] = tfmap["4.2"]
-        tfmap["4.2.2"] = tfmap["4.2"]
-        tfmap["4.2.3"] = tfmap["4.2"]
-        ctx = {"ctx": context, "tf": tfmap}
+        ctx = {"ctx": context, "tf": get_tf_version_map()}
         self.write_template(ctx, template_filepath, output_path)
 
     def generate_l4t_dockerfiles(self, context_file, template_filepath, jetpack_version, device):
