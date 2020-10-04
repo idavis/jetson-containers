@@ -1,6 +1,18 @@
 ARG IMAGE_NAME
-ARG TAG
-FROM ${IMAGE_NAME}:${TAG}-devel as tensorflow-base
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
+{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" %}
+ARG DEPENDENCIES_IMAGE
+FROM ${DEPENDENCIES_IMAGE} as dependencies
+ARG IMAGE_NAME
+{%- endif %}
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-devel as tensorflow-base
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
