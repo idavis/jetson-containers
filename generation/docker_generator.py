@@ -364,7 +364,7 @@ class DockerGenerator(cli.Application):
         deviceData["shortName"] = deviceIdToShortNameLookup[device]
         deviceData["jetpackVersion"] = jetpack_version
 
-        for img in ["base", "runtime", "runtime/cudnn", "deepstream", "devel", "devel/cudnn", "all", "samples", "tensorflow/runtime"]:
+        for img in ["base", "runtime", "runtime/cudnn", "deepstream", "devel", "devel/cudnn", "all", "samples", "tensorflow/min", "tensorflow/devel", "tensorflow/runtime", "tensorflow/runtime/tensorrt"]:
             if img is "deepstream" and "deepstream" not in deviceData:
                 continue
 

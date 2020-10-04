@@ -353,6 +353,7 @@
             "options": [
 
 {%- for item in ctx.tf[driver_details.jetpackVersion] %}
+                "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-min",
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime",
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-runtime-tensorrt",
                 "{{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-devel",
