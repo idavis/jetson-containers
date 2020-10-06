@@ -211,14 +211,14 @@ def get_tf_version_map():
         {"url_suffix": "v43", "package" : "tensorflow", "version" : "1.15.2", "nv_version" : "20.3"},
     ]
     tfmap["4.2"] = [
-        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "nv19.3"},
-        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "nv19.4"},
-        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "nv19.5"},
-        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "nv19.7"},
-        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "nv19.9"},
-        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "nv19.10"},
-        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version" : "nv19.11"},
-        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version" : "nv19.11"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "19.3"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "19.4"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "19.5"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "19.7"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "19.9"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "19.10"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version" : "19.11"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version" : "19.11"},
     ]
     tfmap["4.2.1"] = tfmap["4.2"]
     tfmap["4.2.2"] = tfmap["4.2"]
