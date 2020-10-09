@@ -82,7 +82,7 @@ RUN apt-get update && \
 # DeepStream
 
 
-RUN apt-get update && apt-get install -y --no-install-recommends deepstream-5.0=5.0.0-1 && \
+RUN apt-get update && apt-get install -y --no-install-recommends deepstream-5.0=5.0.1-1 && \
 
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
