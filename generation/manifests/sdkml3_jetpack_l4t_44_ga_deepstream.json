@@ -20,7 +20,7 @@
             "version": "5.0", 
             "revision": 0, 
             "estimateTargetDiskSizeInGB": "0", 
-            "pidGroupId": "", 
+            "pidGroupId": "616", 
             "devzoneProgramId": "", 
             "installedOn": [
                 "target"
@@ -34,7 +34,7 @@
             "port": "22"
         }
     }, 
-    "compDirectory": "https://developer.nvidia.com/assets/embedded/secure/tools/files/jetpack-sdks/jetpack-4.4-ga/JETPACK_44_b195_DEEPSTREAM/", 
+    "compDirectory": "https://developer.nvidia.com/assets/embedded/secure/tools/files/jetpack-sdks/jetpack-4.4-ga/JETPACK_44_b217_DEEPSTREAM/", 
     "groups": {
         "NV_DEEPSTREAM_TARGET_GROUP": {
             "id": "NV_DEEPSTREAM_TARGET_GROUP", 
@@ -75,10 +75,10 @@
                     "installSizeMB": 0, 
                     "downloadFiles": [
                         {
-                            "url": "deepstream-5.0_5.0.0-1_arm64.deb", 
-                            "fileName": "deepstream-5.0_5.0.0-1_arm64.deb", 
-                            "size": 429554486, 
-                            "checksum": "3bd9743c41d6bec8d65128c876f563be", 
+                            "url": "deepstream-5.0_5.0.1-1_arm64.deb", 
+                            "fileName": "deepstream-5.0_5.0.1-1_arm64.deb", 
+                            "size": 429026460, 
+                            "checksum": "dee0208396f276e3823c3aac42c04d7d", 
                             "checksumType": "md5", 
                             "verifyChecksum": "yes", 
                             "installParameters": {
@@ -87,7 +87,7 @@
                                 "additionalParameters": {
                                     "packagesInfo": [
                                         {
-                                            "version": "5.0.0-1", 
+                                            "version": "5.0.1-1", 
                                             "name": "deepstream-5.0"
                                         }
                                     ], 
@@ -116,9 +116,17 @@
                             "ver": "7.1", 
                             "type": "required", 
                             "additionalSDKId": "BASE_SDK"
+                        }, 
+                        {
+                            "id": "NV_L4T_VISIONWORKS_TARGET_POST_INSTALL_COMP", 
+                            "operator": "==", 
+                            "ver": "1.6", 
+                            "type": "required", 
+                            "additionalSDKId": "BASE_SDK"
                         }
                     ], 
-                    "external_dependencies": []
+                    "external_dependencies": [], 
+                    "prerequisites": []
                 }, 
                 {
                     "version": "5.0", 
@@ -129,10 +137,10 @@
                     "installSizeMB": 0, 
                     "downloadFiles": [
                         {
-                            "url": "deepstream-5.0_5.0.0-1_arm64.deb", 
-                            "fileName": "deepstream-5.0_5.0.0-1_arm64.deb", 
-                            "size": 429554486, 
-                            "checksum": "3bd9743c41d6bec8d65128c876f563be", 
+                            "url": "deepstream-5.0_5.0.1-1_arm64.deb", 
+                            "fileName": "deepstream-5.0_5.0.1-1_arm64.deb", 
+                            "size": 429026460, 
+                            "checksum": "dee0208396f276e3823c3aac42c04d7d", 
                             "checksumType": "md5", 
                             "verifyChecksum": "yes", 
                             "installParameters": {
@@ -141,7 +149,7 @@
                                 "additionalParameters": {
                                     "packagesInfo": [
                                         {
-                                            "version": "5.0.0-1", 
+                                            "version": "5.0.1-1", 
                                             "name": "deepstream-5.0"
                                         }
                                     ], 
@@ -172,9 +180,17 @@
                             "ver": "7.1", 
                             "type": "required", 
                             "additionalSDKId": "BASE_SDK"
+                        }, 
+                        {
+                            "id": "NV_L4T_VISIONWORKS_TARGET_POST_INSTALL_COMP", 
+                            "operator": "==", 
+                            "ver": "1.6", 
+                            "type": "required", 
+                            "additionalSDKId": "BASE_SDK"
                         }
                     ], 
-                    "external_dependencies": []
+                    "external_dependencies": [], 
+                    "prerequisites": []
                 }
             ]
         }
