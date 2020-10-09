@@ -14,6 +14,24 @@ ARG NV_VERSION
 
 
 
+COPY --from=dependencies /data/cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb
+RUN echo "5e3eedc3707305f9022d41754d6becde cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb" | md5sum -c - && \
+    dpkg --force-all -i cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb && \
+    rm cuda-repo-l4t-10-0-local-10.0.166_1.0-1_arm64.deb && \
+    apt-get update && \
+    apt-get install -y --allow-downgrades \
+    cuda-cublas-dev-10-0 \
+    cuda-cudart-dev-10-0 \
+    dpkg --purge cuda-repo-l4t-10-0-local-10.0.166 \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY --from=dependencies /data/libcudnn7-dev_7.3.1.28-1+cuda10.0_arm64.deb libcudnn7-dev_7.3.1.28-1+cuda10.0_arm64.deb
+RUN echo "dd0fbfa225b2374b946febc98e2cdec4 libcudnn7-dev_7.3.1.28-1+cuda10.0_arm64.deb" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /libcudnn7-dev_7.3.1.28-1+cuda10.0_arm64.deb && \
+    rm libcudnn7-dev_7.3.1.28-1+cuda10.0_arm64.deb
+
 # NVIDIA TensorRT
 ENV LIBINFER_VERSION 5.0.6
 
