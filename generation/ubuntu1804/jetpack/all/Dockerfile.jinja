@@ -1,4 +1,4 @@
-{%- if ctx.drivers.version == "32.3.1" -%}
+{%- if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3"-%}
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-devel-cudnn
 
@@ -27,19 +27,27 @@ RUN apt-get update && \
 {% if 'tensorflownodla' in ctx %}
 {%- if 'libnvinfer5' in ctx.tensorflownodla %}
 LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer5.version }}"
-{%- else %}
+{%- elif 'libnvinfer6' in ctx.tensorflownodla %}
 LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer6.version }}"
+{%- elif 'libnvinfer7' in ctx.tensorflownodla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer7.version }}"
 {%- endif %}
 {%- elif 'deepstreamdla' in ctx %}
-{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+{%- if 'libnvinfer5' in ctx.deepstreamdla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer5.version }}"
+{%- elif 'libnvinfer6' in ctx.deepstreamdla %}
 LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer6.version }}"
-{%- else %}
-LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer6.version }}"
+{%- elif 'libnvinfer7' in ctx.deepstreamdla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer7.version }}"
 {%- endif %}
 {%- endif %}
 
 RUN apt-get update && \
+{%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvinfer6 && \
+{%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvinfer7 && \
+{%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -49,22 +57,18 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
+{%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvinfer-plugin-dev libnvinfer-plugin6 && \
+{%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvinfer-plugin-dev libnvinfer-plugin7 && \
+{%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 {% if 'tensorflownodla' in ctx %}
-{%- if 'libnvinfer5' in ctx.tensorflownodla %}
 LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
-{%- else %}
-LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
-{%- endif %}
 {%- elif 'deepstreamdla' in ctx %}
-{%- if 'libnvinfer5' in ctx.tensorflownodla %}
 LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
-{%- else %}
-LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
-{%- endif %}
 {%- endif %}
 
 RUN apt-get update && \
@@ -73,12 +77,20 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
+{%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvparsers6 libnvparsers-dev && \
+{%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvparsers7 libnvparsers-dev && \
+{%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
+{%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvonnxparsers6 libnvonnxparsers-dev && \
+{%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvonnxparsers7 libnvonnxparsers-dev && \
+{%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -283,27 +295,38 @@ RUN echo "{{ ctx.opencv['libopencv-samples'].checksum }} {{ ctx.opencv['libopenc
 
 #RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
 
-{% if ctx.jetpackVersion == "4.3" %}
+# Install TensorFlow
+# Index URLS
+# Browse https://developer.download.nvidia.com/compute/redist/jp/ for more.
+# 4.4: https://developer.download.nvidia.com/compute/redist/jp/v44/tensorflow/
+# 4.3 GPU: https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow-gpu/
+# 4.3 CPU: https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow/
+# 4.2: https://developer.download.nvidia.com/compute/redist/jp/v42/tensorflow-gpu/
+# Commands:
+# RUN python3 -m pip install --pre --extra-index-url ${TF_INDEX_URL} tensorflow-gpu
+# RUN python3 -m pip install --extra-index-url ${TF_INDEX_URL} tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
+
 # Available versions:
-# tensorflow_gpu-1.15.0+nv19.12-cp36-cp36m-linux_aarch64.whl 217MB
+# All available versions can be found by browsing https://developer.download.nvidia.com/compute/redist/jp/
+{% if ctx.jetpackVersion == "4.4" %}
+# tensorflow-1.15.2+nv20.4-cp36-cp36m-linux_aarch64.whl 222MB
+# tensorflow-1.15.3+nv20.7-cp36-cp36m-linux_aarch64.whl 227MB
+# tensorflow-1.15.2+nv20.6-cp36-cp36m-linux_aarch64.whl 232MB
+# tensorflow-2.2.0+nv20.6-cp36-cp36m-linux_aarch64.whl 276MB
+# tensorflow-2.2.0+nv20.7-cp36-cp36m-linux_aarch64.whl 274MB
+# tensorflow-2.1.0+nv20.4-cp36-cp36m-linux_aarch64.whl 231MB
+# tensorflow-1.15.3+nv20.8-cp36-cp36m-linux_aarch64.whl 227MB
+# tensorflow-2.2.0+nv20.8-cp36-cp36m-linux_aarch64.whl 276MB
+{% elif ctx.jetpackVersion == "4.3" %}
+# GPU
 # tensorflow_gpu-2.0.0+nv19.12-cp36-cp36m-linux_aarch64.whl 198MB
+# tensorflow_gpu-1.15.0+nv19.12-cp36-cp36m-linux_aarch64.whl 217MB
+# tensorflow_gpu-2.0.0+nv20.1-cp36-cp36m-linux_aarch64.whl 198MB
+# tensorflow_gpu-1.15.0+nv20.1-cp36-cp36m-linux_aarch64.whl 217MB
 
-# Install TensorFlow
-#RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu
-# can browse from https://developer.download.nvidia.com/compute/redist/jp/
-# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
-{% else %}
-# Available versions:
-# tensorflow_gpu-1.13.1+nv19.4-cp36-cp36m-linux_aarch64.whl 195MB
-# tensorflow_gpu-1.13.1+nv19.5-cp36-cp36m-linux_aarch64.whl 195MB
-# tensorflow_gpu-1.14.0+nv19.7-cp36-cp36m-linux_aarch64.whl 214MB
-# tensorflow_gpu-1.14.0+nv19.9-cp36-cp36m-linux_aarch64.whl 214MB
-# tensorflow_gpu-1.14.0+nv19.10-cp36-cp36m-linux_aarch64.whl 214MB
-# tensorflow_gpu-1.15.0+nv19.11-cp36-cp36m-linux_aarch64.whl 217MB
-# tensorflow_gpu-2.0.0+nv19.11-cp36-cp36m-linux_aarch64.whl 198MB
-
-# Install TensorFlow
-# RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
-# can browse from https://developer.download.nvidia.com/compute/redist/jp/
-# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
+# CPU
+# tensorflow-2.1.0+nv20.2-cp36-cp36m-linux_aarch64.whl 225MB
+# tensorflow-1.15.2+nv20.2-cp36-cp36m-linux_aarch64.whl 217MB
+# tensorflow-2.1.0+nv20.3-cp36-cp36m-linux_aarch64.whl 225MB
+# tensorflow-1.15.2+nv20.3-cp36-cp36m-linux_aarch64.whl 218MB
 {% endif %}

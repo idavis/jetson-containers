@@ -1,12 +1,12 @@
 ARG IMAGE_NAME
-{%- if ctx.drivers.version != "32.3.1" %}
+{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" %}
 ARG DEPENDENCIES_IMAGE
 FROM ${DEPENDENCIES_IMAGE} as dependencies
 ARG IMAGE_NAME
 {%- endif %}
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-base
 
-{%- if ctx.drivers.version == "32.3.1" %}
+{%- if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3" %}
 
 # NVIDIA VisionWorks Toolkit
 
@@ -30,17 +30,9 @@ RUN apt-get update && \
 # NVIDIA TensorRT
 
 {% if 'tensorflownodla' in ctx %}
-{%- if 'libnvinfer5' in ctx.tensorflownodla %}
 LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
-{%- else %}
-LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
-{%- endif %}
 {%- elif 'deepstreamdla' in ctx %}
-{%- if 'libnvinfer5' in ctx.tensorflownodla %}
 LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
-{%- else %}
-LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
-{%- endif %}
 {%- endif %}
 
 RUN apt-get update && \
@@ -99,7 +91,11 @@ RUN apt-get update && \
 
 # DeepStream
 
+{% if ctx.drivers.version == "32.4.3" %}
+RUN apt-get update && apt-get install -y --no-install-recommends {{ ctx.deepstream['deepstream-5.0'].packageName }}={{ ctx.deepstream['deepstream-5.0'].packageVersion }} && \
+{% elif ctx.drivers.version == "32.3.1" %}
 RUN apt-get update && apt-get install -y --no-install-recommends {{ ctx.deepstream['deepstream-4.0'].packageName }}={{ ctx.deepstream['deepstream-4.0'].packageVersion }} && \
+{%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

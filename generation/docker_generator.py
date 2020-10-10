@@ -9,62 +9,161 @@ from jinja2 import Template
 import logging
 log = logging.getLogger()
 
+# Current IDs
+# Jetson Xavier NX            P3668-0000    Supplied with developer kit
+#                             P3668-0001    Production
+# Jetson Nano                 P3448-0000    Supplied with developer kit
+#                             P3448-0002    Production
+# Jetson AGX Xavier series    P2888-0001    16 GB memory
+#                             P2888-0004    32 GB memory
+#                             P2888-0006    8 GB memory
+# Jetson TX2 series           P3310-1000    Jetson TX2
+#                             P3489-0000    Jetson TX2i
+#                             P3489-0888    Jetson TX2 4GB
+# Jetson TX1                  P2180-1000  
+
+v4deviceIdToPartNameDeviceIdLookup = {
+    "JETSON_AGX_XAVIER": "P2888-0001",
+    "JETSON_AGX_XAVIER_32GB": "P2888-0004",
+    "JETSON_AGX_XAVIER_8GB": "P2888-0006",
+    "JETSON_XAVIER_NX_DEVKIT": "P3668-0000",
+    "JETSON_XAVIER_NX": "P3668-0001",
+    "JETSON_TX2": "P3310-1000",
+    "JETSON_TX2_4GB": "P3489-0888",
+    "JETSON_TX2I": "P3489-0000",
+    "JETSON_TX1": "P2180-1000",
+    "JETSON_NANO_DEVKIT": "P3448-0000",
+    "JETSON_NANO": "P3448-0002"
+}
+
+deviceIdToCurrentIdLookup = {
+    "P2888": "P2888-0001",
+    "P2888-0001": "P2888-0001",
+    "P2888-0004": "P2888-0004",
+    "P2888-0060": "P2888-0006",
+    "P2888-0006": "P2888-0006",
+    "P3668-0000": "P3668-0000",
+    "P3668-0001": "P3668-0001",
+    "P3310": "P3310-1000",
+    "P3310-1000": "P3310-1000",
+    "P3489-0000": "P3489-0000",
+    "P3489-0080": "P3489-0888",
+    "P3489-0888": "P3489-0888",
+    "P2180": "P2180-1000",
+    "P2180-1000": "P2180-1000",
+    "P3448-0000": "P3448-0000",
+    "P3448-0002": "P3448-0002",
+    "P3448-0020": "P3448-0002"
+}
+
+def get_current_device_id(device):
+    if device in v4deviceIdToPartNameDeviceIdLookup:
+        return v4deviceIdToPartNameDeviceIdLookup[device]
+    if device in deviceIdToCurrentIdLookup:
+        return deviceIdToCurrentIdLookup[device]
+    raise Exception('Unexpected device', device)
+
 deviceIdToFriendlyNameLookup = {
     "P2888": "Jetson AGX Xavier",
-    "P2888-0060": "Jetson AGX Xavier 8GB",
+    "P2888-0001": "Jetson AGX Xavier",
+    "P2888-0004": "Jetson AGX Xavier [32GB]",
+    "P2888-0060": "Jetson AGX Xavier [8GB]",
+    "P2888-0006": "Jetson AGX Xavier [8GB]",
+    "P3668-0000": "Jetson Xavier NX (Developer Kit version)",
+    "P3668-0001": "Jetson Xavier NX",
     "P3310": "Jetson TX2",
+    "P3310-1000": "Jetson TX2",
     "P3489-0000": "Jetson TX2i",
     "P3489-0080": "Jetson TX2 4GB",
+    "P3489-0888": "Jetson TX2 4GB",
     "P2180": "Jetson TX1",
+    "P2180-1000": "Jetson TX1",
     "P3448-0000": "Jetson Nano (Developer Kit version)",
+    "P3448-0002": "Jetson Nano",
     "P3448-0020": "Jetson Nano"
 }
 
 deviceIdToTargetBoardLookup = {
-    "P2888": "jetson-xavier",
-    "P2888-0060": "jetson-xavier-8gb",
-    "P3310": "jetson-tx2",
+    "P2888-0001": "jetson-xavier",
+    "P2888-0004": "jetson-xavier",
+    "P2888-0006": "jetson-xavier-8gb",
+    "P3668-0000": "jetson-xavier-nx-devkit",
+    "P3668-0001": "jetson-xavier-nx-devkit-emmc",
+    "P3310-1000": "jetson-tx2",
     "P3489-0000": "jetson-tx2i",
-    "P3489-0080": "jetson-tx2-4GB",
-    "P2180": "jetson-tx1",
+    "P3489-0888": "jetson-tx2-4GB",
+    "P2180-1000": "jetson-tx1",
     "P3448-0000": "jetson-nano-qspi-sd",
-    "P3448-0020": "jetson-nano-emmc"
+    "P3448-0002": "jetson-nano-emmc"
+}
+
+# Unused, just noting it is different than the SDK Manager
+deviceIdToTargetBoardLookupDoc = {
+    "P2888-0001": "jetson-agx-xavier-devkit",
+    "P2888-0004": "jetson-agx-xavier-devkit",
+    "P2888-0006": "jetson-agx-xavier-devkit-8gb",
+    "P3668-0000": "jetson-xavier-nx-devkit",
+    "P3668-0001": "jetson-xavier-nx-devkit-emmc",
+    "P3310-1000": "jetson-tx2-devkit",
+    "P3489-0000": "jetson-tx2-devkit-tx2i",
+    "P3489-0888": "jetson-tx2-devkit-4GB",
+    "P2180-1000": "jetson-tx1-devkit",
+    "P3448-0000": "jetson-nano-devkit",
+    "P3448-0002": "jetson-nano-emmc"
 }
 
 deviceToSoCLookup = {
-    "P3310": "186",
+    "P2888-0001": "194",
+    "P2888-0004": "194",
+    "P2888-0006": "194",
+    "P3668-0000": "194",
+    "P3668-0001": "194",
+    "P3310-1000": "186",
     "P3489-0000": "186",
-    "P3489-0080": "186",
-    "P2888": "194",
-    "P2888-0060": "194",
+    "P3489-0888": "186",
+    "P2180-1000": "210",
     "P3448-0000": "210",
-    "P3448-0020": "210",
-    "P2180": "210"
+    "P3448-0002": "210"
 }
 
 deviceIdToShortNameLookup = {
     "P2888": "jax",
+    "P2888-0000": "jax",
+    "P2888-0001": "jax",
+    "P2888-0004": "jax-32gb",
+    "P2888-0006": "jax-8gb",
     "P2888-0060": "jax-8gb",
+    "P3668-0000": "nx-dev",
+    "P3668-0001": "nx",
     "P3310": "tx2",
+    "P3310-1000": "tx2",
     "P3489-0000": "tx2i",
+    "P3489-0888": "tx2-4gb",
     "P3489-0080": "tx2-4gb",
     "P2180": "tx1",
+    "P2180-1000": "tx1",
     "P3448-0000": "nano-dev",
-    "P3448-0020": "nano"
+    "P3448-0020": "nano",
+    "P3448-0002": "nano"
 }
 
 shortNameToDeviceIdLookup = {
-    "jax": "P2888",
-    "jax-8gb": "P2888-0060",
-    "tx2": "P3310",
+    "jax": "P2888-0001",
+    "jax-32gb": "P2888-0004",
+    "jax-8gb": "P2888-0006",
+    "nx-dev": "P3668-0000",
+    "nx": "P3668-0001",
+    "tx2": "P3310-1000",
     "tx2i": "P3489-0000",
-    "tx2-4gb": "P3489-0080",
-    "tx1": "P2180",
+    "tx2-4gb": "P3489-0888",
+    "tx1": "P2180-1000",
     "nano-dev": "P3448-0000",
-    "nano": "P3448-0020"
+    "nano": "P3448-0002"
 }
 
 active_versions = [
+    "4.4",
+
     "4.3",
 
     "4.2.3",
@@ -75,6 +174,8 @@ active_versions = [
 ]
 
 activeVersionsToSdkManagerVersionsLookup = {
+    "4.4": "4.4",
+
     "4.3": "4.3",
 
     "4.2.3": "GA_4.2.3",
@@ -86,6 +187,43 @@ activeVersionsToSdkManagerVersionsLookup = {
     # GA_3.3.2, GA_3.3.1
 }
 
+def get_tf_version_map():
+    tfmap = {}
+    
+    tfmap["4.4"] = [
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.2", "nv_version" :"20.4"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.7"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.2", "nv_version" : "20.6"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.6"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.7"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.1.0", "nv_version" : "20.4"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.8"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.8"},
+    ]
+    tfmap["4.3"] = [
+        {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version" : "19.12"},
+        {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version" : "19.12"},
+        {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version" : "20.1"},
+        {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version" : "20.1"},
+        {"url_suffix": "v43", "package" : "tensorflow", "version" : "2.1.0", "nv_version" : "20.2"},
+        {"url_suffix": "v43", "package" : "tensorflow", "version" : "1.15.2", "nv_version" : "20.2"},
+        {"url_suffix": "v43", "package" : "tensorflow", "version" : "2.1.0", "nv_version" : "20.3"},
+        {"url_suffix": "v43", "package" : "tensorflow", "version" : "1.15.2", "nv_version" : "20.3"},
+    ]
+    tfmap["4.2"] = [
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "19.3"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "19.4"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.13.1", "nv_version" : "19.5"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "19.7"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "19.9"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.14.0", "nv_version" : "19.10"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version" : "19.11"},
+        {"url_suffix": "v42", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version" : "19.11"},
+    ]
+    tfmap["4.2.1"] = tfmap["4.2"]
+    tfmap["4.2.2"] = tfmap["4.2"]
+    tfmap["4.2.3"] = tfmap["4.2"]
+    return tfmap
 
 class DockerGenerator(cli.Application):
     PROGNAME = "Jetson Containers Repository Generator"
@@ -134,7 +272,7 @@ class DockerGenerator(cli.Application):
         tasksjson_template_filepath = pathlib.Path(
             f"generation/ubuntu1804/tasks.json.jinja")
         output_path = pathlib.Path(f".vscode/")
-        tasks_context = {"l4t": context, "cti": cti_bsp_table}
+        tasks_context = {"l4t": context, "cti": cti_bsp_table, "tf": get_tf_version_map()}
         self.write_template(
             tasks_context, tasksjson_template_filepath, output_path)
 
@@ -149,6 +287,11 @@ class DockerGenerator(cli.Application):
             f"generation/ubuntu1804/jetpack/jetpack.mk.jinja")
         self.generate_jetpack_makefile(
             context, jetpack_makefile_template_filepath)
+
+        tensorflow_makefile_template_filepath = pathlib.Path(
+            f"generation/ubuntu1804/jetpack/tensorflow.mk.jinja")
+        self.generate_tensorflow_makefile(
+            context, tensorflow_makefile_template_filepath)
 
         jetpack_deps_makefile_template_filepath = pathlib.Path(
             f"generation/ubuntu1804/jetpack/dependencies.mk.jinja")
@@ -169,7 +312,7 @@ class DockerGenerator(cli.Application):
         output_path = pathlib.Path(f"docker/cti")
         self.write_template(
             cti_bsp_table, cti_makefile_template_filepath, output_path)
-        log.info("Done")
+        print("Done")
 
     def generate_main_makefile(self, context, template_filepath):
         # TODO, handle cases where context/template don't suport the device
@@ -181,11 +324,17 @@ class DockerGenerator(cli.Application):
         output_path = pathlib.Path(f"docker/jetpack")
         self.write_template(context, template_filepath, output_path)
 
+    def generate_tensorflow_makefile(self, context, template_filepath):
+        # TODO, handle cases where context/template don't suport the device
+        output_path = pathlib.Path(f"docker/jetpack")
+        ctx = {"ctx": context, "tf": get_tf_version_map()}
+        self.write_template(ctx, template_filepath, output_path)
+
     def generate_l4t_dockerfiles(self, context_file, template_filepath, jetpack_version, device):
         # TODO, handle cases where context/template don't suport the device
         context = self.read_yml_dictionary(context_file)
         if device not in context:
-            log.info(
+            print(
                 f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
             return
         print(f'l4t-{device}-jetpack-{jetpack_version}')
@@ -202,7 +351,7 @@ class DockerGenerator(cli.Application):
     def generate_jetpack_dockerfiles(self, jetpack_context_file, l4t_context_file, jetpack_version, device):
         context = self.read_yml_dictionary(jetpack_context_file)
         if device not in context:
-            log.info(
+            print(
                 f"Skipping {deviceIdToFriendlyNameLookup[device]} for JetPack {jetpack_version}")
             return
 
@@ -215,7 +364,7 @@ class DockerGenerator(cli.Application):
         deviceData["shortName"] = deviceIdToShortNameLookup[device]
         deviceData["jetpackVersion"] = jetpack_version
 
-        for img in ["base", "runtime", "runtime/cudnn", "deepstream", "devel", "devel/cudnn", "all"]:
+        for img in ["base", "runtime", "runtime/cudnn", "deepstream", "devel", "devel/cudnn", "all", "samples", "tensorflow/min", "tensorflow/devel", "tensorflow/runtime", "tensorflow/runtime/tensorrt"]:
             if img is "deepstream" and "deepstream" not in deviceData:
                 continue
 
@@ -240,6 +389,8 @@ class DockerGenerator(cli.Application):
             context = self.read_yml_dictionary(context_file)
 
             for device, deviceData in context.items():
+                device = get_current_device_id(device)
+                
                 driver_version = deviceData["drivers"]["version"]
                 if driver_version not in make_context:
                     make_context[driver_version] = {}
@@ -253,7 +404,7 @@ class DockerGenerator(cli.Application):
         # TODO, handle cases where context/template don't suport the device
         context = self.read_yml_dictionary(context_file)
         if device not in context:
-            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
             return
         print(f'l4t-flash-{device}')
         deviceData = context[device]
@@ -305,14 +456,14 @@ class DockerGenerator(cli.Application):
         # TODO, handle cases where context/template don't suport the device
         l4t_context = self.read_yml_dictionary(context_file)
         if device not in l4t_context:
-            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping CTI for {device} - {deviceIdToFriendlyNameLookup[device]} as no context found.")
             return
         cti_bsp_table = self.read_yml_dictionary("generation/cti-bsp.yml")
         if deviceIdToShortNameLookup[device] not in cti_bsp_table:
-            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping CTI for {device} - {deviceIdToFriendlyNameLookup[device]} as no BSP found.")
             return
         if jetpack_version not in cti_bsp_table[deviceIdToShortNameLookup[device]]:
-            log.info(f"Skipping {deviceIdToFriendlyNameLookup[device]}")
+            print(f"Skipping CTI for {device} - {deviceIdToFriendlyNameLookup[device]} as BSP didn't suport JP {jetpack_version}.")
             return
         targetBsp = cti_bsp_table[deviceIdToShortNameLookup[device]
                                   ][jetpack_version]
@@ -379,7 +530,7 @@ class DockerGenerator(cli.Application):
             if not new_output_path.exists():
                 log.debug(f"Creating {new_output_path}")
                 new_output_path.mkdir(parents=True)
-            log.info(f"Writing {new_output_path}/{new_filename}")
+            print(f"Writing {new_output_path}/{new_filename}")
             with open(f"{new_output_path}/{new_filename}", "w") as f2:
                 f2.write(template.render(ctx=deviceData))
 
@@ -393,13 +544,20 @@ class DockerGenerator(cli.Application):
             if not new_output_path.exists():
                 log.debug(f"Creating {new_output_path}")
                 new_output_path.mkdir(parents=True)
-            log.info(f"Writing {new_output_path}/{new_filename}")
+            print(f"Writing {new_output_path}/{new_filename}")
             with open(f"{new_output_path}/{new_filename}", "w") as f2:
                 f2.write(template.render(ctx=context))
 
     def read_yml_dictionary(self, filepath):
         with open(filepath) as f:
-            return yaml.load(f)
+            file_context = yaml.load(f)
+            context = {}
+            for key, val in file_context.items():
+                if key in v4deviceIdToPartNameDeviceIdLookup:
+                    context[v4deviceIdToPartNameDeviceIdLookup[key]] = val
+                else:
+                    context[key] = val
+            return context
 
 
 if __name__ == "__main__":

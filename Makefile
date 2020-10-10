@@ -14,8 +14,8 @@ export REPO ?= l4t
 export IMAGE_NAME ?= $(REPO)
 
 # Used in driver pack base
-export BIONIC_VERSION_ID ?= bionic-20200112
-export XENIAL_VERSION_ID ?= xenial-20200114
+export BIONIC_VERSION_ID ?= bionic
+export XENIAL_VERSION_ID ?= xenial
 
 # Default squash as our base images which need to copy from a
 # dependencies image. Without this the images will be massive.
@@ -32,8 +32,10 @@ export DOCKERFILE_PREFIX ?= default
 
 all: jetpack-deps driver-packs jetpacks
 
-driver-packs: driver-pack-32.3.1 driver-pack-32.2.3 driver-pack-32.2.1 driver-pack-32.2.0 driver-pack-32.1
+driver-packs: driver-pack-32.4.3 driver-pack-32.3.1 driver-pack-32.2.3 driver-pack-32.2.1 driver-pack-32.2.0 driver-pack-32.1
 
+
+driver-pack-32.4.3: l4t-32.4.3-tx1 l4t-32.4.3-jax l4t-32.4.3-jax-8gb l4t-32.4.3-tx2 l4t-32.4.3-nano-dev l4t-32.4.3-nano l4t-32.4.3-tx2i l4t-32.4.3-tx2-4gb l4t-32.4.3-nx-dev l4t-32.4.3-nx
 
 driver-pack-32.3.1: l4t-32.3.1-tx1 l4t-32.3.1-jax l4t-32.3.1-jax-8gb l4t-32.3.1-tx2 l4t-32.3.1-nano-dev l4t-32.3.1-nano l4t-32.3.1-tx2i l4t-32.3.1-tx2-4gb
 
@@ -72,6 +74,9 @@ from-deps-folder-%:
 # JetPack
 
 
+32.4.3-%:
+	make -C $(CURDIR)/docker/jetpack $@
+
 32.3.1-%:
 	make -C $(CURDIR)/docker/jetpack $@
 
@@ -89,13 +94,6 @@ from-deps-folder-%:
 
 
 # Samples
-
-build-%-samples:
-	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
-					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-					--build-arg TAG=$* \
-					-t $(REPO):$*-samples \
-					- < $(CURDIR)/docker/examples/samples/Dockerfile
 
 run-%-samples:
 	$(DOCKER) run $(DOCKER_RUN_ARGS) \

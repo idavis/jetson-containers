@@ -180,6 +180,732 @@
             }
         },
         {
+            "label": "make tensorflow images for tx1-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx1-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for jax-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for jax-8gb-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-8gb-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-dev-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-dev-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2i-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2i-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-4gb-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-4gb-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nx-dev-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnx-dev-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nx-32.4.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnx-32.4.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+
+        {
+            "label": "make tensorflow images for tx1-32.3.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx1-32.3.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for jax-32.3.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-32.3.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for jax-8gb-32.3.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-8gb-32.3.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-32.3.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-32.3.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-dev-32.3.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-dev-32.3.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-32.3.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-32.3.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2i-32.3.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2i-32.3.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-4gb-32.3.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-4gb-32.3.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+
+        {
+            "label": "make tensorflow images for tx1-32.2.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx1-32.2.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for jax-32.2.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-32.2.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for jax-8gb-32.2.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-8gb-32.2.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-32.2.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-32.2.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-dev-32.2.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-dev-32.2.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-32.2.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-32.2.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2i-32.2.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2i-32.2.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-4gb-32.2.3",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-4gb-32.2.3}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+
+        {
+            "label": "make tensorflow images for tx1-32.2.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx1-32.2.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for jax-32.2.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-32.2.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for jax-8gb-32.2.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-8gb-32.2.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-32.2.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-32.2.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-dev-32.2.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-dev-32.2.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-32.2.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-32.2.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2i-32.2.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2i-32.2.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-4gb-32.2.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-4gb-32.2.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+
+        {
+            "label": "make tensorflow images for tx1-32.2.0",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx1-32.2.0}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for jax-32.2.0",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-32.2.0}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-32.2.0",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-32.2.0}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-dev-32.2.0",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-dev-32.2.0}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-32.2.0",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-32.2.0}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2i-32.2.0",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2i-32.2.0}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-4gb-32.2.0",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-4gb-32.2.0}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+
+        {
+            "label": "make tensorflow images for jax-32.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFjax-32.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2-32.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2-32.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for nano-dev-32.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFnano-dev-32.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+        {
+            "label": "make tensorflow images for tx2i-32.1",
+            "type": "shell",
+            "group": "build",
+            "command": "make",
+            "args": [
+                "${input:pickTFtx2i-32.1}"
+            ],
+            "problemMatcher":{
+                "pattern":{
+                    "regexp": "^(make:)\\s\\*\\*\\*(.*)$",
+                    "kind": "file",
+                    "message": 2 
+                }
+            }
+        },
+
+        {
             "label": "make <rootfs from file>",
             "type": "shell",
             "group": "build",
@@ -202,11 +928,23 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
+                "driver-pack-32.4.3",
                 "driver-pack-32.3.1",
                 "driver-pack-32.2.3",
                 "driver-pack-32.2.1",
                 "driver-pack-32.2.0",
                 "driver-pack-32.1",
+
+                "l4t-32.4.3-tx1",
+                "l4t-32.4.3-jax",
+                "l4t-32.4.3-jax-8gb",
+                "l4t-32.4.3-tx2",
+                "l4t-32.4.3-nano-dev",
+                "l4t-32.4.3-nano",
+                "l4t-32.4.3-tx2i",
+                "l4t-32.4.3-tx2-4gb",
+                "l4t-32.4.3-nx-dev",
+                "l4t-32.4.3-nx",
 
                 "l4t-32.3.1-tx1",
                 "l4t-32.3.1-jax",
@@ -254,6 +992,17 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
+                "32.4.3-tx1-jetpack-4.4",
+                "32.4.3-jax-jetpack-4.4",
+                "32.4.3-jax-8gb-jetpack-4.4",
+                "32.4.3-tx2-jetpack-4.4",
+                "32.4.3-nano-dev-jetpack-4.4",
+                "32.4.3-nano-jetpack-4.4",
+                "32.4.3-tx2i-jetpack-4.4",
+                "32.4.3-tx2-4gb-jetpack-4.4",
+                "32.4.3-nx-dev-jetpack-4.4",
+                "32.4.3-nx-jetpack-4.4",
+
                 "32.3.1-tx1-jetpack-4.3",
                 "32.3.1-jax-jetpack-4.3",
                 "32.3.1-jax-8gb-jetpack-4.3",
@@ -294,6 +1043,7 @@
                 "32.1-nano-dev-jetpack-4.2",
                 "32.1-tx2i-jetpack-4.2",
 
+                "jetpack-4.4",
                 "jetpack-4.3",
                 "jetpack-4.2.3",
                 "jetpack-4.2.2",
@@ -301,6 +1051,77 @@
                 "jetpack-4.2",
 
 
+
+                "32.4.3-tx1-jetpack-4.4-base",
+                "32.4.3-tx1-jetpack-4.4-runtime",
+                "32.4.3-tx1-jetpack-4.4-runtime-cudnn",
+                "32.4.3-tx1-jetpack-4.4-deepstream",
+                "32.4.3-tx1-jetpack-4.4-devel",
+                "32.4.3-tx1-jetpack-4.4-devel-cudnn",
+                "32.4.3-tx1-jetpack-4.4-all",
+                "32.4.3-jax-jetpack-4.4-base",
+                "32.4.3-jax-jetpack-4.4-runtime",
+                "32.4.3-jax-jetpack-4.4-runtime-cudnn",
+                "32.4.3-jax-jetpack-4.4-deepstream",
+                "32.4.3-jax-jetpack-4.4-devel",
+                "32.4.3-jax-jetpack-4.4-devel-cudnn",
+                "32.4.3-jax-jetpack-4.4-all",
+                "32.4.3-jax-8gb-jetpack-4.4-base",
+                "32.4.3-jax-8gb-jetpack-4.4-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-runtime-cudnn",
+                "32.4.3-jax-8gb-jetpack-4.4-deepstream",
+                "32.4.3-jax-8gb-jetpack-4.4-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-devel-cudnn",
+                "32.4.3-jax-8gb-jetpack-4.4-all",
+                "32.4.3-tx2-jetpack-4.4-base",
+                "32.4.3-tx2-jetpack-4.4-runtime",
+                "32.4.3-tx2-jetpack-4.4-runtime-cudnn",
+                "32.4.3-tx2-jetpack-4.4-deepstream",
+                "32.4.3-tx2-jetpack-4.4-devel",
+                "32.4.3-tx2-jetpack-4.4-devel-cudnn",
+                "32.4.3-tx2-jetpack-4.4-all",
+                "32.4.3-nano-dev-jetpack-4.4-base",
+                "32.4.3-nano-dev-jetpack-4.4-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-runtime-cudnn",
+                "32.4.3-nano-dev-jetpack-4.4-deepstream",
+                "32.4.3-nano-dev-jetpack-4.4-devel",
+                "32.4.3-nano-dev-jetpack-4.4-devel-cudnn",
+                "32.4.3-nano-dev-jetpack-4.4-all",
+                "32.4.3-nano-jetpack-4.4-base",
+                "32.4.3-nano-jetpack-4.4-runtime",
+                "32.4.3-nano-jetpack-4.4-runtime-cudnn",
+                "32.4.3-nano-jetpack-4.4-deepstream",
+                "32.4.3-nano-jetpack-4.4-devel",
+                "32.4.3-nano-jetpack-4.4-devel-cudnn",
+                "32.4.3-nano-jetpack-4.4-all",
+                "32.4.3-tx2i-jetpack-4.4-base",
+                "32.4.3-tx2i-jetpack-4.4-runtime",
+                "32.4.3-tx2i-jetpack-4.4-runtime-cudnn",
+                "32.4.3-tx2i-jetpack-4.4-deepstream",
+                "32.4.3-tx2i-jetpack-4.4-devel",
+                "32.4.3-tx2i-jetpack-4.4-devel-cudnn",
+                "32.4.3-tx2i-jetpack-4.4-all",
+                "32.4.3-tx2-4gb-jetpack-4.4-base",
+                "32.4.3-tx2-4gb-jetpack-4.4-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-runtime-cudnn",
+                "32.4.3-tx2-4gb-jetpack-4.4-deepstream",
+                "32.4.3-tx2-4gb-jetpack-4.4-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-devel-cudnn",
+                "32.4.3-tx2-4gb-jetpack-4.4-all",
+                "32.4.3-nx-dev-jetpack-4.4-base",
+                "32.4.3-nx-dev-jetpack-4.4-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-runtime-cudnn",
+                "32.4.3-nx-dev-jetpack-4.4-deepstream",
+                "32.4.3-nx-dev-jetpack-4.4-devel",
+                "32.4.3-nx-dev-jetpack-4.4-devel-cudnn",
+                "32.4.3-nx-dev-jetpack-4.4-all",
+                "32.4.3-nx-jetpack-4.4-base",
+                "32.4.3-nx-jetpack-4.4-runtime",
+                "32.4.3-nx-jetpack-4.4-runtime-cudnn",
+                "32.4.3-nx-jetpack-4.4-deepstream",
+                "32.4.3-nx-jetpack-4.4-devel",
+                "32.4.3-nx-jetpack-4.4-devel-cudnn",
+                "32.4.3-nx-jetpack-4.4-all",
 
                 "32.3.1-tx1-jetpack-4.3-base",
                 "32.3.1-tx1-jetpack-4.3-runtime",
@@ -559,6 +1380,17 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
+                "32.4.3-tx1-jetpack-4.4",
+                "32.4.3-jax-jetpack-4.4",
+                "32.4.3-jax-8gb-jetpack-4.4",
+                "32.4.3-tx2-jetpack-4.4",
+                "32.4.3-nano-dev-jetpack-4.4",
+                "32.4.3-nano-jetpack-4.4",
+                "32.4.3-tx2i-jetpack-4.4",
+                "32.4.3-tx2-4gb-jetpack-4.4",
+                "32.4.3-nx-dev-jetpack-4.4",
+                "32.4.3-nx-jetpack-4.4",
+
                 "32.3.1-tx1-jetpack-4.3",
                 "32.3.1-jax-jetpack-4.3",
                 "32.3.1-jax-8gb-jetpack-4.3",
@@ -605,6 +1437,17 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
+                "32.4.3-tx1-jetpack-4.4",
+                "32.4.3-jax-jetpack-4.4",
+                "32.4.3-jax-8gb-jetpack-4.4",
+                "32.4.3-tx2-jetpack-4.4",
+                "32.4.3-nano-dev-jetpack-4.4",
+                "32.4.3-nano-jetpack-4.4",
+                "32.4.3-tx2i-jetpack-4.4",
+                "32.4.3-tx2-4gb-jetpack-4.4",
+                "32.4.3-nx-dev-jetpack-4.4",
+                "32.4.3-nx-jetpack-4.4",
+
                 "32.3.1-tx1-jetpack-4.3",
                 "32.3.1-jax-jetpack-4.3",
                 "32.3.1-jax-8gb-jetpack-4.3",
@@ -651,45 +1494,56 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
-                "build-32.3.1-tx1-jetpack-4.3-samples",
-                "build-32.3.1-jax-jetpack-4.3-samples",
-                "build-32.3.1-jax-8gb-jetpack-4.3-samples",
-                "build-32.3.1-tx2-jetpack-4.3-samples",
-                "build-32.3.1-nano-dev-jetpack-4.3-samples",
-                "build-32.3.1-nano-jetpack-4.3-samples",
-                "build-32.3.1-tx2i-jetpack-4.3-samples",
-                "build-32.3.1-tx2-4gb-jetpack-4.3-samples",
+                "32.4.3-tx1-jetpack-4.4-samples",
+                "32.4.3-jax-jetpack-4.4-samples",
+                "32.4.3-jax-8gb-jetpack-4.4-samples",
+                "32.4.3-tx2-jetpack-4.4-samples",
+                "32.4.3-nano-dev-jetpack-4.4-samples",
+                "32.4.3-nano-jetpack-4.4-samples",
+                "32.4.3-tx2i-jetpack-4.4-samples",
+                "32.4.3-tx2-4gb-jetpack-4.4-samples",
+                "32.4.3-nx-dev-jetpack-4.4-samples",
+                "32.4.3-nx-jetpack-4.4-samples",
 
-                "build-32.2.3-tx1-jetpack-4.2.3-samples",
-                "build-32.2.3-jax-jetpack-4.2.3-samples",
-                "build-32.2.3-jax-8gb-jetpack-4.2.3-samples",
-                "build-32.2.3-tx2-jetpack-4.2.3-samples",
-                "build-32.2.3-nano-dev-jetpack-4.2.3-samples",
-                "build-32.2.3-nano-jetpack-4.2.3-samples",
-                "build-32.2.3-tx2i-jetpack-4.2.3-samples",
-                "build-32.2.3-tx2-4gb-jetpack-4.2.3-samples",
+                "32.3.1-tx1-jetpack-4.3-samples",
+                "32.3.1-jax-jetpack-4.3-samples",
+                "32.3.1-jax-8gb-jetpack-4.3-samples",
+                "32.3.1-tx2-jetpack-4.3-samples",
+                "32.3.1-nano-dev-jetpack-4.3-samples",
+                "32.3.1-nano-jetpack-4.3-samples",
+                "32.3.1-tx2i-jetpack-4.3-samples",
+                "32.3.1-tx2-4gb-jetpack-4.3-samples",
 
-                "build-32.2.1-tx1-jetpack-4.2.2-samples",
-                "build-32.2.1-jax-jetpack-4.2.2-samples",
-                "build-32.2.1-jax-8gb-jetpack-4.2.2-samples",
-                "build-32.2.1-tx2-jetpack-4.2.2-samples",
-                "build-32.2.1-nano-dev-jetpack-4.2.2-samples",
-                "build-32.2.1-nano-jetpack-4.2.2-samples",
-                "build-32.2.1-tx2i-jetpack-4.2.2-samples",
-                "build-32.2.1-tx2-4gb-jetpack-4.2.2-samples",
+                "32.2.3-tx1-jetpack-4.2.3-samples",
+                "32.2.3-jax-jetpack-4.2.3-samples",
+                "32.2.3-jax-8gb-jetpack-4.2.3-samples",
+                "32.2.3-tx2-jetpack-4.2.3-samples",
+                "32.2.3-nano-dev-jetpack-4.2.3-samples",
+                "32.2.3-nano-jetpack-4.2.3-samples",
+                "32.2.3-tx2i-jetpack-4.2.3-samples",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-samples",
 
-                "build-32.2.0-tx1-jetpack-4.2.1-samples",
-                "build-32.2.0-jax-jetpack-4.2.1-samples",
-                "build-32.2.0-tx2-jetpack-4.2.1-samples",
-                "build-32.2.0-nano-dev-jetpack-4.2.1-samples",
-                "build-32.2.0-nano-jetpack-4.2.1-samples",
-                "build-32.2.0-tx2i-jetpack-4.2.1-samples",
-                "build-32.2.0-tx2-4gb-jetpack-4.2.1-samples",
+                "32.2.1-tx1-jetpack-4.2.2-samples",
+                "32.2.1-jax-jetpack-4.2.2-samples",
+                "32.2.1-jax-8gb-jetpack-4.2.2-samples",
+                "32.2.1-tx2-jetpack-4.2.2-samples",
+                "32.2.1-nano-dev-jetpack-4.2.2-samples",
+                "32.2.1-nano-jetpack-4.2.2-samples",
+                "32.2.1-tx2i-jetpack-4.2.2-samples",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-samples",
 
-                "build-32.1-jax-jetpack-4.2-samples",
-                "build-32.1-tx2-jetpack-4.2-samples",
-                "build-32.1-nano-dev-jetpack-4.2-samples",
-                "build-32.1-tx2i-jetpack-4.2-samples"
+                "32.2.0-tx1-jetpack-4.2.1-samples",
+                "32.2.0-jax-jetpack-4.2.1-samples",
+                "32.2.0-tx2-jetpack-4.2.1-samples",
+                "32.2.0-nano-dev-jetpack-4.2.1-samples",
+                "32.2.0-nano-jetpack-4.2.1-samples",
+                "32.2.0-tx2i-jetpack-4.2.1-samples",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-samples",
+
+                "32.1-jax-jetpack-4.2-samples",
+                "32.1-tx2-jetpack-4.2-samples",
+                "32.1-nano-dev-jetpack-4.2-samples",
+                "32.1-tx2i-jetpack-4.2-samples"
             ]
         },
         {
@@ -697,6 +1551,17 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
+                "run-32.4.3-tx1-jetpack-4.4-samples",
+                "run-32.4.3-jax-jetpack-4.4-samples",
+                "run-32.4.3-jax-8gb-jetpack-4.4-samples",
+                "run-32.4.3-tx2-jetpack-4.4-samples",
+                "run-32.4.3-nano-dev-jetpack-4.4-samples",
+                "run-32.4.3-nano-jetpack-4.4-samples",
+                "run-32.4.3-tx2i-jetpack-4.4-samples",
+                "run-32.4.3-tx2-4gb-jetpack-4.4-samples",
+                "run-32.4.3-nx-dev-jetpack-4.4-samples",
+                "run-32.4.3-nx-jetpack-4.4-samples",
+
                 "run-32.3.1-tx1-jetpack-4.3-samples",
                 "run-32.3.1-jax-jetpack-4.3-samples",
                 "run-32.3.1-jax-8gb-jetpack-4.3-samples",
@@ -754,6 +1619,17 @@
             "type": "pickString",
             "description": "What make target do you want to run?",
             "options": [
+                "32.4.3-tx1-jetpack-4.4",
+                "32.4.3-jax-jetpack-4.4",
+                "32.4.3-jax-8gb-jetpack-4.4",
+                "32.4.3-tx2-jetpack-4.4",
+                "32.4.3-nano-dev-jetpack-4.4",
+                "32.4.3-nano-jetpack-4.4",
+                "32.4.3-tx2i-jetpack-4.4",
+                "32.4.3-tx2-4gb-jetpack-4.4",
+                "32.4.3-nx-dev-jetpack-4.4",
+                "32.4.3-nx-jetpack-4.4",
+
                 "32.3.1-tx1-jetpack-4.3",
                 "32.3.1-jax-jetpack-4.3",
                 "32.3.1-jax-8gb-jetpack-4.3",
@@ -819,6 +1695,7 @@
 
                 "cti-jax-deps",
                 "cti-jax-8gb-deps",
+                "cti-nx-deps",
                 "cti-nano-deps",
                 "cti-tx1-deps",
                 "cti-tx2-deps",
@@ -828,24 +1705,1845 @@
                 "cti-32.1-jax-bsp-v203-deps",
                 "cti-32.2.0-jax-bsp-v204-deps",
                 "cti-32.2.1-jax-bsp-agx-32.2.1-v002-deps",
+                "cti-32.3.1-jax-bsp-agx-32.3.1-v007-deps",
+                "cti-32.4.3-jax-bsp-agx-32.4.3-v001-deps",
 
                 "cti-32.2.1-jax-8gb-bsp-agx-32.2.1-v002-deps",
+                "cti-32.3.1-jax-8gb-bsp-agx-32.3.1-v007-deps",
+                "cti-32.4.3-jax-8gb-bsp-agx-32.4.3-v001-deps",
+
+                "cti-32.4.3-nx-bsp-xavier-nx-32.4.3-v003-deps",
 
                 "cti-32.2.1-nano-bsp-nano-32.2.1-v001-deps",
+                "cti-32.3.1-nano-bsp-nano-32.3.1-v005-deps",
+                "cti-32.4.3-nano-bsp-nano-32.4.3-v001-deps",
 
                 "cti-32.2.1-tx1-bsp-tx1-32.2.1-v001-deps",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-deps",
 
                 "cti-32.1-tx2-bsp-v125-deps",
                 "cti-32.2.0-tx2-bsp-v126-1-deps",
                 "cti-32.2.1-tx2-bsp-tx2-32.2.1-v004-deps",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-deps",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-deps",
 
                 "cti-32.2.1-tx2-4gb-bsp-tx2-32.2.1-v004-deps",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-deps",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-deps",
 
                 "cti-32.1-tx2i-bsp-v125-deps",
                 "cti-32.2.0-tx2i-bsp-v126-1-deps",
-                "cti-32.2.1-tx2i-bsp-tx2-32.2.1-v004-deps"
+                "cti-32.2.1-tx2i-bsp-tx2-32.2.1-v004-deps",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-deps",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-deps"
             ]
         },
+        {
+            "id": "pickTFtx1-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-tx1-jetpack-4.4-tf"
+            ]
+        },
+        {
+            "id": "pickTFjax-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-jax-jetpack-4.4-tf"
+            ]
+        },
+        {
+            "id": "pickTFjax-8gb-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-tx2-jetpack-4.4-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-dev-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-nano-jetpack-4.4-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2i-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-4gb-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf"
+            ]
+        },
+        {
+            "id": "pickTFnx-dev-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf"
+            ]
+        },
+        {
+            "id": "pickTFnx-32.4.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4-min",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4-devel",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7-min",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7-devel",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.6-min",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.6-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.6-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.6-devel",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.6-min",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.6-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.6-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.6-devel",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.7-min",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.7-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.7-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.7-devel",
+                "32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4-min",
+                "32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4-devel",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8-min",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8-devel",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-min",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-nx-jetpack-4.4-tf"
+            ]
+        },
+
+        {
+            "id": "pickTFtx1-32.3.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12-min",
+                "32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12-runtime",
+                "32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12-runtime-tensorrt",
+                "32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12-devel",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv19.12-min",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv19.12-runtime",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv19.12-runtime-tensorrt",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv19.12-devel",
+                "32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv20.1-min",
+                "32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv20.1-runtime",
+                "32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv20.1-runtime-tensorrt",
+                "32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv20.1-devel",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv20.1-min",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv20.1-runtime",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv20.1-runtime-tensorrt",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv20.1-devel",
+                "32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.2-min",
+                "32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.2-runtime",
+                "32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.2-runtime-tensorrt",
+                "32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.2-devel",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.2-min",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.2-runtime",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.2-runtime-tensorrt",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.2-devel",
+                "32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.3-min",
+                "32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.3-runtime",
+                "32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.3-runtime-tensorrt",
+                "32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.3-devel",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.3-min",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.3-runtime",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.3-runtime-tensorrt",
+                "32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.3-devel",
+                "32.3.1-tx1-jetpack-4.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFjax-32.3.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.3.1-jax-jetpack-4.3-tf-2.0.0-nv19.12-min",
+                "32.3.1-jax-jetpack-4.3-tf-2.0.0-nv19.12-runtime",
+                "32.3.1-jax-jetpack-4.3-tf-2.0.0-nv19.12-runtime-tensorrt",
+                "32.3.1-jax-jetpack-4.3-tf-2.0.0-nv19.12-devel",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.0-nv19.12-min",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.0-nv19.12-runtime",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.0-nv19.12-runtime-tensorrt",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.0-nv19.12-devel",
+                "32.3.1-jax-jetpack-4.3-tf-2.0.0-nv20.1-min",
+                "32.3.1-jax-jetpack-4.3-tf-2.0.0-nv20.1-runtime",
+                "32.3.1-jax-jetpack-4.3-tf-2.0.0-nv20.1-runtime-tensorrt",
+                "32.3.1-jax-jetpack-4.3-tf-2.0.0-nv20.1-devel",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.0-nv20.1-min",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.0-nv20.1-runtime",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.0-nv20.1-runtime-tensorrt",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.0-nv20.1-devel",
+                "32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.2-min",
+                "32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.2-runtime",
+                "32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.2-runtime-tensorrt",
+                "32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.2-devel",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.2-min",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.2-runtime",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.2-runtime-tensorrt",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.2-devel",
+                "32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.3-min",
+                "32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.3-runtime",
+                "32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.3-runtime-tensorrt",
+                "32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.3-devel",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.3-min",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.3-runtime",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.3-runtime-tensorrt",
+                "32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.3-devel",
+                "32.3.1-jax-jetpack-4.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFjax-8gb-32.3.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv19.12-min",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv19.12-runtime",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv19.12-runtime-tensorrt",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv19.12-devel",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv19.12-min",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv19.12-runtime",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv19.12-runtime-tensorrt",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv19.12-devel",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv20.1-min",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv20.1-runtime",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv20.1-runtime-tensorrt",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv20.1-devel",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv20.1-min",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv20.1-runtime",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv20.1-runtime-tensorrt",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv20.1-devel",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.2-min",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.2-runtime",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.2-runtime-tensorrt",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.2-devel",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.2-min",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.2-runtime",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.2-runtime-tensorrt",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.2-devel",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.3-min",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.3-runtime",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.3-runtime-tensorrt",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.3-devel",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.3-min",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.3-runtime",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.3-runtime-tensorrt",
+                "32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.3-devel",
+                "32.3.1-jax-8gb-jetpack-4.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-32.3.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.3.1-tx2-jetpack-4.3-tf-2.0.0-nv19.12-min",
+                "32.3.1-tx2-jetpack-4.3-tf-2.0.0-nv19.12-runtime",
+                "32.3.1-tx2-jetpack-4.3-tf-2.0.0-nv19.12-runtime-tensorrt",
+                "32.3.1-tx2-jetpack-4.3-tf-2.0.0-nv19.12-devel",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.0-nv19.12-min",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.0-nv19.12-runtime",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.0-nv19.12-runtime-tensorrt",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.0-nv19.12-devel",
+                "32.3.1-tx2-jetpack-4.3-tf-2.0.0-nv20.1-min",
+                "32.3.1-tx2-jetpack-4.3-tf-2.0.0-nv20.1-runtime",
+                "32.3.1-tx2-jetpack-4.3-tf-2.0.0-nv20.1-runtime-tensorrt",
+                "32.3.1-tx2-jetpack-4.3-tf-2.0.0-nv20.1-devel",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.0-nv20.1-min",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.0-nv20.1-runtime",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.0-nv20.1-runtime-tensorrt",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.0-nv20.1-devel",
+                "32.3.1-tx2-jetpack-4.3-tf-2.1.0-nv20.2-min",
+                "32.3.1-tx2-jetpack-4.3-tf-2.1.0-nv20.2-runtime",
+                "32.3.1-tx2-jetpack-4.3-tf-2.1.0-nv20.2-runtime-tensorrt",
+                "32.3.1-tx2-jetpack-4.3-tf-2.1.0-nv20.2-devel",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.2-nv20.2-min",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.2-nv20.2-runtime",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.2-nv20.2-runtime-tensorrt",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.2-nv20.2-devel",
+                "32.3.1-tx2-jetpack-4.3-tf-2.1.0-nv20.3-min",
+                "32.3.1-tx2-jetpack-4.3-tf-2.1.0-nv20.3-runtime",
+                "32.3.1-tx2-jetpack-4.3-tf-2.1.0-nv20.3-runtime-tensorrt",
+                "32.3.1-tx2-jetpack-4.3-tf-2.1.0-nv20.3-devel",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.2-nv20.3-min",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.2-nv20.3-runtime",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.2-nv20.3-runtime-tensorrt",
+                "32.3.1-tx2-jetpack-4.3-tf-1.15.2-nv20.3-devel",
+                "32.3.1-tx2-jetpack-4.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-dev-32.3.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.0.0-nv19.12-min",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.0.0-nv19.12-runtime",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.0.0-nv19.12-runtime-tensorrt",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.0.0-nv19.12-devel",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.0-nv19.12-min",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.0-nv19.12-runtime",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.0-nv19.12-runtime-tensorrt",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.0-nv19.12-devel",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.0.0-nv20.1-min",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.0.0-nv20.1-runtime",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.0.0-nv20.1-runtime-tensorrt",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.0.0-nv20.1-devel",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.0-nv20.1-min",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.0-nv20.1-runtime",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.0-nv20.1-runtime-tensorrt",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.0-nv20.1-devel",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.1.0-nv20.2-min",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.1.0-nv20.2-runtime",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.1.0-nv20.2-runtime-tensorrt",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.1.0-nv20.2-devel",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.2-nv20.2-min",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.2-nv20.2-runtime",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.2-nv20.2-runtime-tensorrt",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.2-nv20.2-devel",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.1.0-nv20.3-min",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.1.0-nv20.3-runtime",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.1.0-nv20.3-runtime-tensorrt",
+                "32.3.1-nano-dev-jetpack-4.3-tf-2.1.0-nv20.3-devel",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.2-nv20.3-min",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.2-nv20.3-runtime",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.2-nv20.3-runtime-tensorrt",
+                "32.3.1-nano-dev-jetpack-4.3-tf-1.15.2-nv20.3-devel",
+                "32.3.1-nano-dev-jetpack-4.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-32.3.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.3.1-nano-jetpack-4.3-tf-2.0.0-nv19.12-min",
+                "32.3.1-nano-jetpack-4.3-tf-2.0.0-nv19.12-runtime",
+                "32.3.1-nano-jetpack-4.3-tf-2.0.0-nv19.12-runtime-tensorrt",
+                "32.3.1-nano-jetpack-4.3-tf-2.0.0-nv19.12-devel",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.0-nv19.12-min",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.0-nv19.12-runtime",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.0-nv19.12-runtime-tensorrt",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.0-nv19.12-devel",
+                "32.3.1-nano-jetpack-4.3-tf-2.0.0-nv20.1-min",
+                "32.3.1-nano-jetpack-4.3-tf-2.0.0-nv20.1-runtime",
+                "32.3.1-nano-jetpack-4.3-tf-2.0.0-nv20.1-runtime-tensorrt",
+                "32.3.1-nano-jetpack-4.3-tf-2.0.0-nv20.1-devel",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.0-nv20.1-min",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.0-nv20.1-runtime",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.0-nv20.1-runtime-tensorrt",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.0-nv20.1-devel",
+                "32.3.1-nano-jetpack-4.3-tf-2.1.0-nv20.2-min",
+                "32.3.1-nano-jetpack-4.3-tf-2.1.0-nv20.2-runtime",
+                "32.3.1-nano-jetpack-4.3-tf-2.1.0-nv20.2-runtime-tensorrt",
+                "32.3.1-nano-jetpack-4.3-tf-2.1.0-nv20.2-devel",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.2-nv20.2-min",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.2-nv20.2-runtime",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.2-nv20.2-runtime-tensorrt",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.2-nv20.2-devel",
+                "32.3.1-nano-jetpack-4.3-tf-2.1.0-nv20.3-min",
+                "32.3.1-nano-jetpack-4.3-tf-2.1.0-nv20.3-runtime",
+                "32.3.1-nano-jetpack-4.3-tf-2.1.0-nv20.3-runtime-tensorrt",
+                "32.3.1-nano-jetpack-4.3-tf-2.1.0-nv20.3-devel",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.2-nv20.3-min",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.2-nv20.3-runtime",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.2-nv20.3-runtime-tensorrt",
+                "32.3.1-nano-jetpack-4.3-tf-1.15.2-nv20.3-devel",
+                "32.3.1-nano-jetpack-4.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2i-32.3.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.3.1-tx2i-jetpack-4.3-tf-2.0.0-nv19.12-min",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.0.0-nv19.12-runtime",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.0.0-nv19.12-runtime-tensorrt",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.0.0-nv19.12-devel",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.0-nv19.12-min",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.0-nv19.12-runtime",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.0-nv19.12-runtime-tensorrt",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.0-nv19.12-devel",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.0.0-nv20.1-min",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.0.0-nv20.1-runtime",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.0.0-nv20.1-runtime-tensorrt",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.0.0-nv20.1-devel",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.0-nv20.1-min",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.0-nv20.1-runtime",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.0-nv20.1-runtime-tensorrt",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.0-nv20.1-devel",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.1.0-nv20.2-min",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.1.0-nv20.2-runtime",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.1.0-nv20.2-runtime-tensorrt",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.1.0-nv20.2-devel",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.2-nv20.2-min",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.2-nv20.2-runtime",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.2-nv20.2-runtime-tensorrt",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.2-nv20.2-devel",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.1.0-nv20.3-min",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.1.0-nv20.3-runtime",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.1.0-nv20.3-runtime-tensorrt",
+                "32.3.1-tx2i-jetpack-4.3-tf-2.1.0-nv20.3-devel",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.2-nv20.3-min",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.2-nv20.3-runtime",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.2-nv20.3-runtime-tensorrt",
+                "32.3.1-tx2i-jetpack-4.3-tf-1.15.2-nv20.3-devel",
+                "32.3.1-tx2i-jetpack-4.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-4gb-32.3.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.0.0-nv19.12-min",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.0.0-nv19.12-runtime",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.0.0-nv19.12-runtime-tensorrt",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.0.0-nv19.12-devel",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.0-nv19.12-min",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.0-nv19.12-runtime",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.0-nv19.12-runtime-tensorrt",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.0-nv19.12-devel",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.0.0-nv20.1-min",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.0.0-nv20.1-runtime",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.0.0-nv20.1-runtime-tensorrt",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.0.0-nv20.1-devel",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.0-nv20.1-min",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.0-nv20.1-runtime",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.0-nv20.1-runtime-tensorrt",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.0-nv20.1-devel",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.1.0-nv20.2-min",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.1.0-nv20.2-runtime",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.1.0-nv20.2-runtime-tensorrt",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.1.0-nv20.2-devel",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.2-nv20.2-min",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.2-nv20.2-runtime",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.2-nv20.2-runtime-tensorrt",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.2-nv20.2-devel",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.1.0-nv20.3-min",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.1.0-nv20.3-runtime",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.1.0-nv20.3-runtime-tensorrt",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-2.1.0-nv20.3-devel",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.2-nv20.3-min",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.2-nv20.3-runtime",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.2-nv20.3-runtime-tensorrt",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf-1.15.2-nv20.3-devel",
+                "32.3.1-tx2-4gb-jetpack-4.3-tf"
+            ]
+        },
+
+        {
+            "id": "pickTFtx1-32.2.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.3-min",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.3-devel",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.4-min",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.4-devel",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.5-min",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.13.1-nv19.5-devel",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.7-min",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.7-devel",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.9-min",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.9-devel",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.10-min",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.14.0-nv19.10-devel",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.15.0-nv19.11-min",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.3-tx1-jetpack-4.2.3-tf-1.15.0-nv19.11-devel",
+                "32.2.3-tx1-jetpack-4.2.3-tf-2.0.0-nv19.11-min",
+                "32.2.3-tx1-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime",
+                "32.2.3-tx1-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.3-tx1-jetpack-4.2.3-tf-2.0.0-nv19.11-devel",
+                "32.2.3-tx1-jetpack-4.2.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFjax-32.2.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.3-min",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.3-devel",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.4-min",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.4-devel",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.5-min",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.13.1-nv19.5-devel",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.7-min",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.7-devel",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.9-min",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.9-devel",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.10-min",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.14.0-nv19.10-devel",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.15.0-nv19.11-min",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.3-jax-jetpack-4.2.3-tf-1.15.0-nv19.11-devel",
+                "32.2.3-jax-jetpack-4.2.3-tf-2.0.0-nv19.11-min",
+                "32.2.3-jax-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime",
+                "32.2.3-jax-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.3-jax-jetpack-4.2.3-tf-2.0.0-nv19.11-devel",
+                "32.2.3-jax-jetpack-4.2.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFjax-8gb-32.2.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.3-min",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.3-devel",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.4-min",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.4-devel",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.5-min",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.13.1-nv19.5-devel",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.7-min",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.7-devel",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.9-min",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.9-devel",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.10-min",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.14.0-nv19.10-devel",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.15.0-nv19.11-min",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-1.15.0-nv19.11-devel",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-2.0.0-nv19.11-min",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf-2.0.0-nv19.11-devel",
+                "32.2.3-jax-8gb-jetpack-4.2.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-32.2.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.3-min",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.3-devel",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.4-min",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.4-devel",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.5-min",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.13.1-nv19.5-devel",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.7-min",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.7-devel",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.9-min",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.9-devel",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.10-min",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.14.0-nv19.10-devel",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.15.0-nv19.11-min",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.3-tx2-jetpack-4.2.3-tf-1.15.0-nv19.11-devel",
+                "32.2.3-tx2-jetpack-4.2.3-tf-2.0.0-nv19.11-min",
+                "32.2.3-tx2-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime",
+                "32.2.3-tx2-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.3-tx2-jetpack-4.2.3-tf-2.0.0-nv19.11-devel",
+                "32.2.3-tx2-jetpack-4.2.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-dev-32.2.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.3-min",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.3-devel",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.4-min",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.4-devel",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.5-min",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.13.1-nv19.5-devel",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.7-min",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.7-devel",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.9-min",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.9-devel",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.10-min",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.14.0-nv19.10-devel",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.15.0-nv19.11-min",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-1.15.0-nv19.11-devel",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-2.0.0-nv19.11-min",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf-2.0.0-nv19.11-devel",
+                "32.2.3-nano-dev-jetpack-4.2.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-32.2.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.3-min",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.3-devel",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.4-min",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.4-devel",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.5-min",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.13.1-nv19.5-devel",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.7-min",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.7-devel",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.9-min",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.9-devel",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.10-min",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.14.0-nv19.10-devel",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.15.0-nv19.11-min",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.3-nano-jetpack-4.2.3-tf-1.15.0-nv19.11-devel",
+                "32.2.3-nano-jetpack-4.2.3-tf-2.0.0-nv19.11-min",
+                "32.2.3-nano-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime",
+                "32.2.3-nano-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.3-nano-jetpack-4.2.3-tf-2.0.0-nv19.11-devel",
+                "32.2.3-nano-jetpack-4.2.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2i-32.2.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.3-min",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.3-devel",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.4-min",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.4-devel",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.5-min",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.13.1-nv19.5-devel",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.7-min",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.7-devel",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.9-min",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.9-devel",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.10-min",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.14.0-nv19.10-devel",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.15.0-nv19.11-min",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-1.15.0-nv19.11-devel",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-2.0.0-nv19.11-min",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.3-tx2i-jetpack-4.2.3-tf-2.0.0-nv19.11-devel",
+                "32.2.3-tx2i-jetpack-4.2.3-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-4gb-32.2.3",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.3-min",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.3-devel",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.4-min",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.4-devel",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.5-min",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.13.1-nv19.5-devel",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.7-min",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.7-devel",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.9-min",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.9-devel",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.10-min",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.14.0-nv19.10-devel",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.15.0-nv19.11-min",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-1.15.0-nv19.11-devel",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-2.0.0-nv19.11-min",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf-2.0.0-nv19.11-devel",
+                "32.2.3-tx2-4gb-jetpack-4.2.3-tf"
+            ]
+        },
+
+        {
+            "id": "pickTFtx1-32.2.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.3-min",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.3-devel",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.4-min",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.4-devel",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.5-min",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.13.1-nv19.5-devel",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.7-min",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.7-devel",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.9-min",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.9-devel",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.10-min",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.14.0-nv19.10-devel",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.15.0-nv19.11-min",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.1-tx1-jetpack-4.2.2-tf-1.15.0-nv19.11-devel",
+                "32.2.1-tx1-jetpack-4.2.2-tf-2.0.0-nv19.11-min",
+                "32.2.1-tx1-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime",
+                "32.2.1-tx1-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.1-tx1-jetpack-4.2.2-tf-2.0.0-nv19.11-devel",
+                "32.2.1-tx1-jetpack-4.2.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFjax-32.2.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.3-min",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.3-devel",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.4-min",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.4-devel",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.5-min",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.13.1-nv19.5-devel",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.7-min",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.7-devel",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.9-min",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.9-devel",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.10-min",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.14.0-nv19.10-devel",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.15.0-nv19.11-min",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.1-jax-jetpack-4.2.2-tf-1.15.0-nv19.11-devel",
+                "32.2.1-jax-jetpack-4.2.2-tf-2.0.0-nv19.11-min",
+                "32.2.1-jax-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime",
+                "32.2.1-jax-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.1-jax-jetpack-4.2.2-tf-2.0.0-nv19.11-devel",
+                "32.2.1-jax-jetpack-4.2.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFjax-8gb-32.2.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.3-min",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.3-devel",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.4-min",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.4-devel",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.5-min",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.13.1-nv19.5-devel",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.7-min",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.7-devel",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.9-min",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.9-devel",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.10-min",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.14.0-nv19.10-devel",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.15.0-nv19.11-min",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-1.15.0-nv19.11-devel",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-2.0.0-nv19.11-min",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf-2.0.0-nv19.11-devel",
+                "32.2.1-jax-8gb-jetpack-4.2.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-32.2.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.3-min",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.3-devel",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.4-min",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.4-devel",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.5-min",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.13.1-nv19.5-devel",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.7-min",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.7-devel",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.9-min",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.9-devel",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.10-min",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.14.0-nv19.10-devel",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.15.0-nv19.11-min",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.1-tx2-jetpack-4.2.2-tf-1.15.0-nv19.11-devel",
+                "32.2.1-tx2-jetpack-4.2.2-tf-2.0.0-nv19.11-min",
+                "32.2.1-tx2-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime",
+                "32.2.1-tx2-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.1-tx2-jetpack-4.2.2-tf-2.0.0-nv19.11-devel",
+                "32.2.1-tx2-jetpack-4.2.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-dev-32.2.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.3-min",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.3-devel",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.4-min",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.4-devel",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.5-min",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.13.1-nv19.5-devel",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.7-min",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.7-devel",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.9-min",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.9-devel",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.10-min",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.14.0-nv19.10-devel",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.15.0-nv19.11-min",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-1.15.0-nv19.11-devel",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-2.0.0-nv19.11-min",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf-2.0.0-nv19.11-devel",
+                "32.2.1-nano-dev-jetpack-4.2.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-32.2.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.3-min",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.3-devel",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.4-min",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.4-devel",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.5-min",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.13.1-nv19.5-devel",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.7-min",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.7-devel",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.9-min",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.9-devel",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.10-min",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.14.0-nv19.10-devel",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.15.0-nv19.11-min",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.1-nano-jetpack-4.2.2-tf-1.15.0-nv19.11-devel",
+                "32.2.1-nano-jetpack-4.2.2-tf-2.0.0-nv19.11-min",
+                "32.2.1-nano-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime",
+                "32.2.1-nano-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.1-nano-jetpack-4.2.2-tf-2.0.0-nv19.11-devel",
+                "32.2.1-nano-jetpack-4.2.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2i-32.2.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.3-min",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.3-devel",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.4-min",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.4-devel",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.5-min",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.13.1-nv19.5-devel",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.7-min",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.7-devel",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.9-min",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.9-devel",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.10-min",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.14.0-nv19.10-devel",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.15.0-nv19.11-min",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-1.15.0-nv19.11-devel",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-2.0.0-nv19.11-min",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.1-tx2i-jetpack-4.2.2-tf-2.0.0-nv19.11-devel",
+                "32.2.1-tx2i-jetpack-4.2.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-4gb-32.2.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.3-min",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.3-devel",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.4-min",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.4-devel",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.5-min",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.13.1-nv19.5-devel",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.7-min",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.7-devel",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.9-min",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.9-devel",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.10-min",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.14.0-nv19.10-devel",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.15.0-nv19.11-min",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-1.15.0-nv19.11-devel",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-2.0.0-nv19.11-min",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf-2.0.0-nv19.11-devel",
+                "32.2.1-tx2-4gb-jetpack-4.2.2-tf"
+            ]
+        },
+
+        {
+            "id": "pickTFtx1-32.2.0",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.3-min",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.3-devel",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.4-min",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.4-devel",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.5-min",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.13.1-nv19.5-devel",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.7-min",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.7-devel",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.9-min",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.9-devel",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.10-min",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.14.0-nv19.10-devel",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.15.0-nv19.11-min",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.0-tx1-jetpack-4.2.1-tf-1.15.0-nv19.11-devel",
+                "32.2.0-tx1-jetpack-4.2.1-tf-2.0.0-nv19.11-min",
+                "32.2.0-tx1-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime",
+                "32.2.0-tx1-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.0-tx1-jetpack-4.2.1-tf-2.0.0-nv19.11-devel",
+                "32.2.0-tx1-jetpack-4.2.1-tf"
+            ]
+        },
+        {
+            "id": "pickTFjax-32.2.0",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.3-min",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.3-devel",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.4-min",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.4-devel",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.5-min",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.13.1-nv19.5-devel",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.7-min",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.7-devel",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.9-min",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.9-devel",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.10-min",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.14.0-nv19.10-devel",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.15.0-nv19.11-min",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.0-jax-jetpack-4.2.1-tf-1.15.0-nv19.11-devel",
+                "32.2.0-jax-jetpack-4.2.1-tf-2.0.0-nv19.11-min",
+                "32.2.0-jax-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime",
+                "32.2.0-jax-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.0-jax-jetpack-4.2.1-tf-2.0.0-nv19.11-devel",
+                "32.2.0-jax-jetpack-4.2.1-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-32.2.0",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.3-min",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.3-devel",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.4-min",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.4-devel",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.5-min",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.13.1-nv19.5-devel",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.7-min",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.7-devel",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.9-min",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.9-devel",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.10-min",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.14.0-nv19.10-devel",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.15.0-nv19.11-min",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.0-tx2-jetpack-4.2.1-tf-1.15.0-nv19.11-devel",
+                "32.2.0-tx2-jetpack-4.2.1-tf-2.0.0-nv19.11-min",
+                "32.2.0-tx2-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime",
+                "32.2.0-tx2-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.0-tx2-jetpack-4.2.1-tf-2.0.0-nv19.11-devel",
+                "32.2.0-tx2-jetpack-4.2.1-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-dev-32.2.0",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.3-min",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.3-devel",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.4-min",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.4-devel",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.5-min",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.13.1-nv19.5-devel",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.7-min",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.7-devel",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.9-min",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.9-devel",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.10-min",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.14.0-nv19.10-devel",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.15.0-nv19.11-min",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-1.15.0-nv19.11-devel",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-2.0.0-nv19.11-min",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf-2.0.0-nv19.11-devel",
+                "32.2.0-nano-dev-jetpack-4.2.1-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-32.2.0",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.3-min",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.3-devel",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.4-min",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.4-devel",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.5-min",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.13.1-nv19.5-devel",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.7-min",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.7-devel",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.9-min",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.9-devel",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.10-min",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.14.0-nv19.10-devel",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.15.0-nv19.11-min",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.0-nano-jetpack-4.2.1-tf-1.15.0-nv19.11-devel",
+                "32.2.0-nano-jetpack-4.2.1-tf-2.0.0-nv19.11-min",
+                "32.2.0-nano-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime",
+                "32.2.0-nano-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.0-nano-jetpack-4.2.1-tf-2.0.0-nv19.11-devel",
+                "32.2.0-nano-jetpack-4.2.1-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2i-32.2.0",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.3-min",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.3-devel",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.4-min",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.4-devel",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.5-min",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.13.1-nv19.5-devel",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.7-min",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.7-devel",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.9-min",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.9-devel",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.10-min",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.14.0-nv19.10-devel",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.15.0-nv19.11-min",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-1.15.0-nv19.11-devel",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-2.0.0-nv19.11-min",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.0-tx2i-jetpack-4.2.1-tf-2.0.0-nv19.11-devel",
+                "32.2.0-tx2i-jetpack-4.2.1-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-4gb-32.2.0",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.3-min",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.3-devel",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.4-min",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.4-devel",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.5-min",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.13.1-nv19.5-devel",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.7-min",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.7-devel",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.9-min",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.9-devel",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.10-min",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.14.0-nv19.10-devel",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.15.0-nv19.11-min",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-1.15.0-nv19.11-devel",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-2.0.0-nv19.11-min",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf-2.0.0-nv19.11-devel",
+                "32.2.0-tx2-4gb-jetpack-4.2.1-tf"
+            ]
+        },
+
+        {
+            "id": "pickTFjax-32.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.3-min",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.3-runtime",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.3-devel",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.4-min",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.4-runtime",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.4-devel",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.5-min",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.5-runtime",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.1-jax-jetpack-4.2-tf-1.13.1-nv19.5-devel",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.7-min",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.7-runtime",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.7-devel",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.9-min",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.9-runtime",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.9-devel",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.10-min",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.10-runtime",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.1-jax-jetpack-4.2-tf-1.14.0-nv19.10-devel",
+                "32.1-jax-jetpack-4.2-tf-1.15.0-nv19.11-min",
+                "32.1-jax-jetpack-4.2-tf-1.15.0-nv19.11-runtime",
+                "32.1-jax-jetpack-4.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.1-jax-jetpack-4.2-tf-1.15.0-nv19.11-devel",
+                "32.1-jax-jetpack-4.2-tf-2.0.0-nv19.11-min",
+                "32.1-jax-jetpack-4.2-tf-2.0.0-nv19.11-runtime",
+                "32.1-jax-jetpack-4.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.1-jax-jetpack-4.2-tf-2.0.0-nv19.11-devel",
+                "32.1-jax-jetpack-4.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2-32.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.3-min",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.3-runtime",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.3-devel",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.4-min",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.4-runtime",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.4-devel",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.5-min",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.5-runtime",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.1-tx2-jetpack-4.2-tf-1.13.1-nv19.5-devel",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.7-min",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.7-runtime",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.7-devel",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.9-min",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.9-runtime",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.9-devel",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.10-min",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.10-runtime",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.1-tx2-jetpack-4.2-tf-1.14.0-nv19.10-devel",
+                "32.1-tx2-jetpack-4.2-tf-1.15.0-nv19.11-min",
+                "32.1-tx2-jetpack-4.2-tf-1.15.0-nv19.11-runtime",
+                "32.1-tx2-jetpack-4.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.1-tx2-jetpack-4.2-tf-1.15.0-nv19.11-devel",
+                "32.1-tx2-jetpack-4.2-tf-2.0.0-nv19.11-min",
+                "32.1-tx2-jetpack-4.2-tf-2.0.0-nv19.11-runtime",
+                "32.1-tx2-jetpack-4.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.1-tx2-jetpack-4.2-tf-2.0.0-nv19.11-devel",
+                "32.1-tx2-jetpack-4.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFnano-dev-32.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.3-min",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.3-runtime",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.3-devel",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.4-min",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.4-runtime",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.4-devel",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.5-min",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.5-runtime",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.1-nano-dev-jetpack-4.2-tf-1.13.1-nv19.5-devel",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.7-min",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.7-runtime",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.7-devel",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.9-min",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.9-runtime",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.9-devel",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.10-min",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.10-runtime",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.1-nano-dev-jetpack-4.2-tf-1.14.0-nv19.10-devel",
+                "32.1-nano-dev-jetpack-4.2-tf-1.15.0-nv19.11-min",
+                "32.1-nano-dev-jetpack-4.2-tf-1.15.0-nv19.11-runtime",
+                "32.1-nano-dev-jetpack-4.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.1-nano-dev-jetpack-4.2-tf-1.15.0-nv19.11-devel",
+                "32.1-nano-dev-jetpack-4.2-tf-2.0.0-nv19.11-min",
+                "32.1-nano-dev-jetpack-4.2-tf-2.0.0-nv19.11-runtime",
+                "32.1-nano-dev-jetpack-4.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.1-nano-dev-jetpack-4.2-tf-2.0.0-nv19.11-devel",
+                "32.1-nano-dev-jetpack-4.2-tf"
+            ]
+        },
+        {
+            "id": "pickTFtx2i-32.1",
+            "type": "pickString",
+            "description": "What make target do you want to run?",
+            "options": [
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.3-min",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.3-runtime",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.3-runtime-tensorrt",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.3-devel",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.4-min",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.4-runtime",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.4-runtime-tensorrt",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.4-devel",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.5-min",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.5-runtime",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.5-runtime-tensorrt",
+                "32.1-tx2i-jetpack-4.2-tf-1.13.1-nv19.5-devel",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.7-min",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.7-runtime",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.7-runtime-tensorrt",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.7-devel",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.9-min",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.9-runtime",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.9-runtime-tensorrt",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.9-devel",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.10-min",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.10-runtime",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.10-runtime-tensorrt",
+                "32.1-tx2i-jetpack-4.2-tf-1.14.0-nv19.10-devel",
+                "32.1-tx2i-jetpack-4.2-tf-1.15.0-nv19.11-min",
+                "32.1-tx2i-jetpack-4.2-tf-1.15.0-nv19.11-runtime",
+                "32.1-tx2i-jetpack-4.2-tf-1.15.0-nv19.11-runtime-tensorrt",
+                "32.1-tx2i-jetpack-4.2-tf-1.15.0-nv19.11-devel",
+                "32.1-tx2i-jetpack-4.2-tf-2.0.0-nv19.11-min",
+                "32.1-tx2i-jetpack-4.2-tf-2.0.0-nv19.11-runtime",
+                "32.1-tx2i-jetpack-4.2-tf-2.0.0-nv19.11-runtime-tensorrt",
+                "32.1-tx2i-jetpack-4.2-tf-2.0.0-nv19.11-devel",
+                "32.1-tx2i-jetpack-4.2-tf"
+            ]
+        },
+
         {
             "id": "pickCtiImagingBuilds",
             "type": "pickString",
@@ -855,6 +3553,7 @@
 
                 "cti-jax-images",
                 "cti-jax-8gb-images",
+                "cti-nx-images",
                 "cti-nano-images",
                 "cti-tx1-images",
                 "cti-tx2-images",
@@ -864,22 +3563,37 @@
                 "cti-32.1-jax-bsp-v203-image",
                 "cti-32.2.0-jax-bsp-v204-image",
                 "cti-32.2.1-jax-bsp-agx-32.2.1-v002-image",
+                "cti-32.3.1-jax-bsp-agx-32.3.1-v007-image",
+                "cti-32.4.3-jax-bsp-agx-32.4.3-v001-image",
 
                 "cti-32.2.1-jax-8gb-bsp-agx-32.2.1-v002-image",
+                "cti-32.3.1-jax-8gb-bsp-agx-32.3.1-v007-image",
+                "cti-32.4.3-jax-8gb-bsp-agx-32.4.3-v001-image",
+
+                "cti-32.4.3-nx-bsp-xavier-nx-32.4.3-v003-image",
 
                 "cti-32.2.1-nano-bsp-nano-32.2.1-v001-image",
+                "cti-32.3.1-nano-bsp-nano-32.3.1-v005-image",
+                "cti-32.4.3-nano-bsp-nano-32.4.3-v001-image",
 
                 "cti-32.2.1-tx1-bsp-tx1-32.2.1-v001-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-image",
 
                 "cti-32.1-tx2-bsp-v125-image",
                 "cti-32.2.0-tx2-bsp-v126-1-image",
                 "cti-32.2.1-tx2-bsp-tx2-32.2.1-v004-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-image",
 
                 "cti-32.2.1-tx2-4gb-bsp-tx2-32.2.1-v004-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-image",
 
                 "cti-32.1-tx2i-bsp-v125-image",
                 "cti-32.2.0-tx2i-bsp-v126-1-image",
                 "cti-32.2.1-tx2i-bsp-tx2-32.2.1-v004-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-image",
 
 
                 "cti-32.1-jax-bsp-v203-rogue-image",
@@ -891,12 +3605,30 @@
                 "cti-32.2.1-jax-bsp-agx-32.2.1-v002-rogue-image",
                 "cti-32.2.1-jax-bsp-agx-32.2.1-v002-rogue-imx274-2cam-image",
                 "cti-32.2.1-jax-bsp-agx-32.2.1-v002-mimic-base-image",
+                "cti-32.3.1-jax-bsp-agx-32.3.1-v007-rogue-image",
+                "cti-32.3.1-jax-bsp-agx-32.3.1-v007-rogueX-image",
+                "cti-32.4.3-jax-bsp-agx-32.4.3-v001-rogue-image",
+                "cti-32.4.3-jax-bsp-agx-32.4.3-v001-rogueX-image",
+                "cti-32.4.3-jax-bsp-agx-32.4.3-v001-Mimic-image",
 
                 "cti-32.2.1-jax-8gb-bsp-agx-32.2.1-v002-rogue-image",
                 "cti-32.2.1-jax-8gb-bsp-agx-32.2.1-v002-rogue-imx274-2cam-image",
                 "cti-32.2.1-jax-8gb-bsp-agx-32.2.1-v002-mimic-base-image",
+                "cti-32.3.1-jax-8gb-bsp-agx-32.3.1-v007-rogue-image",
+                "cti-32.3.1-jax-8gb-bsp-agx-32.3.1-v007-rogueX-image",
+                "cti-32.4.3-jax-8gb-bsp-agx-32.4.3-v001-rogue-image",
+                "cti-32.4.3-jax-8gb-bsp-agx-32.4.3-v001-rogueX-image",
+                "cti-32.4.3-jax-8gb-bsp-agx-32.4.3-v001-Mimic-image",
+
+                "cti-32.4.3-nx-bsp-xavier-nx-32.4.3-v003-photon-image",
+                "cti-32.4.3-nx-bsp-xavier-nx-32.4.3-v003-quark-image",
+                "cti-32.4.3-nx-bsp-xavier-nx-32.4.3-v003-rudi-nx-image",
 
                 "cti-32.2.1-nano-bsp-nano-32.2.1-v001-photon-image",
+                "cti-32.3.1-nano-bsp-nano-32.3.1-v005-photon-image",
+                "cti-32.3.1-nano-bsp-nano-32.3.1-v005-quark-image",
+                "cti-32.4.3-nano-bsp-nano-32.4.3-v001-photon-image",
+                "cti-32.4.3-nano-bsp-nano-32.4.3-v001-quark-image",
 
                 "cti-32.2.1-tx1-bsp-tx1-32.2.1-v001-astro-image",
                 "cti-32.2.1-tx1-bsp-tx1-32.2.1-v001-elroy-image",
@@ -905,6 +3637,15 @@
                 "cti-32.2.1-tx1-bsp-tx1-32.2.1-v001-orbitty-image",
                 "cti-32.2.1-tx1-bsp-tx1-32.2.1-v001-rudi-image",
                 "cti-32.2.1-tx1-bsp-tx1-32.2.1-v001-sprocket-base-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-astro-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-cogswell-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-elroy-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-orbitty-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-quasar-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-rosie-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-rudi-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-spacely-image",
+                "cti-32.3.1-tx1-bsp-tx1-32.3.1-v004-sprocket-image",
 
                 "cti-32.1-tx2-bsp-v125-astro-mpcie-image",
                 "cti-32.1-tx2-bsp-v125-astro-usb3-image",
@@ -977,6 +3718,57 @@
                 "cti-32.2.1-tx2-bsp-tx2-32.2.1-v004-vpg003-image",
                 "cti-32.2.1-tx2-bsp-tx2-32.2.1-v004-vpg003-imx185-3cam-image",
                 "cti-32.2.1-tx2-bsp-tx2-32.2.1-v004-vpg003-imx274-3cam-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-astro-mpcie-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-astro-revG+-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-astro-usb3-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-cogswell-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-elroy-mpcie-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-elroy-revF+-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-elroy-usb3-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-orbitty-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-quasar-imx185-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-quasar-imx274-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-quasar-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-rosie-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-rudi-mpcie-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-rudi-usb3-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-rudi-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-spacely-imx185-3cam-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-spacely-imx185-6cam-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-spacely-imx274-3cam-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-spacely-imx274-6cam-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-spacely-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-sprocket-imx185-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-sprocket-imx274-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-sprocket-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-vpg003-imx185-3cam-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-vpg003-imx274-3cam-image",
+                "cti-32.3.1-tx2-bsp-tx2-32.3.1-v003-vpg003-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-astro-mpcie-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-astro-revG+-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-astro-usb3-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-cogswell-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-elroy-mpcie-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-elroy-revF+-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-elroy-usb3-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-orbitty-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-quasar-imx185-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-quasar-imx274-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-quasar-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-rosie-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-rudi-mpcie-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-rudi-usb3-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-rudi-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-spacely-imx185-3cam-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-spacely-imx185-6cam-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-spacely-imx274-3cam-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-spacely-imx274-6cam-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-spacely-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-sprocket-imx185-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-sprocket-imx274-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-sprocket-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-vpg003-imx274-2cam-image",
+                "cti-32.4.3-tx2-bsp-tx2-32.4.3-v002-vpg003-image",
 
                 "cti-32.2.1-tx2-4gb-bsp-tx2-32.2.1-v004-astro-mpcie-image",
                 "cti-32.2.1-tx2-4gb-bsp-tx2-32.2.1-v004-astro-revG+-image",
@@ -1005,6 +3797,54 @@
                 "cti-32.2.1-tx2-4gb-bsp-tx2-32.2.1-v004-vpg003-image",
                 "cti-32.2.1-tx2-4gb-bsp-tx2-32.2.1-v004-vpg003-imx185-3cam-image",
                 "cti-32.2.1-tx2-4gb-bsp-tx2-32.2.1-v004-vpg003-imx274-3cam-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-astro-mpcie-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-astro-revG+-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-astro-usb3-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-cogswell-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-elroy-mpcie-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-elroy-revF+-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-elroy-usb3-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-orbitty-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-quasar-imx185-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-quasar-imx274-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-quasar-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-rosie-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-rudi-mpcie-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-rudi-usb3-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-rudi-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-spacely-imx185-3cam-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-spacely-imx185-6cam-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-spacely-imx274-3cam-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-spacely-imx274-6cam-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-spacely-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-sprocket-imx185-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-sprocket-imx274-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-sprocket-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-vpg003-imx185-3cam-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-vpg003-imx274-3cam-image",
+                "cti-32.3.1-tx2-4gb-bsp-tx2-32.3.1-v003-vpg003-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-astro-mpcie-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-astro-revG+-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-astro-usb3-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-cogswell-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-elroy-mpcie-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-elroy-revF+-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-elroy-usb3-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-orbitty-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-quasar-imx185-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-quasar-imx274-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-quasar-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-rosie-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-rudi-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-spacely-imx185-3cam-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-spacely-imx185-6cam-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-spacely-imx274-3cam-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-spacely-imx274-6cam-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-spacely-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-sprocket-imx185-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-sprocket-imx274-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-sprocket-image",
+                "cti-32.4.3-tx2-4gb-bsp-tx2-32.4.3-v002-vpg003-image",
 
                 "cti-32.1-tx2i-bsp-v125-astro-mpcie-tx2i-image",
                 "cti-32.1-tx2i-bsp-v125-astro-usb3-tx2i-image",
@@ -1082,7 +3922,59 @@
                 "cti-32.2.1-tx2i-bsp-tx2-32.2.1-v004-sprocket-imx274-image",
                 "cti-32.2.1-tx2i-bsp-tx2-32.2.1-v004-vpg003-image",
                 "cti-32.2.1-tx2i-bsp-tx2-32.2.1-v004-vpg003-imx185-3cam-image",
-                "cti-32.2.1-tx2i-bsp-tx2-32.2.1-v004-vpg003-imx274-3cam-image"
+                "cti-32.2.1-tx2i-bsp-tx2-32.2.1-v004-vpg003-imx274-3cam-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-astro-mpcie-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-astro-revG+-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-astro-usb-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-astro-usb3-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-cogswell-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-elroy-mpcie-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-elroy-revF+-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-elroy-usb3-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-orbitty-base-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-orbitty-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-quasar-imx185-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-quasar-imx274-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-quasar-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-rosie-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-rudi-mpcie-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-rudi-usb3-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-rudi-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-spacely-imx185-3cam-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-spacely-imx185-6cam-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-spacely-imx274-3cam-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-spacely-imx274-6cam-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-spacely-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-sprocket-imx185-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-sprocket-imx274-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-sprocket-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-vpg003-imx185-3cam-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-vpg003-imx274-3cam-image",
+                "cti-32.3.1-tx2i-bsp-tx2-32.3.1-v003-vpg003-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-astro-mpcie-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-astro-revG+-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-astro-usb3-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-cogswell-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-elroy-mpcie-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-elroy-revF+-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-elroy-usb3-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-orbitty-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-quasar-imx185-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-quasar-imx274-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-quasar-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-rosie-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-rudi-mpcie-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-rudi-usb3-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-rudi-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-spacely-imx185-3cam-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-spacely-imx185-6cam-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-spacely-imx274-3cam-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-spacely-imx274-6cam-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-spacely-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-sprocket-imx185-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-sprocket-imx274-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-sprocket-image",
+                "cti-32.4.3-tx2i-bsp-tx2-32.4.3-v002-vpg003-image"
             ]
         }
     ]

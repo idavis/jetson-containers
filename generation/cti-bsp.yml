@@ -14,7 +14,7 @@ jax:
       checksumType: MD5
     drivers:
       version: "32.1"
-  4.2.1:
+  "4.2.1":
     bsp:
       prefix: cti/xavier/
       profiles:
@@ -27,7 +27,7 @@ jax:
       checksumType: MD5
     drivers:
       version: 32.2.0
-  4.2.2:
+  "4.2.2":
     bsp:
       profiles:
         - rogue
@@ -39,8 +39,33 @@ jax:
       checksumType: MD5
     drivers:
       version: 32.2.1
+  "4.3":
+    bsp:
+      prefix: cti/xavier/
+      profiles:
+        - rogue
+        - rogueX
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.3.1-V007.tgz
+      version: AGX-32.3.1-V007
+      checksum: c3e57af5507175089cb6ad0b94323631
+      checksumType: MD5
+    drivers:
+      version: 32.3.1
+  "4.4":
+    bsp:
+      prefix: cti/xavier/
+      profiles:
+        - rogue
+        - rogueX
+        - Mimic
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.4.3-V001.tgz
+      version: AGX-32.4.3-V001
+      checksum: 798904f33cad59a0ad90e694b0158bd5
+      checksumType: MD5
+    drivers:
+      version: 32.4.3
 jax-8gb:
-  4.2.2:
+  "4.2.2":
     bsp:
       profiles:
         - rogue
@@ -52,8 +77,47 @@ jax-8gb:
       checksumType: MD5
     drivers:
       version: 32.2.1
+  "4.3":
+    bsp:
+      prefix: cti/xavier-8G/
+      profiles:
+        - rogue
+        - rogueX
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.3.1-V007.tgz
+      version: AGX-32.3.1-V007
+      checksum: c3e57af5507175089cb6ad0b94323631
+      checksumType: MD5
+    drivers:
+      version: 32.3.1
+  "4.4":
+    bsp:
+      prefix: cti/xavier-8G/
+      profiles:
+        - rogue
+        - rogueX
+        - Mimic
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-AGX-32.4.3-V001.tgz
+      version: AGX-32.4.3-V001
+      checksum: 798904f33cad59a0ad90e694b0158bd5
+      checksumType: MD5
+    drivers:
+      version: 32.4.3
+nx:
+  "4.4":
+    bsp:
+      prefix: cti/Xavier-NX/
+      profiles:
+        - photon
+        - quark
+        - rudi-nx
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-XAVIER-NX-32.4.3-V003.tgz
+      version: XAVIER-NX-32.4.3-V003
+      checksum: 2dee05ac072c28e3161ddba12cf8724c
+      checksumType: MD5
+    drivers:
+      version: 32.4.3
 nano:
-  4.2.2:
+  "4.2.2":
     bsp:
       prefix: cti/nano/
       profiles:
@@ -64,8 +128,32 @@ nano:
       checksumType: MD5
     drivers:
       version: 32.2.1
+  "4.3":
+    bsp:
+      prefix: cti/nano/
+      profiles:
+        - photon
+        - quark
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-NANO-32.3.1-V005.tgz
+      version: NANO-32.3.1-V005
+      checksum: d2a6787451a7f1e099630b2d5e17811b
+      checksumType: MD5
+    drivers:
+      version: 32.3.1
+  "4.4":
+    bsp:
+      prefix: cti/nano/
+      profiles:
+        - photon
+        - quark
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-NANO-32.4.3-V001.tgz
+      version: NANO-32.4.3-V001
+      checksum: 5e19970180042d253a8901a39994e845
+      checksumType: MD5
+    drivers:
+      version: 32.4.3
 tx1:
-  4.2.2:
+  "4.2.2":
     bsp:
       notes: has a rosie profile, but can't configure it in the ui.
       prefix: cti/
@@ -83,6 +171,25 @@ tx1:
       checksumType: MD5
     drivers:
       version: 32.2.1
+  "4.3":
+    bsp:
+      prefix: cti/tx1/
+      profiles:
+        - astro
+        - cogswell
+        - elroy
+        - orbitty
+        - quasar
+        - rosie
+        - rudi
+        - spacely
+        - sprocket
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-TX1-32.3.1-V004.tgz
+      version: TX1-32.3.1-V004
+      checksum: 1f34c929b654bf36f7ec0860c8551285
+      checksumType: MD5
+    drivers:
+      version: 32.3.1
 tx2:
   "4.2":
     bsp:
@@ -112,7 +219,7 @@ tx2:
       checksumType: MD5
     drivers:
       version: "32.1"
-  4.2.1:
+  "4.2.1":
     bsp:
       prefix: cti/tx2/
       profiles:
@@ -148,7 +255,7 @@ tx2:
       checksumType: MD5
     drivers:
       version: 32.2.0
-  4.2.2:
+  "4.2.2":
     bsp:
       prefix: cti/tx2/
       profiles:
@@ -184,8 +291,79 @@ tx2:
       checksumType: MD5
     drivers:
       version: 32.2.1
+  "4.3":
+    bsp:
+      prefix: cti/tx2/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty
+        - quasar-imx185
+        - quasar-imx274
+        - quasar
+        - rosie
+        - rudi-mpcie
+        - rudi-usb3
+        - rudi
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - spacely
+        - sprocket-imx185
+        - sprocket-imx274
+        - sprocket
+        - vpg003-imx185-3cam
+        - vpg003-imx274-3cam
+        - vpg003
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.3.1-V003.tgz
+      version: TX2-32.3.1-V003
+      checksum: ac06fd92387fcb72ede67276466d9f59
+      checksumType: MD5
+    drivers:
+      version: 32.3.1
+  "4.4":
+    bsp:
+      prefix: cti/tx2/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty
+        - quasar-imx185
+        - quasar-imx274
+        - quasar
+        - rosie
+        - rudi-mpcie
+        - rudi-usb3
+        - rudi
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - spacely
+        - sprocket-imx185
+        - sprocket-imx274
+        - sprocket
+        - vpg003-imx274-2cam
+        - vpg003
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.4.3-V002.tgz
+      version: TX2-32.4.3-V002
+      checksum: c6b2fe7c3fa949b80729be6c80889189
+      checksumType: MD5
+    drivers:
+      version: 32.4.3
 tx2-4gb:
-  4.2.2:
+  "4.2.2":
     bsp:
       prefix: cti/tx2-4G/
       profiles:
@@ -222,6 +400,74 @@ tx2-4gb:
       checksumType: MD5
     drivers:
       version: 32.2.1
+  "4.3":
+    bsp:
+      prefix: cti/tx2-4G/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty
+        - quasar-imx185
+        - quasar-imx274
+        - quasar
+        - rosie
+        - rudi-mpcie
+        - rudi-usb3
+        - rudi
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - spacely
+        - sprocket-imx185
+        - sprocket-imx274
+        - sprocket
+        - vpg003-imx185-3cam
+        - vpg003-imx274-3cam
+        - vpg003
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.3.1-V003.tgz
+      version: TX2-32.3.1-V003
+      checksum: ac06fd92387fcb72ede67276466d9f59
+      checksumType: MD5
+    drivers:
+      version: 32.3.1
+  "4.4":
+    bsp:
+      prefix: cti/tx2-4G/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty
+        - quasar-imx185
+        - quasar-imx274
+        - quasar
+        - rosie
+        - rudi
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - spacely
+        - sprocket-imx185
+        - sprocket-imx274
+        - sprocket
+        - vpg003
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.4.3-V002.tgz
+      version: TX2-32.4.3-V002
+      checksum: c6b2fe7c3fa949b80729be6c80889189
+      checksumType: MD5
+    drivers:
+      version: 32.4.3
 tx2i:
   "4.2":
     bsp:
@@ -250,7 +496,7 @@ tx2i:
       checksumType: MD5
     drivers:
       version: "32.1"
-  4.2.1:
+  "4.2.1":
     bsp:
       prefix: cti/tx2i/
       profiles:
@@ -290,7 +536,7 @@ tx2i:
       checksumType: MD5
     drivers:
       version: 32.2.0
-  4.2.2:
+  "4.2.2":
     bsp:
       prefix: cti/tx2i/
       profiles:
@@ -329,3 +575,75 @@ tx2i:
       checksumType: MD5
     drivers:
       version: 32.2.1
+  "4.3":
+    bsp:
+      prefix: cti/tx2i/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb
+        - astro-usb3
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty-base
+        - orbitty
+        - quasar-imx185
+        - quasar-imx274
+        - quasar
+        - rosie
+        - rudi-mpcie
+        - rudi-usb3
+        - rudi
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - spacely
+        - sprocket-imx185
+        - sprocket-imx274
+        - sprocket
+        - vpg003-imx185-3cam
+        - vpg003-imx274-3cam
+        - vpg003
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.3.1-V003.tgz
+      version: TX2-32.3.1-V003
+      checksum: ac06fd92387fcb72ede67276466d9f59
+      checksumType: MD5
+    drivers:
+      version: 32.3.1
+  "4.4":
+    bsp:
+      prefix: cti/tx2i/
+      profiles:
+        - astro-mpcie
+        - astro-revG+
+        - astro-usb3
+        - cogswell
+        - elroy-mpcie
+        - elroy-revF+
+        - elroy-usb3
+        - orbitty
+        - quasar-imx185
+        - quasar-imx274
+        - quasar
+        - rosie
+        - rudi-mpcie
+        - rudi-usb3
+        - rudi
+        - spacely-imx185-3cam
+        - spacely-imx185-6cam
+        - spacely-imx274-3cam
+        - spacely-imx274-6cam
+        - spacely
+        - sprocket-imx185
+        - sprocket-imx274
+        - sprocket
+        - vpg003
+      url: https://connecttech.com/ftp/Drivers/CTI-L4T-TX2-32.4.3-V002.tgz
+      version: TX2-32.4.3-V002
+      checksum: c6b2fe7c3fa949b80729be6c80889189
+      checksumType: MD5
+    drivers:
+      version: 32.4.3

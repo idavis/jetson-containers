@@ -81,6 +81,7 @@ RUN apt-get update && \
 
 # DeepStream
 
+
 RUN apt-get update && apt-get install -y --no-install-recommends deepstream-4.0=4.0.2-1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

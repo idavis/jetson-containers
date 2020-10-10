@@ -1,0 +1,248 @@
+ARG IMAGE_NAME
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
+{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" %}
+ARG DEPENDENCIES_IMAGE
+FROM ${DEPENDENCIES_IMAGE} as dependencies
+ARG IMAGE_NAME
+{%- endif %}
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-runtime-cudnn as tensorflow-base
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
+
+{% if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3"-%}
+
+# NVIDIA TensorRT
+
+{% if 'tensorflownodla' in ctx %}
+{%- if 'libnvinfer5' in ctx.tensorflownodla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer5.version }}"
+{%- elif 'libnvinfer6' in ctx.tensorflownodla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer6.version }}"
+{%- elif 'libnvinfer7' in ctx.tensorflownodla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.tensorflownodla.libnvinfer7.version }}"
+{%- endif %}
+{%- elif 'deepstreamdla' in ctx %}
+{%- if 'libnvinfer5' in ctx.deepstreamdla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer5.version }}"
+{%- elif 'libnvinfer6' in ctx.deepstreamdla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer6.version }}"
+{%- elif 'libnvinfer7' in ctx.deepstreamdla %}
+LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer7.version }}"
+{%- endif %}
+{%- endif %}
+
+RUN apt-get update && \
+    {%- if ctx.drivers.version == "32.3.1" %}
+apt-get install -y --no-install-recommends libnvinfer6 && \
+    {%- elif ctx.drivers.version == "32.4.3" %}
+apt-get install -y --no-install-recommends libnvinfer7 && \
+    {%- endif %}
+apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnvinfer-bin && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    {%- if ctx.drivers.version == "32.3.1" %}
+apt-get install -y --no-install-recommends libnvinfer-plugin6 && \
+    {%- elif ctx.drivers.version == "32.4.3" %}
+apt-get install -y --no-install-recommends libnvinfer-plugin7 && \
+    {%- endif %}
+apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+{% if 'tensorflownodla' in ctx %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.tensorflownodla.tensorrt.version }}"
+{%- elif 'deepstreamdla' in ctx %}
+LABEL com.nvidia.tensorrt.version="{{ ctx.deepstreamdla.tensorrt.version }}"
+{%- endif %}
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends tensorrt && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    {%- if ctx.drivers.version == "32.3.1" %}
+apt-get install -y --no-install-recommends libnvparsers6 && \
+    {%- elif ctx.drivers.version == "32.4.3" %}
+apt-get install -y --no-install-recommends libnvparsers7 && \
+    {%- endif %}
+apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    {%- if ctx.drivers.version == "32.3.1" %}
+apt-get install -y --no-install-recommends libnvonnxparsers6 && \
+    {%- elif ctx.drivers.version == "32.4.3" %}
+apt-get install -y --no-install-recommends libnvonnxparsers7 && \
+    {%- endif %}
+apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python-libnvinfer && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python3-libnvinfer && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Graph Surgeon
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends graphsurgeon-tf && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# UFF Converter
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends uff-converter-tf && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+
+{%- else %}
+
+COPY --from=dependencies /data/{{ ctx.cuda.toolkit.fileName }} {{ ctx.cuda.toolkit.fileName }}
+RUN echo "{{ ctx.cuda.toolkit.checksum }} {{ ctx.cuda.toolkit.fileName }}" | md5sum -c - && \
+    dpkg --force-all -i {{ ctx.cuda.toolkit.fileName }} && \
+    rm {{ ctx.cuda.toolkit.fileName }} && \
+    apt-get update && \
+    apt-get install -y --allow-downgrades \
+    cuda-cublas-dev-10-0 \
+    cuda-cudart-dev-10-0 \
+    dpkg --purge cuda-repo-l4t-10-0-local-{{ ctx.cuda.toolkit.version }} \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY --from=dependencies /data/{{ ctx.cudnn['libcudnn7-dev'].fileName }} {{ ctx.cudnn['libcudnn7-dev'].fileName }}
+RUN echo "{{ ctx.cudnn['libcudnn7-dev'].checksum }} {{ ctx.cudnn['libcudnn7-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.cudnn['libcudnn7-dev'].fileName }} && \
+    rm {{ ctx.cudnn['libcudnn7-dev'].fileName }}
+
+# NVIDIA TensorRT
+ENV LIBINFER_VERSION {{ ctx.tensorrt.libnvinfer5.version }}
+
+LABEL com.nvidia.libinfer.version="${LIBINFER_VERSION}"
+
+COPY --from=dependencies /data/{{ ctx.tensorrt.libnvinfer5.fileName }} {{ ctx.tensorrt.libnvinfer5.fileName }}
+RUN echo "{{ ctx.tensorrt.libnvinfer5.checksum }} {{ ctx.tensorrt.libnvinfer5.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt.libnvinfer5.fileName }} && \
+    rm {{ ctx.tensorrt.libnvinfer5.fileName }}
+
+COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-dev'].fileName }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
+RUN echo "{{ ctx.tensorrt['libnvinfer-dev'].checksum }} {{ ctx.tensorrt['libnvinfer-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['libnvinfer-dev'].fileName }} && \
+    rm {{ ctx.tensorrt['libnvinfer-dev'].fileName }}
+
+COPY --from=dependencies /data/{{ ctx.tensorrt['libnvinfer-samples'].fileName }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
+RUN echo "{{ ctx.tensorrt['libnvinfer-samples'].checksum }} {{ ctx.tensorrt['libnvinfer-samples'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['libnvinfer-samples'].fileName }} && \
+    rm {{ ctx.tensorrt['libnvinfer-samples'].fileName }}
+
+ENV TENSORRT_VERSION {{ ctx.tensorrt.tensorrt.version }}
+
+LABEL com.nvidia.tensorrt.version="${TENSORRT_VERSION}"
+
+ENV TENSORRT_PKG tensorrt_${TENSORRT_PKG_VERSION}+cuda10.0_arm64.deb
+
+COPY --from=dependencies /data/{{ ctx.tensorrt.tensorrt.fileName }} {{ ctx.tensorrt.tensorrt.fileName }}
+RUN echo "{{ ctx.tensorrt.tensorrt.checksum }} {{ ctx.tensorrt.tensorrt.fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt.tensorrt.fileName }} && \
+    rm {{ ctx.tensorrt.tensorrt.fileName }}
+
+{%- if ctx.jetpackVersion != "4.2" %}
+
+# Python2 support for TensorRT
+COPY --from=dependencies /data/{{ ctx.tensorrt['python-libnvinfer'].fileName }} {{ ctx.tensorrt['python-libnvinfer'].fileName }}
+RUN echo "{{ ctx.tensorrt['python-libnvinfer'].checksum }} {{ ctx.tensorrt['python-libnvinfer'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python-libnvinfer'].fileName }} && \
+    rm {{ ctx.tensorrt['python-libnvinfer'].fileName }}
+
+COPY --from=dependencies /data/{{ ctx.tensorrt['python-libnvinfer-dev'].fileName }} {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}
+RUN echo "{{ ctx.tensorrt['python-libnvinfer-dev'].checksum }} {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python-libnvinfer-dev'].fileName }} && \
+    rm {{ ctx.tensorrt['python-libnvinfer-dev'].fileName }}
+
+# Python3 support for TensorRT
+COPY --from=dependencies /data/{{ ctx.tensorrt['python3-libnvinfer'].fileName }} {{ ctx.tensorrt['python3-libnvinfer'].fileName }}
+RUN echo "{{ ctx.tensorrt['python3-libnvinfer'].checksum }} {{ ctx.tensorrt['python3-libnvinfer'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['python3-libnvinfer'].fileName }} && \
+    rm {{ ctx.tensorrt['python3-libnvinfer'].fileName }}
+
+# Graph Surgeon
+COPY --from=dependencies /data/{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
+RUN echo "{{ ctx.tensorrt['graphsurgeon-tf'].checksum }} {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['graphsurgeon-tf'].fileName }} && \
+    rm {{ ctx.tensorrt['graphsurgeon-tf'].fileName }}
+
+# UFF Converter
+COPY --from=dependencies /data/{{ ctx.tensorrt['uff-converter-tf'].fileName }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}
+RUN echo "{{ ctx.tensorrt['uff-converter-tf'].checksum }} {{ ctx.tensorrt['uff-converter-tf'].fileName }}" | md5sum -c - && \
+    apt-get update && apt-get install -y --no-install-recommends /{{ ctx.tensorrt['uff-converter-tf'].fileName }} && \
+    rm {{ ctx.tensorrt['uff-converter-tf'].fileName }}
+
+{%- endif %}
+{%- endif %}
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-pip \
+    python3-setuptools \
+    && \
+    python3 -m pip install --no-cache-dir --upgrade pip && \
+    python3 -m pip install --no-cache-dir --upgrade setuptools && \
+    python3 -m pip install --no-cache-dir --upgrade wheel && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libhdf5-dev \
+    libhdf5-serial-dev \
+    python3-h5py \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+FROM tensorflow-base as wheelhouse
+
+ARG INDEX_URL
+ARG TF_PACKGAGE
+ARG TF_VERSION
+ARG NV_VERSION
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gfortran \
+    hdf5-tools \
+    libblas-dev \
+    liblapack-dev \
+    pkg-config \
+    python3-dev \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /wheelhouse
+ENV PIP_WHEEL_DIR=/wheelhouse
+ENV WHEELHOUSE=/wheelhouse
+ENV PIP_FIND_LINKS=/wheelhouse
+
+RUN python3 -m pip wheel --extra-index-url ${INDEX_URL} ${TF_PACKGAGE}==${TF_VERSION}+nv${NV_VERSION}
+
+FROM tensorflow-base
+COPY --from=wheelhouse /wheelhouse /wheelhouse/
+RUN ls -1 -d /wheelhouse/*.whl | xargs python3 -m pip install --no-cache-dir && \
+    rm -rf /wheelhouse

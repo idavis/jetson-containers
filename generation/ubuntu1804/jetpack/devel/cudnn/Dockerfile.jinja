@@ -1,4 +1,18 @@
-{%- if ctx.drivers.version == "32.3.1" -%}
+{%- if ctx.drivers.version == "32.4.3" -%}
+ARG IMAGE_NAME
+FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-devel
+
+# NVIDIA CUDA Deep Neural Network library (cuDNN)
+
+ENV CUDNN_VERSION {{ ctx.cudnn.libcudnn8.version }}
+
+LABEL com.nvidia.cudnn.version="{{ ctx.cudnn.libcudnn8.version }}"
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends {{ ctx.cudnn.libcudnn8.packageName }} {{ ctx.cudnn["libcudnn8-dev"].packageName }} {{ ctx.cudnn["libcudnn8-doc"].packageName }} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+{%- elif ctx.drivers.version == "32.3.1" -%}
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-devel
 

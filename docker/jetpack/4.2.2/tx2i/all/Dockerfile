@@ -153,17 +153,16 @@ RUN echo "4f28a7792425b5e1470d5aa73c2a470d libopencv-samples_3.3.1-2-g31ccdfe11_
 
 #RUN python3 -m pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker grpcio six mock requests gast h5py astor termcolor
 
+# Install TensorFlow
+# Index URLS
+# Browse https://developer.download.nvidia.com/compute/redist/jp/ for more.
+# 4.4: https://developer.download.nvidia.com/compute/redist/jp/v44/tensorflow/
+# 4.3 GPU: https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow-gpu/
+# 4.3 CPU: https://developer.download.nvidia.com/compute/redist/jp/v43/tensorflow/
+# 4.2: https://developer.download.nvidia.com/compute/redist/jp/v42/tensorflow-gpu/
+# Commands:
+# RUN python3 -m pip install --pre --extra-index-url ${TF_INDEX_URL} tensorflow-gpu
+# RUN python3 -m pip install --extra-index-url ${TF_INDEX_URL} tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
 
 # Available versions:
-# tensorflow_gpu-1.13.1+nv19.4-cp36-cp36m-linux_aarch64.whl 195MB
-# tensorflow_gpu-1.13.1+nv19.5-cp36-cp36m-linux_aarch64.whl 195MB
-# tensorflow_gpu-1.14.0+nv19.7-cp36-cp36m-linux_aarch64.whl 214MB
-# tensorflow_gpu-1.14.0+nv19.9-cp36-cp36m-linux_aarch64.whl 214MB
-# tensorflow_gpu-1.14.0+nv19.10-cp36-cp36m-linux_aarch64.whl 214MB
-# tensorflow_gpu-1.15.0+nv19.11-cp36-cp36m-linux_aarch64.whl 217MB
-# tensorflow_gpu-2.0.0+nv19.11-cp36-cp36m-linux_aarch64.whl 198MB
-
-# Install TensorFlow
-# RUN python3 -m pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
-# can browse from https://developer.download.nvidia.com/compute/redist/jp/
-# RUN python3 -m pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==${TF_VERSION}+nv${NV_VERSION}
+# All available versions can be found by browsing https://developer.download.nvidia.com/compute/redist/jp/
