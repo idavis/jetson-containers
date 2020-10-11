@@ -1,15 +1,15 @@
 #!make
 
-32.4.3-tx1-jetpack-4.4-tf: 32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8 
-32.4.3-jax-jetpack-4.4-tf: 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8 
-32.4.3-jax-8gb-jetpack-4.4-tf: 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8 
-32.4.3-tx2-jetpack-4.4-tf: 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8 
-32.4.3-nano-dev-jetpack-4.4-tf: 32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8 
-32.4.3-nano-jetpack-4.4-tf: 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8 
-32.4.3-tx2i-jetpack-4.4-tf: 32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8 
-32.4.3-tx2-4gb-jetpack-4.4-tf: 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8 
-32.4.3-nx-dev-jetpack-4.4-tf: 32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8 
-32.4.3-nx-jetpack-4.4-tf: 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8 
+32.4.3-tx1-jetpack-4.4-tf: 32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-tx1-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9 
+32.4.3-jax-jetpack-4.4-tf: 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9 
+32.4.3-jax-8gb-jetpack-4.4-tf: 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9 
+32.4.3-tx2-jetpack-4.4-tf: 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9 
+32.4.3-nano-dev-jetpack-4.4-tf: 32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9 
+32.4.3-nano-jetpack-4.4-tf: 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9 
+32.4.3-tx2i-jetpack-4.4-tf: 32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9 
+32.4.3-tx2-4gb-jetpack-4.4-tf: 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9 
+32.4.3-nx-dev-jetpack-4.4-tf: 32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9 
+32.4.3-nx-jetpack-4.4-tf: 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.6 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.6 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.7 32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9 32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9 
 32.3.1-tx1-jetpack-4.3-tf: 32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12 32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv19.12 32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv20.1 32.3.1-tx1-jetpack-4.3-tf-1.15.0-nv20.1 32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.2 32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.2 32.3.1-tx1-jetpack-4.3-tf-2.1.0-nv20.3 32.3.1-tx1-jetpack-4.3-tf-1.15.2-nv20.3 
 32.3.1-jax-jetpack-4.3-tf: 32.3.1-jax-jetpack-4.3-tf-2.0.0-nv19.12 32.3.1-jax-jetpack-4.3-tf-1.15.0-nv19.12 32.3.1-jax-jetpack-4.3-tf-2.0.0-nv20.1 32.3.1-jax-jetpack-4.3-tf-1.15.0-nv20.1 32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.2 32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.2 32.3.1-jax-jetpack-4.3-tf-2.1.0-nv20.3 32.3.1-jax-jetpack-4.3-tf-1.15.2-nv20.3 
 32.3.1-jax-8gb-jetpack-4.3-tf: 32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv19.12 32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv19.12 32.3.1-jax-8gb-jetpack-4.3-tf-2.0.0-nv20.1 32.3.1-jax-8gb-jetpack-4.3-tf-1.15.0-nv20.1 32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.2 32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.2 32.3.1-jax-8gb-jetpack-4.3-tf-2.1.0-nv20.3 32.3.1-jax-8gb-jetpack-4.3-tf-1.15.2-nv20.3 
@@ -57,6 +57,8 @@
 32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-tx1-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4: 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4-min 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4-runtime 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4-devel 
 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7: 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7-min 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7-runtime 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.7-devel 
@@ -66,6 +68,8 @@
 32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-jax-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4: 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4-min 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4-runtime 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.2-nv20.4-devel 
 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7: 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7-min 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7-runtime 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.7-devel 
@@ -75,6 +79,8 @@
 32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-jax-8gb-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4: 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4-min 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4-runtime 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4-devel 
 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7: 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7-min 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7-runtime 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.7-devel 
@@ -84,6 +90,8 @@
 32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-tx2-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4: 32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4-min 32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4-runtime 32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt 32.4.3-nano-dev-jetpack-4.4-tf-1.15.2-nv20.4-devel 
 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7: 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7-min 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7-runtime 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.7-devel 
@@ -93,6 +101,8 @@
 32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-nano-dev-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4: 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4-min 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4-runtime 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4-devel 
 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7: 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7-min 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7-runtime 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.7-devel 
@@ -102,6 +112,8 @@
 32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-nano-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4: 32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4-min 32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4-runtime 32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt 32.4.3-tx2i-jetpack-4.4-tf-1.15.2-nv20.4-devel 
 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7: 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7-min 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7-runtime 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.7-devel 
@@ -111,6 +123,8 @@
 32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-tx2i-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4: 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4-min 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4-runtime 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4-devel 
 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7: 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7-min 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7-runtime 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.7-devel 
@@ -120,6 +134,8 @@
 32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-tx2-4gb-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4: 32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4-min 32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4-runtime 32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt 32.4.3-nx-dev-jetpack-4.4-tf-1.15.2-nv20.4-devel 
 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7: 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7-min 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7-runtime 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.7-devel 
@@ -129,6 +145,8 @@
 32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-nx-dev-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4: 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4-min 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4-runtime 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4-runtime-tensorrt 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4-devel 
 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7: 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7-min 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7-runtime 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7-runtime-tensorrt 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.7-devel 
@@ -138,6 +156,8 @@
 32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4: 32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4-min 32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4-runtime 32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4-runtime-tensorrt 32.4.3-nx-jetpack-4.4-tf-2.1.0-nv20.4-devel 
 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8: 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8-min 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8-runtime 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8-runtime-tensorrt 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.8-devel 
 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8: 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-min 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-runtime 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt 32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-devel 
+32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9: 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-min 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-runtime 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt 32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-devel 
+32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9: 32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-min 32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-runtime 32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt 32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-devel 
 
 
 32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12: 32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12-min 32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12-runtime 32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12-runtime-tensorrt 32.3.1-tx1-jetpack-4.3-tf-2.0.0-nv19.12-devel 
@@ -807,6 +827,92 @@
 
 
 
+32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx1/tensorflow/min/Dockerfile
+
+32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx1/tensorflow/runtime/Dockerfile
+
+32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx1/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx1/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx1/tensorflow/min/Dockerfile
+
+32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx1/tensorflow/runtime/Dockerfile
+
+32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx1/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx1/tensorflow/devel/Dockerfile
+
+
+
+
 
 32.4.3-jax-jetpack-4.4-tf-1.15.2-nv20.4-min:
 	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
@@ -1146,6 +1252,92 @@
 					--build-arg TF_PACKGAGE="tensorflow" \
 					--build-arg TF_VERSION="2.2.0" \
 					--build-arg NV_VERSION="20.8" \
+					-t $(REPO):$@ \
+					- < 4.4/jax/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax/tensorflow/min/Dockerfile
+
+32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax/tensorflow/runtime/Dockerfile
+
+32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax/tensorflow/min/Dockerfile
+
+32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax/tensorflow/runtime/Dockerfile
+
+32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
 					-t $(REPO):$@ \
 					- < 4.4/jax/tensorflow/devel/Dockerfile
 
@@ -1497,6 +1689,92 @@
 
 
 
+32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax-8gb/tensorflow/min/Dockerfile
+
+32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax-8gb/tensorflow/runtime/Dockerfile
+
+32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax-8gb/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax-8gb/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax-8gb/tensorflow/min/Dockerfile
+
+32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax-8gb/tensorflow/runtime/Dockerfile
+
+32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax-8gb/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/jax-8gb/tensorflow/devel/Dockerfile
+
+
+
+
 
 32.4.3-tx2-jetpack-4.4-tf-1.15.2-nv20.4-min:
 	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
@@ -1836,6 +2114,92 @@
 					--build-arg TF_PACKGAGE="tensorflow" \
 					--build-arg TF_VERSION="2.2.0" \
 					--build-arg NV_VERSION="20.8" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2/tensorflow/min/Dockerfile
+
+32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2/tensorflow/runtime/Dockerfile
+
+32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2/tensorflow/min/Dockerfile
+
+32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2/tensorflow/runtime/Dockerfile
+
+32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
 					-t $(REPO):$@ \
 					- < 4.4/tx2/tensorflow/devel/Dockerfile
 
@@ -2187,6 +2551,92 @@
 
 
 
+32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano-dev/tensorflow/min/Dockerfile
+
+32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano-dev/tensorflow/runtime/Dockerfile
+
+32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano-dev/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano-dev/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano-dev/tensorflow/min/Dockerfile
+
+32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano-dev/tensorflow/runtime/Dockerfile
+
+32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano-dev/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano-dev/tensorflow/devel/Dockerfile
+
+
+
+
 
 32.4.3-nano-jetpack-4.4-tf-1.15.2-nv20.4-min:
 	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
@@ -2526,6 +2976,92 @@
 					--build-arg TF_PACKGAGE="tensorflow" \
 					--build-arg TF_VERSION="2.2.0" \
 					--build-arg NV_VERSION="20.8" \
+					-t $(REPO):$@ \
+					- < 4.4/nano/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano/tensorflow/min/Dockerfile
+
+32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano/tensorflow/runtime/Dockerfile
+
+32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano/tensorflow/min/Dockerfile
+
+32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano/tensorflow/runtime/Dockerfile
+
+32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nano/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
 					-t $(REPO):$@ \
 					- < 4.4/nano/tensorflow/devel/Dockerfile
 
@@ -2877,6 +3413,92 @@
 
 
 
+32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2i/tensorflow/min/Dockerfile
+
+32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2i/tensorflow/runtime/Dockerfile
+
+32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2i/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2i/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2i/tensorflow/min/Dockerfile
+
+32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2i/tensorflow/runtime/Dockerfile
+
+32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2i/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2i/tensorflow/devel/Dockerfile
+
+
+
+
 
 32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.2-nv20.4-min:
 	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
@@ -3216,6 +3838,92 @@
 					--build-arg TF_PACKGAGE="tensorflow" \
 					--build-arg TF_VERSION="2.2.0" \
 					--build-arg NV_VERSION="20.8" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2-4gb/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2-4gb/tensorflow/min/Dockerfile
+
+32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2-4gb/tensorflow/runtime/Dockerfile
+
+32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2-4gb/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2-4gb/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2-4gb/tensorflow/min/Dockerfile
+
+32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2-4gb/tensorflow/runtime/Dockerfile
+
+32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/tx2-4gb/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
 					-t $(REPO):$@ \
 					- < 4.4/tx2-4gb/tensorflow/devel/Dockerfile
 
@@ -3567,6 +4275,92 @@
 
 
 
+32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx-dev/tensorflow/min/Dockerfile
+
+32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx-dev/tensorflow/runtime/Dockerfile
+
+32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx-dev/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx-dev/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx-dev/tensorflow/min/Dockerfile
+
+32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx-dev/tensorflow/runtime/Dockerfile
+
+32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx-dev/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx-dev/tensorflow/devel/Dockerfile
+
+
+
+
 
 32.4.3-nx-jetpack-4.4-tf-1.15.2-nv20.4-min:
 	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
@@ -3906,6 +4700,92 @@
 					--build-arg TF_PACKGAGE="tensorflow" \
 					--build-arg TF_VERSION="2.2.0" \
 					--build-arg NV_VERSION="20.8" \
+					-t $(REPO):$@ \
+					- < 4.4/nx/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx/tensorflow/min/Dockerfile
+
+32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx/tensorflow/runtime/Dockerfile
+
+32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="1.15.3" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx/tensorflow/devel/Dockerfile
+
+
+
+
+32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-min:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx/tensorflow/min/Dockerfile
+
+32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-runtime:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx/tensorflow/runtime/Dockerfile
+
+32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
+					-t $(REPO):$@ \
+					- < 4.4/nx/tensorflow/runtime/tensorrt/Dockerfile
+
+32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-devel:
+	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					--build-arg INDEX_URL="https://developer.download.nvidia.com/compute/redist/jp/v44" \
+					--build-arg TF_PACKGAGE="tensorflow" \
+					--build-arg TF_VERSION="2.3.0" \
+					--build-arg NV_VERSION="20.9" \
 					-t $(REPO):$@ \
 					- < 4.4/nx/tensorflow/devel/Dockerfile
 
