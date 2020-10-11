@@ -199,6 +199,8 @@ def get_tf_version_map():
         {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.1.0", "nv_version" : "20.4"},
         {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.8"},
         {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.2.0", "nv_version" : "20.8"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.9"},
+        {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.3.0", "nv_version" : "20.9"},
     ]
     tfmap["4.3"] = [
         {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version" : "19.12"},
