@@ -1775,6 +1775,14 @@
                 "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-tx1-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-tx1-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-tx1-jetpack-4.4-tf"
             ]
         },
@@ -1815,6 +1823,14 @@
                 "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-jax-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-jax-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-jax-jetpack-4.4-tf"
             ]
         },
@@ -1855,6 +1871,14 @@
                 "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-jax-8gb-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-jax-8gb-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-jax-8gb-jetpack-4.4-tf"
             ]
         },
@@ -1895,6 +1919,14 @@
                 "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-tx2-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-tx2-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-tx2-jetpack-4.4-tf"
             ]
         },
@@ -1935,6 +1967,14 @@
                 "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-nano-dev-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-nano-dev-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-nano-dev-jetpack-4.4-tf"
             ]
         },
@@ -1975,6 +2015,14 @@
                 "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-nano-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-nano-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-nano-jetpack-4.4-tf"
             ]
         },
@@ -2015,6 +2063,14 @@
                 "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-tx2i-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-tx2i-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-tx2i-jetpack-4.4-tf"
             ]
         },
@@ -2055,6 +2111,14 @@
                 "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-tx2-4gb-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-tx2-4gb-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-tx2-4gb-jetpack-4.4-tf"
             ]
         },
@@ -2095,6 +2159,14 @@
                 "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-nx-dev-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-nx-dev-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-nx-dev-jetpack-4.4-tf"
             ]
         },
@@ -2135,6 +2207,14 @@
                 "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-runtime",
                 "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-runtime-tensorrt",
                 "32.4.3-nx-jetpack-4.4-tf-2.2.0-nv20.8-devel",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-min",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-1.15.3-nv20.9-devel",
+                "32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-min",
+                "32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-runtime",
+                "32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-runtime-tensorrt",
+                "32.4.3-nx-jetpack-4.4-tf-2.3.0-nv20.9-devel",
                 "32.4.3-nx-jetpack-4.4-tf"
             ]
         },
