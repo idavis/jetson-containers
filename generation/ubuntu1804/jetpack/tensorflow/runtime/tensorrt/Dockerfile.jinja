@@ -3,7 +3,7 @@ ARG INDEX_URL
 ARG TF_PACKGAGE
 ARG TF_VERSION
 ARG NV_VERSION
-{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" %}
+{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" and ctx.drivers.version != "32.4.4" %}
 ARG DEPENDENCIES_IMAGE
 FROM ${DEPENDENCIES_IMAGE} as dependencies
 ARG IMAGE_NAME
@@ -14,7 +14,7 @@ ARG TF_PACKGAGE
 ARG TF_VERSION
 ARG NV_VERSION
 
-{% if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3"-%}
+{% if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" -%}
 
 # NVIDIA TensorRT
 
@@ -39,7 +39,7 @@ LABEL com.nvidia.libinfer.version="{{ ctx.deepstreamdla.libnvinfer7.version }}"
 RUN apt-get update && \
     {%- if ctx.drivers.version == "32.3.1" %}
 apt-get install -y --no-install-recommends libnvinfer6 && \
-    {%- elif ctx.drivers.version == "32.4.3" %}
+    {%- elif ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" %}
 apt-get install -y --no-install-recommends libnvinfer7 && \
     {%- endif %}
 apt-get clean && \
@@ -53,7 +53,7 @@ RUN apt-get update && \
 RUN apt-get update && \
     {%- if ctx.drivers.version == "32.3.1" %}
 apt-get install -y --no-install-recommends libnvinfer-plugin6 && \
-    {%- elif ctx.drivers.version == "32.4.3" %}
+    {%- elif ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" %}
 apt-get install -y --no-install-recommends libnvinfer-plugin7 && \
     {%- endif %}
 apt-get clean && \
@@ -73,7 +73,7 @@ RUN apt-get update && \
 RUN apt-get update && \
     {%- if ctx.drivers.version == "32.3.1" %}
 apt-get install -y --no-install-recommends libnvparsers6 && \
-    {%- elif ctx.drivers.version == "32.4.3" %}
+    {%- elif ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" %}
 apt-get install -y --no-install-recommends libnvparsers7 && \
     {%- endif %}
 apt-get clean && \
@@ -82,7 +82,7 @@ apt-get clean && \
 RUN apt-get update && \
     {%- if ctx.drivers.version == "32.3.1" %}
 apt-get install -y --no-install-recommends libnvonnxparsers6 && \
-    {%- elif ctx.drivers.version == "32.4.3" %}
+    {%- elif ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" %}
 apt-get install -y --no-install-recommends libnvonnxparsers7 && \
     {%- endif %}
 apt-get clean && \

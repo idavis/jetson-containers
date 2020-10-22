@@ -63,7 +63,7 @@ RUN echo "${ROOT_FS_MD5} *./${ROOT_FS}" | md5sum -c - && \
 
 WORKDIR /Linux_for_Tegra
 
-{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" %}
+{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" and ctx.drivers.version != "32.4.4" %}
 RUN ./apply_binaries.sh
 {% endif %}
 
@@ -73,7 +73,7 @@ ENV TARGET_BOARD=$TARGET_BOARD
 ENV ROOT_DEVICE=$ROOT_DEVICE
 
 RUN echo "#!/bin/bash" >> entrypoint.sh && \
-{%- if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3" %}
+{%- if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" %}
     echo "sudo ./apply_binaries.sh" >> entrypoint.sh && \
 {%- endif %}
     echo "echo \"sudo ./flash.sh \$* ${TARGET_BOARD} ${ROOT_DEVICE}\"" >> entrypoint.sh && \

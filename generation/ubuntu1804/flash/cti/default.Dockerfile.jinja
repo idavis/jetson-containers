@@ -84,6 +84,14 @@ RUN sed -i '/.*umount ${L4T_ROOTFS_DIR}\/proc.*/c\#umount ${L4T_ROOTFS_DIR}\/pro
 RUN sed -i '/.*	LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${pre_deb_list\[\@\]}\".*/c\	apt install -y --no-install-recommends \"${pre_deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${deb_list\[\@\]}\".*/c\apt install -y --no-install-recommends \"${deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
 {%- endif %}
+{%- if ctx.l4t.drivers.version == "32.4.4" and ctx.l4t.target_overlay == False %}
+# pre-req for Linux_for_Tegra/nv_tegra/nv-apply-debs.sh as it tries to chroot
+COPY --from=qemu /usr/bin/qemu-aarch64-static /Linux_for_Tegra/nv_tegra/qemu-aarch64-static
+RUN sed -i '/.*LC_ALL=C chroot . mount -t proc none \/proc.*/c\#LC_ALL=C chroot . mount -t proc none \/proc' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*umount ${L4T_ROOTFS_DIR}\/proc.*/c\#umount ${L4T_ROOTFS_DIR}\/proc' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*	LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${pre_deb_list\[\@\]}\".*/c\	apt install -y --no-install-recommends \"${pre_deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+RUN sed -i '/.*LC_ALL=C chroot . dpkg -i --path-include=\"\/usr\/share\/doc\/\*\" \"${deb_list\[\@\]}\".*/c\apt install -y --no-install-recommends \"${deb_list[@]}\"' ./Linux_for_Tegra/nv_tegra/nv-apply-debs.sh
+{%- endif %}
 
 WORKDIR /Linux_for_Tegra
 
@@ -103,6 +111,10 @@ RUN echo "${BSP_MD5} *./${BSP}" | md5sum -c - && \
     sudo ./install.sh --target-overlay
     # TODO: Once CTI supports 4.4 and overlay,
     # figure out the correct command.
+{%- elif ctx.l4t.drivers.version == "32.4.4" and ctx.l4t.target_overlay == True %}
+    sudo ./install.sh --target-overlay
+    # TODO: Once CTI supports 4.4.1 and overlay,
+    # figure out the correct command.
 {%- else %}
     sudo ./install.sh
     # TODO: Once CTI supports 4.3 and overlay,
@@ -118,6 +130,11 @@ RUN sed -i "s/<SOC>/t{{ ctx.SOC }}/g" "/Linux_for_Tegra/rootfs/etc/apt/sources.l
 {%- endif %}
 {%- if ctx.l4t.drivers.version == "32.4.3" and ctx.l4t.target_overlay == False %}
 # In 32.4.3, this will use deb packages instead of the archive overlay
+# Patch OTA apt source
+RUN sed -i "s/<SOC>/t{{ ctx.SOC }}/g" "/Linux_for_Tegra/rootfs/etc/apt/sources.list.d/nvidia-l4t-apt-source.list"
+{%- endif %}
+{%- if ctx.l4t.drivers.version == "32.4.4" and ctx.l4t.target_overlay == False %}
+# In 32.4.4, this will use deb packages instead of the archive overlay
 # Patch OTA apt source
 RUN sed -i "s/<SOC>/t{{ ctx.SOC }}/g" "/Linux_for_Tegra/rootfs/etc/apt/sources.list.d/nvidia-l4t-apt-source.list"
 {%- endif %}

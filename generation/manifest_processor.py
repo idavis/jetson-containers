@@ -21,6 +21,7 @@ v4deviceIdToPartNameDeviceIdLookup = {
     "JETSON_TX2I": "P3489-0000",
     "JETSON_TX1": "P2180-1000",
     "JETSON_NANO_DEVKIT": "P3448-0000",
+    "JETSON_NANO_2GB_DEVKIT": "P3448-0003",
     "JETSON_NANO": "P3448-0002"
 }
 
@@ -41,6 +42,7 @@ deviceIdToCurrentIdLookup = {
     "P2180-1000": "P2180-1000",
     "P3448-0000": "P3448-0000",
     "P3448-0002": "P3448-0002",
+    "P3448-0003": "P3448-0003",
     "P3448-0020": "P3448-0002"
 }
 
@@ -61,6 +63,7 @@ deviceIds = [
     "P2180-1000",
     "P3448-0000",
     "P3448-0002",
+    "P3448-0003",
     "P3448-0020",
 ]
 
@@ -97,6 +100,11 @@ inactive_manifests = {
 }
 
 active_manifests = {
+    "4.4.1": {
+        "manifest": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_441.json"),
+        "additionalsdk": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_441_deepstream.json")
+    },
+
     "4.4": {
         "manifest": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_44_ga.json"),
         "additionalsdk": os.path.join(sys.path[0], "./manifests/sdkml3_jetpack_l4t_44_ga_deepstream.json")
@@ -282,6 +290,8 @@ class ManifestProcessorBase():
                         if fileContext["version"] == "32.4":
                             if "32.4.3" in fileContext["fileName"]:
                                 fileContext["version"] = "32.4.3"
+                            if "32.4.4" in fileContext["fileName"]:
+                                fileContext["version"] = "32.4.4"
                     componentFileName = self.get_component_file_name(
                         componentName,
                         fileContext)
@@ -513,6 +523,15 @@ class ManifestProcessorV2(ManifestProcessorBase):
         filepath = current_jetpack["additionalsdk"]
         sdk = self.open_json_file(filepath)
 
+        # Schema versions flip between lists and dictionaries :(
+        if type(sdk["groups"]) is list:
+            groups = {}
+            values = sdk["groups"][1::2]
+            keys = sdk["groups"][::2]
+            for idx, val in enumerate(keys):
+                groups[val] = values[idx]
+            sdk["groups"] = groups
+
         groups = sdk["groups"]
         for key in groups.keys():
             group = groups[key]
@@ -550,9 +569,12 @@ class ManifestProcessorV4(ManifestProcessorV2):
         self.build_jetpack_context(datastore)
     
     def validate_manifest_schema(self, datastore):
-        if datastore["information"]["schemaVersion"] != "4.0":
-            raise Exception(
-                "Version 4.0 schema required")
+        schemaVersion = datastore["information"]["schemaVersion"]
+        if schemaVersion != "4.0" and schemaVersion != "8.0":
+                raise Exception(
+                    "Version 4.0 or 8.0 schema required")
+        
+        # Schema versions flip between lists and dictionaries :(
         groups = {}
         values = datastore["groups"][1::2]
         keys = datastore["groups"][::2]

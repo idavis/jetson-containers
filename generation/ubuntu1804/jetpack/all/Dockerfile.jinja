@@ -1,4 +1,4 @@
-{%- if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3"-%}
+{%- if ctx.drivers.version == "32.3.1" or ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" -%}
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-devel-cudnn
 
@@ -47,6 +47,8 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends libnvinfer6 && \
 {%- elif ctx.drivers.version == "32.4.3" %}
     apt-get install -y --no-install-recommends libnvinfer7 && \
+{%- elif ctx.drivers.version == "32.4.4" %}
+    apt-get install -y --no-install-recommends libnvinfer7 && \
 {%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -60,6 +62,8 @@ RUN apt-get update && \
 {%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvinfer-plugin-dev libnvinfer-plugin6 && \
 {%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvinfer-plugin-dev libnvinfer-plugin7 && \
+{%- elif ctx.drivers.version == "32.4.4" %}
     apt-get install -y --no-install-recommends libnvinfer-plugin-dev libnvinfer-plugin7 && \
 {%- endif %}
     apt-get clean && \
@@ -81,6 +85,8 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends libnvparsers6 libnvparsers-dev && \
 {%- elif ctx.drivers.version == "32.4.3" %}
     apt-get install -y --no-install-recommends libnvparsers7 libnvparsers-dev && \
+{%- elif ctx.drivers.version == "32.4.4" %}
+    apt-get install -y --no-install-recommends libnvparsers7 libnvparsers-dev && \
 {%- endif %}
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -89,6 +95,8 @@ RUN apt-get update && \
 {%- if ctx.drivers.version == "32.3.1" %}
     apt-get install -y --no-install-recommends libnvonnxparsers6 libnvonnxparsers-dev && \
 {%- elif ctx.drivers.version == "32.4.3" %}
+    apt-get install -y --no-install-recommends libnvonnxparsers7 libnvonnxparsers-dev && \
+{%- elif ctx.drivers.version == "32.4.4" %}
     apt-get install -y --no-install-recommends libnvonnxparsers7 libnvonnxparsers-dev && \
 {%- endif %}
     apt-get clean && \
