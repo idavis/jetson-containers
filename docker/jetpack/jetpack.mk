@@ -1,5 +1,6 @@
 #!make
 
+32.4.4-jetpack-4.4.1: 32.4.4-tx1-jetpack-4.4.1 32.4.4-jax-jetpack-4.4.1 32.4.4-jax-8gb-jetpack-4.4.1 32.4.4-tx2-jetpack-4.4.1 32.4.4-nano-dev-jetpack-4.4.1 32.4.4-nano-jetpack-4.4.1 32.4.4-nano-2gb-dev-jetpack-4.4.1 32.4.4-tx2i-jetpack-4.4.1 32.4.4-tx2-4gb-jetpack-4.4.1 32.4.4-nx-dev-jetpack-4.4.1 32.4.4-nx-jetpack-4.4.1 
 32.4.3-jetpack-4.4: 32.4.3-tx1-jetpack-4.4 32.4.3-jax-jetpack-4.4 32.4.3-jax-8gb-jetpack-4.4 32.4.3-tx2-jetpack-4.4 32.4.3-nano-dev-jetpack-4.4 32.4.3-nano-jetpack-4.4 32.4.3-tx2i-jetpack-4.4 32.4.3-tx2-4gb-jetpack-4.4 32.4.3-nx-dev-jetpack-4.4 32.4.3-nx-jetpack-4.4 
 32.3.1-jetpack-4.3: 32.3.1-tx1-jetpack-4.3 32.3.1-jax-jetpack-4.3 32.3.1-jax-8gb-jetpack-4.3 32.3.1-tx2-jetpack-4.3 32.3.1-nano-dev-jetpack-4.3 32.3.1-nano-jetpack-4.3 32.3.1-tx2i-jetpack-4.3 32.3.1-tx2-4gb-jetpack-4.3 
 32.2.3-jetpack-4.2.3: 32.2.3-tx1-jetpack-4.2.3 32.2.3-jax-jetpack-4.2.3 32.2.3-jax-8gb-jetpack-4.2.3 32.2.3-tx2-jetpack-4.2.3 32.2.3-nano-dev-jetpack-4.2.3 32.2.3-nano-jetpack-4.2.3 32.2.3-tx2i-jetpack-4.2.3 32.2.3-tx2-4gb-jetpack-4.2.3 
@@ -8,6 +9,19 @@
 32.1-jetpack-4.2: 32.1-jax-jetpack-4.2 32.1-tx2-jetpack-4.2 32.1-nano-dev-jetpack-4.2 32.1-tx2i-jetpack-4.2 
 
 
+
+
+32.4.4-tx1-jetpack-4.4.1: 32.4.4-tx1-jetpack-4.4.1-base 32.4.4-tx1-jetpack-4.4.1-runtime 32.4.4-tx1-jetpack-4.4.1-runtime-cudnn 32.4.4-tx1-jetpack-4.4.1-deepstream 32.4.4-tx1-jetpack-4.4.1-devel 32.4.4-tx1-jetpack-4.4.1-devel-cudnn 32.4.4-tx1-jetpack-4.4.1-all 
+32.4.4-jax-jetpack-4.4.1: 32.4.4-jax-jetpack-4.4.1-base 32.4.4-jax-jetpack-4.4.1-runtime 32.4.4-jax-jetpack-4.4.1-runtime-cudnn 32.4.4-jax-jetpack-4.4.1-deepstream 32.4.4-jax-jetpack-4.4.1-devel 32.4.4-jax-jetpack-4.4.1-devel-cudnn 32.4.4-jax-jetpack-4.4.1-all 
+32.4.4-jax-8gb-jetpack-4.4.1: 32.4.4-jax-8gb-jetpack-4.4.1-base 32.4.4-jax-8gb-jetpack-4.4.1-runtime 32.4.4-jax-8gb-jetpack-4.4.1-runtime-cudnn 32.4.4-jax-8gb-jetpack-4.4.1-deepstream 32.4.4-jax-8gb-jetpack-4.4.1-devel 32.4.4-jax-8gb-jetpack-4.4.1-devel-cudnn 32.4.4-jax-8gb-jetpack-4.4.1-all 
+32.4.4-tx2-jetpack-4.4.1: 32.4.4-tx2-jetpack-4.4.1-base 32.4.4-tx2-jetpack-4.4.1-runtime 32.4.4-tx2-jetpack-4.4.1-runtime-cudnn 32.4.4-tx2-jetpack-4.4.1-deepstream 32.4.4-tx2-jetpack-4.4.1-devel 32.4.4-tx2-jetpack-4.4.1-devel-cudnn 32.4.4-tx2-jetpack-4.4.1-all 
+32.4.4-nano-dev-jetpack-4.4.1: 32.4.4-nano-dev-jetpack-4.4.1-base 32.4.4-nano-dev-jetpack-4.4.1-runtime 32.4.4-nano-dev-jetpack-4.4.1-runtime-cudnn 32.4.4-nano-dev-jetpack-4.4.1-deepstream 32.4.4-nano-dev-jetpack-4.4.1-devel 32.4.4-nano-dev-jetpack-4.4.1-devel-cudnn 32.4.4-nano-dev-jetpack-4.4.1-all 
+32.4.4-nano-jetpack-4.4.1: 32.4.4-nano-jetpack-4.4.1-base 32.4.4-nano-jetpack-4.4.1-runtime 32.4.4-nano-jetpack-4.4.1-runtime-cudnn 32.4.4-nano-jetpack-4.4.1-deepstream 32.4.4-nano-jetpack-4.4.1-devel 32.4.4-nano-jetpack-4.4.1-devel-cudnn 32.4.4-nano-jetpack-4.4.1-all 
+32.4.4-nano-2gb-dev-jetpack-4.4.1: 32.4.4-nano-2gb-dev-jetpack-4.4.1-base 32.4.4-nano-2gb-dev-jetpack-4.4.1-runtime 32.4.4-nano-2gb-dev-jetpack-4.4.1-runtime-cudnn 32.4.4-nano-2gb-dev-jetpack-4.4.1-deepstream 32.4.4-nano-2gb-dev-jetpack-4.4.1-devel 32.4.4-nano-2gb-dev-jetpack-4.4.1-devel-cudnn 32.4.4-nano-2gb-dev-jetpack-4.4.1-all 
+32.4.4-tx2i-jetpack-4.4.1: 32.4.4-tx2i-jetpack-4.4.1-base 32.4.4-tx2i-jetpack-4.4.1-runtime 32.4.4-tx2i-jetpack-4.4.1-runtime-cudnn 32.4.4-tx2i-jetpack-4.4.1-deepstream 32.4.4-tx2i-jetpack-4.4.1-devel 32.4.4-tx2i-jetpack-4.4.1-devel-cudnn 32.4.4-tx2i-jetpack-4.4.1-all 
+32.4.4-tx2-4gb-jetpack-4.4.1: 32.4.4-tx2-4gb-jetpack-4.4.1-base 32.4.4-tx2-4gb-jetpack-4.4.1-runtime 32.4.4-tx2-4gb-jetpack-4.4.1-runtime-cudnn 32.4.4-tx2-4gb-jetpack-4.4.1-deepstream 32.4.4-tx2-4gb-jetpack-4.4.1-devel 32.4.4-tx2-4gb-jetpack-4.4.1-devel-cudnn 32.4.4-tx2-4gb-jetpack-4.4.1-all 
+32.4.4-nx-dev-jetpack-4.4.1: 32.4.4-nx-dev-jetpack-4.4.1-base 32.4.4-nx-dev-jetpack-4.4.1-runtime 32.4.4-nx-dev-jetpack-4.4.1-runtime-cudnn 32.4.4-nx-dev-jetpack-4.4.1-deepstream 32.4.4-nx-dev-jetpack-4.4.1-devel 32.4.4-nx-dev-jetpack-4.4.1-devel-cudnn 32.4.4-nx-dev-jetpack-4.4.1-all 
+32.4.4-nx-jetpack-4.4.1: 32.4.4-nx-jetpack-4.4.1-base 32.4.4-nx-jetpack-4.4.1-runtime 32.4.4-nx-jetpack-4.4.1-runtime-cudnn 32.4.4-nx-jetpack-4.4.1-deepstream 32.4.4-nx-jetpack-4.4.1-devel 32.4.4-nx-jetpack-4.4.1-devel-cudnn 32.4.4-nx-jetpack-4.4.1-all 
 
 
 32.4.3-tx1-jetpack-4.4: 32.4.3-tx1-jetpack-4.4-base 32.4.3-tx1-jetpack-4.4-runtime 32.4.3-tx1-jetpack-4.4-runtime-cudnn 32.4.3-tx1-jetpack-4.4-deepstream 32.4.3-tx1-jetpack-4.4-devel 32.4.3-tx1-jetpack-4.4-devel-cudnn 32.4.3-tx1-jetpack-4.4-all 
@@ -65,6 +79,569 @@
 32.1-tx2-jetpack-4.2: 32.1-tx2-jetpack-4.2-base 32.1-tx2-jetpack-4.2-runtime 32.1-tx2-jetpack-4.2-runtime-cudnn 32.1-tx2-jetpack-4.2-devel 32.1-tx2-jetpack-4.2-devel-cudnn 32.1-tx2-jetpack-4.2-all 
 32.1-nano-dev-jetpack-4.2: 32.1-nano-dev-jetpack-4.2-base 32.1-nano-dev-jetpack-4.2-runtime 32.1-nano-dev-jetpack-4.2-runtime-cudnn 32.1-nano-dev-jetpack-4.2-devel 32.1-nano-dev-jetpack-4.2-devel-cudnn 32.1-nano-dev-jetpack-4.2-all 
 32.1-tx2i-jetpack-4.2: 32.1-tx2i-jetpack-4.2-base 32.1-tx2i-jetpack-4.2-runtime 32.1-tx2i-jetpack-4.2-runtime-cudnn 32.1-tx2i-jetpack-4.2-devel 32.1-tx2i-jetpack-4.2-devel-cudnn 32.1-tx2i-jetpack-4.2-all 
+
+
+
+
+
+32.4.4-tx1-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx1/base/Dockerfile
+
+32.4.4-tx1-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx1/runtime/Dockerfile
+
+32.4.4-tx1-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx1/runtime/cudnn/Dockerfile
+
+32.4.4-tx1-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx1/deepstream/Dockerfile
+
+32.4.4-tx1-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx1/devel/Dockerfile
+
+32.4.4-tx1-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx1/devel/cudnn/Dockerfile
+
+32.4.4-tx1-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx1/samples/Dockerfile
+
+32.4.4-tx1-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx1/all/Dockerfile
+
+
+
+
+32.4.4-jax-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax/base/Dockerfile
+
+32.4.4-jax-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax/runtime/Dockerfile
+
+32.4.4-jax-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax/runtime/cudnn/Dockerfile
+
+32.4.4-jax-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax/deepstream/Dockerfile
+
+32.4.4-jax-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax/devel/Dockerfile
+
+32.4.4-jax-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax/devel/cudnn/Dockerfile
+
+32.4.4-jax-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax/samples/Dockerfile
+
+32.4.4-jax-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax/all/Dockerfile
+
+
+
+
+32.4.4-jax-8gb-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax-8gb/base/Dockerfile
+
+32.4.4-jax-8gb-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax-8gb/runtime/Dockerfile
+
+32.4.4-jax-8gb-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax-8gb/runtime/cudnn/Dockerfile
+
+32.4.4-jax-8gb-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax-8gb/deepstream/Dockerfile
+
+32.4.4-jax-8gb-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax-8gb/devel/Dockerfile
+
+32.4.4-jax-8gb-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax-8gb/devel/cudnn/Dockerfile
+
+32.4.4-jax-8gb-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax-8gb/samples/Dockerfile
+
+32.4.4-jax-8gb-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/jax-8gb/all/Dockerfile
+
+
+
+
+32.4.4-tx2-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2/base/Dockerfile
+
+32.4.4-tx2-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2/runtime/Dockerfile
+
+32.4.4-tx2-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2/runtime/cudnn/Dockerfile
+
+32.4.4-tx2-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2/deepstream/Dockerfile
+
+32.4.4-tx2-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2/devel/Dockerfile
+
+32.4.4-tx2-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2/devel/cudnn/Dockerfile
+
+32.4.4-tx2-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2/samples/Dockerfile
+
+32.4.4-tx2-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2/all/Dockerfile
+
+
+
+
+32.4.4-nano-dev-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-dev/base/Dockerfile
+
+32.4.4-nano-dev-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-dev/runtime/Dockerfile
+
+32.4.4-nano-dev-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-dev/runtime/cudnn/Dockerfile
+
+32.4.4-nano-dev-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-dev/deepstream/Dockerfile
+
+32.4.4-nano-dev-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-dev/devel/Dockerfile
+
+32.4.4-nano-dev-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-dev/devel/cudnn/Dockerfile
+
+32.4.4-nano-dev-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-dev/samples/Dockerfile
+
+32.4.4-nano-dev-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-dev/all/Dockerfile
+
+
+
+
+32.4.4-nano-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano/base/Dockerfile
+
+32.4.4-nano-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano/runtime/Dockerfile
+
+32.4.4-nano-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano/runtime/cudnn/Dockerfile
+
+32.4.4-nano-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano/deepstream/Dockerfile
+
+32.4.4-nano-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano/devel/Dockerfile
+
+32.4.4-nano-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano/devel/cudnn/Dockerfile
+
+32.4.4-nano-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano/samples/Dockerfile
+
+32.4.4-nano-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano/all/Dockerfile
+
+
+
+
+32.4.4-nano-2gb-dev-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-2gb-dev/base/Dockerfile
+
+32.4.4-nano-2gb-dev-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-2gb-dev/runtime/Dockerfile
+
+32.4.4-nano-2gb-dev-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-2gb-dev/runtime/cudnn/Dockerfile
+
+32.4.4-nano-2gb-dev-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-2gb-dev/deepstream/Dockerfile
+
+32.4.4-nano-2gb-dev-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-2gb-dev/devel/Dockerfile
+
+32.4.4-nano-2gb-dev-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-2gb-dev/devel/cudnn/Dockerfile
+
+32.4.4-nano-2gb-dev-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-2gb-dev/samples/Dockerfile
+
+32.4.4-nano-2gb-dev-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nano-2gb-dev/all/Dockerfile
+
+
+
+
+32.4.4-tx2i-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2i/base/Dockerfile
+
+32.4.4-tx2i-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2i/runtime/Dockerfile
+
+32.4.4-tx2i-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2i/runtime/cudnn/Dockerfile
+
+32.4.4-tx2i-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2i/deepstream/Dockerfile
+
+32.4.4-tx2i-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2i/devel/Dockerfile
+
+32.4.4-tx2i-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2i/devel/cudnn/Dockerfile
+
+32.4.4-tx2i-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2i/samples/Dockerfile
+
+32.4.4-tx2i-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2i/all/Dockerfile
+
+
+
+
+32.4.4-tx2-4gb-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2-4gb/base/Dockerfile
+
+32.4.4-tx2-4gb-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2-4gb/runtime/Dockerfile
+
+32.4.4-tx2-4gb-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2-4gb/runtime/cudnn/Dockerfile
+
+32.4.4-tx2-4gb-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2-4gb/deepstream/Dockerfile
+
+32.4.4-tx2-4gb-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2-4gb/devel/Dockerfile
+
+32.4.4-tx2-4gb-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2-4gb/devel/cudnn/Dockerfile
+
+32.4.4-tx2-4gb-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2-4gb/samples/Dockerfile
+
+32.4.4-tx2-4gb-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/tx2-4gb/all/Dockerfile
+
+
+
+
+32.4.4-nx-dev-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx-dev/base/Dockerfile
+
+32.4.4-nx-dev-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx-dev/runtime/Dockerfile
+
+32.4.4-nx-dev-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx-dev/runtime/cudnn/Dockerfile
+
+32.4.4-nx-dev-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx-dev/deepstream/Dockerfile
+
+32.4.4-nx-dev-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx-dev/devel/Dockerfile
+
+32.4.4-nx-dev-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx-dev/devel/cudnn/Dockerfile
+
+32.4.4-nx-dev-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx-dev/samples/Dockerfile
+
+32.4.4-nx-dev-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx-dev/all/Dockerfile
+
+
+
+
+32.4.4-nx-jetpack-4.4.1-base:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx/base/Dockerfile
+
+32.4.4-nx-jetpack-4.4.1-runtime:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx/runtime/Dockerfile
+
+32.4.4-nx-jetpack-4.4.1-runtime-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx/runtime/cudnn/Dockerfile
+
+32.4.4-nx-jetpack-4.4.1-deepstream:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx/deepstream/Dockerfile
+
+32.4.4-nx-jetpack-4.4.1-devel:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx/devel/Dockerfile
+
+32.4.4-nx-jetpack-4.4.1-devel-cudnn:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx/devel/cudnn/Dockerfile
+
+32.4.4-nx-jetpack-4.4.1-samples:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx/samples/Dockerfile
+
+32.4.4-nx-jetpack-4.4.1-all:
+	$(DOCKER) build $(DOCKER_BUILD_ARGS) \
+					--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+					-t $(REPO):$@ \
+					- < 4.4.1/nx/all/Dockerfile
+
 
 
 

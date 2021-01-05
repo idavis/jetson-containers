@@ -1,4 +1,4 @@
-{%- if ctx.drivers.version == "32.4.3" %}
+{%- if ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" %}
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}
 
@@ -66,7 +66,7 @@ RUN echo "{{ ctx.cuda.toolkit.checksum }} {{ ctx.cuda.toolkit.fileName }}" | md5
 
 {% endif %}
 
-{%- if ctx.drivers.version == "32.4.3" %}
+{%- if ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" %}
 RUN ln -s /usr/local/cuda-10.2 /usr/local/cuda && \
     ln -s /usr/local/cuda-10.2/targets/aarch64-linux/include /usr/local/cuda/include && \
     ln -s /usr/local/cuda-10.2/targets/aarch64-linux/lib /usr/local/cuda/lib64

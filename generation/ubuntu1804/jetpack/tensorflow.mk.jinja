@@ -17,7 +17,7 @@
 {% for driver_version, value in ctx.ctx.items() %}
 {% for device_name, driver_details in ctx.ctx[driver_version].items() %}
 {%- for item in ctx.tf[driver_details.jetpackVersion] %}
-{% if driver_version == "32.3.1" or driver_version == "32.4.3"%}
+{% if driver_version == "32.3.1" or driver_version == "32.4.3" or driver_version == "32.4.4" %}
 {{ driver_version }}-{{ device_name }}-jetpack-{{ driver_details.jetpackVersion }}-tf-{{ item.version }}-nv{{ item.nv_version }}-min:
 	$(DOCKER) build $(DOCKER_DEPS_IMAGE_BUILD_ARGS) \
 					--build-arg IMAGE_NAME=$(IMAGE_NAME) \

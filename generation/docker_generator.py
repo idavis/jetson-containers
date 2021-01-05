@@ -14,6 +14,7 @@ log = logging.getLogger()
 #                             P3668-0001    Production
 # Jetson Nano                 P3448-0000    Supplied with developer kit
 #                             P3448-0002    Production
+# Jetson Nano                 P3448-0003    Supplied with developer kit 2GB
 # Jetson AGX Xavier series    P2888-0001    16 GB memory
 #                             P2888-0004    32 GB memory
 #                             P2888-0006    8 GB memory
@@ -33,6 +34,7 @@ v4deviceIdToPartNameDeviceIdLookup = {
     "JETSON_TX2I": "P3489-0000",
     "JETSON_TX1": "P2180-1000",
     "JETSON_NANO_DEVKIT": "P3448-0000",
+    "JETSON_NANO_2GB_DEVKIT": "P3448-0003",
     "JETSON_NANO": "P3448-0002"
 }
 
@@ -53,6 +55,7 @@ deviceIdToCurrentIdLookup = {
     "P2180-1000": "P2180-1000",
     "P3448-0000": "P3448-0000",
     "P3448-0002": "P3448-0002",
+    "P3448-0003": "P3448-0003",
     "P3448-0020": "P3448-0002"
 }
 
@@ -80,6 +83,7 @@ deviceIdToFriendlyNameLookup = {
     "P2180-1000": "Jetson TX1",
     "P3448-0000": "Jetson Nano (Developer Kit version)",
     "P3448-0002": "Jetson Nano",
+    "P3448-0003": "Jetson Nano (Developer Kit 2GB version)",
     "P3448-0020": "Jetson Nano"
 }
 
@@ -94,6 +98,7 @@ deviceIdToTargetBoardLookup = {
     "P3489-0888": "jetson-tx2-4GB",
     "P2180-1000": "jetson-tx1",
     "P3448-0000": "jetson-nano-qspi-sd",
+    "P3448-0003": "jetson-nano-2gb-devkit",
     "P3448-0002": "jetson-nano-emmc"
 }
 
@@ -109,6 +114,7 @@ deviceIdToTargetBoardLookupDoc = {
     "P3489-0888": "jetson-tx2-devkit-4GB",
     "P2180-1000": "jetson-tx1-devkit",
     "P3448-0000": "jetson-nano-devkit",
+    "P3448-0003": "jetson-nano-2gb-devkit",
     "P3448-0002": "jetson-nano-emmc"
 }
 
@@ -123,7 +129,8 @@ deviceToSoCLookup = {
     "P3489-0888": "186",
     "P2180-1000": "210",
     "P3448-0000": "210",
-    "P3448-0002": "210"
+    "P3448-0002": "210",
+    "P3448-0003": "210",
 }
 
 deviceIdToShortNameLookup = {
@@ -144,7 +151,8 @@ deviceIdToShortNameLookup = {
     "P2180-1000": "tx1",
     "P3448-0000": "nano-dev",
     "P3448-0020": "nano",
-    "P3448-0002": "nano"
+    "P3448-0002": "nano",
+    "P3448-0003": "nano-2gb-dev",
 }
 
 shortNameToDeviceIdLookup = {
@@ -158,10 +166,12 @@ shortNameToDeviceIdLookup = {
     "tx2-4gb": "P3489-0888",
     "tx1": "P2180-1000",
     "nano-dev": "P3448-0000",
-    "nano": "P3448-0002"
+    "nano": "P3448-0002",
+    "nano-2gb-dev": "P3448-0003",
 }
 
 active_versions = [
+    "4.4.1",
     "4.4",
 
     "4.3",
@@ -174,6 +184,7 @@ active_versions = [
 ]
 
 activeVersionsToSdkManagerVersionsLookup = {
+    "4.4.1": "4.4.1",
     "4.4": "4.4",
 
     "4.3": "4.3",
@@ -190,7 +201,7 @@ activeVersionsToSdkManagerVersionsLookup = {
 def get_tf_version_map():
     tfmap = {}
     
-    tfmap["4.4"] = [
+    tfmap["4.4.1"] = [
         {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.2", "nv_version" :"20.4"},
         {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.7"},
         {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.2", "nv_version" : "20.6"},
@@ -202,6 +213,7 @@ def get_tf_version_map():
         {"url_suffix": "v44", "package" : "tensorflow", "version" : "1.15.3", "nv_version" : "20.9"},
         {"url_suffix": "v44", "package" : "tensorflow", "version" : "2.3.0", "nv_version" : "20.9"},
     ]
+    tfmap["4.4"] = tfmap["4.4.1"]
     tfmap["4.3"] = [
         {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "2.0.0", "nv_version" : "19.12"},
         {"url_suffix": "v43", "package" : "tensorflow_gpu", "version" : "1.15.0", "nv_version" : "19.12"},
@@ -385,7 +397,6 @@ class DockerGenerator(cli.Application):
 
     def generate_l4t_makefile_context(self):
         make_context = {}
-        filename = "l4t.yml"
         for jetpack_version in active_versions:
             context_file = pathlib.Path(f"dist/{jetpack_version}/l4t.yml")
             context = self.read_yml_dictionary(context_file)

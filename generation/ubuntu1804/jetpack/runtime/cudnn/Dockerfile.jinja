@@ -1,5 +1,5 @@
 ARG IMAGE_NAME
-{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" %}
+{%- if ctx.drivers.version != "32.3.1" and ctx.drivers.version != "32.4.3" and ctx.drivers.version != "32.4.4" %}
 ARG DEPENDENCIES_IMAGE
 FROM ${DEPENDENCIES_IMAGE} as dependencies
 ARG IMAGE_NAME
@@ -7,7 +7,7 @@ ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-runtime
 
 # NVIDIA CUDA Deep Neural Network library (cuDNN)
-{%- if ctx.drivers.version == "32.4.3" %}
+{%- if ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" %}
 ENV CUDNN_VERSION {{ ctx.cudnn.libcudnn8.version }}
 
 LABEL com.nvidia.cudnn.version="{{ ctx.cudnn.libcudnn8.version }}"
@@ -17,7 +17,7 @@ ENV CUDNN_VERSION {{ ctx.cudnn.libcudnn7.version }}
 LABEL com.nvidia.cudnn.version="{{ ctx.cudnn.libcudnn7.version }}"
 {%- endif %}
 
-{% if ctx.drivers.version == "32.4.3" %}
+{% if ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" %}
 RUN apt-get update && \
     apt-get install -y --no-install-recommends {{ ctx.cudnn.libcudnn8.packageName }} && \
     apt-get clean && \

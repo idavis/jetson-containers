@@ -1,7 +1,7 @@
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:{{ ctx.drivers.version }}-{{ ctx.shortName }}-jetpack-{{ ctx.jetpackVersion }}-devel as builder
 
-{% if ctx.drivers.version == "32.4.3" -%}
+{% if ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" -%}
 WORKDIR /usr/local/cuda-10.2/samples
 {% else %}
 WORKDIR /usr/local/cuda-10.0/samples
@@ -32,7 +32,7 @@ RUN apt-get update && \
 
 FROM base
 RUN mkdir samples
-{% if ctx.drivers.version == "32.4.3" -%}
+{% if ctx.drivers.version == "32.4.3" or ctx.drivers.version == "32.4.4" -%}
 COPY --from=builder /usr/local/cuda-10.2/samples/ /samples
 {% else %}
 COPY --from=builder /usr/local/cuda-10.0/samples/ /samples
